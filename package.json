@@ -1,0 +1,21 @@
+{
+  "name": "code0",
+  "version": "1.1.25",
+  "description": "Code0 Discord Bot standalone, this only requires an http port for the Github OAuth",
+  "main": "index.js",
+  "type": "commonjs",
+  "scripts": {
+    "update": "node update.js"
+  },
+  "author": "Nicusch | Nicolas Morawietz",
+  "dependencies": {
+    "canvas": "^2.11.2",
+    "discord.js": "^14.14.1",
+    "dom-to-image": "^2.6.0",
+    "dotenv": "^16.3.1",
+    "html-to-image": "^1.11.11",
+    "html2canvas": "^1.4.1",
+    "node-fetch": "^2.6.12",
+    "node-html-to-image": "^4.0.0"
+  }
+}

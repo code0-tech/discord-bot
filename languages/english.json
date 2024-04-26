@@ -1,0 +1,60 @@
+{
+    "embed-design": {
+        "1": {
+            "title": "Test Embeds for Nicusch lol",
+            "description": "Ey yo {user} your an english guy and {age} lol ca"
+        }
+    },
+    "ticket": {
+        "create": {
+            "title": "Ticket",
+            "description": "Creating a new ticket"
+        },
+        "created": {
+            "title": "We got your Ticket",
+            "description": "You will find your ticket <#{channelid}> under the `Support` category"
+        },
+        "info-message": {
+            "title": "Support Ticket #{ticketnumber}",
+            "description": "Hi {username},\nPlease take a moment to describe the issue you're facing.\nThe more details you provide, the better we can assist you.\nIf applicable, include error messages, steps to reproduce the problem, and any other relevant information."
+        },
+        "close-info": {
+            "title": "Closing Ticket",
+            "description": "`Ticket will be closed in 5sec.`"
+        },
+        "closed": {
+            "title": "Closed",
+            "description": "`The ticket was Closed by `<@{closeduserid}>`.`"
+        }
+    },
+    "open-contributor": {
+        "error-timeout": {
+            "title": "Code expired",
+            "description": "This code is expired. Use /open-contributor to get a new one."
+        },
+        "error-similar-inquiry": {
+            "title": "Request canceled",
+            "description": "It appears that a similar inquiry or request has already been submitted elsewhere, as a result, the current request has been canceled."
+        },
+        "error-already-has-role": {
+            "title": "Well... you are an Open Contributor",
+            "description": "You already are an Open Contributor. There is no need to use this command."
+        },
+        "initial-message": {
+            "title": "How to become an Open Contributor",
+            "description": "For becoming an Open Contributor and its roles you must fulfill the following things:\n\n1. Have {neededcommits} or more commits\n2. Have {neededpr} or more pull requests\n\nClick the link button and check if you can become an Open Contributor."
+        },
+        "results-complete": {
+            "title": "Github Results for {githubname}",
+            "description": "\nYou got {yourpr} of {neededpr} pull requests.\nYou got {yourcommits} of {neededcommits} commits.\n\nWe have added you to our Open Contributor"
+        },
+        "results-not-complete": {
+            "title": "Github Results for {githubname}",
+            "description": "\nYou got {yourpr} of {neededpr} pull requests.\nYou got {yourcommits} of {neededcommits} commits\n\nFulfill all requirements to become an Open Contributor."
+        },
+        "results-no-data": {
+            "title": "Github Results for {githubname}",
+            "description": "You got no commits nor pull request's"
+        }
+    }
+}

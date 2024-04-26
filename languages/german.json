@@ -1,0 +1,54 @@
+{
+    "ticket": {
+        "create": {
+            "title": "Ticket",
+            "description": "Ticket wird erstellt"
+        },
+        "created": {
+            "title": "Wir haben dein Ticket erstellt",
+            "description": "Du kannst dein Ticket <#{channelid}> in der `Support` Kategorie finden"
+        },
+        "info-message": {
+            "title": "Support Ticket #{ticketnumber}",
+            "description": "Hi {username},\nLass dir ein wenig Zeit um dein Anliegen zu beschreiben.\nJe mehr Einzelheiten du uns nennst, desto besser können wir dir helfen.\nFalls zutreffend, fügen Sie Fehlermeldungen, Schritte zur Reproduktion des Problems und andere relevante Informationen bei."
+        },
+        "close-info": {
+            "title": "Schließen des Tickets",
+            "description": "`Das Ticket wird in 5s geschlossen.`"
+        },
+        "closed": {
+            "title": "Geschlossen",
+            "description": "`Das Ticket wurde von `<@{closeduserid}>` geschlossen.`"
+        }
+    },
+    "open-contributor": {
+        "error-timeout": {
+            "title": "Der Code ist abgelaufen",
+            "description": "Der Code ist abgelaufen. Nutze /open-contributor um einen neuen Code zu generieren."
+        },
+        "error-similar-inquiry": {
+            "title": "Anfrage storniert",
+            "description": "Es scheint, dass eine ähnliche Anfrage oder ein ähnlicher Antrag bereits an anderer Stelle gestellt wurde, so dass der aktuelle Antrag storniert wurde."
+        },
+        "error-already-has-role": {
+            "title": "Ähm... Du bist schon ein Open Contributor",
+            "description": "Du bist schon ein Open Contributor. Dieser Befehl ist nicht notwendig."
+        },
+        "initial-message": {
+            "title": "Wie man Open Contributor wird",
+            "description": "Um ein Open Contributor und seine Rollen zu werden, müssen Sie die folgenden Dinge erfüllen:\n\n1. Haben Sie {neededcommits} oder mehr commits\n2. Haben Sie {neededpr} oder mehr Pull-Requests\n\nKlicken Sie auf den Link und prüfen Sie, ob Sie ein Open Contributor werden können"
+        },
+        "results-complete": {
+            "title": "Github Ergebnisse für {githubname}",
+            "description": "\nSie haben {yourpr} von {neededpr} Pull Requests.\nSie haben {yourcommits} von {neededcommits} Commits.\n\nWir haben Sie zu unserem Open Contributor hinzugefügt"
+        },
+        "results-not-complete": {
+            "title": "Github Ergebnisse für {githubname}",
+            "description": "\nDu hast {yourpr}/{neededpr} Pull Requests.\nDu hast {yourcommits}/{neededcommits} Commits\n\nErfülle alle Anforderungen und versuche es erneut."
+        },
+        "results-no-data": {
+            "title": "Github Ergebnisse für {githubname}",
+            "description": "Du hast weder Pull Requests noch Commits"
+        }
+    }
+}
