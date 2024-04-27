@@ -41,8 +41,6 @@ const setup = (client) => {
     setInterval(() => {
         if (eventHand.length !== 0) {
             const event = eventHand.shift();
-            // console.log(eventHand);
-            // console.log(event);
             sendEvent(event);
         }
     }, 5000);
