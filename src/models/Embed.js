@@ -236,43 +236,56 @@ class Embed {
             }
         })
     }
-
-
-
-
-
-    /**
-     * Send a message to a specific channel with optional components and pin the message.
-     * @param {string} channelId - The ID of the channel to send the message to.
-     * @param {Client} client - The client to send the message from.
-     * @param {MessageActionRow[]} [components] - The components to include in the message.
-     * @param {boolean} [pinMessage=false] - Whether to pin the sent message (default: false).
-     * @returns {Promise<void>} - A promise that resolves when the message is sent.
-     */
-    _sendToChannel(channelId, client, components, pinMessage = false) {
-        return new Promise(async (resolve) => {
-            try {
-                const channel = await client.channels.fetch(channelId);
-                const messageOptions = { embeds: [this.getEmbed()] };
-
-                if (components) {
-                    messageOptions.components = components;
-                }
-
-                const messageResponse = await channel.send(messageOptions);
-
-                if (pinMessage) {
-                    await messageResponse.pin();
-                }
-
-                resolve(messageResponse);
-            } catch (error) {
-                console.error(`Error sending message to channel ${channelId}: ${error.message}`);
-                throw error;
-            }
-        })
-    }
-
 }
 
-module.exports = { Embed };
+
+const progressBar = (total, whole, info = true, segments = 10) => {
+    if (total > whole) {
+        total = 0;
+        whole = 100;
+    }
+
+    const percentage = ((total / whole) * 100).toFixed(2);
+
+    let filledSegments = Math.round((percentage / 100) * segments);
+    let emptySegments = segments - filledSegments;
+
+    let string = '';
+    let end = '';
+
+    if (filledSegments >= segments) {
+        end = config.embeds.progressbar.pbr1;
+        filledSegments--;
+    } else {
+        end = config.embeds.progressbar.pbr0;
+        if (emptySegments > 0) {
+            emptySegments--;
+        }
+    }
+
+    if (filledSegments >= 1) {
+        string = config.embeds.progressbar.pbl1;
+        if (filledSegments == 0) {
+            emptySegments--;
+        } else {
+            filledSegments--;
+        }
+    } else {
+        emptySegments--;
+        string = config.embeds.progressbar.pbl0;
+    }
+
+    string += config.embeds.progressbar.pbm1.repeat(filledSegments);
+    string += config.embeds.progressbar.pbm0.repeat(emptySegments);
+
+
+    if (info) {
+        end += " " + percentage + "%";
+    }
+
+
+    return string + end;
+}
+
+
+module.exports = { Embed, progressBar };

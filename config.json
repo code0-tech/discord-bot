@@ -15,7 +15,15 @@
         "footer": {
             "default": "Code0"
         },
-        "avatarurl": "https://cdn.discordapp.com/avatars/915292654709923840/f3fd2f409d569417dc1d9f1094a790d4.webp?size=512"
+        "avatarurl": "https://cdn.discordapp.com/avatars/915292654709923840/f3fd2f409d569417dc1d9f1094a790d4.webp?size=512",
+        "progressbar": {
+            "pbl0": "<:pbl0:1233913435956187197>",
+            "pbl1": "<:pbl1:1233913511122309281>",
+            "pbm0": "<:pbm0:1233913574888443954>",
+            "pbm1": "<:pbm1:1233913626369331282>",
+            "pbr0": "<:pbr0:1233913673421160548>",
+            "pbr1": "<:pbr1:1233913721789874176>"
+        }
     },
     "serverid": "1173625923724124200",
     "parents": {

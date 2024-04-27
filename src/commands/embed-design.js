@@ -1,7 +1,7 @@
 const { SlashCommandBuilder } = require('@discordjs/builders');
 const { ChannelType, PermissionsBitField, ButtonBuilder, ButtonStyle, ActionRowBuilder, DiscordjsError, AttachmentBuilder } = require("discord.js");
 const { waitMs } = require('./../utils/time');
-const { Embed } = require('./../models/Embed');
+const { Embed, progressBar } = require('./../models/Embed');
 const config = require('./../../config.json');
 const { Card } = require('./../models/card/Card');
 
@@ -22,10 +22,39 @@ const execute = async (interaction, client, guild, member, lang) => {
   const row = new ActionRowBuilder()
     .addComponents(closeTicket);
 
+  /* 
+  
+    ${progressBar(20, 60, true)}
+  ${progressBar(20, 70, true)}
+  ${progressBar(20, 80, true)}
+  ${progressBar(20, 90, true)}
+  ${progressBar(20, 100, true)}
+  ${progressBar(2, 60, true)}
+  ${progressBar(5, 10, true)}
+  
+
+  */
+
   new Embed()
     .setColor(config.embeds.colors.info)
-    .addInputs({ user: "nicusch", age: 21 })
-    .addContext(lang, member, '1')
+    .setDescription(`
+  ${progressBar(0, 100)}
+  ${progressBar(10, 100)}
+  ${progressBar(20, 100)}
+  ${progressBar(30, 100)}
+  ${progressBar(40, 100)}
+  ${progressBar(50, 100)}
+  ${progressBar(60, 100)}
+  ${progressBar(70, 100)}
+  ${progressBar(80, 100)}
+  ${progressBar(90, 100)}
+  ${progressBar(100, 100)}
+  ${progressBar(110, 100)}
+    `)
+
+
+    // .addInputs({ user: "nicusch", age: 21 })
+    // .addContext(lang, member, '1')
     .addCode0Footer()
     .interactionResponse(interaction, [row])
 
