@@ -37,4 +37,5 @@ const setup = (client) => {
 
 }
 
+// unused
 module.exports = { setup };

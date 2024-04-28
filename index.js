@@ -61,5 +61,4 @@ keysArray.forEach(entryKey => {
     console.log(snowflakeToDate(entryKey));
 });
 
-console.dir(graphQlInfo, { depth: null });
 */

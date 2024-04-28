@@ -32,7 +32,7 @@ const execute = async (interaction, client, guild, member, lang) => {
         return;
     }
 
-    // User has no role, generate GitHub OAuth Link
+    // User has no role, generate GitHub OAuth Link + reference id
     const awaitCodeId = awaiterCodeId();
     const data = {
         userId: interaction.user.id,
@@ -60,7 +60,7 @@ const execute = async (interaction, client, guild, member, lang) => {
         .addCode0Footer()
         .interactionResponse(interaction, [row])
 
-    // Await if user used the link or not, then perform the function that's needed
+    // Await if user used the link or not, then perform action
     const resolvedAwait = await awaitCodeResolve(client, awaitCodeId, 120000, data.reference, true);
 
     if (!resolvedAwait) {
@@ -69,14 +69,14 @@ const execute = async (interaction, client, guild, member, lang) => {
     } else {
         const { name, github } = resolvedAwait;
 
-        let repostring = ""; // Unsed currently
+        let repostring = ""; // add repo string later when my design idea is better
         let messageType = '';
 
         if (github.contributions.length === 0) {
             messageType = 'results-no-data';
         } else {
             github.contributions.forEach(obj => {
-                repostring += `\nRepo: ${obj.repository}, commits: ${obj.commitCount}, Pull Request's: ${obj.pullRequestCount}`;
+                repostring += `\n\`Repo: ${obj.repository}, commits: ${obj.commitCount}, Pull Request's: ${obj.pullRequestCount}\``;
             });
         }
 
@@ -90,7 +90,7 @@ const execute = async (interaction, client, guild, member, lang) => {
         await new Embed()
             .setColor(config.embeds.colors.info)
             .addInputs({
-                repostring, // Unused currently
+                repostring,
                 yourpr: github.totalPullRequests,
                 neededpr: config.commands.opencontributor.pr,
 

@@ -34,7 +34,7 @@ const setup = (client) => {
 
         const messageOptions = { files: [attachment] };
 
-        const messageResponse = await channel.send(messageOptions);
+        await channel.send(messageOptions);
     }
 
 

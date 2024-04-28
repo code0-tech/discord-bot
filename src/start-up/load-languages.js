@@ -16,6 +16,7 @@ const loadJSONFilesFromFolder = async (folderPath) => {
         }
 
         return jsonData;
+
     } catch (error) {
         console.error('Error loading JSON files from folder:', error);
         return null;
