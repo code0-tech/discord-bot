@@ -1,5 +1,9 @@
 {
     "ticket": {
+        "timeout": {
+            "title": "Bitte warte",
+            "description": "Ihr letztes Ticket wurde vor `{m} Minuten` und `{s} Sekunden` erstellt.\nBitte warten Sie, bevor Sie Ihr nächstes Ticket erstellen."
+        },
         "create": {
             "title": "Ticket",
             "description": "Ticket wird erstellt"
@@ -14,7 +18,7 @@
         },
         "close-info": {
             "title": "Schließen des Tickets",
-            "description": "`Das Ticket wird in 5s geschlossen.`"
+            "description": "`Das Ticket wird in 5 Sekunden geschlossen.`"
         },
         "closed": {
             "title": "Geschlossen",

@@ -59,6 +59,9 @@
         "opencontributor": {
             "pr": 10,
             "commits": 10
+        },
+        "ticket": {
+            "timeout": 300000
         }
     }
 }

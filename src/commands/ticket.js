@@ -1,15 +1,17 @@
 const { SlashCommandBuilder } = require('@discordjs/builders');
 const { ChannelType, PermissionsBitField, ButtonBuilder, ButtonStyle, ActionRowBuilder } = require("discord.js");
 const { channelFromInteraction, removeAllChannelUserPerms } = require('./../utils/channel');
-const { waitMs } = require('./../utils/time');
-const { Embed } = require('./../models/Embed');
+const { waitMs, snowflakeToDate, msToHumanReadableTime } = require('./../utils/time');
 const { Channel } = require('./../models/Channel');
+const { keyArray } = require('./../utils/helper');
+const { Embed } = require('./../models/Embed');
 const config = require('./../../config.json');
 
 const data = new SlashCommandBuilder()
     .setName('ticket')
     .setDescription('Opens a new support ticket for assistance.')
 
+const USER_OVERRIDE = 1;
 
 const getSmallestTicketNumber = (guild) => {
     return new Promise((resolve) => {
@@ -30,14 +32,66 @@ const getSmallestTicketNumber = (guild) => {
             }
             nextAvailableNumber++;
         }
-        const formattedNumber = nextAvailableNumber.toString().padStart(4, '0');
+        const formattedNumber = nextAvailableNumber.toString().padStart(6, '0');
 
         resolve(formattedNumber);
     })
 }
 
+const checkLastCreatedTicket = (guild, member) => {
+    const allChannels = guild.channels.cache;
+    const channelsInCategory = allChannels.filter(channel => channel.parentId === config.parents.support);
+
+    const keys = keyArray(channelsInCategory);
+
+    let lastChannelTimestamp = null;
+
+    keys.forEach(channelId => {
+        const channel = channelsInCategory.get(channelId);
+
+        const permissionOverwrites = channel.permissionOverwrites.cache;
+        const type1Overwrites = permissionOverwrites.filter(overwrite => overwrite.type === USER_OVERRIDE);
+
+        const userOverWrite = type1Overwrites.get(member.id);
+
+        if (userOverWrite == undefined) return;
+        if (channel.id == null) return;
+
+        const timeStamp = snowflakeToDate(channel.id);
+
+        if (timeStamp > lastChannelTimestamp) {
+            lastChannelTimestamp = timeStamp
+        }
+
+    });
+
+    if (lastChannelTimestamp == null) return null;
+
+    const timeStamp = new Date(lastChannelTimestamp).getTime();
+    const currentTime = Date.now();
+
+    const timeDifference = currentTime - timeStamp;
+
+    return timeDifference;
+}
+
 const execute = async (interaction, client, guild, member, lang) => {
     await interaction.deferReply({ ephemeral: true });
+
+    const lastTicketinMs = checkLastCreatedTicket(guild, member);
+
+    if (lastTicketinMs !== null && lastTicketinMs < config.commands.ticket.timeout) {
+        const { m, s } = msToHumanReadableTime(lastTicketinMs);
+
+        await new Embed()
+            .setColor(config.embeds.colors.danger)
+            .addInputs({ m, s })
+            .addContext(lang, member, 'timeout')
+            .addCode0Footer()
+            .interactionResponse(interaction)
+
+        return;
+    }
 
     await new Embed()
         .setColor(config.embeds.colors.info)

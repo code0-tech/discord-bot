@@ -6,6 +6,10 @@
         }
     },
     "ticket": {
+        "timeout": {
+            "title": "Timeout",
+            "description": "Your last ticket was created `{m} minutes` and `{s} seconds` ago.\nPlease wait before creating your next Ticket."
+        },
         "create": {
             "title": "Ticket",
             "description": "Creating a new ticket"
@@ -20,7 +24,7 @@
         },
         "close-info": {
             "title": "Closing Ticket",
-            "description": "`Ticket will be closed in 5sec.`"
+            "description": "`Ticket will be closed in 5 seconds.`"
         },
         "closed": {
             "title": "Closed",

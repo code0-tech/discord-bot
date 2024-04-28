@@ -43,6 +43,8 @@ client.once(Events.ClientReady, readyClient => {
 
 client.login(process.env.TOKEN);
 
+// Ticket all 5 minutes.
+
 
 /*
 console.dir(card.build(), { depth: null, breakLength: 0 });
