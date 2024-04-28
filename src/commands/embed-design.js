@@ -35,15 +35,24 @@ const execute = async (interaction, client, guild, member, lang) => {
 
   */
 
-  new Embed()
-    .setColor(config.embeds.colors.info)
-    .setDescription(``)
+  let index = 0;
 
+  setInterval(() => {
+    new Embed()
+      .setColor(config.embeds.colors.info)
+      .setDescription(`${progressBar(index, 100, true)}`)
+      // .addInputs({ user: "nicusch", age: 21 })
+      // .addContext(lang, member, '1')
+      .addCode0Footer()
+      .interactionResponse(interaction)
+    // .interactionResponse(interaction, [row])
 
-    // .addInputs({ user: "nicusch", age: 21 })
-    // .addContext(lang, member, '1')
-    .addCode0Footer()
-    .interactionResponse(interaction, [row])
+    index++;
+
+    if (index > 100) {
+      index = 0;
+    }
+  }, 1000);
 
 
   /* 
