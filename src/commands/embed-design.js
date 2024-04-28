@@ -11,7 +11,7 @@ const data = new SlashCommandBuilder()
 
 
 const execute = async (interaction, client, guild, member, lang) => {
-  const defer = await interaction.deferReply({ ephemeral: true });
+  await interaction.deferReply({ ephemeral: true });
 
 
   const closeTicket = new ButtonBuilder()
