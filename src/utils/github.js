@@ -130,8 +130,6 @@ const checkOpenContributor = async (data, code, client) => {
 
   const graphQlInfo = await getGithubUserInfo(token);
 
-  // console.dir(graphQlInfo, { depth: null });
-
   const resolvePacket = {
     name: graphQlInfo.data.viewer.login,
     github: await filterCommits(graphQlInfo.data.viewer.contributionsCollection)
