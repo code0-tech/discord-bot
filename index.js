@@ -43,7 +43,12 @@ client.once(Events.ClientReady, readyClient => {
 
 client.login(process.env.TOKEN);
 
-// Ticket all 5 minutes.
+/* TODO
+
+- Discord Audit log Embeds
+
+
+*/
 
 
 /*
