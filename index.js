@@ -47,6 +47,7 @@ client.login(process.env.TOKEN);
 
 - Discord Audit log Embeds
 
+- Go over Code and oursource / make more readable
 
 */
 
