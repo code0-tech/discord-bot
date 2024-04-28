@@ -1,6 +1,6 @@
 {
   "name": "code0",
-  "version": "1.1.25",
+  "version": "1.1.26",
   "description": "Code0 Discord Bot standalone, this only requires an http port for the Github OAuth",
   "main": "index.js",
   "type": "commonjs",

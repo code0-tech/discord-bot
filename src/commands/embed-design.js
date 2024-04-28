@@ -11,7 +11,7 @@ const data = new SlashCommandBuilder()
 
 
 const execute = async (interaction, client, guild, member, lang) => {
-  await interaction.deferReply({ ephemeral: true });
+  interaction.deferReply({ ephemeral: true });
 
 
   const closeTicket = new ButtonBuilder()
@@ -53,8 +53,6 @@ const execute = async (interaction, client, guild, member, lang) => {
   
     console.dir(fetchedLogs, { depth: null });
    */
-
-
 
   // console.log(fetchedLogs.entries)
 
