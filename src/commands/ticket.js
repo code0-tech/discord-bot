@@ -37,7 +37,7 @@ const getSmallestTicketNumber = (guild) => {
 }
 
 const execute = async (interaction, client, guild, member, lang) => {
-    const defer = await interaction.deferReply({ ephemeral: true });
+    await interaction.deferReply({ ephemeral: true });
 
     await new Embed()
         .setColor(config.embeds.colors.info)
@@ -91,7 +91,7 @@ const execute = async (interaction, client, guild, member, lang) => {
 
 
 const executeComponent = async (interaction, client, guild, componentData, member, lang) => {
-    const defer = await interaction.deferReply({ ephemeral: true });
+    await interaction.deferReply({ ephemeral: true });
 
     if (componentData.id == 'close-ticket') {
 

@@ -1,10 +1,5 @@
-const waitMs = (ms, obj = {}) => {
-    return new Promise((resolve) => {
-
-        setTimeout(() => {
-            resolve(obj);
-        }, ms);
-    })
+const waitMs = (ms) => {
+    return new Promise((resolve) => setTimeout(resolve, ms));
 }
 
 const snowflakeToDate = (id) => {

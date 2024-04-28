@@ -17,9 +17,11 @@ const channelFromInteraction = (interaction, guild) => {
     return channel;
 }
 
+const USER_OVERRIDE = 1;
+
 const removeAllChannelUserPerms = (channel) => {
     const permissionOverwrites = channel.permissionOverwrites.cache;
-    const type1Overwrites = permissionOverwrites.filter(overwrite => overwrite.type === 1);
+    const type1Overwrites = permissionOverwrites.filter(overwrite => overwrite.type === USER_OVERRIDE);
 
     [...type1Overwrites.keys()].forEach(userId => {
         channel.permissionOverwrites.delete(userId);

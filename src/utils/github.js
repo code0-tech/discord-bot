@@ -3,78 +3,70 @@ const { triggerResolve } = require('./../utils/await-action');
 const config = require('./../../config.json');
 
 const getToken = (code) => {
-  return new Promise((resolve) => {
-    const params = new URLSearchParams({
-      client_id: process.env.GITHUB_CLIENT_ID,
-      client_secret: process.env.GITHUB_CLIENT_SECRET,
-      code: code,
-    });
+  const params = new URLSearchParams({
+    client_id: process.env.GITHUB_CLIENT_ID,
+    client_secret: process.env.GITHUB_CLIENT_SECRET,
+    code,
+  });
 
-    fetch(config.urls.githublogin, {
-      method: 'POST',
-      headers: {
-        'Content-Type': 'application/x-www-form-urlencoded',
-        'Accept': 'application/json',
-      },
-      body: params,
-    })
-      .then(response => response.json())
-      .then(data => {
-        resolve(data.access_token)
-      })
-      .catch(error => console.error('Error:', error));
+  return fetch(config.urls.githublogin, {
+    method: 'POST',
+    headers: {
+      'Content-Type': 'application/x-www-form-urlencoded',
+      'Accept': 'application/json',
+    },
+    body: params,
   })
+    .then(response => response.json())
+    .catch(error => console.error('Error:', error));
 }
 
-const getGithubUserInfo = (token) => {
-  return new Promise((resolve) => {
+// TODO: config
+const CODE0_ORGA = "O_kgDOCPpWOA";
 
-    const query = `
-    {
-      viewer {
-        login
-        contributionsCollection(
-          organizationID: "O_kgDOCPpWOA"
-        ) {
-          pullRequestContributionsByRepository {
-            contributions(first: 100) {
-              nodes {
-                occurredAt
-                pullRequest { state }
-              }
+const getGithubUserInfo = (token) => {
+  const query = `
+  {
+    viewer {
+      login
+      contributionsCollection(
+        organizationID: "${CODE0_ORGA}"
+      ) {
+        pullRequestContributionsByRepository {
+          contributions(first: 100) {
+            nodes {
+              occurredAt
+              pullRequest { state }
             }
-            repository { name }
           }
-          commitContributionsByRepository {
-            contributions(first: 100) {
-              nodes {
-                occurredAt
-                commitCount
-              }
+          repository { name }
+        }
+        commitContributionsByRepository {
+          contributions(first: 100) {
+            nodes {
+              occurredAt
+              commitCount
             }
-            repository { name }
           }
+          repository { name }
         }
       }
     }
-    `;
+  }
+  `;
 
-    const headers = {
-      'Content-Type': 'application/json',
-      Authorization: `Bearer ${token}`,
-    };
+  const headers = {
+    'Content-Type': 'application/json',
+    Authorization: `Bearer ${token}`,
+  };
 
-    fetch(config.urls.graphql, {
-      method: 'POST',
-      headers,
-      body: JSON.stringify({ query }),
-    })
-      .then(response => response.json())
-      .then(data => {
-        resolve(data);
-      })
-      .catch(error => console.error('Error:', error));
+  return fetch(config.urls.graphql, {
+    method: 'POST',
+    headers,
+    body: JSON.stringify({ query }),
   })
+    .then(response => response.json())
+    .catch(error => console.error('Error:', error));
 }
 
 const calculateTotalCounts = (contributions) => {
@@ -102,26 +94,22 @@ const calculateTotalCounts = (contributions) => {
 };
 
 const filterCommits = (data) => {
-  return new Promise((resolve) => {
-    const totalCounts = calculateTotalCounts(data.pullRequestContributionsByRepository.concat(data.commitContributionsByRepository));
+  const totalCounts = calculateTotalCounts(data.pullRequestContributionsByRepository.concat(data.commitContributionsByRepository));
 
-    const contributionsList = Object.entries(totalCounts).map(([repository, counts]) => ({
-      repository,
-      commitCount: counts.commitCount,
-      pullRequestCount: counts.pullRequestCount
-    }));
+  const contributionsList = Object.entries(totalCounts).map(([repository, counts]) => ({
+    repository,
+    commitCount: counts.commitCount,
+    pullRequestCount: counts.pullRequestCount
+  }));
 
-    const totalPullRequests = contributionsList.reduce((total, contribution) => total + contribution.pullRequestCount, 0);
-    const totalCommitContributions = contributionsList.reduce((total, contribution) => total + contribution.commitCount, 0);
+  const totalPullRequests = contributionsList.reduce((total, contribution) => total + contribution.pullRequestCount, 0);
+  const totalCommitContributions = contributionsList.reduce((total, contribution) => total + contribution.commitCount, 0);
 
-    const result = {
-      contributions: contributionsList,
-      totalPullRequests,
-      totalCommitContributions
-    };
-
-    resolve(result);
-  })
+  return {
+    contributions: contributionsList,
+    totalPullRequests,
+    totalCommitContributions
+  };
 }
 
 const checkOpenContributor = async (data, code, client) => {
@@ -132,7 +120,7 @@ const checkOpenContributor = async (data, code, client) => {
 
   const resolvePacket = {
     name: graphQlInfo.data.viewer.login,
-    github: await filterCommits(graphQlInfo.data.viewer.contributionsCollection)
+    github: filterCommits(graphQlInfo.data.viewer.contributionsCollection)
   }
 
   triggerResolve(client, data.awaitCodeId, resolvePacket)

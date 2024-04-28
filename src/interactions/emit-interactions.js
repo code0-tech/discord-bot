@@ -6,8 +6,7 @@ const extractIdData = (inputString) => {
     const parts = inputString.split('*');
 
     if (parts.length > 1) {
-        const frontPart = parts[0];
-        const backPart = parts[1];
+        const [frontPart, backPart] = parts;
 
         return {
             id: frontPart,
@@ -31,7 +30,7 @@ const executionError = (interaction, info) => {
     }
 }
 
-const commad = async (interaction, client) => {
+const command = async (interaction, client) => {
     const command = client.commands.get(interaction.commandName);
     if (!command) return;
 
@@ -71,7 +70,7 @@ const button = async (interaction, client) => {
 const setup = (client) => {
     client.on('interactionCreate', async (interaction) => {
         if (interaction.isChatInputCommand()) { // Slash-Command Support
-            commad(interaction, client);
+            command(interaction, client);
         } else if (interaction.isButton()) { // Button Support
             button(interaction, client);
         }

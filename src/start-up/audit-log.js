@@ -17,7 +17,7 @@ const setup = (client) => {
                 card.headerTitle({ value: `Executer: ${event.executorId}` }, card => { });
                 card.label({ value: 'Debug' }, card => { });
             })
-            .body({}, async card => {
+            .body({}, card => {
                 card.description({ value: `targetType: ${event.targetType}, actionType: ${event.actionType}, action: ${event.action}` }, card => { });
                 card.divider({}, card => { });
                 card.description({ value: `Changes:` }, card => { });
@@ -45,7 +45,7 @@ const setup = (client) => {
         }
     }, 5000);
 
-    client.on(Events.GuildAuditLogEntryCreate, async auditLog => {
+    client.on(Events.GuildAuditLogEntryCreate, auditLog => {
         eventHand.push(auditLog);
     })
 };

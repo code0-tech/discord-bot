@@ -23,7 +23,7 @@ const failedMessage = async (interaction, client, member, lang, type) => {
 
 
 const execute = async (interaction, client, guild, member, lang) => {
-    const defer = await interaction.deferReply({ ephemeral: true });
+    await interaction.deferReply({ ephemeral: true });
 
     // Check if role is already present
     if (member.roles.cache.has(config.roles.opencontributor)) {

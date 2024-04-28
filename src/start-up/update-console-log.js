@@ -3,7 +3,8 @@ const originalConsoleLog = console.log;
 
 // Create a custom logging function
 const customLog = (...args) => {
-    const timestamp = new Date().toLocaleTimeString() + ' ' + new Date().toLocaleDateString();
+    const date = new Date()
+    const timestamp = date.toLocaleTimeString() + ' ' + date.toLocaleDateString();
     // Use the stored originalConsoleLog method instead of console.log
     originalConsoleLog(`${timestamp} =>`, ...args);
 }
