@@ -189,18 +189,22 @@ class Embed {
      */
     interactionResponse(interaction, components = [], ephemeral = true, content = null, attachment) {
         return new Promise(async (resolve) => {
+            try {
+                const responseOptions = {
+                    content,
+                    embeds: [this.getEmbed()],
+                    components,
+                    files: attachment ? [attachment] : [], // Only include attachment if it's not null
+                    ephemeral
+                };
 
-            const responseOptions = {
-                content,
-                embeds: [this.getEmbed()],
-                components,
-                files: attachment ? [attachment] : [], // Only include attachment if it's not null
-                ephemeral
-            };
+                const interactionReply = await interaction.editReply(responseOptions);
 
-            const interactionReply = await interaction.editReply(responseOptions);
-
-            resolve(interactionReply);
+                resolve(interactionReply);
+            } catch (error) {
+                console.error(`Error sending interaction response: ${error.message}`);
+                throw error;
+            }
         })
     }
 
