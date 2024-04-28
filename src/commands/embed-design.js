@@ -35,7 +35,7 @@ const execute = async (interaction, client, guild, member, lang) => {
 
   */
 
-  let index = 0;
+  /* let index = 0;
 
   setInterval(() => {
     new Embed()
@@ -52,7 +52,7 @@ const execute = async (interaction, client, guild, member, lang) => {
     if (index > 100) {
       index = 0;
     }
-  }, 1000);
+  }, 1000); */
 
 
   /* 

@@ -198,6 +198,8 @@ class Embed {
                     ephemeral
                 };
 
+                // Before sending check if is not an Invalid Webhook Token
+
                 const interactionReply = await interaction.editReply(responseOptions);
 
                 resolve(interactionReply);
