@@ -48,6 +48,9 @@
         "default-combine-symbol": "｜",
         "links": "🔗"
     },
+    "github": {
+        "orgaid": "O_kgDOCPpWOA"
+    },
     "urls": {
         "graphql": "https://api.github.com/graphql",
         "githublogin": "https://github.com/login/oauth/access_token"

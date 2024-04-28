@@ -26,8 +26,6 @@ const getToken = (code) => {
   })
 }
 
-// TODO: config
-const CODE0_ORGA = "O_kgDOCPpWOA";
 
 const getGithubUserInfo = (token) => {
   const query = `
@@ -35,7 +33,7 @@ const getGithubUserInfo = (token) => {
     viewer {
       login
       contributionsCollection(
-        organizationID: "${CODE0_ORGA}"
+        organizationID: "${config.github.orgaid}"
       ) {
         pullRequestContributionsByRepository {
           contributions(first: 100) {
