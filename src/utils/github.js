@@ -3,22 +3,27 @@ const { triggerResolve } = require('./../utils/await-action');
 const config = require('./../../config.json');
 
 const getToken = (code) => {
-  const params = new URLSearchParams({
-    client_id: process.env.GITHUB_CLIENT_ID,
-    client_secret: process.env.GITHUB_CLIENT_SECRET,
-    code,
-  });
+  return new Promise((resolve) => {
+    const params = new URLSearchParams({
+      client_id: process.env.GITHUB_CLIENT_ID,
+      client_secret: process.env.GITHUB_CLIENT_SECRET,
+      code: code,
+    });
 
-  return fetch(config.urls.githublogin, {
-    method: 'POST',
-    headers: {
-      'Content-Type': 'application/x-www-form-urlencoded',
-      'Accept': 'application/json',
-    },
-    body: params,
+    fetch(config.urls.githublogin, {
+      method: 'POST',
+      headers: {
+        'Content-Type': 'application/x-www-form-urlencoded',
+        'Accept': 'application/json',
+      },
+      body: params,
+    })
+      .then(response => response.json())
+      .then(data => {
+        resolve(data.access_token)
+      })
+      .catch(error => console.error('Error:', error));
   })
-    .then(response => response.json())
-    .catch(error => console.error('Error:', error));
 }
 
 // TODO: config
