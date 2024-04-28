@@ -44,8 +44,6 @@ client.once(Events.ClientReady, readyClient => {
 client.login(process.env.TOKEN);
 
 
-
-
 /*
 console.dir(card.build(), { depth: null, breakLength: 0 });
 
