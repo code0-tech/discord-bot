@@ -37,20 +37,7 @@ const execute = async (interaction, client, guild, member, lang) => {
 
   new Embed()
     .setColor(config.embeds.colors.info)
-    .setDescription(`
-  ${progressBar(0, 100)}
-  ${progressBar(10, 100)}
-  ${progressBar(20, 100)}
-  ${progressBar(30, 100)}
-  ${progressBar(40, 100)}
-  ${progressBar(50, 100)}
-  ${progressBar(60, 100)}
-  ${progressBar(70, 100)}
-  ${progressBar(80, 100)}
-  ${progressBar(90, 100)}
-  ${progressBar(100, 100)}
-  ${progressBar(110, 100)}
-    `)
+    .setDescription(``)
 
 
     // .addInputs({ user: "nicusch", age: 21 })
