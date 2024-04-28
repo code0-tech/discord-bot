@@ -80,7 +80,7 @@ const execute = async (interaction, client, guild, member, lang) => {
             });
         }
 
-        if (github.totalCommitContributions >= config.commands.opencontributor.commits && github.totalCommitContributions >= config.commands.opencontributor.commits) {
+        if (github.totalCommitContributions >= config.commands.opencontributor.commits && github.totalPullRequests >= config.commands.opencontributor.pr) {
             messageType = 'results-complete';
             member.roles.add(config.roles.opencontributor);
         } else {
