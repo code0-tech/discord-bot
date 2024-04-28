@@ -39,12 +39,12 @@
             "description": "Um ein Open Contributor und seine Rollen zu werden, müssen Sie die folgenden Dinge erfüllen:\n\n1. Haben Sie {neededcommits} oder mehr commits\n2. Haben Sie {neededpr} oder mehr Pull-Requests\n\nKlicken Sie auf den Link und prüfen Sie, ob Sie ein Open Contributor werden können"
         },
         "results-complete": {
-            "title": "Github Ergebnisse für {githubname}",
-            "description": "\nSie haben {yourpr} von {neededpr} Pull Requests.\nSie haben {yourcommits} von {neededcommits} Commits.\n\nWir haben Sie zu unserem Open Contributor hinzugefügt"
+            "title": "Github Ergebnisse",
+            "description": "Benutzer: `{githubname}`\n\n{pbpr}\nSie haben {yourpr} von {neededpr} Pull Requests.\n\n{pbcm}\nSie haben {yourcommits} von {neededcommits} Commits.\n\nWir haben Sie zu unserem Open Contributor hinzugefügt"
         },
         "results-not-complete": {
-            "title": "Github Ergebnisse für {githubname}",
-            "description": "\nDu hast {yourpr}/{neededpr} Pull Requests.\nDu hast {yourcommits}/{neededcommits} Commits\n\nErfülle alle Anforderungen und versuche es erneut."
+            "title": "Github Ergebnisse",
+            "description": "Benutzer: `{githubname}`\n\n{pbpr}\nSie haben {yourpr}/{neededpr} Pull Requests.\n\n{pbcm}\nSie haben {yourcommits}/{neededcommits} Commits\n\nErfülle alle Anforderungen und versuche es erneut."
         },
         "results-no-data": {
             "title": "Github Ergebnisse für {githubname}",

@@ -2,7 +2,7 @@ const { ButtonBuilder, ButtonStyle, ActionRowBuilder } = require("discord.js");
 const { awaiterCodeId, awaitCodeResolve } = require('./../utils/await-action');
 const { SlashCommandBuilder } = require('@discordjs/builders');
 const { encryptString } = require('./../utils/crypto');
-const { Embed } = require('./../models/Embed');
+const { Embed, progressBar } = require('./../models/Embed');
 const config = require('./../../config.json');
 
 
@@ -20,11 +20,6 @@ const failedMessage = async (interaction, client, member, lang, type) => {
         .interactionResponse(interaction)
 
 };
-
-// Used later when Sammito wants to
-const calculatePercentage = (total, whole) => {
-    return (total / whole) * 100;
-}
 
 
 const execute = async (interaction, client, guild, member, lang) => {
@@ -98,6 +93,9 @@ const execute = async (interaction, client, guild, member, lang) => {
                 repostring, // Unused currently
                 yourpr: github.totalPullRequests,
                 neededpr: config.commands.opencontributor.pr,
+
+                pbpr: progressBar(github.totalPullRequests, config.commands.opencontributor.pr),
+                pbcm: progressBar(github.totalCommitContributions, config.commands.opencontributor.commits),
 
                 yourcommits: github.totalCommitContributions,
                 neededcommits: config.commands.opencontributor.commits,

@@ -45,12 +45,12 @@
             "description": "For becoming an Open Contributor and its roles you must fulfill the following things:\n\n1. Have {neededcommits} or more commits\n2. Have {neededpr} or more pull requests\n\nClick the link button and check if you can become an Open Contributor."
         },
         "results-complete": {
-            "title": "Github Results for {githubname}",
-            "description": "\nYou got {yourpr} of {neededpr} pull requests.\nYou got {yourcommits} of {neededcommits} commits.\n\nWe have added you to our Open Contributor"
+            "title": "Github Results",
+            "description": "Account: `{githubname}`\n\n{pbpr}\nYou got {yourpr} of {neededpr} pull requests.\n\n{pbcm}\nYou got {yourcommits} of {neededcommits} commits.\n\nWe have added you to our Open Contributor"
         },
         "results-not-complete": {
-            "title": "Github Results for {githubname}",
-            "description": "\nYou got {yourpr} of {neededpr} pull requests.\nYou got {yourcommits} of {neededcommits} commits\n\nFulfill all requirements to become an Open Contributor."
+            "title": "Github Results",
+            "description": "Account: `{githubname}`\n\n{pbpr}\nYou got {yourpr} of {neededpr} pull requests.\n\n{pbcm}\nYou got {yourcommits} of {neededcommits} commits.\n\nFulfill all requirements to become an Open Contributor."
         },
         "results-no-data": {
             "title": "Github Results for {githubname}",

@@ -241,7 +241,7 @@ class Embed {
 
 const progressBar = (total, whole, info = true, segments = 10) => {
     if (total > whole) {
-        total = 0;
+        total = 100;
         whole = 100;
     }
 
