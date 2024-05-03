@@ -17,3 +17,5 @@
 <summary>Included Functions</summary>
 
 </details>
+
+### Discord Config:
