@@ -44,6 +44,7 @@
 
 </details>
 
+<details>
 <summary>Parents [Channels]</summary>
 
   1. placeholder
@@ -51,6 +52,7 @@
 
 </details>
 
+<details>
 <summary>Other</summary>
 
   1. placeholder
