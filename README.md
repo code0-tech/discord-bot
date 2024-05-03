@@ -19,3 +19,41 @@
 </details>
 
 ### Discord Config:
+
+<details>
+  <summary>Roles</summary>
+
+  1. placeholder
+  2. placeholder
+
+</details>
+
+<details>
+<summary>Language Roles</summary>
+
+  1. placeholder
+  2. placeholder
+
+</details>
+
+<details>
+<summary>Channels</summary>
+
+  1. placeholder
+  2. placeholder
+
+</details>
+
+<summary>Parents [Channels]</summary>
+
+  1. placeholder
+  2. placeholder
+
+</details>
+
+<summary>Other</summary>
+
+  1. placeholder
+  2. placeholder
+
+</details>
