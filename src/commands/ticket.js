@@ -159,7 +159,7 @@ const executeComponent = async (interaction, client, guild, componentData, membe
             .addCode0Footer()
             .interactionResponse(interaction)
 
-            
+
         await waitMs(5000);
         removeAllChannelUserPerms(ticketChannel);
 

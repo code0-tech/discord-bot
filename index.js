@@ -26,6 +26,8 @@ client.isDevelopment = os.platform() === 'win32';
 client.awaitaction = {};
 
 
+require('./src/start-up/language-check');
+
 require('./src/start-up/start-puppeteer');
 require('./src/interactions/load-interactions').load(client);
 require('./src/web-server/http-server').setup(client);
