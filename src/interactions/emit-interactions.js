@@ -25,7 +25,7 @@ const executionError = (interaction, info) => {
             .setTitle('Error at Command Execution')
             .setColor(config.embeds.colors.danger)
             .addCode0Footer()
-            .setDescription(`An error occurred while\nprocessing your request\n\nMsg:\n\`${info}\`\n\n[EACE]`)
+            .setDescription(`An error occurred while\nprocessing your request\n\nMsg:\n\`${info}\``)
             .interactionResponse(interaction);
     }
 }
