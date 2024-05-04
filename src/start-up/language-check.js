@@ -34,7 +34,6 @@ const check = async () => {
         exampleJson[key] = Object.keys(compareJson[key]);
     }
 
-
     for (const key in files) {
         if (key !== 'english') {
             checkLanguage(exampleJson, files[key], key);

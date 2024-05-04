@@ -1,10 +1,4 @@
 {
-    "embed-design": {
-        "1": {
-            "title": "Test Embeds for Nicusch lol",
-            "description": "Ey yo {user} your an english guy and {age} lol ca"
-        }
-    },
     "ticket": {
         "timeout": {
             "title": "Timeout",
