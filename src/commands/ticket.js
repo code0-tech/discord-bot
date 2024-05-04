@@ -152,16 +152,14 @@ const executeComponent = async (interaction, client, guild, componentData, membe
         interaction.message.delete();
 
         const ticketChannel = channelFromInteraction(interaction, guild);
-        // const createdTimestamp = ticketChannel.createdTimestamp;
 
         await new Embed()
             .setColor(config.embeds.colors.danger)
-            // .addInputs()
             .addContext(lang, member, 'close-info')
             .addCode0Footer()
             .interactionResponse(interaction)
 
-
+            
         await waitMs(5000);
         removeAllChannelUserPerms(ticketChannel);
 
