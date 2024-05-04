@@ -10,11 +10,16 @@
 
   1. open-contributor
   2. ticket
+  3. <span style="color:red;">links [not included]</span>
+  4. <span style="color:red;">contributor [not included]</span>
 
 </details>
 
 <details>
 <summary>Included Functions</summary>
+
+  1. <span style="color:green;">Auto script command upload</span>
+  2. <span style="color:green;">Web server for o-auth github</span>
 
 </details>
 
