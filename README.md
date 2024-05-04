@@ -1,6 +1,6 @@
 <div align="center">
   <h1>Code0 Discord Bot</h1>
-  <h3>discord bot standalone by Nicusch | Nicolas Morawietz</h3>
+  <h3>Discord bot standalone by Nicusch | Nicolas Morawietz</h3>
 </div>
 
 ## Code0
