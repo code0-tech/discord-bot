@@ -1,5 +1,7 @@
-<h1 align="center">Code0 Discord Bot</h1>
-<h3 align="center">discord bot standalone by Nicusch | Nicolas Morawietz</h3>
+<div align="center">
+  <h1>Code0 Discord Bot</h1>
+  <h3>discord bot standalone by Nicusch | Nicolas Morawietz</h3>
+</div>
 
 ## Code0
 
@@ -8,10 +10,10 @@
 <details>
   <summary>Commands</summary>
 
-  1. open-contributor
-  2. ticket
-  3. <span style="color:red;">links [not included]</span>
-  4. <span style="color:red;">contributor [not included]</span>
+  1. `open-contributor`
+  2. `ticket`
+  3. <span style="color:red;">`links` [in progress]</span>
+  4. <span style="color:red;">`contributor` [in progress]</span>
 
 </details>
 
@@ -23,44 +25,71 @@
 
 </details>
 
-### Discord Config:
+### Discord Bot Config:
 
 <details>
   <summary>Roles</summary>
 
-  1. placeholder
-  2. placeholder
+  1. `opencontributor`
 
 </details>
 
 <details>
 <summary>Language Roles</summary>
 
-  1. placeholder
-  2. placeholder
+  1. Currently supported are <span style="color:green;">`german`</span> and <span style="color:green;">`english`</span>.
 
 </details>
 
 <details>
 <summary>Channels</summary>
 
-  1. placeholder
-  2. placeholder
+  1. `debug`
+  2. `auditlog`
+  3. `welcome`
+  4. `contributorapplications`
 
 </details>
 
 <details>
 <summary>Parents [Channels]</summary>
 
-  1. placeholder
-  2. placeholder
+  1. `support`
 
 </details>
 
 <details>
-<summary>Other</summary>
+<summary>Embeds</summary>
 
-  1. placeholder
-  2. placeholder
+### Simple Embed configuration
+```json 
+{
+    "embeds": {
+        "colors": {
+            "background": "#030014",
+            "primary": "#030014",
+            "secondary": "#ffffff",
+            "info": "#70ffb2",
+            "success": "#29BF12",
+            "warning": "#FFBE0B",
+            "inprogress": "#FFBE0B",
+            "danger": "#D90429",
+            "black": "#000000",
+            "white": "#ffffff"
+        },
+        "footer": {
+            "default": "Code0"
+        },
+        "avatarurl": "CODE0_AVATAR_URL",
+        "progressbar": {
+            "pbl0": "<:pbl0:1233913435956187197>",
+            "pbl1": "<:pbl1:1233913511122309281>",
+            "pbm0": "<:pbm0:1233913574888443954>",
+            "pbm1": "<:pbm1:1233913626369331282>",
+            "pbr0": "<:pbr0:1233913673421160548>",
+            "pbr1": "<:pbr1:1233913721789874176>"
+        }
+    },
+```
 
 </details>
