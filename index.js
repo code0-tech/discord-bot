@@ -56,23 +56,3 @@ client.login(process.env.TOKEN);
 -> Something fancy like a quizz
 
 */
-
-
-/*
-console.dir(card.build(), { depth: null, breakLength: 0 });
-
-NODE_OPTIONS=--no-warnings node your_script.js
-
-When using /open-...
-you can share the link with someone who has already made all 20 things and get the role for everyone who he wants to help
-
-const keysIterator = fetchedLogs.entries.keys(); // Access the 'entries' property first
-
-const keysArray = Array.from(keysIterator);
-
-keysArray.forEach(entryKey => {
-    console.log(entryKey);
-    console.log(snowflakeToDate(entryKey));
-});
-
-*/
