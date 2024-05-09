@@ -1,5 +1,5 @@
-const { decryptString } = require('./../../utils/crypto');
 const { checkOpenContributor } = require('./../../utils/github');
+const { decryptString } = require('./../../utils/crypto');
 const httpConfig = require('./../../../http-config.json');
 
 module.exports = (req, res, client) => {

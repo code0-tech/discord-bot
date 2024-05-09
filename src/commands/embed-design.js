@@ -1,9 +1,9 @@
-const { SlashCommandBuilder } = require('@discordjs/builders');
 const { ChannelType, PermissionFlagsBits, PermissionsBitField, ButtonBuilder, ButtonStyle, ActionRowBuilder, DiscordjsError, AttachmentBuilder } = require("discord.js");
-const { waitMs } = require('./../utils/time');
+const { SlashCommandBuilder } = require('@discordjs/builders');
 const { Embed, progressBar } = require('./../models/Embed');
-const config = require('./../../config.json');
 const { Card } = require('./../models/card/Card');
+const { waitMs } = require('./../utils/time');
+const config = require('./../../config.json');
 
 const data = new SlashCommandBuilder()
   .setName('embed-design')

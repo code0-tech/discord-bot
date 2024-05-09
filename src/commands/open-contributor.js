@@ -1,8 +1,8 @@
 const { ButtonBuilder, ButtonStyle, ActionRowBuilder } = require("discord.js");
 const { awaiterCodeId, awaitCodeResolve } = require('./../utils/await-action');
 const { SlashCommandBuilder } = require('@discordjs/builders');
-const { encryptString } = require('./../utils/crypto');
 const { Embed, progressBar } = require('./../models/Embed');
+const { encryptString } = require('./../utils/crypto');
 const config = require('./../../config.json');
 
 

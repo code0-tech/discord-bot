@@ -1,8 +1,8 @@
+const httpConfig = require('./../../http-config.json');
 const http = require('http');
+const path = require('path');
 const url = require('url');
 const fs = require('fs');
-const path = require('path');
-const httpConfig = require('./../../http-config.json');
 
 module.exports.setup = (client) => {
     const server = http.createServer((req, res) => {

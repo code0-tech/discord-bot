@@ -51,8 +51,6 @@ client.login(process.env.TOKEN);
 
 - Discord Audit log Embeds
 
-- Go over Code and oursource / make more readable
-
 -> Application message with buttons for gobo wheel to choose option from what you want
 
 -> Something fancy like a quizz

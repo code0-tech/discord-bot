@@ -1,5 +1,5 @@
-const fetch = require('node-fetch');
 const { triggerResolve } = require('./../utils/await-action');
+const fetch = require('node-fetch');
 const config = require('./../../config.json');
 
 const getToken = (code) => {
