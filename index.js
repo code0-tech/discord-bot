@@ -36,7 +36,8 @@ require('./src/start-up/load-languages').load(client);
 
 client.once(Events.ClientReady, readyClient => {
 
-    require('./src/start-up/audit-log').setup(client); // Audit to Chat
+    require('./src/start-up/audit-log').setup(client);
+    require('./src/start-up/client-status').start(client);
 
     console.log(`Code0 Discord Client ready => ${readyClient.user.tag}`);
     client.user.setPresence({ activities: [{ name: 'with Code0.js' }], status: 'online' });
@@ -55,4 +56,6 @@ client.login(process.env.TOKEN);
 
 -> Something fancy like a quizz
 
+
+play with llm
 */

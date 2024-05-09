@@ -39,6 +39,27 @@
         "1225861340686450799": "german",
         "1230517451482202192": "english"
     },
+    "status": {
+        "interval": 10000,
+        "messages": [
+            {
+                "name": "with JS",
+                "status": "online"
+            },
+            {
+                "name": "with LLM's",
+                "status": "online"
+            },
+            {
+                "name": "with flows",
+                "status": "online"
+            },
+            {
+                "name": "with Code0 pipelines",
+                "status": "online"
+            }
+        ]
+    },
     "roles": {
         "opencontributor": "1173713516222480394",
         "supremeembeds": "1224848001621561354"
