@@ -1,6 +1,6 @@
 <div align="center">
-  <h1>Code0 Discord Bot</h1>
-  <h3>Discord bot standalone by Nicusch | Nicolas Morawietz</h3>
+<h1>Code0 Discord Bot</h1>
+<h3>Discord bot standalone by Nicusch | Nicolas Morawietz</h3>
 </div>
 
 ## Code0
@@ -8,53 +8,53 @@
 ### Basic Overview:
 
 <details>
-  <summary>Commands</summary>
+<summary>Commands</summary>
 
-  1. `open-contributor`
-  2. `ticket`
-  3. <span style="color:red;">`links` [in progress]</span>
-  4. <span style="color:red;">`contributor` [in progress]</span>
+1. `open-contributor`
+2. `ticket`
+3. <span style="color:red;">`links` [in progress]</span>
+4. <span style="color:red;">`contributor` [in progress]</span>
 
 </details>
 
 <details>
 <summary>Included Functions</summary>
 
-  1. <span style="color:green;">Auto script command upload</span>
-  2. <span style="color:green;">Web server for o-auth github</span>
+1. <span style="color:green;">Auto script command upload</span>
+2. <span style="color:green;">Web server for o-auth github</span>
 
 </details>
 
 ### Discord Bot Config:
 
 <details>
-  <summary>Roles</summary>
+<summary>Roles</summary>
 
-  1. `opencontributor`
+1. `opencontributor`
 
 </details>
 
 <details>
 <summary>Language Roles</summary>
 
-  1. Currently supported are <span style="color:green;">`german`</span> and <span style="color:green;">`english`</span>.
+1. Currently supported are <span style="color:green;">`german`</span> and <span style="color:green;">`english`</span>.
 
 </details>
 
 <details>
 <summary>Channels</summary>
 
-  1. `debug`
-  2. `auditlog`
-  3. `welcome`
-  4. `contributorapplications`
+1. `debug`
+2. `auditlog`
+3. `welcome`
+4. `contributorapplications`
 
 </details>
 
 <details>
 <summary>Parents [Channels]</summary>
 
-  1. `support`
+1. `support`
 
 </details>
 
@@ -62,7 +62,8 @@
 <summary>Embeds</summary>
 
 ### Simple Embed configuration
-```json 
+
+```json
 {
     "embeds": {
         "colors": {

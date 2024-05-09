@@ -1,5 +1,5 @@
 const { SlashCommandBuilder } = require('@discordjs/builders');
-const { ChannelType, PermissionsBitField, ButtonBuilder, ButtonStyle, ActionRowBuilder, DiscordjsError, AttachmentBuilder } = require("discord.js");
+const { ChannelType, PermissionFlagsBits, PermissionsBitField, ButtonBuilder, ButtonStyle, ActionRowBuilder, DiscordjsError, AttachmentBuilder } = require("discord.js");
 const { waitMs } = require('./../utils/time');
 const { Embed, progressBar } = require('./../models/Embed');
 const config = require('./../../config.json');
@@ -8,6 +8,7 @@ const { Card } = require('./../models/card/Card');
 const data = new SlashCommandBuilder()
   .setName('embed-design')
   .setDescription('Check Design and Code Stuff')
+  .setDefaultMemberPermissions(PermissionFlagsBits.Administrator)
 
 
 const execute = async (interaction, client, guild, member, lang) => {
