@@ -54,5 +54,8 @@
             "title": "Github Results for {githubname}",
             "description": "You got no commits nor pull request's"
         }
+    },
+    "rank": {
+        "rank-response": {}
     }
 }

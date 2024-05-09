@@ -16,7 +16,7 @@ For that reason a Http Port is required and currently set to `http-config.port` 
 
 
 <details>
-<summary>CDiscord Interactions</summary>
+<summary>Discord Interactions</summary>
 
 1. Command: <span style="color:green;">`/open-contributer` [finished]</span>
 2. Command: <span style="color:green;">`/ticket` [finished]</span>
