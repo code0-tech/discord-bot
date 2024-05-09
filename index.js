@@ -54,6 +54,13 @@ client.login(process.env.TOKEN);
 - Go over Code and oursource / make more readable
 
 - update english.json Sie => Du
+
+-> Application message with buttons for gobo wheel to choose option from what you want
+
+-> Ticket -> Ping User and make name visible for staff members
+
+-> Something fancy like a quizz
+
 */
 
 
