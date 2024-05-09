@@ -155,7 +155,9 @@ class Embed {
         const embedContext = lang.text[contextId];
         const contextKey = Object.keys(embedContext);
 
-        this._inputs['username'] = member.user.username
+        this._inputs['username'] = member.user.username; // Auto replace username
+        this._inputs['userid'] = member.user.id; // Auto replace username
+
 
         contextKey.forEach((inputType) => {
 

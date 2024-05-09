@@ -2,7 +2,7 @@
     "ticket": {
         "timeout": {
             "title": "Bitte warte",
-            "description": "Dein letztes Ticket wurde vor `{m} Minuten` und `{s} Sekunden` erstellt.\nBitte warten, bevor du Ihr nächstes Ticket erstellen."
+            "description": "Dein letztes Ticket wurde vor `{m} Minuten` und `{s} Sekunden` erstellt.\nBitte warten, bevor Du Ihr nächstes Ticket erstellen."
         },
         "create": {
             "title": "Ticket",
@@ -14,7 +14,7 @@
         },
         "info-message": {
             "title": "Support Ticket #{ticketnumber}",
-            "description": "Hi {username},\nLass dir ein wenig Zeit um dein Anliegen zu beschreiben.\nJe mehr Einzelheiten du uns nennst, desto besser können wir dir helfen.\nFalls zutreffend, füge auch Fehlermeldungen oder Schritte zur Reproduktion des Problems und andere relevante Informationen bei."
+            "description": "Hi <@{userid}>,\nLass dir ein wenig Zeit um dein Anliegen zu beschreiben.\nJe mehr Einzelheiten Du uns nennst, desto besser können wir Dir helfen.\nFalls zutreffend, füge auch Fehlermeldungen oder Schritte zur Reproduktion des Problems und andere relevante Informationen bei."
         },
         "close-info": {
             "title": "Schließen des Tickets",
@@ -40,11 +40,11 @@
         },
         "initial-message": {
             "title": "Wie man Open Contributor wird",
-            "description": "Um ein Open Contributor und seine Rollen zu werden, musst du die folgenden Dinge erfüllen:\n\n1. Du hast {neededcommits} oder mehr commits\n2. Du hast {neededpr} oder mehr Pull-Requests\n\nKlick auf den Link und prüfen, ob du ein Open Contributor werden kannst."
+            "description": "Um ein Open Contributor und seine Rollen zu werden, musst du die folgenden Dinge erfüllen:\n\n1. Du hast {neededcommits} oder mehr commits\n2. Du hast {neededpr} oder mehr Pull-Requests\n\nKlick auf den Link und prüfen, ob Du ein Open Contributor werden kannst."
         },
         "results-complete": {
             "title": "Github Ergebnisse",
-            "description": "Benutzer: `{githubname}`\n\n{pbpr}\nDu hast {yourpr} von {neededpr} Pull Requests.\n\n{pbcm}\nDu hast {yourcommits} von {neededcommits} Commits.\n\nWir haben Sie zu unserem Open Contributor hinzugefügt."
+            "description": "Benutzer: `{githubname}`\n\n{pbpr}\nDu hast {yourpr} von {neededpr} Pull Requests.\n\n{pbcm}\nDu hast {yourcommits} von {neededcommits} Commits.\n\nWir haben Dich zu unseren Open Contributor hinzugefügt."
         },
         "results-not-complete": {
             "title": "Github Ergebnisse",

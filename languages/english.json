@@ -14,7 +14,7 @@
         },
         "info-message": {
             "title": "Support Ticket #{ticketnumber}",
-            "description": "Hi {username},\nPlease take a moment to describe the issue you're facing.\nThe more details you provide, the better we can assist you.\nIf applicable, include error messages, steps to reproduce the problem, and any other relevant information."
+            "description": "Hi <@{userid}>,\nPlease take a moment to describe the issue you're facing.\nThe more details you provide, the better we can assist you.\nIf applicable, include error messages, steps to reproduce the problem, and any other relevant information."
         },
         "close-info": {
             "title": "Closing Ticket",
