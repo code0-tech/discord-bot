@@ -24,7 +24,7 @@ For that reason a Http Port is required and currently set to `http-config.port` 
 4. Command: <span style="color:red;">`/contributor` [in progress]</span>
 5. Interaction: <span style="color:red;">`Code0 Application Ticket/` [in progress]</span>
 6. Idea: <span style="color:yellow;">`quizz for fun` [idea]</span>
-7. Fany things: <span style="color:yellow;">`other games or funny things` [idea]</span>
+7. Fancy things: <span style="color:yellow;">`other games or funny things` [idea]</span>
 
 </details>
 
