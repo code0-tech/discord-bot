@@ -44,9 +44,8 @@ client.once(Events.ClientReady, readyClient => {
     console.log(`Code0 Discord Client ready => ${readyClient.user.tag}`);
     client.user.setPresence({ activities: [{ name: 'with Code0.js' }], status: 'online' });
 
-    client.on('messageCreate', msg => {
-        console.log(msg)
-    })
+    require('./src/start-up/xp-update-listener').start(client);
+    
 });
 
 
@@ -63,3 +62,14 @@ client.login(process.env.TOKEN);
 -> Something fancy like a quizz
 
 */
+
+/* 
+const { MongoUser } = require('./src/mongo/MongoUser');
+
+const user = new MongoUser('380808844093292555')
+// user._updateXp(19549)
+user.updateXpBy(20)
+// user._updateXp(2913)
+// user._updateXp(1003)
+// user._updateXp(503)
+// user._updateXp(0) */

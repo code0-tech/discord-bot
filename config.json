@@ -82,6 +82,10 @@
         },
         "ticket": {
             "timeout": 300000
+        },
+        "rank": {
+            "basexp": 200,
+            "multiplier": 1.4
         }
     }
 }
