@@ -2,7 +2,7 @@
     "ticket": {
         "timeout": {
             "title": "Bitte warte",
-            "description": "Ihr letztes Ticket wurde vor `{m} Minuten` und `{s} Sekunden` erstellt.\nBitte warten Sie, bevor Sie Ihr nächstes Ticket erstellen."
+            "description": "Dein letztes Ticket wurde vor `{m} Minuten` und `{s} Sekunden` erstellt.\nBitte warten, bevor du Ihr nächstes Ticket erstellen."
         },
         "create": {
             "title": "Ticket",
@@ -10,11 +10,11 @@
         },
         "created": {
             "title": "Wir haben dein Ticket erstellt",
-            "description": "Du kannst dein Ticket <#{channelid}> in der `Support` Kategorie finden"
+            "description": "Du kannst dein Ticket <#{channelid}> in der `Support` Kategorie finden."
         },
         "info-message": {
             "title": "Support Ticket #{ticketnumber}",
-            "description": "Hi {username},\nLass dir ein wenig Zeit um dein Anliegen zu beschreiben.\nJe mehr Einzelheiten du uns nennst, desto besser können wir dir helfen.\nFalls zutreffend, fügen Sie Fehlermeldungen, Schritte zur Reproduktion des Problems und andere relevante Informationen bei."
+            "description": "Hi {username},\nLass dir ein wenig Zeit um dein Anliegen zu beschreiben.\nJe mehr Einzelheiten du uns nennst, desto besser können wir dir helfen.\nFalls zutreffend, füge auch Fehlermeldungen oder Schritte zur Reproduktion des Problems und andere relevante Informationen bei."
         },
         "close-info": {
             "title": "Schließen des Tickets",
@@ -32,7 +32,7 @@
         },
         "error-similar-inquiry": {
             "title": "Anfrage storniert",
-            "description": "Es scheint, dass eine ähnliche Anfrage oder ein ähnlicher Antrag bereits an anderer Stelle gestellt wurde, so dass der aktuelle Antrag storniert wurde."
+            "description": "Es scheint, dass eine ähnliche Anfrage bereits gestellt wurde, so dass der aktuelle Antrag storniert wurde."
         },
         "error-already-has-role": {
             "title": "Ähm... Du bist schon ein Open Contributor",
@@ -40,19 +40,19 @@
         },
         "initial-message": {
             "title": "Wie man Open Contributor wird",
-            "description": "Um ein Open Contributor und seine Rollen zu werden, müssen Sie die folgenden Dinge erfüllen:\n\n1. Haben Sie {neededcommits} oder mehr commits\n2. Haben Sie {neededpr} oder mehr Pull-Requests\n\nKlicken Sie auf den Link und prüfen Sie, ob Sie ein Open Contributor werden können"
+            "description": "Um ein Open Contributor und seine Rollen zu werden, musst du die folgenden Dinge erfüllen:\n\n1. Du hast {neededcommits} oder mehr commits\n2. Du hast {neededpr} oder mehr Pull-Requests\n\nKlick auf den Link und prüfen, ob du ein Open Contributor werden kannst."
         },
         "results-complete": {
             "title": "Github Ergebnisse",
-            "description": "Benutzer: `{githubname}`\n\n{pbpr}\nSie haben {yourpr} von {neededpr} Pull Requests.\n\n{pbcm}\nSie haben {yourcommits} von {neededcommits} Commits.\n\nWir haben Sie zu unserem Open Contributor hinzugefügt"
+            "description": "Benutzer: `{githubname}`\n\n{pbpr}\nDu hast {yourpr} von {neededpr} Pull Requests.\n\n{pbcm}\nDu hast {yourcommits} von {neededcommits} Commits.\n\nWir haben Sie zu unserem Open Contributor hinzugefügt."
         },
         "results-not-complete": {
             "title": "Github Ergebnisse",
-            "description": "Benutzer: `{githubname}`\n\n{pbpr}\nSie haben {yourpr}/{neededpr} Pull Requests.\n\n{pbcm}\nSie haben {yourcommits}/{neededcommits} Commits\n\nErfülle alle Anforderungen und versuche es erneut."
+            "description": "Benutzer: `{githubname}`\n\n{pbpr}\nDu hast {yourpr}/{neededpr} Pull Requests.\n\n{pbcm}\nDu hast {yourcommits}/{neededcommits} Commits.\n\nErfülle alle Anforderungen und versuche es erneut."
         },
         "results-no-data": {
             "title": "Github Ergebnisse für {githubname}",
-            "description": "Du hast weder Pull Requests noch Commits"
+            "description": "Du hast weder Pull Requests noch Commits."
         }
     }
 }
