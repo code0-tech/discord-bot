@@ -7,13 +7,24 @@
 
 ### Basic Overview:
 
-<details>
-<summary>Commands</summary>
+This this the Discord Bot for Code0 running in javascript and mainly developed by Nicolas Morawietz also knows as Nicusch or "nixkuchen" on Discord.
+#
+The Bot is running the Discord.js Client instance and a small Web-Server for Github o-auth in order to perform some commands which includes reading commits and pull's.
 
-1. `open-contributor`
-2. `ticket`
-3. <span style="color:red;">`links` [in progress]</span>
-4. <span style="color:red;">`contributor` [in progress]</span>
+For that reason a Http Port is required and currently set to `http-config.port` => 7581
+#
+
+
+<details>
+<summary>CDiscord Interactions</summary>
+
+1. Command: <span style="color:green;">`/open-contributer` [finished]</span>
+2. Command: <span style="color:green;">`/ticket` [finished]</span>
+3. Command: <span style="color:red;">`/links` [in progress]</span>
+4. Command: <span style="color:red;">`/contributor` [in progress]</span>
+5. Interaction: <span style="color:red;">`Code0 Application Ticket/` [in progress]</span>
+6. Idea: <span style="color:yellow;">`quizz for fun` [idea]</span>
+7. Fany things: <span style="color:yellow;">`other games or funny things` [idea]</span>
 
 </details>
 
