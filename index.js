@@ -53,6 +53,7 @@ client.login(process.env.TOKEN);
 
 - Go over Code and oursource / make more readable
 
+- update english.json Sie => Du
 */
 
 

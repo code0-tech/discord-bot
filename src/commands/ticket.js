@@ -184,7 +184,7 @@ const executeComponent = async (interaction, client, guild, componentData, membe
 
     } else if (componentData.id == 'delete-ticket') {
         const ticketChannel = channelFromInteraction(interaction, guild);
-        ticketChannel.delete({ reason: "lol" });
+        ticketChannel.delete({ reason: "Ticket was closed and marked as fin" });
     }
 }
 
