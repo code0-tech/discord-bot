@@ -27,6 +27,7 @@ client.awaitaction = {};
 
 
 require('./src/start-up/language-check');
+require('./src/start-up/mongo-setup');
 
 require('./src/start-up/start-puppeteer');
 require('./src/interactions/load-interactions').load(client);

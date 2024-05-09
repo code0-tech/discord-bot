@@ -15,6 +15,7 @@
     "dotenv": "^16.3.1",
     "html-to-image": "^1.11.11",
     "html2canvas": "^1.4.1",
+    "mongo": "^0.1.0",
     "node-fetch": "^2.6.12",
     "node-html-to-image": "^4.0.0"
   }
