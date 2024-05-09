@@ -14,7 +14,8 @@ const client = new Client({
         GatewayIntentBits.Guilds,
         GatewayIntentBits.GuildVoiceStates,
         GatewayIntentBits.GuildInvites,
-        GatewayIntentBits.GuildModeration
+        GatewayIntentBits.GuildModeration,
+        GatewayIntentBits.GuildMessages
     ], partials: [
         Partials.Message,
         Partials.Channel,
@@ -42,6 +43,10 @@ client.once(Events.ClientReady, readyClient => {
 
     console.log(`Code0 Discord Client ready => ${readyClient.user.tag}`);
     client.user.setPresence({ activities: [{ name: 'with Code0.js' }], status: 'online' });
+
+    client.on('messageCreate', msg => {
+        console.log(msg)
+    })
 });
 
 
