@@ -56,6 +56,4 @@ client.login(process.env.TOKEN);
 
 -> Something fancy like a quizz
 
-
-play with llm
 */
