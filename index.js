@@ -65,4 +65,6 @@ client.login(process.env.TOKEN);
 
 -> MongoDb when user interaction check if his entries are up to date
 
+-> Add anti spam and anti double messages for XP
+
 */
