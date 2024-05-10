@@ -23,7 +23,7 @@ Also a MongoDb is required as this Bot needs some DataBase to store Data
 | 2   | `/ticket`                                    | Finished     |
 | 3   | `/links`                                     | In Progress  |
 | 4   | `/contributor`                               | In Progress  |
-| 5   | `/rank + get xp by messages depending on length` | Testing  |
+| 5   | `/rank + get xp by messages depending on length` | Testing[1/4]  |
 | 6   | `Code0 Application Ticket/`                  | In Progress  |
 | 7   | `quizz for fun`                              | Idea         |
 | 8   | `other games or funny things`                | Idea         |
