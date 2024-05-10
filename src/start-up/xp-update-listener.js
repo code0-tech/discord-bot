@@ -78,21 +78,19 @@ const checkIfValid = async (msg) => {
 
     // Check time etc
 
-
     userList[userid] = newpacket(msg);
 
-    console.log(userList)
-    console.log(cannotPass)
+    // console.log(userList)
+    // console.log(cannotPass)
 
     return cannotPass;
-
 }
+
 
 const start = (client) => {
     const maxLength = config.commands.rank.maxlength;
     const maxXP = config.commands.rank.maxxp;
     const xpPerChar = config.commands.rank.xpperchar;
-
 
     client.on('messageCreate', async msg => {
 
@@ -102,7 +100,7 @@ const start = (client) => {
 
         if (await checkIfValid(msg)) return;
 
-        console.log("######################### Passed")
+        // console.log("######################### Passed")
 
         const user = await new MongoUser(msg.author.id).init();
 
