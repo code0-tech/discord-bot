@@ -15,7 +15,8 @@ const client = new Client({
         GatewayIntentBits.GuildVoiceStates,
         GatewayIntentBits.GuildInvites,
         GatewayIntentBits.GuildModeration,
-        GatewayIntentBits.GuildMessages
+        GatewayIntentBits.GuildMessages,
+        GatewayIntentBits.MessageContent
     ], partials: [
         Partials.Message,
         Partials.Channel,
@@ -45,7 +46,7 @@ client.once(Events.ClientReady, readyClient => {
     client.user.setPresence({ activities: [{ name: 'with Code0.js' }], status: 'online' });
 
     require('./src/start-up/xp-update-listener').start(client);
-    
+
 });
 
 

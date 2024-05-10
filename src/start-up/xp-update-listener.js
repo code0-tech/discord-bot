@@ -4,7 +4,7 @@ const start = (client) => {
     client.on('messageCreate', msg => {
 
         console.log(msg)
-        // const user = new MongoUser(msg.user.id);
+        // const user = new MongoUser(msg.author.id);
 
 
 
