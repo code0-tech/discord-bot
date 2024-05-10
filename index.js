@@ -62,6 +62,10 @@ client.login(process.env.TOKEN);
 
 -> Something fancy like a quizz
 
+-> Fix bug with MongoDb create user before going on
+
+-> Exclude apps from Xp system
+
 */
 
 
