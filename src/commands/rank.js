@@ -13,9 +13,9 @@ const data = new SlashCommandBuilder()
 const execute = async (interaction, client, guild, member, lang) => {
     await interaction.deferReply({ ephemeral: true });
 
-    const user = new MongoUser(member.user.id);
+    const user = await new MongoUser(member.user.id).init();
 
-    await waitMs(400); // Temp bug fix
+    // await waitMs(400); // Temp bug fix
 
     // await user._loadUser(); // Temp for small bug fix
 

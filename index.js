@@ -73,8 +73,8 @@ client.login(process.env.TOKEN);
 
 const user = new MongoUser('380808844093292555')
 
-for (let i = 0; i < 200; i++) {
-    console.log(user._getLvlAndXpByRawXp(i * 2))
+for (let i = 0; i < 20; i++) {
+    console.log(user._getLvlAndXpByRawXp(i * 2 * 114))
 } */
 
 // user.updateXpBy(20)
@@ -82,3 +82,25 @@ for (let i = 0; i < 200; i++) {
 // user._updateXp(1003)
 // user._updateXp(503)
 // user._updateXp(0)
+/*
+const levelToRawXp = (i) => {
+    const mathRawXp = 400 * i * (4 * (i)) + 400;
+    return { i, mathRawXp, incr };
+}
+
+ */
+// console.log(levelToRawXp(0))
+// console.log(levelToRawXp(1))
+// console.log(levelToRawXp(3))
+// console.log(levelToRawXp(4))
+// console.log(levelToRawXp(5))
+// console.log(levelToRawXp(6))
+// console.log(levelToRawXp(7))
+// console.log(levelToRawXp(8))
+// console.log(levelToRawXp(9))
+// console.log(levelToRawXp(10))
+// console.log(levelToRawXp(11))
+// console.log(levelToRawXp(12))
+// console.log(levelToRawXp(13))
+// console.log(levelToRawXp(14))
+// console.log(levelToRawXp(15))
