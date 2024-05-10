@@ -34,7 +34,6 @@ class MongoUser {
             id: this._userid,
             rawxp: 0,
             commandstats: {}
-
         };
 
         const mongoRes = await MongoDb.insertOne(ENUMS.DCB.USERS, userDocument);
