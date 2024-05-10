@@ -17,7 +17,7 @@ class MongoUser {
         const userData = await MongoDb.find(ENUMS.DCB.USERS, { id: this._userid });
 
         if (userData[0] == undefined) {
-            this._createNewUser();
+            await this._createNewUser();
         }
     }
 
