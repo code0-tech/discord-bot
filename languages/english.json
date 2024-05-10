@@ -6,11 +6,11 @@
         },
         "create": {
             "title": "Ticket",
-            "description": "Creating a new ticket"
+            "description": "Creating a new ticket."
         },
         "created": {
             "title": "We got your Ticket",
-            "description": "You will find your ticket <#{channelid}> under the `Support` category"
+            "description": "You will find your ticket <#{channelid}> under the `Support` category."
         },
         "info-message": {
             "title": "Support Ticket #{ticketnumber}",
@@ -52,7 +52,7 @@
         },
         "results-no-data": {
             "title": "Github Results for {githubname}",
-            "description": "You got no commits nor pull request's"
+            "description": "You got no commits nor pull request's."
         }
     },
     "links": {
