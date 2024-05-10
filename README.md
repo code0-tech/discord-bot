@@ -12,27 +12,30 @@ This this the Discord Bot for Code0 running in javascript and mainly developed b
 The Bot is running the Discord.js Client instance and a small Web-Server for Github o-auth in order to perform some commands which includes reading commits and pull's.
 
 For that reason a Http Port is required and currently set to `http-config.port` => 7581
+
+Also a MongoDb is required as this Bot needs some DataBase to store Data
 #
 
 
-<details>
-<summary>Discord Interactions</summary>
-
-1. Command: <span style="color:green;">`/open-contributer` [finished]</span>
-2. Command: <span style="color:green;">`/ticket` [finished]</span>
-3. Command: <span style="color:red;">`/links` [in progress]</span>
-4. Command: <span style="color:red;">`/contributor` [in progress]</span>
-5. Interaction: <span style="color:red;">`Code0 Application Ticket/` [in progress]</span>
-6. Idea: <span style="color:yellow;">`quizz for fun` [idea]</span>
-7. Fancy things: <span style="color:yellow;">`other games or funny things` [idea]</span>
-
-</details>
+|     | Command                                       | Status       |
+| --- | --------------------------------------------- | ------------ |
+| 1   | `/open-contributer`                          | Finished     |
+| 2   | `/ticket`                                    | Finished     |
+| 3   | `/links`                                     | In Progress  |
+| 4   | `/contributor`                               | In Progress  |
+| 5   | `/rank + get xp by messages depending on length` | Testing  |
+| 6   | `Code0 Application Ticket/`                  | In Progress  |
+| 7   | `quizz for fun`                              | Idea         |
+| 8   | `other games or funny things`                | Idea         |
+| 9   | `/leaderboard` to see global stats of user   | Idea for /rank|
+| 10   | a way to make my entry in leaderboard anonymous| Idea for /leaderboard|
 
 <details>
 <summary>Included Functions</summary>
 
 1. <span style="color:green;">Auto script command upload</span>
 2. <span style="color:green;">Web server for o-auth github</span>
+3. <span style="color:green;">Check Languages pack's for missing entries</span>
 
 </details>
 
