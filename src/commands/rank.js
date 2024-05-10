@@ -3,8 +3,6 @@ const { Embed, progressBar } = require('./../models/Embed');
 const { MongoUser } = require('./../mongo/MongoUser');
 const config = require('./../../config.json');
 
-const { waitMs } = require('./../utils/time'); // Temp bug fix
-
 const data = new SlashCommandBuilder()
     .setName('rank')
     .setDescription('Check you current Rank')
