@@ -60,5 +60,11 @@
             "title": "Diese Links könnten dich interessieren!",
             "description": "Github: [Code0 Github](https://github.com/code0-tech)\n\nUnsere Website: [Code0 Website](https://code0.tech)"
         }
+    },
+    "contributor": {
+        "info": {
+            "title": "Wie werde ich ein Open Contributor?",
+            "description": "Um ein Open Contributor zu werden, erfülle diese Kriterien:\n\n1. Hab {neededcommits} oder mehr Commits.\n2. Hab {neededpr} oder mehr Pull Requests.\n\nDu kannst deinen Status mit dem Befehl `/open-contributer` überprüfen."
+        }
     }
 }
