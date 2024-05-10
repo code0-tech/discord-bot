@@ -8,6 +8,10 @@ const start = (client) => {
 
     client.on('messageCreate', async msg => {
 
+        console.dir(msg, { depth: null, breakLength: 0 });
+
+        if (msg.author.bot == true) return;
+
         const user = await new MongoUser(msg.author.id).init();
 
         const adjustedLength = Math.min(msg.content.length, maxLength);
