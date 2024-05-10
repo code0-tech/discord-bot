@@ -69,7 +69,7 @@
     },
     "rank": {
         "rank-response": {
-            "description": "### Lvl: {level}\n{progressbar} [ {xp} xp | {neededXp} xp]\n\nYou are {position}-th place.\n"
+            "description": "### Level: {level}\n{progressbar} [ {xp} xp| {neededXp} xp]\n\nYou are currently {position}th place.\nEarn XP by interacting."
         }
     }
 }
