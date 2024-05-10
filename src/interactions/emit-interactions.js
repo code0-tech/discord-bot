@@ -69,9 +69,9 @@ const button = async (interaction, client) => {
 
 const setup = (client) => {
     client.on('interactionCreate', async (interaction) => {
-        if (interaction.isChatInputCommand()) { // Slash-Command Support
+        if (interaction.isChatInputCommand()) { // Slash-Command
             command(interaction, client);
-        } else if (interaction.isButton()) { // Button Support
+        } else if (interaction.isButton()) { // Button
             button(interaction, client);
         }
     });
