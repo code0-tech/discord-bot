@@ -22,6 +22,12 @@ class Mongo {
         }
     }
 
+    async aggregate(where, input) {
+        const col = await this._getWhere(where);
+        const result = await col.aggregate(input).toArray();
+        return result;
+    }
+
     async insertOne(where, document) {
         try {
             const col = await this._getWhere(where);

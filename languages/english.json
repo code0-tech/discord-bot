@@ -70,7 +70,7 @@
     "rank": {
         "rank-response": {
             "title": "Your Rank",
-            "description": "\n## Lvl: {level}\n{progressbar}\n\nYou got {xp} xp of {neededXp} xp for the next Level.\n\nThis is just a Test [also only in english]"
+            "description": "\nUsername: <@{userid}>\n\nPlace: {position}\n## Lvl: {level}\n{progressbar} [ {xp} xp | {neededXp} xp]\n\nYou got {xp} xp of {neededXp} xp for the next Level."
         }
     }
 }

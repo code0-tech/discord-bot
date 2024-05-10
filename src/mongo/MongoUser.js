@@ -41,6 +41,21 @@ class MongoUser {
         return mongoRes;
     }
 
+    async getXpGlobalPosition() {
+        const user = await this._getUser();
+
+        const input = [
+            { $match: { rawxp: { $gt: user.rawxp } } }, // Match documents with rawxp greater than yours
+            { $group: { _id: null, count: { $sum: 1 } } } // Count the matching documents
+        ]
+
+        const result = await MongoDb.aggregate(ENUMS.DCB.USERS, input);
+
+        const position = result.length > 0 ? result[0].count + 1 : 1;
+
+        return position;
+    }
+
     async _getLvlAndXpByRawXp(rawXp) {
 
         const levelToXp = (x) => {

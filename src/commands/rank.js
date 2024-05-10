@@ -14,11 +14,12 @@ const execute = async (interaction, client, guild, member, lang) => {
     const user = await new MongoUser(member.user.id).init();
 
     const { level, neededXp, xp } = await user.getRank();
+    const position = await user.getXpGlobalPosition();
 
     new Embed()
         .setColor(config.embeds.colors.info)
         .setPbThumbnail(member)
-        .addInputs({ level, neededXp, xp, progressbar: progressBar(xp, neededXp) })
+        .addInputs({ level, neededXp, xp, progressbar: progressBar(xp, neededXp), position })
         .addContext(lang, member, 'rank-response')
         .addCode0Footer()
         .interactionResponse(interaction)
