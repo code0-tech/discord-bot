@@ -54,5 +54,11 @@
             "title": "Github Ergebnisse für {githubname}",
             "description": "Du hast weder Pull Requests noch Commits."
         }
+    },
+    "links": {
+        "list": {
+            "title": "Diese Links könnten dich interessieren!",
+            "description": "Github: [Code0 Github](https://github.com/code0-tech)\n\nUnsere Website: [Code0 Website](https://code0.tech)"
+        }
     }
 }

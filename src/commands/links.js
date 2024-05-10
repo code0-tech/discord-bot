@@ -12,12 +12,10 @@ const execute = async (interaction, client, guild, member, lang) => {
 
     new Embed()
         .setColor(config.embeds.colors.info)
-        .addInputs({ rank: rankName, level, neededXp, xp, progressbar: progressBar(xp, neededXp) })
         .addContext(lang, member, 'list')
         .addCode0Footer()
         .interactionResponse(interaction)
 };
-
 
 
 const componentIds = [];

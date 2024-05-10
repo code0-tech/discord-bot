@@ -55,16 +55,16 @@
             "description": "You got no commits nor pull request's"
         }
     },
-    "rank": {
-        "rank-response": {
-            "title": "Your Rank: '{rank}'",
-            "description": "Name: <@{userid}>\n\nLvl: `{level}\n`XP: `{xp}`\n\n{progressbar}\n\nYou got `{xp}` xp of `{neededXp}` xp for the next Level.\n\nThis is just a Test [also only in english]"
-        }
-    },
     "links": {
         "list": {
             "title": "These links might interest you!",
             "description": "Our Github: [Code0 Github](https://github.com/code0-tech)\n\nOur Website: [Code0 Website](https://code0.tech)"
+        }
+    },
+    "rank": {
+        "rank-response": {
+            "title": "Your Rank: '{rank}'",
+            "description": "Name: <@{userid}>\n\nLvl: `{level}\n`XP: `{xp}`\n\n{progressbar}\n\nYou got `{xp}` xp of `{neededXp}` xp for the next Level.\n\nThis is just a Test [also only in english]"
         }
     }
 }

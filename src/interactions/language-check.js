@@ -19,7 +19,7 @@ const language = async (commandName, interaction, guild, client) => {
         baseLanguage = 'english';
     }
 
-    
+
     return {
         userlang: baseLanguage,
         text: languages[baseLanguage][commandName]
