@@ -55,27 +55,28 @@ const checkIfValid = async (msg) => {
 
     const repeatedChars = /(.)\1{3,}/; // Matches a character repeated 4 or more times
     if (repeatedChars.test(msg.content)) {
-        console.log("repeated 4 or more times")
+        // console.log("repeated 4 or more times")
         cannotPass = true;
     }
 
     const consecutiveRandomChars = /[a-zA-Z]{5,}/; // Matches 5 or more consecutive letters
     if (consecutiveRandomChars.test(msg.content)) {
-        console.log("5 or more consecutive letters")
+        // console.log("5 or more consecutive letters")
         cannotPass = true;
     }
 
     if (msg.content == userList[userid].last.content) { // Check if the last message was repeated
-        console.log("Repeated Message")
+        // console.log("Repeated Message")
         cannotPass = true;
     }
 
-    if (levenshteinDistance(msg.content, userList[userid].last.content) < 4) {
-        console.log("Message is very simil")
+    if (levenshteinDistance(msg.content, userList[userid].last.content) < 3) { // Check levenshteinDistance
+        // console.log("Message is very simil")
         cannotPass = true;
     }
 
-    console.log(levenshteinDistance(msg.content, userList[userid].last.content))
+
+    // Check time etc
 
 
     userList[userid] = newpacket(msg);
@@ -100,6 +101,8 @@ const start = (client) => {
 
 
         if (await checkIfValid(msg)) return;
+
+        console.log("######################### Passed")
 
         const user = await new MongoUser(msg.author.id).init();
 
