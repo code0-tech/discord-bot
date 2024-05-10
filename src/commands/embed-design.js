@@ -14,7 +14,6 @@ const data = new SlashCommandBuilder()
 const execute = async (interaction, client, guild, member, lang) => {
   interaction.deferReply({ ephemeral: true });
 
-
 }
 
 
