@@ -21,7 +21,7 @@ const extractIdData = (inputString) => {
 
 const executionError = (interaction, info) => {
     if (interaction.deferred || interaction.replied) {
-        new Embed() // Send user a Quick Error Note on their query
+        new Embed()
             .setTitle('Error at Command Execution')
             .setColor(config.embeds.colors.danger)
             .addCode0Footer()
