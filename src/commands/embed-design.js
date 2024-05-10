@@ -15,59 +15,6 @@ const execute = async (interaction, client, guild, member, lang) => {
   interaction.deferReply({ ephemeral: true });
 
 
-  const closeTicket = new ButtonBuilder()
-    .setCustomId('test-id1')
-    .setLabel('Test other Style')
-    .setStyle(ButtonStyle.Danger);
-
-  const row = new ActionRowBuilder()
-    .addComponents(closeTicket);
-
-  /* 
-  
-    ${progressBar(20, 60, true)}
-  ${progressBar(20, 70, true)}
-  ${progressBar(20, 80, true)}
-  ${progressBar(20, 90, true)}
-  ${progressBar(20, 100, true)}
-  ${progressBar(2, 60, true)}
-  ${progressBar(5, 10, true)}
-  
-
-  */
-
-  /* let index = 0;
-
-  setInterval(() => {
-    new Embed()
-      .setColor(config.embeds.colors.info)
-      .setDescription(`${progressBar(index, 100, true)}`)
-      // .addInputs({ user: "nicusch", age: 21 })
-      // .addContext(lang, member, '1')
-      .addCode0Footer()
-      .interactionResponse(interaction)
-    // .interactionResponse(interaction, [row])
-
-    index++;
-
-    if (index > 100) {
-      index = 0;
-    }
-  }, 1000); */
-
-
-  /* 
-    const fetchedLogs = await guild.fetchAuditLogs({
-      limit: 2,
-    });
-  
-    console.dir(fetchedLogs, { depth: null });
-   */
-
-  // console.log(fetchedLogs.entries)
-
-  // await waitMs(2000);
-
 }
 
 
@@ -84,10 +31,7 @@ const executeComponent = async (interaction, client, guild, buttonData, member, 
 }
 
 const componentIds = [
-  'test-id1',
-  'test-id2',
-  'test-id3',
-  'test-id4'
+  'test-id1'
 ];
 
 module.exports = { execute, executeComponent, componentIds, data };
