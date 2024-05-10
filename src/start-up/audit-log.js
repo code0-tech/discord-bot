@@ -1,7 +1,7 @@
-const  {Embed } =require('./../models/Embed');
+const { Embed } = require('./../models/Embed');
 const config = require('./../../config.json');
 const { Events } = require('discord.js');
-// const { Card } = require('./../models/card/Card');
+const { Card } = require('./../models/card/Card');
 
 const setup = (client) => {
     const guild = client.guilds.cache.get(process.env.GUILD_ID);
@@ -10,11 +10,39 @@ const setup = (client) => {
     let eventHand = [];
 
     const sendEvent = async (event) => {
-        // const username = guild.members.cache.get(event.executorId);
+        /* const username = event.executor.username;
 
-        console.log(event);
 
-        /*  
+        console.dir(event, { depth: null, breakLength: 0 });
+
+        let changes = "";
+
+        event.changes.forEach(change => {
+            let oldValue = change.old;
+            let newValue = change.new;
+
+            // If the old or new value is an array, format it as a string
+            if (Array.isArray(oldValue)) {
+                oldValue = oldValue.join(", ");
+            }
+            if (Array.isArray(newValue)) {
+                newValue = newValue.join(", ");
+            }
+
+            changes += `\n\`${change.key}\` from \`${oldValue}\` to \`${newValue}\``;
+        });
+
+        new Embed()
+            .setColor(config.embeds.colors.info)
+            .setTitle(`Target: ${event.targetType}`)
+            .setDescription(`
+        Action: ${event.actionType}
+        ${changes}
+        
+        
+        `).responseToChannel(config.channels.auditlog, client);
+ */
+        
  
          const attachment = await new Card()
              .header({}, card => {
@@ -39,7 +67,7 @@ const setup = (client) => {
  
          const messageOptions = { files: [attachment] };
  
-         await channel.send(messageOptions); */
+         await channel.send(messageOptions);
     }
 
 
