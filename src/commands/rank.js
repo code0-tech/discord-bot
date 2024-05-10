@@ -15,10 +15,6 @@ const execute = async (interaction, client, guild, member, lang) => {
 
     const user = await new MongoUser(member.user.id).init();
 
-    // await waitMs(400); // Temp bug fix
-
-    // await user._loadUser(); // Temp for small bug fix
-
     const { level, neededXp, xp } = await user.getRank();
 
     let rankName = config.commands.rank.ranks[level];
