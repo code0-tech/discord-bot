@@ -62,8 +62,6 @@ client.login(process.env.TOKEN);
 
 -> Something fancy like a quizz
 
--> Exclude apps from Xp system
-
 -> MongoDb when user interaction check if his entries are up to date
 
 */
