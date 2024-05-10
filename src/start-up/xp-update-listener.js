@@ -9,6 +9,7 @@ const start = (client) => {
     client.on('messageCreate', async msg => {
 
         if (msg.author.bot == true) return;
+        if (msg.author.system == true) return;
 
         const user = await new MongoUser(msg.author.id).init();
 

@@ -52,6 +52,7 @@ client.once(Events.ClientReady, readyClient => {
 
 client.login(process.env.TOKEN);
 
+
 /* TODO
 
 - Create Application thing in Channel 1192597105550835782
