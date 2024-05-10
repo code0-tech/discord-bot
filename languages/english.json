@@ -69,8 +69,7 @@
     },
     "rank": {
         "rank-response": {
-            "title": "Your Rank",
-            "description": "\nUsername: <@{userid}>\n\nPlace: {position}\n## Lvl: {level}\n{progressbar} [ {xp} xp | {neededXp} xp]\n\nYou got {xp} xp of {neededXp} xp for the next Level."
+            "description": "### Lvl: {level}\n{progressbar} [ {xp} xp | {neededXp} xp]\n\nYou are {position}-th place.\n"
         }
     }
 }

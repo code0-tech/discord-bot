@@ -1,6 +1,6 @@
-const config = require('./../../config.json');
-const { Embed } = require('./../models/Embed');
 const { language } = require('./language-check');
+const { Embed } = require('./../models/Embed');
+const config = require('./../../config.json');
 
 const extractIdData = (inputString) => {
     const parts = inputString.split('*');
@@ -67,7 +67,7 @@ const button = async (interaction, client) => {
     }
 }
 
-const setup = (client) => {
+const setup = async (client) => {
     client.on('interactionCreate', async (interaction) => {
         if (interaction.isChatInputCommand()) { // Slash-Command
             command(interaction, client);

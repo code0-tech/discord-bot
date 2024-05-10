@@ -21,7 +21,7 @@ const execute = async (interaction, client, guild, member, lang) => {
         .setPbThumbnail(member)
         .addInputs({ level, neededXp, xp, progressbar: progressBar(xp, neededXp), position })
         .addContext(lang, member, 'rank-response')
-        .addCode0Footer()
+        // .addCode0Footer()
         .interactionResponse(interaction)
 };
 
