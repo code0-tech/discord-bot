@@ -88,23 +88,7 @@
             "multiplier": 2,
             "maxlength": 100,
             "maxxp": 10,
-            "xpperchar": 0.2,
-            "ranks": [
-                "Gutter",
-                "Mantis",
-                "Ladvin",
-                "Erol",
-                "Code-POgger",
-                "Malvis",
-                "Cod-log",
-                "Utterman",
-                "Laspola",
-                "Laspola-U",
-                "Rigdo",
-                "Meistler",
-                "Meissler",
-                "Sinzuha"
-            ]
+            "xpperchar": 0.5
         }
     }
 }

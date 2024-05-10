@@ -15,15 +15,10 @@ const execute = async (interaction, client, guild, member, lang) => {
 
     const { level, neededXp, xp } = await user.getRank();
 
-    let rankName = config.commands.rank.ranks[level];
-
-    if (rankName == undefined) {
-        rankName = 'I-have-no-names-anymore';
-    }
-
     new Embed()
         .setColor(config.embeds.colors.info)
-        .addInputs({ rank: rankName, level, neededXp, xp, progressbar: progressBar(xp, neededXp) })
+        .setPbThumbnail(member)
+        .addInputs({ level, neededXp, xp, progressbar: progressBar(xp, neededXp) })
         .addContext(lang, member, 'rank-response')
         .addCode0Footer()
         .interactionResponse(interaction)

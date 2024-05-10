@@ -70,6 +70,15 @@ class Embed {
     }
 
     /**
+     * Set the thumbnail for the embed.
+     * @param {string} url - The URL of the thumbnail.
+     */
+    setPbThumbnail(member) {
+        this._embed.setThumbnail(member.user.displayAvatarURL({ format: 'png', dynamic: true, size: 1024 }))
+        return this;
+    }
+
+    /**
      * Add fields to the embed.
      * @param {{ name: string, value: string, inline?: boolean }[]} fieldsObj - The array of fields.
      */

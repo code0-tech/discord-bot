@@ -43,8 +43,8 @@ class MongoUser {
 
     async _getLvlAndXpByRawXp(rawXp) {
 
-        const levelToXp = (i) => {
-            return 400 * i * (4 * (i)) + 400;
+        const levelToXp = (x) => {
+            return 100 * Math.pow(x, 2);
         }
 
         let level = -1;
@@ -57,7 +57,9 @@ class MongoUser {
             requiredXP = levelToXp(level);
         }
 
-        return { rawXp, level, neededXp: requiredXP - previousLevelXP, xp: rawXp - previousLevelXP };
+        return {
+            rawXp, level: level - 1, neededXp: requiredXP - previousLevelXP, xp: rawXp - previousLevelXP
+        };
     }
 
     async _updateXp(rawXp) {

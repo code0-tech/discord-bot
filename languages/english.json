@@ -69,8 +69,8 @@
     },
     "rank": {
         "rank-response": {
-            "title": "Your Rank: '{rank}'",
-            "description": "Name: <@{userid}>\n\nLvl: `{level}\n`XP: `{xp}`\n\n{progressbar}\n\nYou got `{xp}` xp of `{neededXp}` xp for the next Level.\n\nThis is just a Test [also only in english]"
+            "title": "Your Rank",
+            "description": "\n## Lvl: {level}\n{progressbar}\n\nYou got {xp} xp of {neededXp} xp for the next Level.\n\nThis is just a Test [also only in english]"
         }
     }
 }
