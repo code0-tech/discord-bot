@@ -61,6 +61,12 @@
             "description": "Our Github: [Code0 Github](https://github.com/code0-tech)\n\nOur Website: [Code0 Website](https://code0.tech)"
         }
     },
+    "contributor": {
+        "info": {
+            "title": "How to become an Open Contributor",
+            "description": "To be an Open Contributor, meet these criteria:\n\n1. Have {neededcommits} or more commits.\n2. Have {neededpr} or more pull requests.\n\nYou can check or get the role by using `/open-contributer` command."
+        }
+    },
     "rank": {
         "rank-response": {
             "title": "Your Rank: '{rank}'",
