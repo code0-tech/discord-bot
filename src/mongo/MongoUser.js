@@ -1,4 +1,6 @@
 const { Mongo, ENUMS } = require('../models/Mongo');
+const config = require('./../../config.json');
+
 const MongoDb = new Mongo();
 
 class MongoUser {
@@ -38,28 +40,49 @@ class MongoUser {
         return mongoRes;
     }
 
-    async _getLvlAndXpByRawXp(rawXp) {
-        const baseXP = 400; // Base XP required for level 0
-        const xpToLevelRatio = 2; // XP required multiplier for each level
+    async _getLvlAndXpByRawXp(rawXp) { // Edit this the current xp calc is shit
+        const xpPerLevel = 400;
 
-        if (rawXp <= 0) {
-            return { level: 0, progress: 0, neededXp: baseXP, xp: 0 };
-        }
+        const currentLevel = Math.floor(rawXp / xpPerLevel) + 1;
 
-        let level = 1; // Start from level 1
-        let requiredXP = baseXP;
+        const currentXP = rawXp % xpPerLevel;
 
+        const nextLevelXP = (currentLevel * xpPerLevel);
+
+        return {
+            level: currentLevel,
+            xp: currentXP,
+            neededXp: nextLevelXP
+        };
+
+        /* const baseXP = 200;
+
+        // Define the factor by which the XP requirement increases for each level
+        const increaseFactor = 5;
+
+        // Initialize variables for level, required XP, and previous level XP
+        let level = 0;
+        let requiredXP = 0;
+        let previousLevelXP = 0;
+
+        // Calculate level and required XP based on the raw XP
         while (rawXp >= requiredXP) {
             level++;
-            requiredXP = Math.floor(baseXP * (Math.pow(xpToLevelRatio, level)));
+            previousLevelXP = requiredXP;
+            requiredXP = baseXP * increaseFactor * (level - 1) + baseXP;
         }
 
-        const previousLevelXP = Math.floor(baseXP * (Math.pow(xpToLevelRatio, level - 2)));
-        const xpNeededForLevel = requiredXP - previousLevelXP;
-        const progress = (rawXp - previousLevelXP) / xpNeededForLevel;
-        const xp = rawXp - previousLevelXP;
+        // Calculate progress percentage within the current level
+        const progress = Math.min(100, ((rawXp - previousLevelXP) / (requiredXP - previousLevelXP)) * 100);
 
-        return { level: level - 1, progress, neededXp: xpNeededForLevel, xp };
+        // Calculate XP needed for next level
+        const neededXPForNextLevel = requiredXP - previousLevelXP;
+
+        // Calculate current XP within the current level
+        const currentXP = rawXp - previousLevelXP;
+
+        return { rawXp, level: level - 1, progress, neededXp: neededXPForNextLevel, xp: currentXP };
+    */
     }
 
     async _updateXp(rawXp) {
@@ -72,7 +95,6 @@ class MongoUser {
 
     async getRank() {
         const user = await this._getUser();
-
         return await this._getLvlAndXpByRawXp(user.rawxp);
     }
 

@@ -64,13 +64,17 @@ client.login(process.env.TOKEN);
 
 */
 
-/* 
-const { MongoUser } = require('./src/mongo/MongoUser');
+
+/* const { MongoUser } = require('./src/mongo/MongoUser');
 
 const user = new MongoUser('380808844093292555')
-// user._updateXp(19549)
-user.updateXpBy(20)
+
+for (let i = 0; i < 200; i++) {
+    console.log(user._getLvlAndXpByRawXp(i * 2))
+} */
+
+// user.updateXpBy(20)
 // user._updateXp(2913)
 // user._updateXp(1003)
 // user._updateXp(503)
-// user._updateXp(0) */
+// user._updateXp(0)
