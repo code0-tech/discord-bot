@@ -6,23 +6,39 @@ const config = require('./../../config.json');
 const data = new SlashCommandBuilder()
     .setName('rank')
     .setDescription('Check you current Rank')
+    .addUserOption(option =>
+        option
+            .setName('user')
+            .setDescription('Check user stats')
+            .setRequired(false)
+    )
 
 
 const execute = async (interaction, client, guild, member, lang) => {
     await interaction.deferReply({ ephemeral: true });
 
-    const user = await new MongoUser(member.user.id).init();
+    const userIdToCheck = interaction.options._hoistedOptions.length !== 0 ? interaction.options._hoistedOptions[0].user.id : member.user.id;
+    const rankMember = await guild.members.fetch(userIdToCheck);
+
+    const user = await new MongoUser(userIdToCheck).init();
 
     const { level, neededXp, xp } = await user.getRank();
+
     const position = await user.getXpGlobalPosition();
 
-    new Embed()
+    let embedMessage = interaction.options._hoistedOptions.length == 0 ? 'own-rank-response' : 'other-rank-response';
+
+    if (client.user.id == userIdToCheck) {
+        embedMessage = 'this-bot-rank';
+    }
+
+    const embed = new Embed()
         .setColor(config.embeds.colors.info)
-        .setPbThumbnail(member)
-        .addInputs({ level, neededXp, xp, progressbar: progressBar(xp, neededXp), position })
-        .addContext(lang, member, 'rank-response')
-        // .addCode0Footer()
-        .interactionResponse(interaction)
+        .setPbThumbnail(rankMember)
+        .addInputs({ rankuserid: userIdToCheck, level, neededXp, xp, progressbar: progressBar(xp, neededXp), position })
+        .addContext(lang, member, embedMessage);
+
+    embed.interactionResponse(interaction);
 };
 
 
