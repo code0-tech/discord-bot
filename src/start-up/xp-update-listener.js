@@ -100,8 +100,6 @@ const start = (client) => {
 
         if (await checkIfValid(msg)) return;
 
-        // console.log("######################### Passed")
-
         const user = await new MongoUser(msg.author.id).init();
 
         const adjustedLength = Math.min(msg.content.length, maxLength);

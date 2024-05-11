@@ -46,6 +46,7 @@ client.once(Events.ClientReady, readyClient => {
     client.user.setPresence({ activities: [{ name: 'with Code0.js' }], status: 'online' });
 
     require('./src/start-up/xp-update-listener').start(client);
+    require('./src/start-up/user-stats').start(client);
 
 });
 

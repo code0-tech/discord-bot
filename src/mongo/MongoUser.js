@@ -33,6 +33,13 @@ class MongoUser {
         const userDocument = {
             id: this._userid,
             rawxp: 0,
+            stats: {
+                messages: {
+                    words: 0,
+                    chars: 0,
+                    count: 0
+                }
+            },
             commandstats: {}
         };
 
@@ -89,6 +96,21 @@ class MongoUser {
         const user = await this._getUser();
         return await this._getLvlAndXpByRawXp(user.rawxp);
     }
+
+    async updateMessageStats(count = 0, word = 0, chars = 0) {
+        return await MongoDb.update(
+            ENUMS.DCB.USERS,
+            { id: this._userid },
+            {
+                $inc: {
+                    'stats.messages.count': count,
+                    'stats.messages.words': word,
+                    'stats.messages.chars': chars
+                }
+            }
+        );
+    }
+
 
 }
 
