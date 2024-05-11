@@ -73,7 +73,7 @@ class MongoUser {
         }
 
         return {
-            rawXp, level: level - 1, neededXp: requiredXP - previousLevelXP, xp: rawXp - previousLevelXP
+            level: level - 1, neededXp: requiredXP - previousLevelXP, xp: rawXp - previousLevelXP
         };
     }
 

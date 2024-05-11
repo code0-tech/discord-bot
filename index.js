@@ -67,6 +67,8 @@ client.login(process.env.TOKEN);
 
 -> Add anti spam and anti double messages for XP
 
--> add /rank @taucher2003
+-> add /rank 1. 2. 3. - th, update with better text issue
+
+-> leaderboard make a better table
 
 */

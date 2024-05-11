@@ -77,5 +77,11 @@
         "this-bot-rank": {
             "description": "### Well, I'm not really into collecting XP.\nMaybe try a `user` and not a Bot like me c:"
         }
+    },
+    "leaderboard": {
+        "board": {
+            "title": "Top User",
+            "description": "{stringlist}"
+        }
     }
 }

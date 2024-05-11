@@ -73,7 +73,8 @@
     },
     "urls": {
         "graphql": "https://api.github.com/graphql",
-        "githublogin": "https://github.com/login/oauth/access_token"
+        "githublogin": "https://github.com/login/oauth/access_token",
+        "code0": "https://code0.tech"
     },
     "commands": {
         "opencontributor": {
