@@ -71,4 +71,6 @@ client.login(process.env.TOKEN);
 
 -> leaderboard make a better table
 
+-> Work on anitspam to also check spaces and length if the make sense + time stuff yk
+
 */
