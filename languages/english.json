@@ -80,7 +80,7 @@
     },
     "leaderboard": {
         "board": {
-            "title": "Top User",
+            "title": "Top User's",
             "description": "{stringlist}"
         }
     }
