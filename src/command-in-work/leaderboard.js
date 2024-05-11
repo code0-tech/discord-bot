@@ -9,15 +9,8 @@ const data = new SlashCommandBuilder()
 const execute = async (interaction, client, guild, member, lang) => {
     await interaction.deferReply({ ephemeral: true });
 
-    new Embed()
-        .setColor(config.embeds.colors.info)
-        .addInputs({
-            neededpr: config.commands.opencontributor.pr,
-            neededcommits: config.commands.opencontributor.commits
-        })
-        .addContext(lang, member, 'info')
-        .addCode0Footer()
-        .interactionResponse(interaction)
+
+    
 };
 
 
