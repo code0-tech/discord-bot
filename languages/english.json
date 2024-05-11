@@ -69,10 +69,10 @@
     },
     "rank": {
         "own-rank-response": {
-            "description": "### Level: {level}\n{progressbar} [ {xp} xp| {neededXp} xp]\n\nYou <@{rankuserid}> are currently on the {position}th place.\nEarn XP by interacting on this server with others."
+            "description": "### Level: {level}\n{progressbar} [{xp} xp|{neededXp} xp]\n\nYou <@{rankuserid}> are currently on the {position}th place.\nEarn XP by interacting on this server with others."
         },
         "other-rank-response": {
-            "description": "### Level: {level}\n{progressbar} [ {xp} xp| {neededXp} xp]\n\nCurrently <@{rankuserid}> is on the {position}th place."
+            "description": "### Level: {level}\n{progressbar} [{xp} xp|{neededXp} xp]\n\nCurrently <@{rankuserid}> is on the {position}th place."
         },
         "this-bot-rank": {
             "description": "### Well, I'm not really into collecting XP.\nMaybe try a `user` and not a Bot like me c:"
