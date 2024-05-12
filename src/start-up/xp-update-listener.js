@@ -9,6 +9,7 @@ const newpacket = (msg) => {
             content: msg.content,
             length: msg.content.length,
             time: Date.now(),
+            // typetime: Date.now(),
             minMessageWriteTime: (msg.content.length / 10),
             messagePartsCount: msg.content.split(" ").length
         }
@@ -75,8 +76,12 @@ const checkIfValid = async (msg) => {
         cannotPass = true;
     }
 
+    // const messageWriteTime = Date.now() - userList[userid].last.typetime;
+    // console.log(messageWriteTime)
+
     userList[userid] = newpacket(msg);
 
+    // console.log(userList[userid]);
     // console.log(reasons);
 
     return cannotPass;
@@ -109,6 +114,17 @@ const start = (client) => {
 
         user.updateXpBy(xp);
     })
+
+    // client.on('typingStart', info => {
+        // if (userList[info.user.id]) {
+            // console.log("save")
+            // userList[info.user.id].last.typetime = Date.now()
+        // }
+    // });
+
+    // client.on('raw', info => {
+    // console.log(info)
+    // });
 }
 
 module.exports = { start };
