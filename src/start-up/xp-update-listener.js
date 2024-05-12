@@ -93,7 +93,6 @@ const start = (client) => {
         if (msg.author.bot == true) return;
         if (msg.author.system == true) return;
 
-
         if (await checkIfValid(msg)) return;
 
         const user = await new MongoUser(msg.author.id).init();
