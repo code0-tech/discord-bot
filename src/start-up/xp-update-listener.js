@@ -46,42 +46,38 @@ const levenshteinDistance = (a, b) => {
 
 const checkIfValid = async (msg) => {
     let cannotPass = false;
+    let reasons = [];
     const userid = msg.author.id;
 
     if (!userList[userid]) {
         userList[userid] = newpacket(msg);
-        // return cannotPass;
+        return cannotPass;
     }
 
-    const repeatedChars = /(.)\1{3,}/; // Matches a character repeated 4 or more times
+    const repeatedChars = /(.)\1{3,}/;
     if (repeatedChars.test(msg.content)) {
-        // console.log("repeated 4 or more times")
+        reasons.push('Unusual character repetition');
         cannotPass = true;
     }
 
-    const consecutiveRandomChars = /[a-zA-Z]{5,}/; // Matches 5 or more consecutive letters
-    if (consecutiveRandomChars.test(msg.content)) {
-        // console.log("5 or more consecutive letters")
+    if (msg.content == userList[userid].last.content) {
+        reasons.push('Repeated message');
         cannotPass = true;
     }
 
-    if (msg.content == userList[userid].last.content) { // Check if the last message was repeated
-        // console.log("Repeated Message")
+    if (levenshteinDistance(msg.content, userList[userid].last.content) < 3) {
+        reasons.push('Repeated message [similar]');
         cannotPass = true;
     }
 
-    if (levenshteinDistance(msg.content, userList[userid].last.content) < 3) { // Check levenshteinDistance
-        // console.log("Message is very simil")
+    if ((Date.now() - userList[userid].last.time) <= 800) {
+        reasons.push('Quick messages v1');
         cannotPass = true;
     }
-
-
-    // Check time etc
 
     userList[userid] = newpacket(msg);
 
-    // console.log(userList)
-    // console.log(cannotPass)
+    // console.log(reasons);
 
     return cannotPass;
 }
