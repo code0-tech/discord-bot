@@ -68,11 +68,11 @@ client.login(process.env.TOKEN);
 
 -> add /rank 1. 2. 3. - th, update with better text issue
 
--> leaderboard make a better table
-
 -> Work on anitspam to also check spaces and length if the make sense + time stuff yk
 
 -> Fix .addInputs giving error when lang pack does not conatin and placholder and vice versa
 
 -> Fix bot beeing added to the DB, reason unknown, maybe some command or xp stuff that adds him
+
+-> Add lang for small things in english and the other ones to be used like in /leaderboard
 */
