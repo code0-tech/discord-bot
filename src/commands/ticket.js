@@ -1,5 +1,5 @@
 const { ChannelType, PermissionsBitField, ButtonBuilder, ButtonStyle, ActionRowBuilder } = require("discord.js");
-const { channelFromInteraction, removeAllChannelUserPerms } = require('./../utils/channel');
+const { channelFromInteraction, removeAllChannelUserPerms } = require('../discord/channel');
 const { waitMs, snowflakeToDate, msToHumanReadableTime } = require('./../utils/time');
 const { SlashCommandBuilder } = require('@discordjs/builders');
 const { Channel } = require('./../models/Channel');
