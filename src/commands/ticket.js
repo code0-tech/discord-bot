@@ -9,7 +9,7 @@ const config = require('./../../config.json');
 
 const data = new SlashCommandBuilder()
     .setName('ticket')
-    .setDescription('Opens a new support ticket for assistance.')
+    .setDescription('Open a new support ticket for assistance.')
 
 const USER_OVERRIDE = 1;
 
