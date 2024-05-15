@@ -5,7 +5,7 @@
   "main": "index.js",
   "type": "commonjs",
   "scripts": {
-    "update": "node ./update.js"
+    "update": "node ./slash-command-updater.js"
   },
   "author": "Nicusch | Nicolas Morawietz",
   "dependencies": {
