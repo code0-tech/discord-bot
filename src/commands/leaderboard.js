@@ -62,9 +62,6 @@ const execute = async (interaction, client, guild, member, lang) => {
 
         const username = leadboardMember.nickname == null ? leadboardMember.user.username : leadboardMember.nickname;
 
-        // ${user.id == member.user.id ? '[' : ''}
-        // ${user.id == member.user.id ? '](' + config.urls.code0 + ')' : ''}
-
         stringList += `\n${i + 1}. ${username} \`Level: ${level} [${xp}|${neededXp}]\``;
 
         if ((i + 1) % 5 == 0) {
