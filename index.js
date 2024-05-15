@@ -75,4 +75,5 @@ client.login(process.env.TOKEN);
 
 -> Work on anitspam to also check spaces and length if the make sense + time stuff yk
 
+-> Fix .addInputs giving error when lang pack does not conatin and placholder and vice versa
 */
