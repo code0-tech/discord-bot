@@ -17,7 +17,7 @@ const failedMessage = async (interaction, client, member, lang, type) => {
         .setColor(config.embeds.colors.danger)
         .addContext(lang, member, type)
         .addCode0Footer()
-        .interactionResponse(interaction)
+        .interactionResponse(interaction);
 
 };
 
@@ -58,7 +58,7 @@ const execute = async (interaction, client, guild, member, lang) => {
         .addInputs({ neededcommits: config.commands.opencontributor.commits, neededpr: config.commands.opencontributor.pr })
         .addContext(lang, member, 'initial-message')
         .addCode0Footer()
-        .interactionResponse(interaction, [row])
+        .interactionResponse(interaction, [row]);
 
     // Await if user used the link or not, then perform action
     const resolvedAwait = await awaitCodeResolve(client, awaitCodeId, 120000, data.reference, true);
@@ -105,7 +105,7 @@ const execute = async (interaction, client, guild, member, lang) => {
             })
             .addContext(lang, member, messageType)
             .addCode0Footer()
-            .interactionResponse(interaction, [row])
+            .interactionResponse(interaction, [row]);
 
         // .progressBar({ value: calculatePercentage(github.totalPullRequests, config.commands.opencontributor.pr), label: true }, card => { })
 
