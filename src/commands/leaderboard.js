@@ -52,7 +52,7 @@ const execute = async (interaction, client, guild, member, lang) => {
     for (let i = 0; i < userList.length; i++) {
         const user = userList[i];
 
-        let leadboardMember = await getUser(guild, user.id);
+        let leadboardMember = await getUser(user.id, guild);
 
         if (leadboardMember == null) {
             leadboardMember = { user: { username: '[Left the server]' } };

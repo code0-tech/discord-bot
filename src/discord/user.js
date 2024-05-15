@@ -1,4 +1,4 @@
-const getUser = async (guild, userid) => {
+const getUser = async (userid, guild) => {
     let member;
 
     try {
