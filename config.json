@@ -38,6 +38,9 @@
         "1225861340686450799": "german",
         "1230517451482202192": "english"
     },
+    "roles": {
+        "opencontributor": "1173713516222480394"
+    },
     "status": {
         "interval": 10000,
         "messages": [
@@ -58,10 +61,6 @@
                 "status": "online"
             }
         ]
-    },
-    "roles": {
-        "opencontributor": "1173713516222480394",
-        "supremeembeds": "1224848001621561354"
     },
     "emojis": {
         "support": "📞",
