@@ -44,7 +44,6 @@ client.once(Events.ClientReady, readyClient => {
     require('./src/start-up/client-status').start(client);
 
     console.log(`Code0 Discord Client ready => ${readyClient.user.tag}`);
-    client.user.setPresence({ activities: [{ name: 'with Code0.js' }], status: 'online' });
 
     require('./src/start-up/xp-update-listener').start(client);
     require('./src/start-up/user-stats').start(client);
