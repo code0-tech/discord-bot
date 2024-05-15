@@ -24,7 +24,7 @@ Also a MongoDb is required as this Bot needs some DataBase to store Data
 | 3   | `/links`                                     | Design       |
 | 4   | `/contributor`                               | Design       |
 | 5   | `/rank` or `/rank @user`                     | Finished     |
-| 6   | `/leaderboard`                               | Design     |
+| 6   | `/leaderboard` or `/leaderboard limit: 1-100`| Design       |
 | 7   | `Code0 Application Ticket/`                  | In Progress  |
 | 8   | `quizz for fun`                              | Idea         |
 | 9   | `other games or funny things`                | Idea         |
@@ -36,6 +36,6 @@ Also a MongoDb is required as this Bot needs some DataBase to store Data
 1. <span style="color:green;">Auto script command upload</span>
 2. <span style="color:green;">Web server for o-auth github</span>
 3. <span style="color:green;">Check Languages pack's for missing entries</span>
-4. <span style="color:green;">Xp on Interaction</span>
+4. <span style="color:green;">Xp on Interactions with anti spam features</span>
 
 </details>
