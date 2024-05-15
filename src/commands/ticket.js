@@ -84,7 +84,7 @@ const execute = async (interaction, client, guild, member, lang) => {
             .addInputs({ m, s })
             .addContext(lang, member, 'timeout')
             .addCode0Footer()
-            .interactionResponse(interaction)
+            .interactionResponse(interaction);
 
         return;
     }
@@ -93,7 +93,7 @@ const execute = async (interaction, client, guild, member, lang) => {
         .setColor(config.embeds.colors.info)
         .addContext(lang, member, 'create')
         .addCode0Footer()
-        .interactionResponse(interaction)
+        .interactionResponse(interaction);
 
 
     const ticketNumber = await getSmallestTicketNumber(guild);
@@ -119,7 +119,7 @@ const execute = async (interaction, client, guild, member, lang) => {
         .addInputs({ channelid: ticketChannel.id })
         .addContext(lang, member, 'created')
         .addCode0Footer()
-        .interactionResponse(interaction)
+        .interactionResponse(interaction);
 
 
     const closeTicket = new ButtonBuilder()
@@ -135,7 +135,7 @@ const execute = async (interaction, client, guild, member, lang) => {
         .addInputs({ ticketnumber: ticketNumber })
         .addContext(lang, member, 'info-message')
         .addCode0Footer()
-        .responseToChannel(ticketChannel.id, client, [row], true)
+        .responseToChannel(ticketChannel.id, client, [row], true);
 
 }
 
@@ -153,7 +153,7 @@ const executeComponent = async (interaction, client, guild, componentData, membe
             .setColor(config.embeds.colors.danger)
             .addContext(lang, member, 'close-info')
             .addCode0Footer()
-            .interactionResponse(interaction)
+            .interactionResponse(interaction);
 
 
         await waitMs(5000);
@@ -173,10 +173,10 @@ const executeComponent = async (interaction, client, guild, componentData, membe
             .addInputs({ closeduserid: interaction.user.id })
             .addContext(lang, member, 'closed')
             .addCode0Footer()
-            .responseToChannel(ticketChannel.id, client, [row])
+            .responseToChannel(ticketChannel.id, client, [row]);
 
 
-        ticketChannel.setName(`${ticketChannel.name}-closed`)
+        ticketChannel.setName(`${ticketChannel.name}-closed`);
 
     } else if (componentData.id == 'delete-ticket') {
         const ticketChannel = channelFromInteraction(interaction, guild);
