@@ -14,7 +14,7 @@ const execute = async (interaction, client, guild, member, lang) => {
         .setColor(config.embeds.colors.info)
         .addContext(lang, member, 'list')
         .addCode0Footer()
-        .interactionResponse(interaction)
+        .interactionResponse(interaction);
 };
 
 
