@@ -1,11 +1,11 @@
 {
   "name": "code0",
-  "version": "1.1.38",
-  "description": "Code0 Discord Bot standalone, this only requires an http port for the Github OAuth",
+  "version": "1.1.39",
+  "description": "Code0 Discord Bot standalone, more information in the ReadMe",
   "main": "index.js",
   "type": "commonjs",
   "scripts": {
-    "update": "node update.js"
+    "update": "node ./update.js"
   },
   "author": "Nicusch | Nicolas Morawietz",
   "dependencies": {
