@@ -1,4 +1,4 @@
-function padString(str, length, char = ' ') {
+const padString = (str, length, char = ' ') => {
     return str.padEnd(length, char);
 }
 
