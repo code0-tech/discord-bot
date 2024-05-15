@@ -46,7 +46,7 @@ const execute = async (interaction, client, guild, member, lang) => {
 
     let stringList = ``;
 
-    const mongoUser = new MongoUser('none');
+    const mongoUser = new MongoUser();
 
     for (let i = 0; i < userList.length; i++) {
         const user = userList[i];
