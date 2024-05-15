@@ -10,6 +10,7 @@ const data = new SlashCommandBuilder()
   .setDescription('Check Design and Code Stuff')
   .setDefaultMemberPermissions(PermissionFlagsBits.Administrator)
 
+
 const execute = async (interaction, client, guild, member, lang) => {
   await interaction.deferReply({ ephemeral: true });
 
@@ -47,16 +48,8 @@ const execute = async (interaction, client, guild, member, lang) => {
 }
 
 
-
 const executeComponent = async (interaction, client, guild, buttonData, member, lang) => {
   const defer = await interaction.deferReply({ ephemeral: true });
-
-  new Embed()
-    .setColor(config.embeds.colors.danger)
-    .addInputs({ user: "nicusch", age: 21 })
-    .addContext(lang, member, '1')
-    .addCode0Footer()
-    .interactionResponse(interaction)
 
 }
 
