@@ -66,5 +66,16 @@
             "title": "Wie werde ich ein Open Contributor?",
             "description": "Um ein Open Contributor zu werden, erfülle diese Kriterien:\n\n1. Hab {neededcommits} oder mehr Commits.\n2. Hab {neededpr} oder mehr Pull Requests.\n\nDu kannst deinen Status mit dem Befehl `/open-contributer` überprüfen."
         }
+    },
+    "rank": {
+        "own-rank-response": {
+            "description": "### Level: {level}\n{progressbar} [{xp} xp|{neededXp} xp]\n\nDu <@{rankuserid}> bist aktuell auf dem {position} Platz.\nSammel Xp indem du mit diesem Server interagierst."
+        },
+        "other-rank-response": {
+            "description": "### Level: {level}\n{progressbar} [{xp} xp|{neededXp} xp]\n\nAktuell ist <@{rankuserid}> auf dem {position} Platz."
+        },
+        "this-bot-rank": {
+            "description": "### Nun, ich habe es nicht so mit dem sammeln von Xp.\nVersuchs mal mit einem `benutzer` statt wie mit mir, einem Bot c:"
+        }
     }
 }
