@@ -35,8 +35,6 @@ const listUser = async (limit = 10) => {
 
 const sendMessage = (interaction, member, lang, data) => {
 
-    console.log(data)
-
     const longestNameLength = Math.max(...data.map(entry => entry.name.length)) + 3;
     const longestLevelLength = Math.max(...data.map(entry => entry.lvl.toString().length)) + 4;
     const longestXPLength = Math.max(...data.map(entry => entry.xp.toString().length)) + 2;
