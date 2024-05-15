@@ -77,5 +77,11 @@
         "this-bot-rank": {
             "description": "### Nun, ich habe es nicht so mit dem sammeln von Xp.\nVersuchs mal mit einem `benutzer` statt wie mit mir, einem Bot c:"
         }
+    },
+    "leaderboard": {
+        "board": {
+            "title": "Leaderboard",
+            "description": "{stringlist}"
+        }
     }
 }
