@@ -32,13 +32,6 @@ const listUser = async (limit = 10) => {
     return list;
 }
 
-/* const sendMessage = (interaction, member, lang, stringList) => {
-    new Embed()
-        .setColor(config.embeds.colors.info)
-        .addInputs({ stringlist: stringList })
-        .addContext(lang, member, 'board')
-        .interactionResponse(interaction);
-} */
 
 const sendMessage = (interaction, member, lang, data) => {
 
