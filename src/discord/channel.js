@@ -1,6 +1,6 @@
 const channelsFromParent = async (parentid, guild) => {
     const allChannels = guild.channels.cache;
-    const channelsInCategory = allChannels.filter(channel => channel.parentId === parentId);
+    const channelsInCategory = allChannels.filter(channel => channel.parentId === parentid);
 
     return channelsInCategory;
 }
