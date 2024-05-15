@@ -13,29 +13,27 @@ const data = new SlashCommandBuilder()
 
 const USER_OVERRIDE = 1;
 
-const getSmallestTicketNumber = (guild) => {
-    return new Promise((resolve) => {
-        const allChannels = guild.channels.cache;
-        const channelsInCategory = allChannels.filter(channel => channel.parentId === config.parents.support);
+const getSmallestTicketNumber = async (guild) => {
+    const allChannels = guild.channels.cache;
+    const channelsInCategory = allChannels.filter(channel => channel.parentId === config.parents.support);
 
-        const existingNumbers = channelsInCategory.map(channel => {
-            const match = channel.name.match(/(\d+)/);
-            return match ? parseInt(match[0]) : null;
-        });
+    const existingNumbers = channelsInCategory.map(channel => {
+        const match = channel.name.match(/(\d+)/);
+        return match ? parseInt(match[0]) : null;
+    });
 
-        const sortedNumbers = existingNumbers.filter(num => num !== null).sort((a, b) => a - b);
+    const sortedNumbers = existingNumbers.filter(num => num !== null).sort((a, b) => a - b);
 
-        let nextAvailableNumber = 1;
-        for (const num of sortedNumbers) {
-            if (num > nextAvailableNumber) {
-                break;
-            }
-            nextAvailableNumber++;
+    let nextAvailableNumber = 1;
+    for (const num of sortedNumbers) {
+        if (num > nextAvailableNumber) {
+            break;
         }
-        const formattedNumber = nextAvailableNumber.toString().padStart(6, '0');
+        nextAvailableNumber++;
+    }
+    const formattedNumber = nextAvailableNumber.toString().padStart(6, '0');
 
-        resolve(formattedNumber);
-    })
+    return formattedNumber;
 }
 
 const checkLastCreatedTicket = (guild, member) => {
