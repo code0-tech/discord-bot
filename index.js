@@ -67,8 +67,6 @@ client.login(process.env.TOKEN);
 
 -> MongoDb when user interaction check if his entries are up to date
 
--> Add anti spam and anti double messages for XP
-
 -> add /rank 1. 2. 3. - th, update with better text issue
 
 -> leaderboard make a better table
