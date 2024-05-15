@@ -13,7 +13,7 @@ const data = new SlashCommandBuilder()
     .addIntegerOption(option =>
         option
             .setName('limit')
-            .setDescription('User to display in the ranking (default is 10)')
+            .setDescription('How many users to display')
             .setMinValue(1)
             .setMaxValue(100)
             .setRequired(false)
