@@ -22,9 +22,9 @@ Also a MongoDb is required as this Bot needs some DataBase to store Data
 | 1   | `/open-contributer`                          | Finished     |
 | 2   | `/ticket`                                    | Finished     |
 | 3   | `/links`                                     | Design       |
-| 4   | `/contributor`                               | Design       |
+| 4   | `/contributor`                               | Finished     |
 | 5   | `/rank` or `/rank @user`                     | Finished     |
-| 6   | `/leaderboard` or `/leaderboard limit: 1-100`| Design       |
+| 6   | `/leaderboard` or `/leaderboard limit: 1-100`| Finished     |
 | 7   | `Code0 Application Ticket/`                  | In Progress  |
 | 8   | `quizz for fun`                              | Idea         |
 | 9   | `other games or funny things`                | Idea         |
