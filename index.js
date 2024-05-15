@@ -75,4 +75,7 @@ client.login(process.env.TOKEN);
 -> Fix bot beeing added to the DB, reason unknown, maybe some command or xp stuff that adds him
 
 -> Add lang for small things in english and the other ones to be used like in /leaderboard
+
+-> /leaderboard check at how many table user list the message is to long
+
 */

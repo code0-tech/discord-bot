@@ -16,52 +16,10 @@ const data = new SlashCommandBuilder()
 const execute = async (interaction, client, guild, member, lang) => {
   await interaction.deferReply({ ephemeral: true });
 
-  const columns = [
-    { label: 'ID', field: 'id', width: 6 },
-    { label: 'Name', field: 'name', width: 20 },
-    { label: 'Age', field: 'age', width: 6 },
-  ];
-
-  const data = [
-    { id: 1, name: 'John Doe', age: 30 },
-    { id: 2, name: 'Jane Smith', age: 25 },
-    { id: 3, name: 'Alice Johnson', age: 35 },
-  ];
-
-  const tableBuilder = new TableBuilder(columns);
-  tableBuilder.addRows(...data);
-  const table = tableBuilder.build();
-
-  console.log(table);
-
-  /* 
-    const longestNameLength = Math.max(...entries.map(entry => entry.name.length)) + 3;
-    const longestLevelLength = Math.max(...entries.map(entry => entry.level.toString().length)) + 2;
-    const longestXPLength = Math.max(...entries.map(entry => entry.xp.toString().length)) + 2;
-  
-    const nameHeader = `Name${' '.repeat(Math.max(0, longestNameLength - 4))}`;
-    const levelHeader = `Level${' '.repeat(Math.max(0, longestLevelLength - 5))}`;
-    const xpHeader = `XP${' '.repeat(Math.max(0, longestXPLength - 2))}`;
-  
-    const description = `${nameHeader} ${levelHeader} ${xpHeader}`;
-   */
-  /* 
-    const description = `
-    \`\`\`md
-    ${nameHeader} ${levelHeader} ${xpHeader}
-  ${entries.map((entry, index) => {
-      const place = index + 1;
-      const nameSpaces = ' '.repeat(longestNameLength - entry.name.length) + '|';
-      const levelSpaces = ' '.repeat(longestLevelLength - entry.level.toString().length);
-      const xpSpaces = ' '.repeat(longestXPLength - entry.xp.toString().length);
-      return `${place}. ${entry.name}${nameSpaces}${entry.level}${levelSpaces}${entry.xp}${xpSpaces}`;
-    }).join('\n')}
-    \`\`\``; */
-
   new Embed()
     .setColor('#0099ff')
     .setTitle('Leaderboard Test')
-    .setDescription(table)
+    .setDescription(``)
     .interactionResponse(interaction);
 }
 
