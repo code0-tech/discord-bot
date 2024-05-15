@@ -1,5 +1,6 @@
 const { SlashCommandBuilder } = require('@discordjs/builders');
 const { MongoUser } = require('./../mongo/MongoUser');
+const { getUser } = require('./../discord/user');
 const { Mongo, ENUMS } = require('../models/Mongo');
 const { Embed } = require('../models/Embed');
 const config = require('../../config.json');
@@ -51,7 +52,11 @@ const execute = async (interaction, client, guild, member, lang) => {
     for (let i = 0; i < userList.length; i++) {
         const user = userList[i];
 
-        const leadboardMember = await guild.members.fetch(user.id);
+        let leadboardMember = await getUser(guild, user.id);
+
+        if (leadboardMember == null) {
+            leadboardMember = { user: { username: '[Left the server]' } };
+        }
 
         const { level, neededXp, xp } = await mongoUser._getLvlAndXpByRawXp(user.rawxp);
 
