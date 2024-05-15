@@ -5,7 +5,7 @@ const MongoDb = new Mongo();
 
 class MongoUser {
 
-    constructor(id) {
+    constructor(id = null) {
         this._userid = id;
     }
 
