@@ -1,11 +1,9 @@
-// unused and is not working
-const channelsFromParent = (parentId, guild) => {
+const channelsFromParent = async (parentid, guild) => {
     const allChannels = guild.channels.cache;
-    const channelsInCategory = allChannels.filter(channel => channel.parentId === config.parents.support);
+    const channelsInCategory = allChannels.filter(channel => channel.parentId === parentId);
 
     return channelsInCategory;
 }
-// end
 
 const channelFromId = (channelId, guild) => {
     const channel = guild.channels.cache.get(channelId);

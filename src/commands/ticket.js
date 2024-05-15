@@ -1,5 +1,5 @@
 const { ChannelType, PermissionsBitField, ButtonBuilder, ButtonStyle, ActionRowBuilder } = require("discord.js");
-const { channelFromInteraction, removeAllChannelUserPerms } = require('../discord/channel');
+const { channelFromInteraction, removeAllChannelUserPerms, channelsFromParent } = require('../discord/channel');
 const { waitMs, snowflakeToDate, msToHumanReadableTime } = require('./../utils/time');
 const { SlashCommandBuilder } = require('@discordjs/builders');
 const { Channel } = require('./../models/Channel');
@@ -14,8 +14,7 @@ const data = new SlashCommandBuilder()
 const USER_OVERRIDE = 1;
 
 const getSmallestTicketNumber = async (guild) => {
-    const allChannels = guild.channels.cache;
-    const channelsInCategory = allChannels.filter(channel => channel.parentId === config.parents.support);
+    const channelsInCategory = await channelsFromParent(config.parents.support, guild);
 
     const existingNumbers = channelsInCategory.map(channel => {
         const match = channel.name.match(/(\d+)/);
@@ -36,9 +35,8 @@ const getSmallestTicketNumber = async (guild) => {
     return formattedNumber;
 }
 
-const checkLastCreatedTicket = (guild, member) => {
-    const allChannels = guild.channels.cache;
-    const channelsInCategory = allChannels.filter(channel => channel.parentId === config.parents.support);
+const checkLastCreatedTicket = async (guild, member) => {
+    const channelsInCategory = await channelsFromParent(config.parents.support, guild);
 
     const keys = keyArray(channelsInCategory);
 
@@ -76,7 +74,7 @@ const checkLastCreatedTicket = (guild, member) => {
 const execute = async (interaction, client, guild, member, lang) => {
     await interaction.deferReply({ ephemeral: true });
 
-    const lastTicketinMs = checkLastCreatedTicket(guild, member);
+    const lastTicketinMs = await checkLastCreatedTicket(guild, member);
 
     if (lastTicketinMs !== null && lastTicketinMs < config.commands.ticket.timeout) {
         const { m, s } = msToHumanReadableTime(lastTicketinMs);
