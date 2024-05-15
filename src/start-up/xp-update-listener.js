@@ -116,10 +116,10 @@ const start = (client) => {
     })
 
     // client.on('typingStart', info => {
-        // if (userList[info.user.id]) {
-            // console.log("save")
-            // userList[info.user.id].last.typetime = Date.now()
-        // }
+    // if (userList[info.user.id]) {
+    // console.log("save")
+    // userList[info.user.id].last.typetime = Date.now()
+    // }
     // });
 
     // client.on('raw', info => {
