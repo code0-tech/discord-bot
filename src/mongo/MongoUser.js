@@ -9,12 +9,18 @@ class MongoUser {
         this._userid = id;
     }
 
+    /**
+     * Create new User in Db if not present.
+     */
     async init() {
         await this._loadUser();
 
         return this;
     }
 
+    /**
+     * Create new User in Db if not present.
+     */
     async _loadUser() {
         const userData = await MongoDb.find(ENUMS.DCB.USERS, { id: this._userid });
 
