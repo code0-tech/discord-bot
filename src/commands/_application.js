@@ -3,6 +3,7 @@ const { Embed, progressBar } = require('./../models/Embed');
 const { getGuild } = require('./../discord/guild');
 const { channelFromId } = require('./../discord/channel');
 const { getMessagesFromChannel } = require('./../discord/message');
+const { keyArray } = require('./../utils/helper');
 
 const config = require('./../../config.json');
 
@@ -13,7 +14,18 @@ const autoRun = async (client) => {
     const applicationChannel = await channelFromId(config.channels.application, guild);
     const messages = await getMessagesFromChannel(applicationChannel);
 
-    console.log(applicationChannel);
+
+    const messagesIds = keyArray(messages);
+
+    messagesIds.forEach(messageId => {
+        const message = messages.get(messageId)
+        if (message.author.id !== client.application.id) {
+            message.delete();
+        }
+
+        console.log(messages.get(messageId))
+
+    });
 
 
 }
