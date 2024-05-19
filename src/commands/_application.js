@@ -14,11 +14,10 @@ const autoRun = async (client) => {
     const applicationChannel = await channelFromId(config.channels.application, guild);
     const messages = await getMessagesFromChannel(applicationChannel);
 
-
     const messagesIds = keyArray(messages);
 
     messagesIds.forEach(messageId => {
-        const message = messages.get(messageId)
+        const message = messages.get(messageId);
         if (message.author.id !== client.application.id) {
             message.delete();
         }
