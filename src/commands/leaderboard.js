@@ -18,7 +18,7 @@ const data = new SlashCommandBuilder()
             .setName('limit')
             .setDescription('How many users should be display')
             .setMinValue(1)
-            .setMaxValue(100)
+            .setMaxValue(20)
             .setRequired(false)
     )
 
