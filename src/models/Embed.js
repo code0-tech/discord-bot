@@ -223,13 +223,13 @@ class Embed {
 
 
     /**
-         * Send a message to a specific channel with optional components and pin the message.
-         * @param {string} channelId - The ID of the channel to send the message to.
-         * @param {Client} client - The client to send the message from.
-         * @param {MessageActionRow[]} [components] - The components to include in the message.
-         * @param {boolean} [pinMessage=false] - Whether to pin the sent message (default: false).
-         * @returns {Promise<void>} - A promise that resolves when the message is sent.
-         */
+     * Send a message to a specific channel with optional components and pin the message.
+    * @param {string} channelId - The ID of the channel to send the message to.
+    * @param {Client} client - The client to send the message from.
+    * @param {MessageActionRow[]} [components] - The components to include in the message.
+    * @param {boolean} [pinMessage=false] - Whether to pin the sent message (default: false).
+    * @returns {Promise<void>} - A promise that resolves when the message is sent.
+    */
     responseToChannel(channelId, client, components, pinMessage = false) {
         return new Promise(async (resolve) => {
             try {
