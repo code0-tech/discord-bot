@@ -21,7 +21,7 @@ const load = (client) => {
                 client.components.set(buttonId, command);
             });
 
-            console.log(`Loaded component: ${command.componentIds.length ? command.componentIds : '[]'} for: ${command.data.name}`);
+            console.log(`Loaded component: ${command.componentIds.length ? command.componentIds : '[]'} for: ${(command.data == null ? '_' : command.data.name)}`);
         }
     });
 
