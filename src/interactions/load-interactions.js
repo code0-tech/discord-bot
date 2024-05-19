@@ -32,7 +32,6 @@ const load = (client) => {
             console.log(`Start autoRun for ${commandFile}`);
         }
 
-
     });
 
     require('./emit-interactions').setup(client);
