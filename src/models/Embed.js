@@ -156,7 +156,7 @@ class Embed {
 
     /**
      * Set the Context of the Embed based on Inputs and Lang.
-     * @param {json} lang - Lang pack delevierd on any Interaction.
+     * @param {json} lang - Lang pack delivered on any Interaction.
      * @param {member} member - Member from the Interaction.
      * @param {id} contextId - Id for the Embed language pack.
      */
