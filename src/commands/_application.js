@@ -2,6 +2,7 @@ const { ChannelType, PermissionFlagsBits, PermissionsBitField, ButtonBuilder, Bu
 const { Embed, progressBar } = require('./../models/Embed');
 const { getGuild } = require('./../discord/guild');
 const { channelFromId } = require('./../discord/channel');
+const { getMessagesFromChannel } = require('./../discord/message');
 
 const config = require('./../../config.json');
 
@@ -9,7 +10,8 @@ const data = null;
 
 const autoRun = async (client) => {
     const guild = await getGuild(config.serverid, client);
-    const applicationChannel = channelFromId(config.channels.application, guild);
+    const applicationChannel =await channelFromId(config.channels.application, guild);
+    const messages = await getMessagesFromChannel()
 
     console.log(applicationChannel);
 

@@ -5,19 +5,19 @@ const channelsFromParent = async (parentid, guild) => {
     return channelsInCategory;
 }
 
-const channelFromId = (channelId, guild) => {
+const channelFromId = async (channelId, guild) => {
     const channel = guild.channels.cache.get(channelId);
     return channel;
 }
 
-const channelFromInteraction = (interaction, guild) => {
+const channelFromInteraction = async (interaction, guild) => {
     const channel = guild.channels.cache.get(interaction.message.channelId);
     return channel;
 }
 
 const USER_OVERRIDE = 1;
 
-const removeAllChannelUserPerms = (channel) => {
+const removeAllChannelUserPerms = async (channel) => {
     const permissionOverwrites = channel.permissionOverwrites.cache;
     const type1Overwrites = permissionOverwrites.filter(overwrite => overwrite.type === USER_OVERRIDE);
 
