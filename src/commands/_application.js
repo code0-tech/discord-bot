@@ -10,8 +10,8 @@ const data = null;
 
 const autoRun = async (client) => {
     const guild = await getGuild(config.serverid, client);
-    const applicationChannel =await channelFromId(config.channels.application, guild);
-    const messages = await getMessagesFromChannel()
+    const applicationChannel = await channelFromId(config.channels.application, guild);
+    const messages = await getMessagesFromChannel(applicationChannel);
 
     console.log(applicationChannel);
 
