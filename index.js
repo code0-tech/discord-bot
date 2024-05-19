@@ -33,12 +33,14 @@ require('./src/start-up/language-check');
 require('./src/start-up/mongo-setup');
 
 require('./src/start-up/start-puppeteer');
-require('./src/interactions/load-interactions').load(client);
 require('./src/web-server/http-server').setup(client);
-require('./src/start-up/load-languages').load(client);
 
 
 client.once(Events.ClientReady, readyClient => {
+
+    require('./src/interactions/load-interactions').load(client);
+    require('./src/start-up/load-languages').load(client);
+
 
     require('./src/start-up/audit-log').setup(client);
     require('./src/start-up/client-status').start(client);
