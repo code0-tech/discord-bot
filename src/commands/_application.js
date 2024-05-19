@@ -4,6 +4,9 @@ const config = require('./../../config.json');
 
 const data = null;
 
+const autoRun = () => {
+
+}
 
 const executeComponent = async (interaction, client, guild, buttonData, member, lang) => {
     const defer = await interaction.deferReply({ ephemeral: true });
@@ -14,4 +17,4 @@ const componentIds = [
     'test-id1'
 ];
 
-module.exports = { executeComponent, componentIds, data };
+module.exports = { executeComponent, componentIds, data, autoRun };
