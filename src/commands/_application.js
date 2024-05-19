@@ -4,7 +4,8 @@ const config = require('./../../config.json');
 
 const data = null;
 
-const autoRun = () => {
+const autoRun = (client) => {
+    console.log("yyyyyeee")
 
 }
 

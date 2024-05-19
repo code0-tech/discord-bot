@@ -23,13 +23,13 @@ const load = (client) => {
                 client.components.set(buttonId, command);
             });
 
-            console.log(`Loaded component: ${command.componentIds.length ? command.componentIds : '[]'} for: ${(command.data == null ? '_' : command.data.name)}`);
+            console.log(`Loaded component: ${command.componentIds.length ? command.componentIds : '[]'} for: ${(command.data == null ? commandFile : command.data.name)}`);
         }
 
         // Start autoRun functions
         if (command.autoRun) {
             command.autoRun(client)
-            console.log(`Start autoRun: ${command.data.name}`);
+            console.log(`Start autoRun for ${commandFile}`);
         }
 
 
