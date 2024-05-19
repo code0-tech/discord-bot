@@ -29,12 +29,18 @@ class MongoUser {
         }
     }
 
+    /**
+     * get User Packet
+     */
     async _getUser() {
         const userData = await MongoDb.find(ENUMS.DCB.USERS, { id: this._userid });
 
         return userData[0];
     }
 
+    /**
+     * setup new User
+     */
     async _createNewUser() {
         const userDocument = {
             id: this._userid,
@@ -54,6 +60,9 @@ class MongoUser {
         return mongoRes;
     }
 
+    /**
+     * get Global Xp position
+     */
     async getXpGlobalPosition() {
         const user = await this._getUser();
 
@@ -69,6 +78,9 @@ class MongoUser {
         return position;
     }
 
+    /**
+     * get Level and Xp by raw Xp
+     */
     async _getLvlAndXpByRawXp(rawXp) {
 
         const levelToXp = (x) => {
@@ -90,19 +102,31 @@ class MongoUser {
         };
     }
 
+    /**
+     * update xp
+     */
     async _updateXp(rawXp) {
         return await MongoDb.update(ENUMS.DCB.USERS, { id: this._userid }, { $set: { rawxp: rawXp } });
     }
 
+    /**
+     * update xp by number like i++ or i+= 1
+     */
     async updateXpBy(incrementXp) {
         return await MongoDb.update(ENUMS.DCB.USERS, { id: this._userid }, { $inc: { ['rawxp']: incrementXp } });
     }
 
+    /**
+     * get Rank
+     */
     async getRank() {
         const user = await this._getUser();
         return await this._getLvlAndXpByRawXp(user.rawxp);
     }
 
+    /**
+     * update message stats
+     */
     async updateMessageStats(count = 0, word = 0, chars = 0) {
         return await MongoDb.update(
             ENUMS.DCB.USERS,
