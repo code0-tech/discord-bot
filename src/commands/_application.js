@@ -5,7 +5,8 @@ const config = require('./../../config.json');
 const data = null;
 
 const autoRun = (client) => {
-    console.log("yyyyyeee")
+    // const guild = client.guilds.cache.get()
+
 
 }
 
