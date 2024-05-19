@@ -10,9 +10,11 @@ const load = (client) => {
 
     commandFiles.forEach(commandFile => {
         const command = require(path.join(global.mainDir, 'src', 'commands', commandFile));
-        client.commands.set(command.data.name, command);
 
-        console.log(`Loaded command: ${command.data.name}`);
+        if (command.data !== null) {
+            client.commands.set(command.data.name, command);
+            console.log(`Loaded command: ${command.data.name}`);
+        }
 
         if (command.executeComponent && command.componentIds) {
             command.componentIds.forEach(buttonId => {

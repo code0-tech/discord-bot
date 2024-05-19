@@ -9,9 +9,12 @@ const commandFiles = fs.readdirSync(path.join(__dirname, 'src', 'commands')).fil
 
 commandFiles.forEach(file => {
     const command = require(path.join(__dirname, 'src', 'commands', file));
-    commands.push(command.data.toJSON());
-
-    console.log(`Register: ${command.data.name}`);
+    if (command.data == null) {
+        console.log(`Register actions: ${command.data.name}`);
+    } else {
+        commands.push(command.data.toJSON());
+        console.log(`Register: ${command.data.name}`);
+    }
 });
 
 const rest = new REST({ version: '10' }).setToken(process.env.TOKEN);
