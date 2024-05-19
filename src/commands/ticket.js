@@ -179,7 +179,7 @@ const executeComponent = async (interaction, client, guild, componentData, membe
         ticketChannel.setName(`${ticketChannel.name}-closed`);
 
     } else if (componentData.id == 'delete-ticket') {
-        const ticketChannel =await channelFromInteraction(interaction, guild);
+        const ticketChannel = await channelFromInteraction(interaction, guild);
         ticketChannel.delete({ reason: "Ticket was closed and marked as fin" });
     }
 }
