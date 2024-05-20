@@ -31,7 +31,7 @@ const execute = async (interaction, client, guild, member, lang) => {
     .setDescription(progressBar(30, 100, true))
     .interactionResponse(interaction, [row]);
 
-    
+
   /* 
     await new Card()
       .header({}, card => {

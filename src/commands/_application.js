@@ -22,9 +22,11 @@ const autoRun = async (client) => {
             message.delete();
         }
 
-        console.log(messages.get(messageId))
+        console.log(messages.get(messageId));
 
     });
+
+    // Go and check if message is up to date
 
 }
 
