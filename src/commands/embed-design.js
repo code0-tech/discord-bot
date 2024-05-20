@@ -56,10 +56,6 @@ const execute = async (interaction, client, guild, member, lang) => {
     })
     .interactionResponse(interaction); */
 
-
-
-  /* 
-especially because the texts for make would be smaller than in their dc settings */
 }
 
 
