@@ -73,8 +73,48 @@ const setup = async (client) => {
             command(interaction, client);
         } else if (interaction.isButton()) { // Button
             button(interaction, client);
+        } else if (interaction.isAutocomplete()) {
+            // For the future
         }
     });
 }
 
 module.exports = { setup };
+
+/* This is for isAutocomplete later
+function levenshteinDistance(s1, s2) {
+    if (s1 === s2) {
+        return 0;
+    }
+    if (s1.length === 0) {
+        return s2.length;
+    }
+    if (s2.length === 0) {
+        return s1.length;
+    }
+
+    const m = s1.length;
+    const n = s2.length;
+    const cost = s1[m - 1] === s2[n - 1] ? 0 : 1;
+    return Math.min(
+        levenshteinDistance(s1.slice(0, -1), s2) + 1,
+        levenshteinDistance(s1, s2.slice(0, -1)) + 1,
+        levenshteinDistance(s1.slice(0, -1), s2.slice(0, -1)) + cost
+    );
+}
+function selectSimilarFunction(inputString, functionNames) {
+    let minDistance = Number.POSITIVE_INFINITY;
+    let similarFunction = null;
+    for (const func of functionNames) {
+        const distance = levenshteinDistance(inputString, func);
+        if (distance < minDistance) {
+            minDistance = distance;
+            similarFunction = func;
+        }
+    }
+
+    return similarFunction;
+}
+const functionNames = ["help", "chat", "ban"];
+const inputString = "chahelp";
+const selectedFunction = selectSimilarFunction(inputString, functionNames); */
