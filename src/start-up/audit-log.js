@@ -42,32 +42,32 @@ const setup = (client) => {
         
         `).responseToChannel(config.channels.auditlog, client);
  */
-        
- 
-         const attachment = await new Card()
-             .header({}, card => {
-                 card.headerIcon({ value: 'X' }, card => { });
-                 card.headerTitle({ value: `Executer: ${event.executorId}` }, card => { });
-                 card.label({ value: 'Debug' }, card => { });
-             })
-             .body({}, card => {
-                 card.description({ value: `targetType: ${event.targetType}, actionType: ${event.actionType}, action: ${event.action}` }, card => { });
-                 card.divider({}, card => { });
-                 card.description({ value: `Changes:` }, card => { });
-                 card.description({ value: `${JSON.stringify(event.changes)}` }, card => { });
-                 card.divider({}, card => { });
-                 card.description({ value: `TargetId: ${event.targetId}` }, card => { });
-             })
-             .footer({}, card => {
-                 card.footerIcon({ value: 'X' }, card => { });
-                 card.footerTitle({ value: 'Code0 • Go and click, dont skip' }, card => { });
-             })
-             .getAttachment();
- 
- 
-         const messageOptions = { files: [attachment] };
- 
-         await channel.send(messageOptions);
+
+
+        const attachment = await new Card()
+            .header({}, card => {
+                card.headerIcon({ value: 'X' }, card => { });
+                card.headerTitle({ value: `Executer: ${event.executorId}` }, card => { });
+                card.label({ value: 'Debug' }, card => { });
+            })
+            .body({}, card => {
+                card.description({ value: `targetType: ${event.targetType}, actionType: ${event.actionType}, action: ${event.action}` }, card => { });
+                card.divider({}, card => { });
+                card.description({ value: `Changes:` }, card => { });
+                card.description({ value: `${JSON.stringify(event.changes)}` }, card => { });
+                card.divider({}, card => { });
+                card.description({ value: `TargetId: ${event.targetId}` }, card => { });
+            })
+            .footer({}, card => {
+                card.footerIcon({ value: 'X' }, card => { });
+                card.footerTitle({ value: 'Code0 • Go and click, dont skip' }, card => { });
+            })
+            .getAttachment();
+
+
+        const messageOptions = { files: [attachment] };
+
+        await channel.send(messageOptions);
     }
 
 
