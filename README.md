@@ -24,7 +24,7 @@ Also a MongoDb is required as this Bot needs some DataBase to store Data
 | 3   | `/links`                                     | Design       |
 | 4   | `/contributor`                               | Finished     |
 | 5   | `/rank` or `/rank @user`                     | Finished     |
-| 6   | `/leaderboard` or `/leaderboard limit: 1-100`| Finished     |
+| 6   | `/leaderboard` or `/leaderboard limit: 1-20` | Finished     |
 | 7   | `Code0 Application Ticket/`                  | In Progress  |
 | 8   | `quizz for fun`                              | Idea         |
 | 9   | `other games or funny things`                | Idea         |
