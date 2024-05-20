@@ -28,6 +28,7 @@ const autoRun = async (client) => {
 
 }
 
+
 const executeComponent = async (interaction, client, guild, buttonData, member, lang) => {
     const defer = await interaction.deferReply({ ephemeral: true });
 
