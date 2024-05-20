@@ -1,5 +1,6 @@
 {
     "ticket": {
+        "btn-close": "Close",
         "timeout": {
             "title": "Timeout",
             "description": "Your last ticket was created `{m} minutes` and `{s} seconds` ago.\nPlease wait before creating your next Ticket."

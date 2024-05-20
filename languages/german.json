@@ -1,5 +1,6 @@
 {
     "ticket": {
+        "btn-close": "Schließen",
         "timeout": {
             "title": "Bitte warte",
             "description": "Dein letztes Ticket wurde vor `{m} Minuten` und `{s} Sekunden` erstellt.\nBitte warten, bevor Du Ihr nächstes Ticket erstellen."

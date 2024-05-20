@@ -124,7 +124,7 @@ const execute = async (interaction, client, guild, member, lang) => {
 
     const closeTicket = new ButtonBuilder()
         .setCustomId('close-ticket')
-        .setLabel('Close Ticket')
+        .setLabel(lang.text['btn-close'])
         .setStyle(ButtonStyle.Danger);
 
     const row = new ActionRowBuilder()
