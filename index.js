@@ -62,22 +62,14 @@ client.login(process.env.TOKEN);
 
 - Discord Audit log Embeds
 
--> Application message with buttons for gobo wheel to choose option from what you want
-
 -> Something fancy like a quizz
 
 -> MongoDb when user interaction check if his entries are up to date
-
--> add /rank 1. 2. 3. - th, update with better text issue
-
--> Work on anitspam to also check spaces and length if the make sense + time stuff yk
 
 -> Fix .addInputs giving error when lang pack does not conatin and placholder and vice versa
 
 -> Fix bot beeing added to the DB, reason unknown, maybe some command or xp stuff that adds him
 
 -> Add lang for small things in english and the other ones to be used like in /leaderboard
-
--> /leaderboard check at how many table user list the message is to long
 
 */
