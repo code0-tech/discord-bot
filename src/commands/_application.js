@@ -26,7 +26,6 @@ const autoRun = async (client) => {
 
     });
 
-
 }
 
 const executeComponent = async (interaction, client, guild, buttonData, member, lang) => {
