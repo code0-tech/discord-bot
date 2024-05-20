@@ -7,7 +7,7 @@
 
 ### Basic Overview:
 
-This this the Discord Bot for Code0 running in javascript and mainly developed by Nicolas Morawietz also knows as Nicusch or "nixkuchen" on Discord.
+This this the Discord Bot for Code0 running in javascript.
 #
 The Bot is running the Discord.js Client instance and a small Web-Server for Github o-auth in order to perform some commands which includes reading commits and pull's.
 

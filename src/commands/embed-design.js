@@ -24,17 +24,14 @@ const execute = async (interaction, client, guild, member, lang) => {
   const row = new ActionRowBuilder()
     .addComponents(applyButton);
 
+  /* 
+    new Embed()
+      .setColor('#0099ff')
+      .setTitle('pro')
+      .setDescription(progressBar(30, 100, true))
+      .interactionResponse(interaction, [row]); */
 
-  new Embed()
-    .setColor('#0099ff')
-    .setTitle('pro')
-    .setDescription(progressBar(30, 100, true))
-    .interactionResponse(interaction, [row]);
-
-
-
-
-  /*await new Card()
+  await new Card()
     .header({}, card => {
       card.headerIcon({ value: 'X' }, card => { });
       card.headerTitle({ value: `The reason was simple` }, card => { });
@@ -54,7 +51,7 @@ const execute = async (interaction, client, guild, member, lang) => {
       card.footerIcon({ value: 'X' }, card => { });
       card.footerTitle({ value: 'Code0 • But the code still exists' }, card => { });
     })
-    .interactionResponse(interaction); */
+    .interactionResponse(interaction, [row]);
 
 }
 
