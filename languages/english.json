@@ -70,7 +70,7 @@
     },
     "rank": {
         "own-rank-response": {
-            "description": "### Level: {level}\n{progressbar} [{xp} xp|{neededXp} xp]\n\nYou <@{rankuserid}> are currently on the {position}th place.\nEarn XP by interacting on this server with others."
+            "description": "### Level: {level}\n{progressbar} [{xp} xp|{neededXp} xp]\n\nYou <@{rankuserid}> are currently on the {position} place.\nEarn XP by interacting on this server with others."
         },
         "other-rank-response": {
             "description": "### Level: {level}\n{progressbar} [{xp} xp|{neededXp} xp]\n\nCurrently <@{rankuserid}> is on the {position} place."
