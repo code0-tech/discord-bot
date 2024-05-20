@@ -16,26 +16,13 @@ const data = new SlashCommandBuilder()
 const execute = async (interaction, client, guild, member, lang) => {
   await interaction.deferReply({ ephemeral: true });
 
-  const select = new StringSelectMenuBuilder()
-    .setCustomId('starter')
-    .setPlaceholder('Create an new apply')
-    .addOptions(
-      new StringSelectMenuOptionBuilder()
-        .setLabel('Bulbasaur')
-        .setDescription('Developer')
-        .setValue('bulbasaur'),
-      new StringSelectMenuOptionBuilder()
-        .setLabel('Charmander')
-        .setDescription('Graphic guy')
-        .setValue('charmander'),
-      new StringSelectMenuOptionBuilder()
-        .setLabel('Squirtle')
-        .setDescription('Manger')
-        .setValue('squirtle'),
-    );
+  const applyButton = new ButtonBuilder()
+    .setCustomId('x')
+    .setLabel('Apply Now')
+    .setStyle(ButtonStyle.Primary);
 
   const row = new ActionRowBuilder()
-    .addComponents(select);
+    .addComponents(applyButton);
 
 
   new Embed()
