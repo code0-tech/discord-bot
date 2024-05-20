@@ -22,7 +22,6 @@ const load = (client) => {
             command.componentIds.forEach(buttonId => {
                 client.components.set(buttonId, command);
             });
-
             console.log(`Loaded component: ${command.componentIds.length ? command.componentIds : '[]'} for: ${(command.data == null ? commandFile : command.data.name)}`);
         }
 
