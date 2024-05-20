@@ -29,7 +29,7 @@ const load = (client) => {
         // Start autoRun functions
         if (command.autoRun) {
             command.autoRun(client)
-            console.log(`Start autoRun for ${commandFile}`);
+            console.log(`Run autoRun function for ${commandFile}`);
         }
 
     });
