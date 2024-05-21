@@ -1,7 +1,9 @@
 const { ChannelType, PermissionFlagsBits, PermissionsBitField, ButtonBuilder, ButtonStyle, ActionRowBuilder, DiscordjsError, AttachmentBuilder } = require("discord.js");
+const { channelFromInteraction, removeAllChannelUserPerms, channelsFromParent } = require('../discord/channel');
 const { getMessagesFromChannel } = require('./../discord/message');
 const { Embed, progressBar } = require('./../models/Embed');
 const { channelFromId } = require('./../discord/channel');
+const { Channel } = require('./../models/Channel');
 const { getGuild } = require('./../discord/guild');
 const { keyArray } = require('./../utils/helper');
 
@@ -51,44 +53,71 @@ const autoRun = async (client) => {
 
 }
 
-/* 
-22:31:32 20.5.2024 => TypeError: Cannot read properties of null (reading 'name')
-    at button (E:\code\code0-discord-bot\src\interactions\emit-interactions.js:58:128)
-    at Client.<anonymous> (E:\code\code0-discord-bot\src\interactions\emit-interactions.js:75:13)   
-    at Client.emit (node:events:518:28)
-    at InteractionCreateAction.handle (E:\code\code0-discord-bot\node_modules\discord.js\src\client\actions\InteractionCreate.js:97:12)
-    at module.exports [as INTERACTION_CREATE] (E:\code\code0-discord-bot\node_modules\discord.js\src\client\websocket\handlers\INTERACTION_CREATE.js:4:36)
-    at WebSocketManager.handlePacket (E:\code\code0-discord-bot\node_modules\discord.js\src\client\websocket\WebSocketManager.js:355:31)
-    at WebSocketManager.<anonymous> (E:\code\code0-discord-bot\node_modules\discord.js\src\client\websocket\WebSocketManager.js:239:12)
-    at WebSocketManager.emit (E:\code\code0-discord-bot\node_modules\@vladfrangu\async_event_emitter\dist\index.cjs:282:31)
-    at WebSocketShard.<anonymous> (E:\code\code0-discord-bot\node_modules\@discordjs\ws\dist\index.js:1173:51)
-    at WebSocketShard.emit (E:\code\code0-discord-bot\node_modules\@vladfrangu\async_event_emitter\dist\index.cjs:282:31)
+const USER_OVERRIDE = 1;
 
-*/
+const checkLastCreatedTicket = async (guild, member) => {
+    const channelsInCategory = await channelsFromParent(config.parents.application, guild);
 
+    const keys = keyArray(channelsInCategory);
+
+    let hasChannel = false;
+
+    keys.forEach(channelId => {
+        const channel = channelsInCategory.get(channelId);
+
+        const permissionOverwrites = channel.permissionOverwrites.cache;
+        const type1Overwrites = permissionOverwrites.filter(overwrite => overwrite.type === USER_OVERRIDE);
+
+        const userOverWrite = type1Overwrites.get(member.id);
+
+        console.log(userOverWrite)
+
+        if (userOverWrite == undefined && channel.id == null) {
+            hasChannel = true;
+        }
+
+    });
+
+
+    return hasChannel;
+}
 
 const executeComponent = async (interaction, client, guild, buttonData, member, lang) => {
     const defer = await interaction.deferReply({ ephemeral: true });
 
+    if (await checkLastCreatedTicket(guild, member)) {
+        new Embed()
+            .setColor(config.embeds.colors.danger)
+            .addContext(lang, member, 'has-application')
+            .interactionResponse(interaction)
+        return;
+    }
+
+    const applicationChannel = await new Channel()
+        .setName(`${config.emojis.application}${config.emojis["default-combine-symbol"]}${member.user.username}`)
+        .setParent(config.parents.application)
+        .setType(ChannelType.GuildText)
+        .setPermissionOverwrite(interaction.guild.id, [], [
+            PermissionsBitField.Flags.ViewChannel
+        ])
+        .setPermissionOverwrite(interaction.user.id, [
+            PermissionsBitField.Flags.ViewChannel,
+            PermissionsBitField.Flags.AttachFiles,
+            PermissionsBitField.Flags.SendMessages,
+            PermissionsBitField.Flags.EmbedLinks,
+            PermissionsBitField.Flags.AddReactions
+        ])
+        .createChannel(guild);
+
     new Embed()
-        .setColor(config.embeds.colors.black)
-        .setTitle('Well, this function is still work in progress')
-        .setDescription(`
-        But we know to work on look here:
-
-\`//Code0/Nicusch/Code0-Discord-Bot/src/command/_application.js\`
-
-\`\`\`js
-// This code is marked as work in progess
-
-const defer = await interaction.deferReply({ ephemeral: true });
+        .setColor(config.embeds.colors.info)
+        .addContext(lang, member, 'new-application')
+        .responseToChannel(applicationChannel.id, client);
 
     new Embed()
-     .setColor(config.embeds.colors.black)
-     .setTitle('Well, this function is still work in progress')
-     .setDescription(info)
-     .interactionResponse(interaction)
-\`\`\``)
+        .setColor(config.embeds.colors.info)
+        .addInputs({ channelid: applicationChannel.id })
+        .addContext(lang, member, 'new-application')
         .interactionResponse(interaction)
 
 }

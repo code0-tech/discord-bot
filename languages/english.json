@@ -84,5 +84,19 @@
             "title": "Leaderboard",
             "description": "{stringlist}"
         }
+    },
+    "_application": {
+        "new-application": {
+            "title": "New Application",
+            "description": "We have created a new Application Channel for you <#{channelid}>"
+        },
+        "has-application": {
+            "title": "You already have an Application Channel",
+            "description": "Sorry but you can only have one at a time"
+        },
+        "application-messafe": {
+            "title": "Here you can apply",
+            "description": "No text here, will add later"
+        }
     }
 }

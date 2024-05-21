@@ -27,7 +27,8 @@
     },
     "serverid": "1173625923724124200",
     "parents": {
-        "support": "1192259091679170720"
+        "support": "1192259091679170720",
+        "application": "1191668473596739685"
     },
     "channels": {
         "auditlog": "1232028247982608384",
@@ -66,7 +67,8 @@
     "emojis": {
         "support": "📞",
         "default-combine-symbol": "｜",
-        "links": "🔗"
+        "links": "🔗",
+        "application": "💌"
     },
     "github": {
         "orgaid": "O_kgDOCPpWOA"
