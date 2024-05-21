@@ -79,6 +79,8 @@ const execute = async (interaction, client, guild, member, lang) => {
             leadboardMember = { user: { username: '[Left the server]' } };
         }
 
+        if (user.rawxp == 0) return;
+
         const { level, neededXp, xp } = await mongoUser._getLvlAndXpByRawXp(user.rawxp);
 
         let username = leadboardMember.nickname == null ? leadboardMember.user.username : leadboardMember.nickname;
@@ -86,6 +88,7 @@ const execute = async (interaction, client, guild, member, lang) => {
         if (username.length > 17) {
             username = username.substring(0, 17) + "...";
         }
+
 
         data.push({ name: username, lvl: level, xp: `[${xp}|${neededXp}]` });
 
