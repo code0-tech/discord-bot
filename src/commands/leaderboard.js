@@ -58,7 +58,6 @@ const sendMessage = (interaction, member, lang, data) => {
 }
 
 
-
 const execute = async (interaction, client, guild, member, lang) => {
     await interaction.deferReply({ ephemeral: true });
 
