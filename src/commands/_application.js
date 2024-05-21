@@ -72,7 +72,7 @@ const checkLastCreatedTicket = async (guild, member) => {
 
         console.log(userOverWrite)
 
-        if (userOverWrite == undefined && channel.id == null) {
+        if (userOverWrite !== undefined && channel.id !== null) {
             hasChannel = true;
         }
 
