@@ -73,6 +73,6 @@ client.login(process.env.TOKEN);
 
 -> Add lang for small things in english and the other ones to be used like in /leaderboard
 
--> Double id's are saved sometimes
+-> Double id's are saved sometimes in MongoDb user
 
 */
