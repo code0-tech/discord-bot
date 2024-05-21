@@ -84,7 +84,7 @@ const execute = async (interaction, client, guild, member, lang) => {
 
         let username = leadboardMember.nickname == null ? leadboardMember.user.username : leadboardMember.nickname;
 
-        if (username.length > 17) {
+        if (username.length > 20) {
             username = username.substring(0, 17) + "...";
         }
 
