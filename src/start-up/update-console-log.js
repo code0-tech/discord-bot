@@ -48,7 +48,6 @@ const messageToMongoDb = async (msg) => {
 };
 
 
-
 // Store the original console.log method
 const originalConsoleLog = console.log;
 
