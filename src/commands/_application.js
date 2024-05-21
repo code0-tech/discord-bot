@@ -58,29 +58,14 @@ const USER_OVERRIDE = 1;
 const checkLastCreatedTicket = async (guild, member) => {
     const channelsInCategory = await channelsFromParent(config.parents.application, guild);
 
-    const keys = keyArray(channelsInCategory);
-
-    let hasChannel = false;
-
-    keys.forEach(channelId => {
-        const channel = channelsInCategory.get(channelId);
-
-        const permissionOverwrites = channel.permissionOverwrites.cache;
-        const type1Overwrites = permissionOverwrites.filter(overwrite => overwrite.type === USER_OVERRIDE);
-
-        const userOverWrite = type1Overwrites.get(member.id);
-
-        console.log(userOverWrite)
-
-        if (userOverWrite !== undefined && channel.id !== null) {
-            hasChannel = true;
-        }
-
+    let hasChannel = channelsInCategory.some(channel => {
+        const userOverWrite = channel.permissionOverwrites.cache.find(overwrite => overwrite.type === USER_OVERRIDE && overwrite.id === member.id);
+        return userOverWrite !== undefined && channel.id !== null;
     });
-
 
     return hasChannel;
 }
+
 
 const executeComponent = async (interaction, client, guild, buttonData, member, lang) => {
     const defer = await interaction.deferReply({ ephemeral: true });
