@@ -88,7 +88,6 @@ const execute = async (interaction, client, guild, member, lang) => {
             username = username.substring(0, 17) + "...";
         }
 
-
         data.push({ name: username, lvl: level, xp: `[${xp}|${neededXp}]` });
 
         if ((i + 1) % 5 == 0) {
