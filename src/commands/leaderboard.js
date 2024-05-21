@@ -22,6 +22,7 @@ const data = new SlashCommandBuilder()
             .setRequired(false)
     )
 
+    
 const listUser = async (limit = 10) => {
 
     const list = await MongoDb.aggregate(ENUMS.DCB.USERS, [
