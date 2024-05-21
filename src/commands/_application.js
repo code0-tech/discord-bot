@@ -70,7 +70,26 @@ const autoRun = async (client) => {
 const executeComponent = async (interaction, client, guild, buttonData, member, lang) => {
     const defer = await interaction.deferReply({ ephemeral: true });
 
-    console.log(buttonData)
+    new Embed()
+        .setColor(config.embeds.colors.black)
+        .setTitle('Well, this function is still work in progress')
+        .setDescription(`
+        But we know to work on look here:
+
+\`//Code0/Nicusch/Code0-Discord-Bot/src/command/_application.js\`
+
+\`\`\`js
+// This code is marked as work in progess
+
+const defer = await interaction.deferReply({ ephemeral: true });
+
+    new Embed()
+     .setColor(config.embeds.colors.black)
+     .setTitle('Well, this function is still work in progress')
+     .setDescription(info)
+     .interactionResponse(interaction)
+\`\`\``)
+        .interactionResponse(interaction)
 
 }
 

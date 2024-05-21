@@ -17,6 +17,11 @@ const load = (client) => {
         if (command.data !== null) {
             client.commands.set(command.data.name, command);
             console.log(`Loaded command: ${command.data.name}`);
+
+        } else {
+            command.data = {
+                name: command.fileName
+            };
         }
 
         // Load Components
