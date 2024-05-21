@@ -80,6 +80,7 @@ const setup = (client) => {
 
     client.on(Events.GuildAuditLogEntryCreate, auditLog => {
         eventHand.push(auditLog);
+        // sendEvent(auditLog); // Instant Message
     })
 };
 
