@@ -43,7 +43,7 @@ const autoRun = async (client) => {
 
 
         new Embed()
-            .setColor('#0099ff')
+            .setColor(config.embeds.colors.info)
             .setTitle('Test Apply Message')
             .setDescription(`Click here to apply, in order to become a Closed Team Member`)
             .responseToChannel(config.channels.application, client, [row])
