@@ -12,15 +12,10 @@ const data = new SlashCommandBuilder()
             .setDescription('Check user stats')
             .setRequired(false)
     )
-    .addBooleanOption(option =>
-        option.setName('show-all')
-            .setDescription('Show all stats, including typed messages.'));
 
 
 const execute = async (interaction, client, guild, member, lang) => {
     await interaction.deferReply({ ephemeral: true });
-
-    console.log(interaction.options._hoistedOptions)
 
     const userIdToCheck = interaction.options._hoistedOptions.length !== 0 ? interaction.options._hoistedOptions[0].user.id : member.user.id;
     const rankMember = await guild.members.fetch(userIdToCheck);

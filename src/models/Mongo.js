@@ -53,7 +53,8 @@ class Mongo {
 
 const ENUMS = { // maybe put in config
     DCB: {
-        USERS: { "db": "Code0", "t": "users" }
+        USERS: { "db": "Code0", "t": "users" },
+        LOGS: { "db": "Code0", "t": "logs" },
     }
 };
 

@@ -10,7 +10,7 @@ const commandFiles = fs.readdirSync(path.join(__dirname, 'src', 'commands')).fil
 commandFiles.forEach(file => {
     const command = require(path.join(__dirname, 'src', 'commands', file));
     if (command.data == null) {
-        console.log(`Register actions: ${command.data.name}`);
+        // console.log(`Register actions: ${command.data.name}`); This log makes no sense
     } else {
         commands.push(command.data.toJSON());
         console.log(`Register: ${command.data.name}`);

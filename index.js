@@ -8,6 +8,7 @@ require('./src/start-up/process-exit');
 dotenv.config({ path: os.platform() === 'win32' ? '.env' : 'server.env' });
 
 global.mainDir = __dirname;
+global.mongoClient = null;
 
 const client = new Client({
     intents: [
@@ -71,5 +72,7 @@ client.login(process.env.TOKEN);
 -> Fix bot beeing added to the DB, reason unknown, maybe some command or xp stuff that adds him
 
 -> Add lang for small things in english and the other ones to be used like in /leaderboard
+
+-> Double id's are saved sometimes
 
 */
