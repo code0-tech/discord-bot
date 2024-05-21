@@ -3,7 +3,6 @@ const { channelFromInteraction, removeAllChannelUserPerms, channelsFromParent } 
 const { waitMs, snowflakeToDate, msToHumanReadableTime } = require('./../utils/time');
 const { SlashCommandBuilder } = require('@discordjs/builders');
 const { Channel } = require('./../models/Channel');
-const { keyArray } = require('./../utils/helper');
 const { Embed } = require('./../models/Embed');
 const config = require('./../../config.json');
 
@@ -38,38 +37,28 @@ const getSmallestTicketNumber = async (guild) => {
 const checkLastCreatedTicket = async (guild, member) => {
     const channelsInCategory = await channelsFromParent(config.parents.support, guild);
 
-    const keys = keyArray(channelsInCategory);
-
     let lastChannelTimestamp = null;
 
-    keys.forEach(channelId => {
-        const channel = channelsInCategory.get(channelId);
+    channelsInCategory.forEach(channel => {
+        const userOverwrite = channel.permissionOverwrites.cache.find(
+            overwrite => overwrite.type === USER_OVERRIDE && overwrite.id === member.id
+        );
 
-        const permissionOverwrites = channel.permissionOverwrites.cache;
-        const type1Overwrites = permissionOverwrites.filter(overwrite => overwrite.type === USER_OVERRIDE);
-
-        const userOverWrite = type1Overwrites.get(member.id);
-
-        if (userOverWrite == undefined) return;
-        if (channel.id == null) return;
+        if (!userOverwrite || !channel.id) return;
 
         const timeStamp = snowflakeToDate(channel.id);
 
-        if (timeStamp > lastChannelTimestamp) {
-            lastChannelTimestamp = timeStamp
+        if (!lastChannelTimestamp || timeStamp > lastChannelTimestamp) {
+            lastChannelTimestamp = timeStamp;
         }
-
     });
 
-    if (lastChannelTimestamp == null) return null;
+    if (!lastChannelTimestamp) return null;
 
-    const timeStamp = new Date(lastChannelTimestamp).getTime();
-    const currentTime = Date.now();
-
-    const timeDifference = currentTime - timeStamp;
+    const timeDifference = Date.now() - new Date(lastChannelTimestamp).getTime();
 
     return timeDifference;
-}
+};
 
 const execute = async (interaction, client, guild, member, lang) => {
     await interaction.deferReply({ ephemeral: true });
