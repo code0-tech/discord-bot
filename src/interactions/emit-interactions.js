@@ -55,6 +55,8 @@ const button = async (interaction, client) => {
     try {
         const guild = client.guilds.cache.get(process.env.GUILD_ID);
 
+        console.log(buttonCommand)
+
         const commandName = interaction.message.interaction ? interaction.message.interaction.commandName : buttonCommand.data.name;
 
         const lang = await language(commandName, interaction, guild, client)

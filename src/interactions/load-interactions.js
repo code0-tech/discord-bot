@@ -11,6 +11,8 @@ const load = (client) => {
     commandFiles.forEach(commandFile => {
         const command = require(path.join(global.mainDir, 'src', 'commands', commandFile));
 
+        command.fileName = commandFile.split(".")[0];
+
         // Load Slash-Command
         if (command.data !== null) {
             client.commands.set(command.data.name, command);
