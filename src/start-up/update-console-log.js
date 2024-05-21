@@ -36,29 +36,26 @@ const processNextLog = async () => {
 setInterval(processNextLog, 500);
 
 // Function to handle incoming logs
-const messageToMongoDb = async (msg) => {
+const logToMongoDb = async (log) => {
     if (global.mongoClient == null) return;
 
-    const log = {
-        "msg": msg,
+    const logData = {
+        "msg": log instanceof Error ? log.message : log,
+        "error": log instanceof Error ? log.stack : null,
         "time": Date.now()
     };
 
-    logBuffer.push(log);
+    logBuffer.push(logData);
 };
 
-
-// Store the original console.log method
 const originalConsoleLog = console.log;
 
 const customLog = (...args) => {
-    const date = new Date()
-    const timestamp = date.toLocaleTimeString() + ' ' + date.toLocaleDateString();
+    const log = args.length === 1 ? args[0] : args.join(' '); // Convert multiple arguments to a single string
 
-    messageToMongoDb(...args);
-
-    originalConsoleLog(`${timestamp} =>`, ...args);
-}
+    logToMongoDb(log);
+    originalConsoleLog(...args);
+};
 
 // Replace the default console.log with my own customLog
 console.log = customLog;

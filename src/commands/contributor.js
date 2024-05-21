@@ -18,6 +18,12 @@ const execute = async (interaction, client, guild, member, lang) => {
         .addContext(lang, member, 'info')
         .addCode0Footer()
         .interactionResponse(interaction)
+
+
+
+        let lox ={};
+
+        lox.id.lol = "nu"
 };
 
 
