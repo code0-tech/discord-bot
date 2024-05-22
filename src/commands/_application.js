@@ -1,7 +1,7 @@
 const { ChannelType, PermissionFlagsBits, PermissionsBitField, ButtonBuilder, ButtonStyle, ActionRowBuilder, DiscordjsError, AttachmentBuilder } = require("discord.js");
 const { channelFromInteraction, removeAllChannelUserPerms, channelsFromParent } = require('../discord/channel');
 const { getMessagesFromChannel } = require('./../discord/message');
-const { Embed, progressBar } = require('./../models/Embed');
+const { Embed } = require('./../models/Embed');
 const { channelFromId } = require('./../discord/channel');
 const { Channel } = require('./../models/Channel');
 const { getGuild } = require('./../discord/guild');
