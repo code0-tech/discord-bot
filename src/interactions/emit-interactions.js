@@ -1,6 +1,7 @@
 const { language } = require('./language-check');
 const { Embed } = require('./../models/Embed');
 const config = require('./../../config.json');
+const { Events } = require('discord.js');
 
 const extractIdData = (inputString) => {
     const parts = inputString.split('*');
@@ -68,7 +69,7 @@ const button = async (interaction, client) => {
 }
 
 const setup = async (client) => {
-    client.on('interactionCreate', async (interaction) => {
+    client.on(Events.InteractionCreate, async (interaction) => {
         if (interaction.isChatInputCommand()) { // Slash-Command
             command(interaction, client);
         } else if (interaction.isButton()) { // Button
