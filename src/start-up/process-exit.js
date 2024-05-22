@@ -1,4 +1,8 @@
-process.on('SIGINT', function () {
-    console.log("\nShutting down from SIGINT (Ctrl-C)");
+const quit = () => {
+    console.log('Exiting gracefully...');
     process.exit(0);
-});
+}
+
+process.on('SIGINT', quit);
+process.on('SIGQUIT', quit);
+process.on('SIGTERM', quit);
