@@ -48,7 +48,9 @@ client.once(Events.ClientReady, readyClient => {
 
     console.log(`Code0 Discord Client ready => ${readyClient.user.tag}`);
 
-    require('./src/start-up/xp-update-listener').start(client);
+    require('./src/start-up/xp-messages').start(client);
+    require('./src/start-up/xp-voice-channel').start(client);
+
     require('./src/start-up/user-stats').start(client);
 
 });

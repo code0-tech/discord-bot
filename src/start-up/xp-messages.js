@@ -1,6 +1,6 @@
-const { levenshteinDistance } = require('./../utils/helper');
-const { MongoUser } = require('./../mongo/MongoUser');
-const config = require('./../../config.json');
+const { levenshteinDistance } = require('../utils/helper');
+const { MongoUser } = require('../mongo/MongoUser');
+const config = require('../../config.json');
 
 let userList = {};
 
