@@ -87,16 +87,16 @@
     },
     "_application": {
         "new-application": {
-            "title": "New Application",
-            "description": "We have created a new Application Channel for you <#{channelid}>"
+            "title": "Application Channel Created",
+            "description": "A new application channel has been created for you: <#{channelid}>."
         },
         "has-application": {
-            "title": "You already have an Application Channel",
-            "description": "Sorry but you can only have one at a time"
+            "title": "Existing Application Channel Found",
+            "description": "Sorry, but you can only have one application channel at a time."
         },
         "application-message": {
-            "title": "Here you can apply",
-            "description": "[Text will be filled later ~nicusch]"
+            "title": "Apply Here",
+            "description": "Here you can apply and communicate with our staff to get involved with Code0."
         }
     }
 }
