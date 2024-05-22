@@ -96,7 +96,7 @@ const executeComponent = async (interaction, client, guild, buttonData, member, 
 
     new Embed()
         .setColor(config.embeds.colors.info)
-        .addContext(lang, member, 'new-application')
+        .addContext(lang, member, 'application-message')
         .responseToChannel(applicationChannel.id, client);
 
     new Embed()
