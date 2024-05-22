@@ -39,7 +39,7 @@ const command = async (interaction, client) => {
         const guild = client.guilds.cache.get(process.env.GUILD_ID);
 
         const member = await guild.members.fetch(interaction.user.id);
-        const lang = await language(interaction.commandName, interaction, guild, client)
+        const lang = await language(interaction.commandName, interaction, guild, client);
 
         await command.execute(interaction, client, guild, member, lang);
     } catch (error) {
@@ -58,7 +58,7 @@ const button = async (interaction, client) => {
 
         const commandName = interaction.message.interaction ? interaction.message.interaction.commandName : buttonCommand.data.name;
 
-        const lang = await language(commandName, interaction, guild, client)
+        const lang = await language(commandName, interaction, guild, client);
 
         const member = await guild.members.fetch(interaction.user.id);
         await buttonCommand.executeComponent(interaction, client, guild, buttonData, member, lang);
