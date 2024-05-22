@@ -85,16 +85,6 @@ const start = (client) => {
         user.updateXpBy(xp);
     })
 
-    // client.on('typingStart', info => {
-    // if (userList[info.user.id]) {
-    // console.log("save")
-    // userList[info.user.id].last.typetime = Date.now()
-    // }
-    // });
-
-    // client.on('raw', info => {
-    // console.log(info)
-    // });
 }
 
 module.exports = { start };
