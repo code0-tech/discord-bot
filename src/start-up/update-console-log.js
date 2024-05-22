@@ -4,7 +4,7 @@ let logDocument = null;
 let logBuffer = [];
 
 const generateRunId = () => {
-    return Date.now(); // Generate a timestamp for run ID
+    return Date.now();
 };
 
 const processNextLog = async () => {
@@ -22,7 +22,7 @@ const processNextLog = async () => {
     }
 
     if (logDocument && logBuffer.length > 0) {
-        const log = logBuffer.shift(); // Take the next log from the buffer
+        const log = logBuffer.shift();
         const MongoDb = new Mongo();
         await MongoDb.update(
             ENUMS.DCB.LOGS,
@@ -32,10 +32,8 @@ const processNextLog = async () => {
     }
 };
 
-// Set interval to process logs every 5 seconds
 setInterval(processNextLog, 500);
 
-// Function to handle incoming logs
 const logToMongoDb = async (log) => {
     if (global.mongoClient == null) return;
 
