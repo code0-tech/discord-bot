@@ -86,6 +86,10 @@
         }
     },
     "_application": {
+        "channel-message": {
+            "title": "Application Channel Created",
+            "description": "A new application channel has been created for you: <#{channelid}>."
+        },
         "new-application": {
             "title": "Application Channel Created",
             "description": "A new application channel has been created for you: <#{channelid}>."

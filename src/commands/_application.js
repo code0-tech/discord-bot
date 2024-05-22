@@ -23,15 +23,9 @@ const autoRun = async (client) => {
         if (message.author.id !== client.application.id) {
             message.delete();
         }
-
-        // console.log(messages.get(messageId));
-
     });
 
-
-
     // Go and check if message is up to date
-
 
 
     if (messagesIds.length == 0) { // Testing purpose
@@ -43,14 +37,14 @@ const autoRun = async (client) => {
         const row = new ActionRowBuilder()
             .addComponents(applyButton);
 
+        // add message to english.json
 
         new Embed()
             .setColor(config.embeds.colors.info)
-            .setTitle('Test Apply Message')
-            .setDescription(`Click here to apply, in order to become a Closed Team Member`)
+            .setTitle('Welcome to the Application Channel')
+            .setDescription(`Welcome! This is where you can start your application process. As an open contributor, you now have the opportunity to become a full Code0 member. Click the button below to create a new application channel and get in touch with our staff. We're excited to have you join Code0. If you already have an active application channel, please use that to continue your application.`)
             .responseToChannel(config.channels.application, client, [row])
     }
-
 }
 
 const USER_OVERRIDE = 1;
