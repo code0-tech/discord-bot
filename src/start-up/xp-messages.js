@@ -1,6 +1,7 @@
 const { levenshteinDistance } = require('../utils/helper');
 const { MongoUser } = require('../mongo/MongoUser');
 const config = require('../../config.json');
+const { Events } = require('discord.js');
 
 let userList = {};
 
@@ -62,7 +63,7 @@ const start = (client) => {
     const maxXP = config.commands.rank.maxxp;
     const xpPerChar = config.commands.rank.xpperchar;
 
-    client.on('messageCreate', async msg => {
+    client.on(Events.MessageCreate, async msg => {
 
         if (msg.author.bot == true) return;
         if (msg.author.system == true) return;
