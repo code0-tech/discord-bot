@@ -103,4 +103,4 @@ class TableBuilder {
     }
 }
 
-exports.TableBuilder = TableBuilder;
+module.exports = { TableBuilder }
