@@ -57,7 +57,6 @@ const setup = async () => {
 
     });
 
-
     client.login(process.env.TOKEN);
 }
 
