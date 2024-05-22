@@ -4,7 +4,7 @@ const config = require('./../../config.json');
 
 const data = new SlashCommandBuilder()
     .setName('contributor')
-    .setDescription('Explore our Open Contributor guidelines and decide to submit your application.')
+    .setDescription('Explore our Open-Contributor guidelines and decide to submit your application.')
 
 const execute = async (interaction, client, guild, member, lang) => {
     await interaction.deferReply({ ephemeral: true });
