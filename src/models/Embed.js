@@ -172,7 +172,7 @@ class Embed {
 
             const inputTypeText = embedContext[inputType];
 
-            const finalText = this._replacePlaceholders(inputTypeText, this._inputs)
+            const finalText = this._replacePlaceholders(inputTypeText, this._inputs);
 
             switch (inputType) {
                 case 'description':
