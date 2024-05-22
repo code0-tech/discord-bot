@@ -81,4 +81,6 @@ setup();
 
 -> Double id's are saved sometimes in MongoDb user
 
+-> Add later /stats to see stats and also raw xp by default
+
 */
