@@ -1,7 +1,7 @@
+const { Card } = require('./../models/card/Card');
 const { Embed } = require('./../models/Embed');
 const config = require('./../../config.json');
 const { Events } = require('discord.js');
-const { Card } = require('./../models/card/Card');
 
 const setup = (client) => {
     const guild = client.guilds.cache.get(process.env.GUILD_ID);
@@ -11,7 +11,6 @@ const setup = (client) => {
 
     const sendEvent = async (event) => {
         /* const username = event.executor.username;
-
 
         console.dir(event, { depth: null, breakLength: 0 });
 
@@ -41,7 +40,7 @@ const setup = (client) => {
         
         
         `).responseToChannel(config.channels.auditlog, client);
- */
+        */
 
 
         const attachment = await new Card()
