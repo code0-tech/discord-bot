@@ -9,7 +9,7 @@ const { TableBuilder } = require('../models/table');
 
 const data = new SlashCommandBuilder()
   .setName('embed-design')
-  .setDescription('Check Design and Code Stuff')
+  .setDescription('Testing...')
   .setDefaultMemberPermissions(PermissionFlagsBits.Administrator)
 
 
