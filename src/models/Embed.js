@@ -205,7 +205,7 @@ class Embed {
                     content,
                     embeds: [this.getEmbed()],
                     components,
-                    files: attachment ? [attachment] : [], // Only include attachment if it's not null
+                    files: attachment ? [attachment] : [],
                     ephemeral
                 };
 
