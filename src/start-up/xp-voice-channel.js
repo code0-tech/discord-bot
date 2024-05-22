@@ -1,53 +1,60 @@
 const { checkState } = require('./../discord/voice');
 const { Events } = require('discord.js');
 const { msToHumanReadableTime } = require('./../utils/time');
+const { MongoUser } = require('./../mongo/MongoUser');
 
 let voiceChatUser = {};
+
+const updateDb = async (client, userid, packet) => {
+    const user = await new MongoUser(userid).init();
+
+    const timeInVoice = Date.now() - voiceChatUser[userid].since;
+
+    if (timeInVoice < 1000) return;
+
+    user.updateVoiceStats(Math.floor(timeInVoice / 1000), 1, packet.switchs);
+
+    return;
+}
 
 
 const joinVoice = (client, userid) => {
     voiceChatUser[userid] = {
-        since: Date.now()
+        since: Date.now(),
+        switchs: 0
     }
 }
 
 const switchVoice = (client, userid) => {
     if (!voiceChatUser[userid]) {
         voiceChatUser[userid] = {
-            since: client.startDate
+            since: client.startDate,
+            switchs: 0
         }
     }
 
-
+    voiceChatUser[userid].switchs++;
 }
 
 
-const leaveVoice = (client, userid) => {
+const leaveVoice = async (client, userid) => {
     if (!voiceChatUser[userid]) {
         voiceChatUser[userid] = {
-            since: client.startDate
+            since: client.startDate,
+            switchs: 0
         }
     }
 
+    await updateDb(client, userid, voiceChatUser[userid]);
 
-    const timeInVoice = Date.now() - voiceChatUser[userid].since;
-
-    console.log(msToHumanReadableTime(timeInVoice))
-
-
-    console.log("save db ")
+    delete voiceChatUser[userid];
 }
-
-
 
 
 const start = (client) => {
-
     client.on(Events.VoiceStateUpdate, async (oldState, newState) => {
 
         const { state, userid } = await checkState(oldState, newState);
-
-        console.log(state)
 
         switch (state) {
             case 'JOIN':
