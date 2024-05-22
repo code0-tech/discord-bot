@@ -50,6 +50,11 @@ class MongoUser {
                     words: 0,
                     chars: 0,
                     count: 0
+                },
+                voice: {
+                    time: 0, // in seconds
+                    joins: 0,
+                    switchs: 0
                 }
             },
             commandstats: {}
@@ -136,6 +141,23 @@ class MongoUser {
                     'stats.messages.count': count,
                     'stats.messages.words': word,
                     'stats.messages.chars': chars
+                }
+            }
+        );
+    }
+
+    /**
+     * update voice stats
+     */
+    async updateVoiceStats(time = 0, joins = 0, switchs = 0) {
+        return await MongoDb.update(
+            ENUMS.DCB.USERS,
+            { id: this._userid },
+            {
+                $inc: {
+                    'stats.voice.time': time,
+                    'stats.voice.joins': joins,
+                    'stats.voice.switchs': switchs
                 }
             }
         );
