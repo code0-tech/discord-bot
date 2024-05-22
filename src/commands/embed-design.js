@@ -1,11 +1,11 @@
 const { ChannelType, StringSelectMenuBuilder, StringSelectMenuOptionBuilder, PermissionFlagsBits, PermissionsBitField, ButtonBuilder, ButtonStyle, ActionRowBuilder, DiscordjsError, AttachmentBuilder } = require("discord.js");
 const { SlashCommandBuilder } = require('@discordjs/builders');
 const { Embed, progressBar } = require('./../models/Embed');
+const { TableBuilder } = require('../models/table');
 const { Card } = require('./../models/card/Card');
 const { waitMs } = require('./../utils/time');
 const config = require('./../../config.json');
 
-const { TableBuilder } = require('../models/table');
 
 const data = new SlashCommandBuilder()
   .setName('embed-design')
@@ -16,9 +16,13 @@ const data = new SlashCommandBuilder()
 const execute = async (interaction, client, guild, member, lang) => {
   await interaction.deferReply({ ephemeral: true });
 
+  new Embed()
+    .setColor(config.embeds.colors.info)
+    .addContext(lang, member, 'lol')
+    .addCode0Footer()
+    .interactionResponse(interaction);
 
-
-  await new Card()
+  /* await new Card()
     .header({}, card => {
       card.headerIcon({ value: 'X' }, card => { });
       card.headerTitle({ value: `The reason was simple` }, card => { });
@@ -38,7 +42,7 @@ const execute = async (interaction, client, guild, member, lang) => {
       card.footerIcon({ value: 'X' }, card => { });
       card.footerTitle({ value: 'Code0 • But the code still exists' }, card => { });
     })
-    .interactionResponse(interaction);
+    .interactionResponse(interaction); */
 
 }
 
