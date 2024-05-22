@@ -45,14 +45,13 @@ const setup = async () => {
         require('./src/interactions/load-interactions').load(client);
         require('./src/start-up/load-languages').load(client);
 
-
         require('./src/start-up/audit-log').setup(client);
         require('./src/start-up/client-status').start(client);
 
         console.log(`Code0 Discord Client ready => ${readyClient.user.tag}`);
 
-        require('./src/start-up/xp-messages').start(client);
-        require('./src/start-up/xp-voice-channel').start(client);
+        require('./src/start-up/stats-message').start(client);
+        require('./src/start-up/stats-voice-channel').start(client);
 
         require('./src/start-up/user-stats').start(client);
 
