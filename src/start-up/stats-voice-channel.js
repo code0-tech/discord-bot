@@ -1,7 +1,6 @@
+const { MongoUser } = require('../mongo/MongoUser');
 const { checkState } = require('../discord/voice');
 const { Events } = require('discord.js');
-const { msToHumanReadableTime } = require('../utils/time');
-const { MongoUser } = require('../mongo/MongoUser');
 
 let voiceChatUser = {};
 
