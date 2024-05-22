@@ -2,6 +2,7 @@ const config = require('./../../config.json');
 
 const language = async (commandName, interaction, guild, client) => {
     const { languages } = client;
+
     const member = await guild.members.fetch(interaction.user.id);
 
     let baseLanguage = 'english';
