@@ -50,4 +50,4 @@ const triggerResolve = (client, id, data, removeReference = null) => {
 // false = timeout
 // null = killed by reference
 
-module.exports = { awaiterCodeId, awaitCodeResolve, triggerResolve }
+module.exports = { awaiterCodeId, awaitCodeResolve, triggerResolve };
