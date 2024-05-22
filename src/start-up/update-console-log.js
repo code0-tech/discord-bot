@@ -53,7 +53,9 @@ const originalConsoleLog = console.log;
 const customLog = (...args) => {
     const log = args.length === 1 ? args[0] : args.join(' '); // Convert multiple arguments to a single string
 
-    logToMongoDb(log);
+    if (!global.isDevelopment) {
+        logToMongoDb(log);
+    }
     originalConsoleLog(...args);
 };
 

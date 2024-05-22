@@ -26,7 +26,7 @@ const client = new Client({
     ]
 });
 
-client.isDevelopment = os.platform() === 'win32';
+global.isDevelopment = os.platform() === 'win32';
 client.awaitaction = {};
 
 

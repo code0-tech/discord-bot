@@ -38,4 +38,4 @@ const start = (client) => {
     });
 }
 
-module.exports = {start};
+module.exports = { start };
