@@ -12,7 +12,7 @@ const MongoDb = new Mongo();
 
 const data = new SlashCommandBuilder()
     .setName('leaderboard')
-    .setDescription('Check which users are the top 10 best.')
+    .setDescription('Show the leaderboard with the best 10 users.')
     .addIntegerOption(option =>
         option
             .setName('limit')
