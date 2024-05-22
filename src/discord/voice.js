@@ -29,7 +29,6 @@ const checkState = async (oldState, newState) => {
             oldChannel: oldUserChannel
         };
     } else {
-        // Optionally handle the case where no state change occurs
         return {
             state: 'NO_CHANGE',
             userid: userId,
