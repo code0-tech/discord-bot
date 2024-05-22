@@ -1,64 +1,68 @@
-const { Client, Events, GatewayIntentBits, Partials } = require('discord.js');
-const dotenv = require('dotenv');
-const os = require('os');
+const setup = async () => {
 
-require('./src/start-up/update-console-log');
-require('./src/start-up/process-exit');
+    const { Client, Events, GatewayIntentBits, Partials } = require('discord.js');
+    const dotenv = require('dotenv');
+    const os = require('os');
 
-dotenv.config({ path: os.platform() === 'win32' ? '.env' : 'server.env' });
+    require('./src/start-up/update-console-log');
+    require('./src/start-up/process-exit');
 
-global.mainDir = __dirname;
-global.mongoClient = null;
+    dotenv.config({ path: os.platform() === 'win32' ? '.env' : 'server.env' });
 
-const client = new Client({
-    intents: [
-        GatewayIntentBits.Guilds,
-        GatewayIntentBits.GuildVoiceStates,
-        GatewayIntentBits.GuildMessageReactions,
-        GatewayIntentBits.GuildInvites,
-        GatewayIntentBits.GuildModeration,
-        GatewayIntentBits.GuildMessages,
-        GatewayIntentBits.MessageContent,
-        GatewayIntentBits.GuildMessageTyping
-    ], partials: [
-        Partials.Message,
-        Partials.Channel,
-        Partials.Reaction
-    ]
-});
+    global.mainDir = __dirname;
+    global.mongoClient = null;
 
-global.isDevelopment = os.platform() === 'win32';
-client.awaitaction = {};
+    const client = new Client({
+        intents: [
+            GatewayIntentBits.Guilds,
+            GatewayIntentBits.GuildVoiceStates,
+            GatewayIntentBits.GuildMessageReactions,
+            GatewayIntentBits.GuildInvites,
+            GatewayIntentBits.GuildModeration,
+            GatewayIntentBits.GuildMessages,
+            GatewayIntentBits.MessageContent,
+            GatewayIntentBits.GuildMessageTyping
+        ], partials: [
+            Partials.Message,
+            Partials.Channel,
+            Partials.Reaction
+        ]
+    });
 
+    global.isDevelopment = os.platform() === 'win32';
+    client.awaitaction = {};
+    client.startDate = Date.now();
 
-require('./src/start-up/language-check');
-require('./src/start-up/mongo-setup');
+    require('./src/start-up/language-check');
+    await require('./src/start-up/mongo-setup').connect();
 
-require('./src/start-up/start-puppeteer');
-require('./src/web-server/http-server').setup(client);
-
-
-client.once(Events.ClientReady, readyClient => {
-
-    require('./src/interactions/load-interactions').load(client);
-    require('./src/start-up/load-languages').load(client);
+    require('./src/start-up/start-puppeteer');
+    require('./src/web-server/http-server').setup(client);
 
 
-    require('./src/start-up/audit-log').setup(client);
-    require('./src/start-up/client-status').start(client);
+    client.once(Events.ClientReady, readyClient => {
 
-    console.log(`Code0 Discord Client ready => ${readyClient.user.tag}`);
-
-    require('./src/start-up/xp-messages').start(client);
-    require('./src/start-up/xp-voice-channel').start(client);
-
-    require('./src/start-up/user-stats').start(client);
-
-});
+        require('./src/interactions/load-interactions').load(client);
+        require('./src/start-up/load-languages').load(client);
 
 
-client.login(process.env.TOKEN);
+        require('./src/start-up/audit-log').setup(client);
+        require('./src/start-up/client-status').start(client);
 
+        console.log(`Code0 Discord Client ready => ${readyClient.user.tag}`);
+
+        require('./src/start-up/xp-messages').start(client);
+        require('./src/start-up/xp-voice-channel').start(client);
+
+        require('./src/start-up/user-stats').start(client);
+
+    });
+
+
+    client.login(process.env.TOKEN);
+}
+
+setup();
 
 /* TODO
 
