@@ -35,7 +35,9 @@ const xHtml = [`<html>
 
 const header = [`<div class="card__header"
 style="padding: .5rem 1rem; border-bottom: 1px solid rgba(255,255,255, .2); display: flex; align-items: center; justify-content: space-between">`, `</div>`];
-const body = [`<div class="card__body" style="padding: .5rem 1rem;">`, `</div>`]
+
+const body = [`<div class="card__body" style="padding: .5rem 1rem;">`, `</div>`];
+
 const footer = [`<div class="card__footer" style="padding: .5rem 1rem; border-top: 1px solid rgba(255,255,255, .2);">`, `</div>`];
 
 const headerWrapper = [`<div class="card__wrapper" style="">`, `</div>`]; // display: flex
@@ -91,23 +93,11 @@ const htmlItems = {
   progressBar
 };
 
+// Info
+// This code is from the early days of our bot's development and is now considered outdated. 
+// It was originally used to create Cards, which were used as embeds.
+// However, as our bot has evolved, we are transitioning to a more advanced and efficient system using discord-embeds.
+// The embeds will replace the Cards, providing a richer, more interactive experience.
+// ~Nicusch
+
 module.exports = { htmlItems };
-
-/*
-
-const lol = [];
-const de = [];
-// ... other arrays
-
-// Get all variable names in the current scope
-const variableNames = Object.keys(global);
-
-// Filter out only arrays
-const arrays = variableNames.filter(variableName => Array.isArray(global[variableName]));
-
-// Create an object with dynamic keys and values
-const dynamicExport = Object.fromEntries(arrays.map(arrayName => [arrayName, global[arrayName]]));
-
-// Export the dynamically created object
-module.exports = dynamicExport;
-*/

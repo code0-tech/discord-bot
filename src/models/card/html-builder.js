@@ -45,4 +45,11 @@ const convertJsonToHtml = (json) => {
     })
 }
 
+// Info
+// This code is from the early days of our bot's development and is now considered outdated. 
+// It was originally used to create Cards, which were used as embeds.
+// However, as our bot has evolved, we are transitioning to a more advanced and efficient system using discord-embeds.
+// The embeds will replace the Cards, providing a richer, more interactive experience.
+// ~Nicusch
+
 module.exports = { convertJsonToHtml };
