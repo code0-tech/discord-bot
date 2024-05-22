@@ -8,7 +8,7 @@ const config = require('./../../config.json');
 
 const data = new SlashCommandBuilder()
     .setName('open-contributor')
-    .setDescription('Use oAuth with Github to check if you can be an Open Contributor')
+    .setDescription('Use oAuth with Github to check if you can be an Open-Contributor.')
 
 
 const failedMessage = async (interaction, client, member, lang, type) => {
@@ -106,8 +106,6 @@ const execute = async (interaction, client, guild, member, lang) => {
             .addContext(lang, member, messageType)
             .addCode0Footer()
             .interactionResponse(interaction, [row]);
-
-        // .progressBar({ value: calculatePercentage(github.totalPullRequests, config.commands.opencontributor.pr), label: true }, card => { })
 
     }
 };
