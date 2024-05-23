@@ -29,13 +29,18 @@ const autoRun = async (client) => {
 
 
     if (messagesIds.length == 0) { // Testing purpose
-        const applyButton = new ButtonBuilder()
-            .setCustomId('application-apply-now')
-            .setLabel('Apply Now')
+        const applyButtonClosedTeam = new ButtonBuilder()
+            .setCustomId('application-apply-closed-team')
+            .setLabel('Apply as Closed Team')
+            .setStyle(ButtonStyle.Primary);
+
+        const applyButtonOpenContributor = new ButtonBuilder()
+            .setCustomId('application-apply-open-contributor')
+            .setLabel('Apply as Open Contributor')
             .setStyle(ButtonStyle.Primary);
 
         const row = new ActionRowBuilder()
-            .addComponents(applyButton);
+            .addComponents(applyButtonClosedTeam, applyButtonOpenContributor);
 
         // add message to english.json
 
@@ -102,7 +107,8 @@ const executeComponent = async (interaction, client, guild, buttonData, member, 
 }
 
 const componentIds = [
-    'application-apply-now'
+    'application-apply-closed-team',
+    'application-apply-open-contributor'
 ];
 
 module.exports = { executeComponent, componentIds, data, autoRun };
