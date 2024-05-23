@@ -84,10 +84,10 @@
     },
     "stats": {
         "own-stats-response": {
-            "description": "### Message:\nCount: `{count}`\nWords: `{words}`\nChars: `{chars}`\n\n### Voice:\nJoins: `{joins}`\nSwitchs: `{switchs}`\nTotal Time: `{voicedays}` days, `{voicehours}` hours, `{voiceminutes}` minutes, `{voiceseconds}` seconds.\n\nXP is never equal to your messages, because we count real interactions."
+            "description": "### Message:\nCount: `{count}`\nWords: `{words}`\nChars: `{chars}`\n\n### Voice:\nJoins: `{joins}`\nSwitchs: `{switchs}`\nTotal Time: `{voicedays}` days, `{voicehours}` hours, `{voiceminutes}` minutes, `{voiceseconds}` seconds.\n\nXP is never equal to your messages, because we only count real interactions."
         },
         "other-stats-response": {
-            "description": "### Level: {level}\n{progressbar} [{xp} xp|{neededXp} xp]\n\nCurrently <@{rankuserid}> is on the {position} place."
+            "description": "### Message:\nCount: `{count}`\nWords: `{words}`\nChars: `{chars}`\n\n### Voice:\nJoins: `{joins}`\nSwitchs: `{switchs}`\nTotal Time: `{voicedays}` days, `{voicehours}` hours, `{voiceminutes}` minutes, `{voiceseconds}` seconds.\n\nXP is never equal to his/her messages, because we only count real interactions."
         },
         "this-bot-stats": {
             "description": "### Well, I'm not really into collecting stats.\nMaybe try a `user` and not a Bot like me c:"
