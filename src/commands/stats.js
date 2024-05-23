@@ -6,7 +6,7 @@ const config = require('./../../config.json');
 
 const data = new SlashCommandBuilder()
     .setName('stats')
-    .setDescription('Check you Stats.')
+    .setDescription('Check your Stats.')
     .addUserOption(option =>
         option
             .setName('user')
