@@ -82,4 +82,13 @@ setup();
 
 -> Add later /stats to see stats and also raw xp by default
 
+-> Application channel two buttons => apply now, apply as open-contributor
+
+apply as an close team ping role
+apply as an open contributor
+
+-> add /search
+
+-> add /stats for discord stats also with @user
+
 */
