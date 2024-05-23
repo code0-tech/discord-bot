@@ -5,7 +5,7 @@ const config = require('./../../config.json');
 
 const data = new SlashCommandBuilder()
     .setName('rank')
-    .setDescription('Check you current Rank.')
+    .setDescription('Check your current Rank.')
     .addUserOption(option =>
         option
             .setName('user')
