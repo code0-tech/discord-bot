@@ -69,6 +69,8 @@ const checkLastCreatedTicket = async (guild, member) => {
 const executeComponent = async (interaction, client, guild, buttonData, member, lang) => {
     const defer = await interaction.deferReply({ ephemeral: true });
 
+    // add different message to apply buttons in channel
+
     if (await checkLastCreatedTicket(guild, member)) {
         new Embed()
             .setColor(config.embeds.colors.danger)
