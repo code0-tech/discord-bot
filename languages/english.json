@@ -82,6 +82,17 @@
             "description": "### Well, I'm not really into collecting XP.\nMaybe try a `user` and not a Bot like me c:"
         }
     },
+    "stats": {
+        "own-stats-response": {
+            "description": "### Message:\nCount: `{count}`\nWords: `{words}`\nChars: `{chars}`\n\n### Voice:\nJoins: `{joins}`\nSwitchs: `{switchs}`\nTotal Time: `{voicedays}` days, `{voicehours}` hours, `{voiceminutes}` minutes, `{voiceseconds}` seconds.\n\nXP is never equal to your messages, because we count real interactions."
+        },
+        "other-stats-response": {
+            "description": "### Level: {level}\n{progressbar} [{xp} xp|{neededXp} xp]\n\nCurrently <@{rankuserid}> is on the {position} place."
+        },
+        "this-bot-stats": {
+            "description": "### Well, I'm not really into collecting stats.\nMaybe try a `user` and not a Bot like me c:"
+        }
+    },
     "leaderboard": {
         "board": {
             "title": "Leaderboard",

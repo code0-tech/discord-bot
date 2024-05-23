@@ -1,5 +1,6 @@
 const { SlashCommandBuilder } = require('@discordjs/builders');
-const { Embed, progressBar } = require('./../models/Embed');
+const { Embed } = require('./../models/Embed');
+const { msToHumanReadableTime } = require('./../utils/time');
 const { MongoUser } = require('./../mongo/MongoUser');
 const config = require('./../../config.json');
 
@@ -13,6 +14,19 @@ const data = new SlashCommandBuilder()
             .setRequired(false)
     )
 
+const normalizeData = (data) => {
+    data.messages = data.messages || { words: 0, chars: 0, count: 0 };
+    data.messages.words = data.messages.words || 0;
+    data.messages.chars = data.messages.chars || 0;
+    data.messages.count = data.messages.count || 0;
+
+    data.voice = data.voice || { joins: 0, switchs: 0, time: 0 };
+    data.voice.joins = data.voice.joins || 0;
+    data.voice.switchs = data.voice.switchs || 0;
+    data.voice.time = data.voice.time || 0;
+
+    return data;
+}
 
 const execute = async (interaction, client, guild, member, lang) => {
     await interaction.deferReply({ ephemeral: true });
@@ -22,23 +36,36 @@ const execute = async (interaction, client, guild, member, lang) => {
 
     const user = await new MongoUser(userIdToCheck).init();
 
-    // const { level, neededXp, xp } = await user.getRank();
+    const stats = await user.getStats();
 
-    // const position = await user.getXpGlobalPosition();
+    const normalizedStats = normalizeData(stats);
 
-    // let embedMessage = interaction.options._hoistedOptions.length == 0 ? 'own-rank-response' : 'other-rank-response';
+    let embedMessage = interaction.options._hoistedOptions.length == 0 ? 'own-stats-response' : 'other-stats-response';
 
-    // if (client.user.id == userIdToCheck) {
-    // embedMessage = 'this-bot-rank';
-    // }
+    if (client.user.id == userIdToCheck) {
+        embedMessage = 'this-bot-stats';
+    }
 
-    /* const embed = new Embed()
+    const { s, m, h, d } = msToHumanReadableTime(normalizedStats.voice.time * 1000);
+
+    const embed = new Embed()
         .setColor(config.embeds.colors.info)
         .setPbThumbnail(rankMember)
-        .addInputs({ rankuserid: userIdToCheck, level, neededXp, xp, progressbar: progressBar(xp, neededXp), position })
-        .addContext(lang, member, embedMessage); */
+        .addInputs({
+            count: normalizedStats.messages.count,
+            words: normalizedStats.messages.words,
+            chars: normalizedStats.messages.chars,
 
-    // embed.interactionResponse(interaction);
+            joins: normalizedStats.voice.joins,
+            switchs: normalizedStats.voice.switchs,
+            voicedays: d,
+            voicehours: h,
+            voiceminutes: m,
+            voiceseconds: s
+        })
+        .addContext(lang, member, embedMessage);
+
+    embed.interactionResponse(interaction);
 };
 
 
