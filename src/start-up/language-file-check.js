@@ -1,4 +1,4 @@
-const { loadJSONFilesFromFolder } = require('./../utils/json');
+const { loadJSONFilesFromFolder } = require('../utils/json');
 const fs = require('fs').promises;
 const path = require('path');
 

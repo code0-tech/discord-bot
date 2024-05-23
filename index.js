@@ -33,7 +33,7 @@ const setup = async () => {
     client.awaitaction = {};
     client.startDate = Date.now();
 
-    require('./src/start-up/language-check');
+    require('./src/start-up/language-file-check');
     await require('./src/start-up/mongo-setup').connect();
 
     require('./src/start-up/start-puppeteer');
