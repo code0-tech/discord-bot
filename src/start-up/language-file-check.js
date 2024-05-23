@@ -10,11 +10,11 @@ const checkLanguage = (exampleJson, langJson, langName) => {
 
             exampleJson[exampleCommandKey].forEach(commandText => {
                 if (!commandTexts.includes(commandText)) {
-                    console.log(`In file ${langName}, text for /${exampleCommandKey} with text "${commandText}" is missing.`);
+                    console.log(`[Lang Check] In file ${langName}, text for /${exampleCommandKey} with text "${commandText}" is missing.`);
                 }
             });
         } else {
-            console.log(`In file ${langName}, text for /${exampleCommandKey} is missing.`);
+            console.log(`[Lang Check] In file ${langName}, text for /${exampleCommandKey} is missing.`);
         }
     }
 }
