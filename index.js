@@ -89,6 +89,4 @@ apply as an open contributor
 
 -> add /search
 
--> add /stats for discord stats also with @user
-
 */
