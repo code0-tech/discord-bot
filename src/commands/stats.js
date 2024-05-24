@@ -1,7 +1,7 @@
 const { SlashCommandBuilder } = require('@discordjs/builders');
-const { Embed } = require('./../models/Embed');
 const { msToHumanReadableTime } = require('./../utils/time');
 const { MongoUser } = require('./../mongo/MongoUser');
+const { Embed } = require('./../models/Embed');
 const config = require('./../../config.json');
 
 const data = new SlashCommandBuilder()
