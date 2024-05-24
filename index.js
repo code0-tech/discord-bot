@@ -80,8 +80,6 @@ setup();
 
 -> Double id's are saved sometimes in MongoDb user
 
--> Add later /stats to see stats and also raw xp by default
-
 -> Application channel two buttons => apply now, apply as open-contributor
 
 apply as an close team ping role
