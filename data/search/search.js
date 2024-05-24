@@ -1,48 +1,47 @@
-
 const searchData = [
     {
-        search: "What is code0",
+        title: "What is Code0",
         hastags: [
+            "What is code0",
             "Code0",
             "Us",
         ],
-        titel: "What is Code0",
         description: ""
     },
     {
-        search: "What is this Discord Bot",
+        title: "What is Discord Bot",
         hastags: [
+            "What is this Discord Bot",
             "Discord",
             "Bot",
         ],
-        titel: "What is Discord Bot",
         description: ""
     },
     {
-        search: "What is Discord",
+        title: "What is Discord",
         hastags: [
+            "What is Discord",
             "Discord",
             "Chat",
         ],
-        titel: "What is Discord",
         description: ""
     },
     {
-        search: "Why do people use Discord",
+        title: "Why do people use Discord",
         hastags: [
+            "Why do people use Discord",
             "Discord",
             "Community",
         ],
-        titel: "Why do people use Discord",
         description: ""
     },
     {
-        search: "How to use commands",
+        title: "How to use commands",
         hastags: [
+            "How to use commands",
             "Discord",
             "Commands",
         ],
-        titel: "How to use commands",
         description: ""
     },
     // Add more search data objects here...
