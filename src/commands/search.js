@@ -53,13 +53,14 @@ const levenshteinDistance = (s1, s2) => {
     return previous[n];
 };
 
-const averageLevenshteinDistance = (inputString, title) => {
+const averageLevenshteinDistance = (inputString, title, hashtags) => {
     const inputWords = inputString.split(' ');
     const titleWords = title.split(' ');
+    const allWords = [...titleWords, ...hashtags];
 
     const distances = inputWords.flatMap(inputWord =>
-        titleWords.map(titleWord =>
-            levenshteinDistance(inputWord.toLowerCase(), titleWord.toLowerCase())
+        allWords.map(word =>
+            levenshteinDistance(inputWord.toLowerCase(), word.toLowerCase())
         )
     );
 
@@ -71,7 +72,7 @@ const selectSimilarFunctions = (inputString, searchData) => {
     return searchData
         .map(data => ({
             data,
-            distance: averageLevenshteinDistance(inputString, data.title)
+            distance: averageLevenshteinDistance(inputString, data.title, data.hashtags)
         }))
         .sort((a, b) => a.distance - b.distance)
         .slice(0, 5) // Get top 5 matches
