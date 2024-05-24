@@ -11,11 +11,24 @@ const data = new SlashCommandBuilder()
             .setDescription('Search...')
             .setAutocomplete(true));
 
-
 const execute = async (interaction, client, guild, member, lang) => {
     await interaction.deferReply({ ephemeral: true });
 
+    const searchQuery = interaction.options.getString('query');
+
+    console.log(searchQuery);
+
+    searchData.forEach(searchObj => {
+        if (searchObj.title == searchQuery) {
+            new Embed()
+                .setColor(config.embeds.colors.info)
+                .setTitle(searchObj.title)
+                .setDescription(searchObj.description)
+                .interactionResponse(interaction);
+        }
+    });
 };
+
 
 const levenshteinDistance = (s1, s2) => {
     const m = s1.length, n = s2.length;
@@ -40,13 +53,13 @@ const levenshteinDistance = (s1, s2) => {
     return previous[n];
 };
 
-const averageLevenshteinDistance = (inputString, functionName) => {
+const averageLevenshteinDistance = (inputString, title) => {
     const inputWords = inputString.split(' ');
-    const functionWords = functionName.split(' ');
+    const titleWords = title.split(' ');
 
     const distances = inputWords.flatMap(inputWord =>
-        functionWords.map(functionWord =>
-            levenshteinDistance(inputWord.toLowerCase(), functionWord.toLowerCase())
+        titleWords.map(titleWord =>
+            levenshteinDistance(inputWord.toLowerCase(), titleWord.toLowerCase())
         )
     );
 
@@ -58,7 +71,7 @@ const selectSimilarFunctions = (inputString, searchData) => {
     return searchData
         .map(data => ({
             data,
-            distance: averageLevenshteinDistance(inputString, data.search)
+            distance: averageLevenshteinDistance(inputString, data.title)
         }))
         .sort((a, b) => a.distance - b.distance)
         .slice(0, 5) // Get top 5 matches
@@ -77,10 +90,10 @@ const autoComplete = async (interaction, client, guild, member, lang) => {
 
     await interaction.respond(
         selectedFunctions.map(choice => {
-            const debugInfo = choice.distance ? `(debug: ${choice.distance})` : '';
+            const debugInfo = choice.distance ? `(debug: ${choice.distance.toFixed(2)})` : '';
             return {
-                name: `${choice.titel} ${debugInfo}`,
-                value: choice.search
+                name: `${choice.title} ${debugInfo}`,
+                value: choice.title
             };
         })
     );
