@@ -68,14 +68,30 @@ const button = async (interaction, client) => {
     }
 }
 
+const autoComplete = async (interaction, client) => {
+    const command = interaction.client.commands.get(interaction.commandName);
+
+    if (!command.autoComplete) return;
+    try {
+        const guild = client.guilds.cache.get(process.env.GUILD_ID);
+
+        const lang = await language(interaction.commandName, interaction, guild, client);
+
+        const member = await guild.members.fetch(interaction.user.id);
+        await command.autoComplete(interaction, client, guild, member, lang);
+    } catch (error) {
+        console.log(error);
+    }
+}
+
 const setup = async (client) => {
     client.on(Events.InteractionCreate, async (interaction) => {
         if (interaction.isChatInputCommand()) { // Slash-Command
             command(interaction, client);
         } else if (interaction.isButton()) { // Button
             button(interaction, client);
-        } else if (interaction.isAutocomplete()) {
-            // For the future
+        } else if (interaction.isAutocomplete()) { // Autocomplete
+            autoComplete(interaction, client);
         }
     });
 }
