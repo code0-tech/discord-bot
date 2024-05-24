@@ -76,14 +76,17 @@ const selectSimilarFunctions = (inputString, searchData) => {
         }))
         .sort((a, b) => a.distance - b.distance)
         .slice(0, 5) // Get top 5 matches
-        .map(item => item.data); // Extract the original data
+        .map(item => ({
+            ...item.data,
+            distance: item.distance // Add distance to the choice packet
+        }));
 };
 
 const autoComplete = async (interaction, client, guild, member, lang) => {
     const focusedValue = interaction.options.getFocused();
 
     if (!focusedValue) {
-        await interaction.respond([{ name: 'Search our small simple guides...', value: 'default' }]);
+        await interaction.respond([]);
         return;
     }
 
@@ -91,7 +94,7 @@ const autoComplete = async (interaction, client, guild, member, lang) => {
 
     await interaction.respond(
         selectedFunctions.map(choice => {
-            const debugInfo = choice.distance ? `(debug: ${choice.distance.toFixed(2)})` : '';
+            const debugInfo = choice.distance ? `(debug: ${choice.distance})` : '';
             return {
                 name: `${choice.title} ${debugInfo}`,
                 value: choice.title

@@ -9,7 +9,7 @@ const searchData = [
         "description": "Explore a variety of commands to engage with our Discord bot and unlock its full potential."
     },
     {
-        "title": "What is Xp",
+        "title": "Info about Xp",
         "hashtags": [
             "xp",
             "interactions",
@@ -37,6 +37,16 @@ const searchData = [
             "apply"
         ],
         "description": "Ready to take your involvement to the next level? Start by becoming an open contributor through `/open-contributor`, then link your GitHub account to unlock access. Once you've earned the role, head over to the application channel and submit your application to join our exclusive closed team."
+    },
+    {
+        "title": "Git Channel",
+        "hashtags": [
+            "git",
+            "channel",
+            "discord",
+            "github"
+        ],
+        "description": "The Git Channel serves as a GitHub log channel."
     }
 ];
 
