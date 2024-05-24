@@ -1,4 +1,4 @@
-/* const setup = async () => {
+const setup = async () => {
 
     const { Client, Events, GatewayIntentBits, Partials } = require('discord.js');
     const dotenv = require('dotenv');
@@ -60,9 +60,7 @@
     client.login(process.env.TOKEN);
 }
 
-setup(); */
-
-require('./data/search/engine');
+setup();
 
 /* TODO
 
