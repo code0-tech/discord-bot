@@ -84,10 +84,10 @@
     },
     "stats": {
         "own-stats-response": {
-            "description": "### Message:\nCount: `{count}`\nWords: `{words}`\nChars: `{chars}`\n\n### Voice:\nJoins: `{joins}`\nSwitchs: `{switchs}`\nTotal Time: `{voicedays}` days, `{voicehours}` hours, `{voiceminutes}` minutes, `{voiceseconds}` seconds.\n\nNote:\nXP is never equal to your message stats.\nVoice stats are only updated after you left an channel."
+            "description": "### Message:\nCount: `{count}`\nWords: `{words}`\nChars: `{chars}`\n### Voice:\nJoins: `{joins}`\nSwitchs: `{switchs}`\nTotal Time: `{voicedays}` days, `{voicehours}` hours, `{voiceminutes}` minutes, `{voiceseconds}` seconds.\n\nNote:\nXP is never equal to your message stats.\nVoice stats are only updated after you left an channel."
         },
         "other-stats-response": {
-            "description": "### Message:\nCount: `{count}`\nWords: `{words}`\nChars: `{chars}`\n\n### Voice:\nJoins: `{joins}`\nSwitchs: `{switchs}`\nTotal Time: `{voicedays}` days, `{voicehours}` hours, `{voiceminutes}` minutes, `{voiceseconds}` seconds.\n\nNote:\nXP is never equal to his/her message stats.\nVoice stats are only updated after you left an channel."
+            "description": "### Message:\nCount: `{count}`\nWords: `{words}`\nChars: `{chars}`\n### Voice:\nJoins: `{joins}`\nSwitchs: `{switchs}`\nTotal Time: `{voicedays}` days, `{voicehours}` hours, `{voiceminutes}` minutes, `{voiceseconds}` seconds.\n\nNote:\nXP is never equal to his/her message stats.\nVoice stats are only updated after he/she left an channel."
         },
         "this-bot-stats": {
             "description": "### Well, I'm not really into collecting stats.\nMaybe try a `user` and not a Bot like me c:"
