@@ -27,6 +27,7 @@ Also a MongoDb is required as this Bot needs some DataBase to store Data
 | 6   | `/leaderboard` or `/leaderboard limit: 1-20` | Finished     |
 | 7   | `Code0 Application Ticket/`                  | 1/2          |
 | 9   | `/stats` or `/stats @user`                   | Design       |
+| 7   | `/search`                                    | More Data!!! |
 
 
 <details>
