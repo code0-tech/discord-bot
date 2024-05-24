@@ -1,54 +1,21 @@
 const { SlashCommandBuilder } = require('@discordjs/builders');
-const { msToHumanReadableTime } = require('./../utils/time');
-const { MongoUser } = require('./../mongo/MongoUser');
+const { searchData } = require('./../../data/search/search');
 const { Embed } = require('./../models/Embed');
 const config = require('./../../config.json');
 
 const data = new SlashCommandBuilder()
     .setName('search')
-    .setDescription('Use the search to answear basic questions')
+    .setDescription('Use the search to answear basic questions.')
     .addStringOption(option =>
         option.setName('query')
             .setDescription('Search...')
             .setAutocomplete(true));
 
 
-/* 
- 
-async autocomplete(interaction) {
-    const focusedValue = interaction.options.getFocused();
-    const choices = ['Popular Topics: Threads', 'Sharding: Getting started', 'Library: Voice Connections', 'Interactions: Replying to slash commands', 'Popular Topics: Embed preview'];
-    const filtered = choices.filter(choice => choice.startsWith(focusedValue));
-    await interaction.respond(
-        filtered.map(choice => ({ name: choice, value: choice })),
-    );
-},
- 
-*/
-
 const execute = async (interaction, client, guild, member, lang) => {
     await interaction.deferReply({ ephemeral: true });
 
-    /* const embed = new Embed()
-        .setColor(config.embeds.colors.info)
-        .setPbThumbnail(rankMember)
-        .addInputs({
-            count: normalizedStats.messages.count,
-            words: normalizedStats.messages.words,
-            chars: normalizedStats.messages.chars,
-
-            joins: normalizedStats.voice.joins,
-            switchs: normalizedStats.voice.switchs,
-            voicedays: d,
-            voicehours: h,
-            voiceminutes: m,
-            voiceseconds: s
-        })
-        .addContext(lang, member, embedMessage);
-
-    embed.interactionResponse(interaction); */
 };
-
 
 const levenshteinDistance = (s1, s2) => {
     const m = s1.length, n = s2.length;
@@ -73,41 +40,49 @@ const levenshteinDistance = (s1, s2) => {
     return previous[n];
 };
 
-const selectSimilarFunctions = (inputString, functionNames) => {
-    return functionNames
-        .map(func => ({
-            name: func,
-            distance: levenshteinDistance(inputString.toLowerCase(), func.toLowerCase())
-        }))
-        .sort((a, b) => a.distance - b.distance)
-        .filter((_, index) => index < 5); // Get top 5 matches
+const averageLevenshteinDistance = (inputString, functionName) => {
+    const inputWords = inputString.split(' ');
+    const functionWords = functionName.split(' ');
+
+    const distances = inputWords.flatMap(inputWord =>
+        functionWords.map(functionWord =>
+            levenshteinDistance(inputWord.toLowerCase(), functionWord.toLowerCase())
+        )
+    );
+
+    const totalDistance = distances.reduce((sum, distance) => sum + distance, 0);
+    return totalDistance / distances.length;
 };
 
-const functionNames = [
-    "What is code0",
-    "What is this Discord Bot",
-    "What is Discord",
-    "Why do people use Discord",
-    "How to use commands",
-    "Help with commands",
-    "User guide",
-    "Ban user",
-    "Chat with support",
-    "Join voice channel"
-];
+const selectSimilarFunctions = (inputString, searchData) => {
+    return searchData
+        .map(data => ({
+            data,
+            distance: averageLevenshteinDistance(inputString, data.search)
+        }))
+        .sort((a, b) => a.distance - b.distance)
+        .slice(0, 5) // Get top 5 matches
+        .map(item => item.data); // Extract the original data
+};
 
 const autoComplete = async (interaction, client, guild, member, lang) => {
     const focusedValue = interaction.options.getFocused();
 
     if (!focusedValue) {
-        await interaction.respond([]);
+        await interaction.respond([{ name: 'Search our small simple guides...', value: 'default' }]);
         return;
     }
 
-    const selectedFunctions = selectSimilarFunctions(focusedValue, functionNames);
+    const selectedFunctions = selectSimilarFunctions(focusedValue, searchData);
 
     await interaction.respond(
-        selectedFunctions.map(choice => ({ name: choice.name, value: choice.name }))
+        selectedFunctions.map(choice => {
+            const debugInfo = choice.distance ? `(debug: ${choice.distance})` : '';
+            return {
+                name: `${choice.titel} ${debugInfo}`,
+                value: choice.search
+            };
+        })
     );
 };
 
