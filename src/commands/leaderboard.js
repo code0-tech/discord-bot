@@ -16,7 +16,7 @@ const data = new SlashCommandBuilder()
     .addIntegerOption(option =>
         option
             .setName('limit')
-            .setDescription('How many users should be display')
+            .setDescription('How many users should be displayed.')
             .setMinValue(1)
             .setMaxValue(20)
             .setRequired(false)
