@@ -140,7 +140,15 @@ function findTopMatches(inputString, maxMatches = 5) {
 
 
 const searchAutoComplete = async (search) => {
-    // if (search == 'all') return;
+
+    if (search == 'all') {
+        return searchData.map((data) => {
+            return {
+                "name": data.title,
+                "value": data.title
+            };
+        })
+    }
 
     const words = search.split(" ");
 

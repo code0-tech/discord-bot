@@ -2,7 +2,7 @@ const config = require('./../../config.json');
 
 const searchData = [
     {
-        "title": "Unlock the Power of our Discord Bot Commands",
+        "title": "Discord Bot Commands",
         "hashtags": [
             "commands",
             "discord bot",
@@ -14,7 +14,7 @@ const searchData = [
         "description": "Discover a multitude of commands to enhance your Discord experience and maximize the potential of our bot."
     },
     {
-        "title": "Explore Xp: Level Up Your Interactions",
+        "title": "Xp: Level Up Your Interactions",
         "hashtags": [
             "xp",
             "interactions",
@@ -38,7 +38,7 @@ const searchData = [
         "description": "Become part of our lively Discord community to find support, discover relevant content, and connect with like-minded members passionate about Code0. Engage in discussions, seek assistance, and enjoy a welcoming community dedicated to all things Code0."
     },
     {
-        "title": "Elevate Your Involvement: Join our Closed Team",
+        "title": "Join our Closed Team",
         "hashtags": [
             "team",
             "closed",
