@@ -62,6 +62,7 @@ const setup = async () => {
 
 setup();
 
+
 /* TODO
 
 - Discord Audit log Embeds
