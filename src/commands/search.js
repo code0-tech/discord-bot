@@ -1,7 +1,9 @@
+const { searchAutoComplete } = require('./../../data/search/engine');
 const { SlashCommandBuilder } = require('@discordjs/builders');
+const { searchData } = require('./../../data/search/search');
 const { Embed } = require('./../models/Embed');
 const config = require('./../../config.json');
-const { searchAutoComplete } = require('./../../data/search/engine');
+
 
 const data = new SlashCommandBuilder()
     .setName('search')
