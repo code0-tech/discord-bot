@@ -1,6 +1,13 @@
-/* const messagesFromChannel = async () => {
+const { getMessagesFromChannel } = require('./message');
+const { channelFromId } = require('./channel');
+const { getGuild } = require('./guild');
 
-    const guild = await getGuild(config.serverid, client);
-    const applicationChannel = await channelFromId(config.channels.application, guild);
-    const messages = await getMessagesFromChannel(applicationChannel);
-} */
+const messagesFromChannel = async (client, serverid, channelid) => {
+    const guild = await getGuild(serverid, client);
+    const channel = await channelFromId(channelid, guild);
+    const messages = await getMessagesFromChannel(channel);
+
+    return messages;
+}
+
+module.exports = { messagesFromChannel };
