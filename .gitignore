@@ -4,3 +4,4 @@ server.env
 config.json
 http-config.json
 unused-temp.js
+.gitignore
