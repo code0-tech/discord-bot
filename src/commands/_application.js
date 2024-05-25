@@ -107,9 +107,11 @@ const executeComponent = async (interaction, client, guild, buttonData, member, 
 
 }
 
+
 const componentIds = [
     'application-apply-closed-team',
-    'application-apply-open-contributor'
+    'application-apply-open-contributor',
+    'application-close'
 ];
 
 module.exports = { executeComponent, componentIds, data, autoRun };
