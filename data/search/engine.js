@@ -103,7 +103,8 @@ function findTopMatches(inputString, maxMatches = 5) {
 
 const searchAutoComplete = async (search) => {
 
-    const topMatches = findTopMatches(search).map((data) => {
+
+    const topMatches = findTopMatches(search, search == 'all' ? 1000 : 5).map((data) => {
         return {
             "name": data.title + (global.isDevelopment ? ` (debug: ${data.similarity})` : ''),
             "value": data.title

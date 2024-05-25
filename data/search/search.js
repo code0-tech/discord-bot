@@ -71,9 +71,10 @@ const searchData = [
             "multilanguage",
             "multiculti"
         ],
-        "description": "Currently we got two languages supported.\n\n- English\n- German.\n\nSomtimes `/`-commands or other messages are not translated to other languages than German, this messages will be in English. Also if you have multiple language roles we try to use English instead."
+        "description": "Currently we got two languages supported.\n" + Object.entries(config.languageroles).map(([key, language]) => `- ${language}.`).join('\n') + "\nSomtimes `/`-commands or other messages are not translated to other languages like German, those messages will be displayed in English. Also if you have multiple language roles we try to use English instead."
     }
 ];
+
 
 const example = [
     {

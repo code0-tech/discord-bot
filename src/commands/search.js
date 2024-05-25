@@ -9,7 +9,7 @@ const data = new SlashCommandBuilder()
     .setDescription('Use the search to answear basic questions.')
     .addStringOption(option =>
         option.setName('query')
-            .setDescription('Here you can find most of our basic answears.')
+            .setDescription('Here you can find most of our basic answear. Type "all" to get a full list.')
             .setAutocomplete(true));
 
 
@@ -18,17 +18,25 @@ const execute = async (interaction, client, guild, member, lang) => {
 
     const searchQuery = interaction.options.getString('query');
 
-    console.log(searchQuery);
+    let matchFound = false;
 
     searchData.forEach(searchObj => {
-        if (searchObj.title == searchQuery) {
+        if (searchObj.title === searchQuery) {
             new Embed()
                 .setColor(config.embeds.colors.info)
                 .setTitle(searchObj.title)
                 .setDescription(searchObj.description)
                 .interactionResponse(interaction);
+            matchFound = true;
         }
     });
+
+    if (!matchFound) {
+        new Embed()
+            .setColor(config.embeds.colors.danger)
+            .setTitle(`Use the autocomplete feature in order to get some results.`)
+            .interactionResponse(interaction);
+    }
 };
 
 const autoComplete = async (interaction, client, guild, member, lang) => {
