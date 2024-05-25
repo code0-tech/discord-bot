@@ -117,7 +117,7 @@ const execute = async (interaction, client, guild, member, lang) => {
 
     await new Embed()
         .setColor(config.embeds.colors.info)
-        .addInputs({ ticketnumber: ticketNumber })
+        // .addInputs({ ticketnumber: ticketNumber })
         .addContext(lang, member, 'info-message')
         .addCode0Footer()
         .responseToChannel(ticketChannel.id, client, [row], true);
@@ -137,6 +137,8 @@ const executeComponent = async (interaction, client, guild, componentData, membe
     }
 
     if (componentData.id == 'close-ticket') {
+
+        interaction.message.delete();
 
         const ticketChannel = await channelFromInteraction(interaction, guild);
 
