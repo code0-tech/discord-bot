@@ -1,5 +1,3 @@
-// "edit on changes" are marked stuff to be changes when they change lol
-
 const config = require('./../../config.json');
 
 const searchData = [
