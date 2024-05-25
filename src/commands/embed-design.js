@@ -5,6 +5,8 @@ const { TableBuilder } = require('../models/table');
 const { Card } = require('./../models/card/Card');
 const { waitMs } = require('./../utils/time');
 const config = require('./../../config.json');
+const { channelFromInteraction, removeAllChannelUserPerms, channelFromId } = require('../discord/channel');
+const { joinVoiceChannel, createAudioPlayer, createAudioResource, VoiceConnectionStatus, AudioPlayerStatus } = require('@discordjs/voice');
 
 
 const data = new SlashCommandBuilder()
@@ -16,7 +18,52 @@ const data = new SlashCommandBuilder()
 const execute = async (interaction, client, guild, member, lang) => {
   await interaction.deferReply({ ephemeral: true });
 
-  new Embed()
+  /*  const channel = await channelFromId("1173728357658132580", guild)
+ 
+   const connection = joinVoiceChannel({
+     channelId: channel.id,
+     guildId: channel.guild.id,
+     adapterCreator: channel.guild.voiceAdapterCreator,
+   });
+ 
+   connection.on(VoiceConnectionStatus.Ready, () => {
+     console.log('The bot has connected to the channel!');
+ 
+     const player = createAudioPlayer();
+     const resource = createAudioResource('track.mp3'); // Ensure the path is correct
+ 
+     console.log(resource)
+ 
+     player.play(resource);
+     connection.subscribe(player);
+ 
+     player.on(AudioPlayerStatus.Playing, () => {
+       console.log('The audio resource is now playing!');
+     });
+ 
+     player.on('error', error => {
+       console.error('Error:', error.message, 'with track', error.resource.metadata);
+     });
+   });
+ 
+   connection.on(VoiceConnectionStatus.Disconnected, async () => {
+     try {
+       await Promise.race([
+         entersState(connection, VoiceConnectionStatus.Signalling, 5_000),
+         entersState(connection, VoiceConnectionStatus.Connecting, 5_000),
+       ]);
+       // Seems to be reconnecting to a new channel - ignore disconnect
+     } catch (error) {
+       // Seems to be a real disconnect which SHOULDN'T be recovered from
+       connection.destroy();
+     }
+   });
+ 
+  */
+
+
+
+  /* new Embed()
     .setColor(config.embeds.colors.info)
     .addContext(lang, member, 'lol')
     .addCode0Footer()
