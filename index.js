@@ -79,7 +79,7 @@ setup();
 apply as an close team ping role
 apply as an open contributor
 
--> make the application commad / interaction to work as nico intended
+-> make the application command / interaction to work as nico intended
 
 -> Change the search function to also only need to write some letter to get entire things suggested
 maybe us lvh distance to fill them out based on the searchData and feed this into the flow
