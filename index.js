@@ -64,19 +64,13 @@ setup();
 
 /* TODO
 
-- Create Application thing in Channel 1192597105550835782
-
 - Discord Audit log Embeds
-
--> Something fancy like a quizz
 
 -> MongoDb when user interaction check if his entries are up to date
 
 -> Fix .addInputs giving error when lang pack does not conatin and placholder and vice versa
 
 -> Fix bot beeing added to the DB, reason unknown, maybe some command or xp stuff that adds him
-
--> Add lang for small things in english and the other ones to be used like in /leaderboard
 
 -> Double id's are saved sometimes in MongoDb user
 
@@ -85,4 +79,5 @@ setup();
 apply as an close team ping role
 apply as an open contributor
 
+-> make the application commad / interaction to work as nico intended
 */
