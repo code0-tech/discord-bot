@@ -143,7 +143,7 @@ function findTopMatches(inputString, maxMatches = 5) {
 
 const searchAutoComplete = async (search) => {
 
-    // when the search is all show all (simple way to get an full overview of all faq's)
+    // When the search is all show all (simple way to get an full overview of all faq's)
     if (search == 'all') {
         return searchData.map((data) => {
             return {
