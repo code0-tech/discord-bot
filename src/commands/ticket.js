@@ -12,7 +12,7 @@ const data = new SlashCommandBuilder()
 
 const USER_OVERRIDE = 1;
 
-const getSmallestTicketNumber = async (guild) => {
+/* const getSmallestTicketNumber = async (guild) => {
     const channelsInCategory = await channelsFromParent(config.parents.support, guild);
 
     const existingNumbers = channelsInCategory.map(channel => {
@@ -32,7 +32,7 @@ const getSmallestTicketNumber = async (guild) => {
     const formattedNumber = nextAvailableNumber.toString().padStart(6, '0');
 
     return formattedNumber;
-}
+} */
 
 const checkLastCreatedTicket = async (guild, member) => {
     const channelsInCategory = await channelsFromParent(config.parents.support, guild);
@@ -72,7 +72,6 @@ const execute = async (interaction, client, guild, member, lang) => {
             .setColor(config.embeds.colors.danger)
             .addInputs({ m, s })
             .addContext(lang, member, 'timeout')
-            .addCode0Footer()
             .interactionResponse(interaction);
 
         return;
@@ -81,14 +80,12 @@ const execute = async (interaction, client, guild, member, lang) => {
     await new Embed()
         .setColor(config.embeds.colors.info)
         .addContext(lang, member, 'create')
-        .addCode0Footer()
         .interactionResponse(interaction);
 
-
-    const ticketNumber = await getSmallestTicketNumber(guild);
+    // const ticketNumber = await getSmallestTicketNumber(guild);
 
     const ticketChannel = await new Channel()
-        .setName(`${config.emojis.support}${config.emojis['default-combine-symbol']}${ticketNumber}`)
+        .setName(`${config.emojis.support}${config.emojis['default-combine-symbol']}${member.user.username}`)
         .setParent(config.parents.support)
         .setType(ChannelType.GuildText)
         .setPermissionOverwrite(interaction.guild.id, [], [
@@ -107,7 +104,6 @@ const execute = async (interaction, client, guild, member, lang) => {
         .setColor(config.embeds.colors.info)
         .addInputs({ channelid: ticketChannel.id })
         .addContext(lang, member, 'created')
-        .addCode0Footer()
         .interactionResponse(interaction);
 
 
@@ -167,7 +163,6 @@ const executeComponent = async (interaction, client, guild, componentData, membe
             .setColor(config.embeds.colors.danger)
             .addInputs({ closeduserid: interaction.user.id })
             .addContext(lang, member, 'closed')
-            .addCode0Footer()
             .responseToChannel(ticketChannel.id, client, [row]);
 
 
@@ -175,7 +170,7 @@ const executeComponent = async (interaction, client, guild, componentData, membe
 
     } else if (componentData.id == 'delete-ticket') {
         const ticketChannel = await channelFromInteraction(interaction, guild);
-        ticketChannel.delete({ reason: "Ticket was closed and marked as fin" });
+        ticketChannel.delete({ reason: "Ticket was closed and marked as ~fin" });
     }
 }
 
