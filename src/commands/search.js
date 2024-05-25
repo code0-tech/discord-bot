@@ -4,14 +4,14 @@ const { searchData } = require('./../../data/search/search');
 const { Embed } = require('./../models/Embed');
 const config = require('./../../config.json');
 
-
 const data = new SlashCommandBuilder()
     .setName('search')
     .setDescription('Use the search to answear basic questions.')
     .addStringOption(option =>
         option.setName('query')
-            .setDescription('Search...')
+            .setDescription('Here you can find most of our basic answears.')
             .setAutocomplete(true));
+
 
 const execute = async (interaction, client, guild, member, lang) => {
     await interaction.deferReply({ ephemeral: true });
@@ -38,8 +38,6 @@ const autoComplete = async (interaction, client, guild, member, lang) => {
         await interaction.respond([]);
         return;
     }
-
-    // search is broken :c
 
     await interaction.respond(await searchAutoComplete(focusedValue));
 };
