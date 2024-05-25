@@ -17,6 +17,10 @@
             "title": "Support Ticket #{ticketnumber}",
             "description": "Hi <@{userid}>,\nlass dir ein wenig Zeit um dein Anliegen zu beschreiben.\nJe mehr Einzelheiten Du uns nennst, desto besser können wir Dir helfen.\nFalls zutreffend, füge auch Fehlermeldungen oder Schritte zur Reproduktion des Problems und andere relevante Informationen bei."
         },
+        "no-team-member": {
+            "title": "Entschuldigung",
+            "description": "Nur Team Mitglieder können ein Ticket schliessen."
+        },
         "close-info": {
             "title": "Schließen des Tickets",
             "description": "`Das Ticket wird in 5 Sekunden geschlossen.`"

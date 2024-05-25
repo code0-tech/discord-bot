@@ -20,6 +20,10 @@
             "title": "Support Ticket #{ticketnumber}",
             "description": "Hi <@{userid}>,\nPlease take a moment to describe the issue you're facing.\nThe more details you provide, the better we can assist you.\nIf applicable, include error messages, steps to reproduce the problem, and any other relevant information."
         },
+        "no-team-member": {
+            "title": "Sorry",
+            "description": "Only the Team member can close a ticket."
+        },
         "close-info": {
             "title": "Closing Ticket",
             "description": "`Ticket will be closed in 5 seconds.`"

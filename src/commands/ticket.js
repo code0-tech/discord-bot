@@ -132,6 +132,16 @@ const execute = async (interaction, client, guild, member, lang) => {
 const executeComponent = async (interaction, client, guild, componentData, member, lang) => {
     await interaction.deferReply({ ephemeral: true });
 
+    if (!member.roles.cache.has(config.roles.team)) {
+        await new Embed()
+            .setColor(config.embeds.colors.danger)
+            .addInputs({ ticketnumber: ticketNumber })
+            .addContext(lang, member, 'no-team-member')
+            .addCode0Footer()
+            .interactionResponse(interaction);
+        return;
+    }
+
     if (componentData.id == 'close-ticket') {
 
         interaction.message.delete();
