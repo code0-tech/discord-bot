@@ -1,9 +1,9 @@
 const config = require('./../../config.json');
 
 const searchData = [
-    {
-        "title": "About Sagittarius",
-        "hashtags": [
+    /* {
+        title: "About Sagittarius",
+        hashtags: [
             "Sagittarius",
             "github",
             "projects",
@@ -56,10 +56,7 @@ const searchData = [
             "info"
         ],
         description: "Telescopium serves as our comprehensive documentation hub. Whether you're looking to leverage our software like Hydra or explore other components, Telescopium is your first destination for guidance and understanding code0."
-    },
-
-    // Down here are other things
-
+    }, */
     {
         "title": "Discord Bot Commands",
         "hashtags": [
