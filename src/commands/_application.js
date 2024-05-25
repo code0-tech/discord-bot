@@ -1,12 +1,11 @@
 const { ChannelType, PermissionFlagsBits, PermissionsBitField, ButtonBuilder, ButtonStyle, ActionRowBuilder, DiscordjsError, AttachmentBuilder } = require("discord.js");
 const { channelFromInteraction, removeAllChannelUserPerms, channelsFromParent } = require('../discord/channel');
 const { getMessagesFromChannel } = require('./../discord/message');
-const { Embed } = require('./../models/Embed');
 const { channelFromId } = require('./../discord/channel');
 const { Channel } = require('./../models/Channel');
 const { getGuild } = require('./../discord/guild');
 const { keyArray } = require('./../utils/helper');
-
+const { Embed } = require('./../models/Embed');
 const config = require('./../../config.json');
 
 const data = null;
@@ -47,7 +46,7 @@ const autoRun = async (client) => {
         new Embed()
             .setColor(config.embeds.colors.info)
             .setTitle('Welcome to the Application Channel')
-            .setDescription(`Welcome! This is where you can start your application process. As an open contributor, you now have the opportunity to become a full Code0 member. Click the button below to create a new application channel and get in touch with our staff. We're excited to have you join Code0. If you already have an active application channel, please use that to continue your application.`)
+            .setDescription(`Welcome! This is where you can start your application process. As an open contributor, you now have the opportunity to become a part of our <@&${config.roles.team}>. Click the button below to create a new application channel and get in touch with our staff. We're excited to have you join Code0. If you already have an active application channel, please use that to continue your application.`)
             .responseToChannel(config.channels.application, client, [row])
     }
 }

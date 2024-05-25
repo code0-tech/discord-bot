@@ -85,6 +85,4 @@ setup();
 apply as an close team ping role
 apply as an open contributor
 
--> add /search
-
 */
