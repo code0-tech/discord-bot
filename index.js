@@ -83,4 +83,6 @@ apply as an open contributor
 
 -> Change the search function to also only need to write some letter to get entire things suggested
 maybe us lvh distance to fill them out based on the searchData and feed this into the flow
+
+-> /stats when active voice session update it auto and show `Current Session`
 */
