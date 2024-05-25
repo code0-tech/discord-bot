@@ -91,7 +91,7 @@ function findTopMatches(inputString, maxMatches = 5) {
     similarities.sort((a, b) => b.similarity - a.similarity);
 
     // Filter out matches with similarity score of 0
-    // const filteredSimilarities = similarities.filter(match => match.similarity > 0); // dont use this its better for UX
+    // const filteredSimilarities = similarities.filter(match => match.similarity > 0); // dont use this, its better for UX
 
     const topMatches = similarities.slice(0, maxMatches).map(match => ({
         ...searchData[match.index],
