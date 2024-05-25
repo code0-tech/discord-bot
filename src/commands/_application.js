@@ -1,9 +1,7 @@
 const { ChannelType, PermissionFlagsBits, PermissionsBitField, ButtonBuilder, ButtonStyle, ActionRowBuilder, DiscordjsError, AttachmentBuilder } = require("discord.js");
 const { channelFromInteraction, removeAllChannelUserPerms, channelsFromParent } = require('../discord/channel');
-const { getMessagesFromChannel } = require('./../discord/message');
-const { channelFromId } = require('./../discord/channel');
+const { messagesFromChannel } = require('./../discord/quick-dc');
 const { Channel } = require('./../models/Channel');
-const { getGuild } = require('./../discord/guild');
 const { keyArray } = require('./../utils/helper');
 const { Embed } = require('./../models/Embed');
 const config = require('./../../config.json');
@@ -11,16 +9,14 @@ const config = require('./../../config.json');
 const data = null;
 
 const autoRun = async (client) => {
-    const guild = await getGuild(config.serverid, client);
-    const applicationChannel = await channelFromId(config.channels.application, guild);
-    const messages = await getMessagesFromChannel(applicationChannel);
+    const messages = await messagesFromChannel(client, config.serverid, config.channels.application);
 
     const messagesIds = keyArray(messages);
 
-    messagesIds.forEach(messageId => {
+    messagesIds.forEach(async (messageId) => {
         const message = messages.get(messageId);
         if (message.author.id !== client.application.id) {
-            message.delete();
+            await message.delete();
         }
     });
 
