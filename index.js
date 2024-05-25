@@ -62,6 +62,8 @@ const setup = async () => {
 
 setup();
 
+// require('./data/search/engine');
+
 /* TODO
 
 - Discord Audit log Embeds

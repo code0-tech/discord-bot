@@ -1,5 +1,7 @@
 const { searchData } = require('./search');
 
+const allWords = searchData.flatMap(item => [...item.title.split(' '), ...item.hashtags.flatMap(tag => tag.split(' '))]);
+
 // Function to tokenize a sentence into words
 function tokenize(sentence) {
     return sentence.toLowerCase().match(/\b(\w+)\b/g);
@@ -64,6 +66,41 @@ function cosineSimilarity(vecA, vecB) {
     return dotProduct / (magnitudeA * magnitudeB);
 }
 
+function levenshteinDistance(s1, s2) {
+    if (s1 === s2) {
+        return 0;
+    }
+    if (s1.length === 0) {
+        return s2.length;
+    }
+    if (s2.length === 0) {
+        return s1.length;
+    }
+
+    const m = s1.length;
+    const n = s2.length;
+    const cost = s1[m - 1] === s2[n - 1] ? 0 : 1;
+    return Math.min(
+        levenshteinDistance(s1.slice(0, -1), s2) + 1,
+        levenshteinDistance(s1, s2.slice(0, -1)) + 1,
+        levenshteinDistance(s1.slice(0, -1), s2.slice(0, -1)) + cost
+    );
+}
+
+function selectSimilarFunction(inputString) {
+    let minDistance = Number.POSITIVE_INFINITY;
+    let similarFunction = null;
+    for (const func of allWords) {
+        const distance = levenshteinDistance(inputString, func);
+        if (distance < minDistance) {
+            minDistance = distance;
+            similarFunction = func;
+        }
+    }
+
+    return similarFunction;
+}
+
 function findTopMatches(inputString, maxMatches = 5) {
 
 
@@ -101,9 +138,17 @@ function findTopMatches(inputString, maxMatches = 5) {
     return topMatches;
 }
 
-const searchAutoComplete = async (search) => {
 
-    const topMatches = findTopMatches(search, search == 'all' ? 1000 : 5).map((data) => {
+const searchAutoComplete = async (search) => {
+    // if (search == 'all') return;
+
+    const words = search.split(" ");
+
+    const correctedWords = words.flatMap(word => selectSimilarFunction(word));
+
+    const newSearch = correctedWords.join(" ");
+
+    const topMatches = findTopMatches(newSearch, search == 'all' ? 1000 : 5).map((data) => {
         return {
             "name": data.title + (global.isDevelopment ? ` (debug: ${data.similarity})` : ''),
             "value": data.title
@@ -112,6 +157,9 @@ const searchAutoComplete = async (search) => {
 
     return topMatches;
 };
+
+
+// searchAutoComplete('Teaml memler')
 
 
 module.exports = { searchAutoComplete };
