@@ -90,7 +90,7 @@ const execute = async (interaction, client, guild, member, lang) => {
         await new Embed()
             .setColor(config.embeds.colors.info)
             .addInputs({
-                repostring,
+                repostring, // unused
                 yourpr: github.totalPullRequests,
                 neededpr: config.commands.opencontributor.pr,
 
@@ -101,7 +101,6 @@ const execute = async (interaction, client, guild, member, lang) => {
                 neededcommits: config.commands.opencontributor.commits,
 
                 githubname: name
-
             })
             .addContext(lang, member, messageType)
             .addCode0Footer()
