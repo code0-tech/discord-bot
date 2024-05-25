@@ -1,5 +1,7 @@
+const config = require('./../../config.json');
 const { searchData } = require('./search');
 
+// Get all words form Search and hashtags into one array
 const allWords = searchData.flatMap(item => [...item.title.split(' '), ...item.hashtags.flatMap(tag => tag.split(' '))]);
 
 // Function to tokenize a sentence into words
@@ -150,13 +152,17 @@ const searchAutoComplete = async (search) => {
         })
     }
 
+    // Take the Search input and create an array of the words
     const words = search.split(" ");
 
+    // Take the words and create new words using levenshteinDistance to the words inside the /searchdata
     const correctedWords = words.flatMap(word => selectSimilarFunction(word));
 
+    // Create a new Search String using the corrected words
     const newSearch = correctedWords.join(" ");
 
-    const topMatches = findTopMatches(newSearch, search == 'all' ? 1000 : 5).map((data) => {
+    // Use some really tricky math to get a result / get the 5 best results
+    const topMatches = findTopMatches(newSearch, config.commands.search.maxresults).map((data) => {
         return {
             "name": data.title + (global.isDevelopment ? ` (debug: ${data.similarity})` : ''),
             "value": data.title
