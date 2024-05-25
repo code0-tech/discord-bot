@@ -15,10 +15,50 @@ const searchData = [
         ],
         "description": "Sagittarius serves as the backbone of our project. Built with Ruby on Rails, it powers the application, enabling users to craft their own backends. From managing user data to handling the intricate logic of your backend, Sagittarius does it all."
     },
+    {
+        title: "About Pictor",
+        hastags: [
+            "Sagittarius",
+            "github",
+            "projects",
+            "repo",
+            "code0tech",
+            "tech",
+            "guide",
+            "info"
+        ],
+        description: "Pictor represents our very own React component library. It serves as the cornerstone of all our web applications, offering a wealth of inspiration for developers."
+    },
+    {
+        title: "About Hydra",
+        hastags: [
+            "Sagittarius",
+            "github",
+            "projects",
+            "repo",
+            "code0tech",
+            "tech",
+            "guide",
+            "info"
+        ],
+        description: "Hydra is a WebSocket library built on uWebSockets. All communication within our software ecosystem is powered by Hydra, ensuring seamless interaction."
+    },
+    {
+        title: "About Telescopium",
+        hastags: [
+            "Sagittarius",
+            "github",
+            "projects",
+            "repo",
+            "code0tech",
+            "tech",
+            "guide",
+            "info"
+        ],
+        description: "Telescopium serves as our comprehensive documentation hub. Whether you're looking to leverage our software like Hydra or explore other components, Telescopium is your first destination for guidance and understanding code0."
+    },
 
-
-
-
+    // Down here are other things
 
     {
         "title": "Discord Bot Commands",
