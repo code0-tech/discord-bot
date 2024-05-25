@@ -22,7 +22,7 @@
         },
         "no-team-member": {
             "title": "Sorry",
-            "description": "Only the Team member can close a ticket."
+            "description": "Only Team members can close a ticket."
         },
         "close-info": {
             "title": "Closing Ticket",
