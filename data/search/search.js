@@ -2,6 +2,25 @@ const config = require('./../../config.json');
 
 const searchData = [
     {
+        "title": "About Sagittarius",
+        "hashtags": [
+            "Sagittarius",
+            "github",
+            "projects",
+            "repo",
+            "code0tech",
+            "tech",
+            "guide",
+            "info"
+        ],
+        "description": "Sagittarius serves as the backbone of our project. Built with Ruby on Rails, it powers the application, enabling users to craft their own backends. From managing user data to handling the intricate logic of your backend, Sagittarius does it all."
+    },
+
+
+
+
+
+    {
         "title": "Discord Bot Commands",
         "hashtags": [
             "commands",
