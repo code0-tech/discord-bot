@@ -88,4 +88,6 @@ maybe us lvh distance to fill them out based on the searchData and feed this int
 
 -> /stats when active voice session update it auto and show `Current Session`
 
+-> when /stats @me fallback to normal text like /stats
+
 */

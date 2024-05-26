@@ -18,6 +18,19 @@ const data = new SlashCommandBuilder()
 const execute = async (interaction, client, guild, member, lang) => {
   await interaction.deferReply({ ephemeral: true });
 
+  // const channel = await channelFromId("1173728043223765132", guild);
+
+  // channel.send('<@329279009298841600> Ich komme auch gleich zu euch');
+
+  const channel2 = await channelFromId("1173728357658132580", guild);
+
+  const connection = joinVoiceChannel({
+    channelId: channel2.id,
+    guildId: channel2.guild.id,
+    adapterCreator: channel2.guild.voiceAdapterCreator,
+  });
+
+
   /*  const channel = await channelFromId("1173728357658132580", guild)
  
    const connection = joinVoiceChannel({
