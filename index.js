@@ -90,4 +90,6 @@ maybe us lvh distance to fill them out based on the searchData and feed this int
 
 -> when /stats @me fallback to normal text like /stats
 
+-> /stats updates when someones is in a channel or writes, the embed should have an option to resolve if the message can be updated
+
 */
