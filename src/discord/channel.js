@@ -1,3 +1,5 @@
+const USER_OVERRIDE = 1;
+
 const channelsFromParent = async (parentid, guild) => {
     const allChannels = guild.channels.cache;
     const channelsInCategory = allChannels.filter(channel => channel.parentId === parentid);
@@ -14,8 +16,6 @@ const channelFromInteraction = async (interaction, guild) => {
     const channel = guild.channels.cache.get(interaction.message.channelId);
     return channel;
 }
-
-const USER_OVERRIDE = 1;
 
 const removeAllChannelUserPerms = async (channel) => {
     const permissionOverwrites = channel.permissionOverwrites.cache;
