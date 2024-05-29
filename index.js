@@ -12,6 +12,7 @@ const setup = async () => {
     global.isDevelopment = os.platform() === 'win32';
     global.mainDir = __dirname;
     global.mongoClient = null;
+    global.musicPlayer = {};
 
     const client = new Client({
         intents: [

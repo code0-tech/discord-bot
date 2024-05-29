@@ -17,6 +17,8 @@
     "html2canvas": "^1.4.1",
     "libsodium-wrappers": "^0.7.13",
     "mongo": "^0.1.0",
-    "node-fetch": "^2.6.12"
+    "node-fetch": "^2.6.12",
+    "puppeteer": "^22.10.0",
+    "ytdl-core": "^4.11.5"
   }
 }
