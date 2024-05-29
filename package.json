@@ -1,6 +1,6 @@
 {
   "name": "code0",
-  "version": "1.2.05",
+  "version": "1.2.06",
   "description": "Code0 Discord Bot standalone, more information in the ReadMe",
   "main": "index.js",
   "type": "commonjs",
