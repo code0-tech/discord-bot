@@ -32,6 +32,8 @@ const execute = async (interaction, client, guild, member, lang) => {
     await interaction.deferReply({ ephemeral: true });
 
     const userIdToCheck = interaction.options._hoistedOptions.length !== 0 ? interaction.options._hoistedOptions[0].user.id : member.user.id;
+    let embedMessage = interaction.options._hoistedOptions.length !== 0 && userIdToCheck !== member.user.id ? 'other-stats-response' : 'own-stats-response';
+
     const rankMember = await guild.members.fetch(userIdToCheck);
 
     const user = await new MongoUser(userIdToCheck).init();
@@ -40,7 +42,6 @@ const execute = async (interaction, client, guild, member, lang) => {
 
     const normalizedStats = normalizeData(stats);
 
-    let embedMessage = interaction.options._hoistedOptions.length == 0 ? 'own-stats-response' : 'other-stats-response';
 
     if (client.user.id == userIdToCheck) {
         embedMessage = 'this-bot-stats';

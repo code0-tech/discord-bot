@@ -24,6 +24,7 @@ const joinVoice = (client, userid) => {
     }
 }
 
+
 const switchVoice = (client, userid) => {
     if (!voiceChatUser[userid]) {
         voiceChatUser[userid] = {
