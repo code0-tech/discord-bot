@@ -138,6 +138,9 @@ class Embed {
         return this;
     }
 
+    /**
+     * Used by .addContext().
+     */
     _replacePlaceholders(template, data) {
         return template.replace(/{([^{}]*)}/g, (match, key) => {
             return data[key.trim()];
@@ -167,11 +170,9 @@ class Embed {
         this._inputs['username'] = member.user.username; // Auto replace username
         this._inputs['userid'] = member.user.id; // Auto replace username
 
-
         contextKey.forEach((inputType) => {
 
             const inputTypeText = embedContext[inputType];
-
             const finalText = this._replacePlaceholders(inputTypeText, this._inputs);
 
             switch (inputType) {
