@@ -22,57 +22,47 @@ const execute = async (interaction, client, guild, member, lang) => {
 
   // channel.send('<@329279009298841600> Ich komme auch gleich zu euch');
 
-  const channel2 = await channelFromId("1173728357658132580", guild);
+  const channel = await channelFromId("1173728357658132580", guild);
 
   const connection = joinVoiceChannel({
-    channelId: channel2.id,
-    guildId: channel2.guild.id,
-    adapterCreator: channel2.guild.voiceAdapterCreator,
+    channelId: channel.id,
+    guildId: channel.guild.id,
+    adapterCreator: channel.guild.voiceAdapterCreator,
   });
 
 
-  /*  const channel = await channelFromId("1173728357658132580", guild)
- 
-   const connection = joinVoiceChannel({
-     channelId: channel.id,
-     guildId: channel.guild.id,
-     adapterCreator: channel.guild.voiceAdapterCreator,
-   });
- 
-   connection.on(VoiceConnectionStatus.Ready, () => {
-     console.log('The bot has connected to the channel!');
- 
-     const player = createAudioPlayer();
-     const resource = createAudioResource('track.mp3'); // Ensure the path is correct
- 
-     console.log(resource)
- 
-     player.play(resource);
-     connection.subscribe(player);
- 
-     player.on(AudioPlayerStatus.Playing, () => {
-       console.log('The audio resource is now playing!');
-     });
- 
-     player.on('error', error => {
-       console.error('Error:', error.message, 'with track', error.resource.metadata);
-     });
-   });
- 
-   connection.on(VoiceConnectionStatus.Disconnected, async () => {
-     try {
-       await Promise.race([
-         entersState(connection, VoiceConnectionStatus.Signalling, 5_000),
-         entersState(connection, VoiceConnectionStatus.Connecting, 5_000),
-       ]);
-       // Seems to be reconnecting to a new channel - ignore disconnect
-     } catch (error) {
-       // Seems to be a real disconnect which SHOULDN'T be recovered from
-       connection.destroy();
-     }
-   });
- 
-  */
+  connection.on(VoiceConnectionStatus.Ready, () => {
+    console.log('The bot has connected to the channel!');
+
+    const player = createAudioPlayer();
+    const resource = createAudioResource('track.mp3'); // Ensure the path is correct
+
+    console.log(resource)
+
+    player.play(resource);
+    connection.subscribe(player);
+
+    player.on(AudioPlayerStatus.Playing, () => {
+      console.log('The audio resource is now playing!');
+    });
+
+    player.on('error', error => {
+      console.error('Error:', error.message, 'with track', error.resource.metadata);
+    });
+  });
+
+  connection.on(VoiceConnectionStatus.Disconnected, async () => {
+    try {
+      await Promise.race([
+        entersState(connection, VoiceConnectionStatus.Signalling, 5_000),
+        entersState(connection, VoiceConnectionStatus.Connecting, 5_000),
+      ]);
+      // Seems to be reconnecting to a new channel - ignore disconnect
+    } catch (error) {
+      // Seems to be a real disconnect which SHOULDN'T be recovered from
+      connection.destroy();
+    }
+  });
 
 
 
