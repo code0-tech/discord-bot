@@ -15,11 +15,10 @@ const data = new SlashCommandBuilder()
   .setDefaultMemberPermissions(PermissionFlagsBits.Administrator)
 
 
+const { Readable } = require('stream');
 const { join } = require('path');
 const ytdl = require('ytdl-core');
-
 // const audioPath = join(global.mainDir, 'track.mp3');
-const { Readable } = require('stream');
 
 const execute = async (interaction, client, guild, member, lang) => {
   await interaction.deferReply({ ephemeral: true });
