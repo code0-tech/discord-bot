@@ -39,4 +39,8 @@ const checkState = async (oldState, newState) => {
     }
 }
 
-module.exports = { checkState };
+const userVoiceState = async (userid, guild) => {
+    return guild.voiceStates.cache.get(userid);
+}
+
+module.exports = { checkState, userVoiceState };

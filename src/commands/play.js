@@ -3,6 +3,7 @@ const { SlashCommandBuilder } = require('@discordjs/builders');
 const { Embed } = require('./../models/Embed');
 const config = require('../../config.json');
 const ytdl = require('ytdl-core');
+const { userVoiceState } = require('./../discord/voice');
 
 const data = new SlashCommandBuilder()
     .setName('play')
@@ -15,29 +16,36 @@ const data = new SlashCommandBuilder()
     .setDefaultMemberPermissions(PermissionFlagsBits.Administrator)
 
 
+// This is just for fun so no entries in english.json
+
+
 const execute = async (interaction, client, guild, member, lang) => {
     await interaction.deferReply({ ephemeral: true });
 
-};
-
-const autoComplete = async (interaction, client, guild, member, lang) => {
-    const focusedValue = interaction.options.getFocused();
-
-    if (!focusedValue) {
-        await interaction.respond([]);
+    if (global.musicPlayer.inuse == true) {
+        await new Embed()
+            .setColor(config.embeds.colors.info)
+            .setTitle('Already Playing Music')
+            .interactionResponse(interaction);
         return;
     }
 
-    const searchResults = await ytdl.search(focusedValue);
+    const { channelId } = await userVoiceState(member.id, guild);
+
+    if (channelId == null) {
+        await new Embed()
+            .setColor(config.embeds.colors.info)
+            .setTitle('You are not in a Voice Channel')
+            .interactionResponse(interaction);
+        return;
+    }
 
 
 
-    console.log(searchResults)
-
-    // await interaction.respond(await (focusedValue));
 };
+
 
 
 const componentIds = [];
 
-module.exports = { execute, componentIds, autoComplete, data };
+module.exports = { execute, componentIds, data };
