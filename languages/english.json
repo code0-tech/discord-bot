@@ -115,6 +115,10 @@
         "application-message": {
             "title": "Apply Here",
             "description": "Here you can apply and communicate with our staff to get involved with Code0."
+        },
+        "no-team-member": {
+            "title": "Sorry",
+            "description": "Only Team members can close an Application."
         }
     }
 }
