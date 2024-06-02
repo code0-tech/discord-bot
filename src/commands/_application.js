@@ -76,7 +76,7 @@ const executeComponent = async (interaction, client, guild, buttonData, member, 
 
         const applicationChannel = await new Channel()
             .setName(`${config.emojis.application}${config.emojis["default-combine-symbol"]}${member.user.username}`)
-            .setParent(config.parents.application)
+            .setParent(config.parents.applications)
             .setType(ChannelType.GuildText)
             .setPermissionOverwrite(interaction.guild.id, [], [
                 PermissionsBitField.Flags.ViewChannel
