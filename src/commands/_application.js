@@ -64,50 +64,95 @@ const checkLastCreatedTicket = async (guild, member) => {
 const executeComponent = async (interaction, client, guild, buttonData, member, lang) => {
     const defer = await interaction.deferReply({ ephemeral: true });
 
-    // add different message to apply buttons in channel
+    if (buttonData.id == 'application-apply-closed-team' || buttonData.id == 'application-apply-open-contributor') {
 
-    if (await checkLastCreatedTicket(guild, member)) {
+        if (await checkLastCreatedTicket(guild, member)) {
+            new Embed()
+                .setColor(config.embeds.colors.danger)
+                .addContext(lang, member, 'has-application')
+                .interactionResponse(interaction)
+            return;
+        }
+
+        const applicationChannel = await new Channel()
+            .setName(`${config.emojis.application}${config.emojis["default-combine-symbol"]}${member.user.username}`)
+            .setParent(config.parents.application)
+            .setType(ChannelType.GuildText)
+            .setPermissionOverwrite(interaction.guild.id, [], [
+                PermissionsBitField.Flags.ViewChannel
+            ])
+            .setPermissionOverwrite(interaction.user.id, [
+                PermissionsBitField.Flags.ViewChannel,
+                PermissionsBitField.Flags.AttachFiles,
+                PermissionsBitField.Flags.SendMessages,
+                PermissionsBitField.Flags.EmbedLinks,
+                PermissionsBitField.Flags.AddReactions
+            ])
+            .createChannel(guild);
+
+        const closeApplication = new ButtonBuilder()
+            .setCustomId('application-close')
+            .setLabel(lang.text['btn-close'])
+            .setStyle(ButtonStyle.Danger);
+
+        const row = new ActionRowBuilder()
+            .addComponents(closeApplication);
+
         new Embed()
-            .setColor(config.embeds.colors.danger)
-            .addContext(lang, member, 'has-application')
+            .setColor(config.embeds.colors.info)
+            .addContext(lang, member, 'application-message')
+            .responseToChannel(applicationChannel.id, client, [row]);
+
+        new Embed()
+            .setColor(config.embeds.colors.info)
+            .addInputs({ channelid: applicationChannel.id })
+            .addContext(lang, member, 'new-application')
             .interactionResponse(interaction)
-        return;
+
+    } else if (buttonData.id == 'application-close') {
+
+        if (!member.roles.cache.has(config.roles.team)) {
+            await new Embed()
+                .setColor(config.embeds.colors.danger)
+                .addContext(lang, member, 'no-team-member')
+                .interactionResponse(interaction);
+            return;
+        }
+
+        interaction.message.delete();
+
+        const applicationChannel = await channelFromInteraction(interaction, guild);
+
+        removeAllChannelUserPerms(applicationChannel);
+
+        const confirmDelete = new ButtonBuilder()
+            .setCustomId('delete-ticket')
+            .setLabel(lang.text['btn-remove'])
+            .setStyle(ButtonStyle.Danger);
+
+        const row = new ActionRowBuilder()
+            .addComponents(confirmDelete);
+
+        await new Embed()
+            .setColor(config.embeds.colors.danger)
+            .addInputs({ closeduserid: interaction.user.id })
+            .addContext(lang, member, 'confirm-remove-application')
+            .responseToChannel(applicationChannel.id, client, [row]);
+
+        applicationChannel.setName(`${applicationChannel.name}-closed`);
+
+    } else {
+        const applicationChannel = await channelFromInteraction(interaction, guild);
+        applicationChannel.delete({ reason: "Apply was closed and marked as ~fin" });
     }
-
-    const applicationChannel = await new Channel()
-        .setName(`${config.emojis.application}${config.emojis["default-combine-symbol"]}${member.user.username}`)
-        .setParent(config.parents.application)
-        .setType(ChannelType.GuildText)
-        .setPermissionOverwrite(interaction.guild.id, [], [
-            PermissionsBitField.Flags.ViewChannel
-        ])
-        .setPermissionOverwrite(interaction.user.id, [
-            PermissionsBitField.Flags.ViewChannel,
-            PermissionsBitField.Flags.AttachFiles,
-            PermissionsBitField.Flags.SendMessages,
-            PermissionsBitField.Flags.EmbedLinks,
-            PermissionsBitField.Flags.AddReactions
-        ])
-        .createChannel(guild);
-
-    new Embed()
-        .setColor(config.embeds.colors.info)
-        .addContext(lang, member, 'application-message')
-        .responseToChannel(applicationChannel.id, client);
-
-    new Embed()
-        .setColor(config.embeds.colors.info)
-        .addInputs({ channelid: applicationChannel.id })
-        .addContext(lang, member, 'new-application')
-        .interactionResponse(interaction)
-
 }
 
 
 const componentIds = [
     'application-apply-closed-team',
     'application-apply-open-contributor',
-    'application-close'
+    'application-close',
+    'application-remove'
 ];
 
 module.exports = { executeComponent, componentIds, data, autoRun };

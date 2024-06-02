@@ -104,6 +104,8 @@
         }
     },
     "_application": {
+        "btn-remove": "Remove Application",
+        "btn-close": "Close Application",
         "new-application": {
             "title": "Application Channel Created",
             "description": "A new application channel has been created for you: <#{channelid}>."
@@ -119,6 +121,10 @@
         "no-team-member": {
             "title": "Sorry",
             "description": "Only Team members can close an Application."
+        },
+        "confirm-remove-application": {
+            "title": "Application Closed",
+            "description": "`The Application was Closed by `<@{closeduserid}>`.`"
         }
     }
 }
