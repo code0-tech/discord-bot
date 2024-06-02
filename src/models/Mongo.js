@@ -51,7 +51,7 @@ class Mongo {
     }
 }
 
-const ENUMS = { // This is better that a config because autocomplet of VSC works better and fast
+const ENUMS = { // const ENMUS > config.json: autocomplet of VSC works better and faster
     DCB: {
         USERS: { "db": "Code0", "t": "users" },
         LOGS: { "db": "Code0", "t": "logs" },
