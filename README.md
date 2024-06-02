@@ -16,6 +16,7 @@ For that reason a Http Port is required and currently set to `http-config.port` 
 Also a MongoDb is required as this Bot needs some DataBase to store Data
 #
 
+## Main Interactions
 
 |     | Command                                      | Status       |
 | --- | ---------------------------------------------| ------------ |
@@ -25,7 +26,7 @@ Also a MongoDb is required as this Bot needs some DataBase to store Data
 | 4   | `/contributor`                               | Finished     |
 | 5   | `/rank` or `/rank @user`                     | Finished     |
 | 6   | `/leaderboard` or `/leaderboard limit: 1-20` | Finished     |
-| 7   | `Code0 Application Ticket/`                  | 1/2          |
+| 7   | `Code0 Application Ticket/`                  | Finished     |
 | 9   | `/stats` or `/stats @user`                   | Design       |
 | 7   | `/search`                                    | More Data!!! |
 
