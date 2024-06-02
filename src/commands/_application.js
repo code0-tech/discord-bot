@@ -1,4 +1,4 @@
-const { ChannelType, PermissionFlagsBits, PermissionsBitField, ButtonBuilder, ButtonStyle, ActionRowBuilder, DiscordjsError, AttachmentBuilder } = require("discord.js");
+const { ChannelType, PermissionsBitField, ButtonBuilder, ButtonStyle, ActionRowBuilder } = require("discord.js");
 const { channelFromInteraction, removeAllChannelUserPerms, channelsFromParent } = require('../discord/channel');
 const { messagesFromChannel } = require('./../discord/quick-dc');
 const { Channel } = require('./../models/Channel');
