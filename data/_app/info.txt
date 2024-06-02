@@ -1,0 +1,1 @@
+This folder is not Code, here are other utils or files that are used to setup DC or the Bot
