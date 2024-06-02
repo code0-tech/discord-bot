@@ -98,5 +98,32 @@
             "title": "Leaderboard",
             "description": "{stringlist}"
         }
+    },
+    "_application": {
+        "btn-remove": "Lösche diese Bewerbung",
+        "btn-close": "Schließe diese Bewerbung",
+        "new-application": {
+            "title": "Bewerbungs Kanal erstellt",
+            "description": "Ein neuer Bewerbungs Kanal wurde für dich erstellt: <#{channelid}>."
+        },
+        "has-application": {
+            "title": "Ein bereits bestehender Bewerbungs Kanal wurde gefunden",
+            "description": "Es tut uns leid, aber du kannst jeweils nur einen Bewerbungs kanal haben."
+        },
+        "application-message": {
+            "title": "Bewirb dich hier",
+            "description": "Hier kannst du dich bewerben und mit unserem Team kommunizieren."
+        },
+        "no-team-member": {
+            "title": "Entschuldigung",
+            "description": "Nur Team Mitglieder können eine Bewerbung schliessen."
+        },
+        "confirm-remove-application": {
+            "title": "Bewerbung geschlossen",
+            "description": "`Die Bewerbung wurde von `<@{closeduserid}>` geschlossen.`"
+        },
+        "close-info": {
+            "title": "Bewerbung wurde geschlossen"
+        }
     }
 }
