@@ -70,7 +70,7 @@ const searchData = [
         "description": "Discover a multitude of commands to enhance your Discord experience and maximize the potential of our bot."
     },
     {
-        "title": "Xp: Level Up Your Interactions",
+        "title": "Xp stats",
         "hashtags": [
             "xp",
             "interactions",
