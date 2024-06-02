@@ -7,11 +7,13 @@ const generateRunId = () => {
     return Date.now();
 };
 
+
 const processNextLog = async () => {
     if (!logDocument && logBuffer.length > 0) {
         const MongoDb = new Mongo();
         const runId = generateRunId();
         logDocument = runId;
+        process['runId'] = runId;
 
         const initialLogDocument = {
             "run_id": runId,
