@@ -82,6 +82,17 @@
             "description": "### Nun, ich habe es nicht so mit dem sammeln von Xp.\nVersuchs mal mit einem `benutzer` statt wie mit mir, einem Bot c:"
         }
     },
+    "stats": {
+        "own-stats-response": {
+            "description": "### Nachrichten:\nAnzahl: `{count}`\nWörter: `{words}`\nZeichen: `{chars}`\n### Voice:\nJoins: `{joins}`\nSwitchs: `{switchs}`\nInsgesamt: `{voicedays}` Tage, `{voicehours}` Stunden, `{voiceminutes}` Minuten, `{voiceseconds}` Sekunden.\n\nInfo:\nXP entspricht niemals deiner Anzahl an Nachrichten.\nVoice Statistiken werden erst aktualisiert, nachdem du einen Kanal verlassen hast."
+        },
+        "other-stats-response": {
+            "description": "### Nachrichten:\nAnzahl: `{count}`\nWörter: `{words}`\nZeichen: `{chars}`\n### Voice:\nJoins: `{joins}`\nSwitchs: `{switchs}`\nInsgesamt: `{voicedays}` Tage, `{voicehours}` Stunden, `{voiceminutes}` Minuten, `{voiceseconds}` Sekunden.\n\nInfo:\nXP entspricht niemals seiner/ihrer Anzahl an Nachrichten.\nVoice Statistiken werden erst aktualisiert, nachdem er/sie einen Kanal verlassen hat."
+        },
+        "this-bot-stats": {
+            "description": "### Nun, ich habe es nicht so mit dem sammeln von Stats.\nVersuchs mal mit einem `benutzer` statt wie mit mir, einem Bot c:"
+        }
+    },
     "leaderboard": {
         "board": {
             "title": "Leaderboard",
