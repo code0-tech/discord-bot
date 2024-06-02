@@ -12,28 +12,6 @@ const data = new SlashCommandBuilder()
 
 const USER_OVERRIDE = 1;
 
-/* const getSmallestTicketNumber = async (guild) => {
-    const channelsInCategory = await channelsFromParent(config.parents.support, guild);
-
-    const existingNumbers = channelsInCategory.map(channel => {
-        const match = channel.name.match(/(\d+)/);
-        return match ? parseInt(match[0]) : null;
-    });
-
-    const sortedNumbers = existingNumbers.filter(num => num !== null).sort((a, b) => a - b);
-
-    let nextAvailableNumber = 1;
-    for (const num of sortedNumbers) {
-        if (num > nextAvailableNumber) {
-            break;
-        }
-        nextAvailableNumber++;
-    }
-    const formattedNumber = nextAvailableNumber.toString().padStart(6, '0');
-
-    return formattedNumber;
-} */
-
 const checkLastCreatedTicket = async (guild, member) => {
     const channelsInCategory = await channelsFromParent(config.parents.support, guild);
 
@@ -81,8 +59,6 @@ const execute = async (interaction, client, guild, member, lang) => {
         .setColor(config.embeds.colors.info)
         .addContext(lang, member, 'create')
         .interactionResponse(interaction);
-
-    // const ticketNumber = await getSmallestTicketNumber(guild);
 
     const ticketChannel = await new Channel()
         .setName(`${config.emojis.support}${config.emojis['default-combine-symbol']}${member.user.username}`)
