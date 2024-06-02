@@ -1,7 +1,4 @@
 {
-    "embed-design": {
-        "_choices": {}
-    },
     "ticket": {
         "btn-close": "Close",
         "timeout": {
