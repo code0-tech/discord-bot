@@ -118,7 +118,6 @@ const execute = async (interaction, client, guild, member, lang) => {
     await new Embed()
         .setColor(config.embeds.colors.info)
         .addContext(lang, member, 'info-message')
-        .addCode0Footer()
         .responseToChannel(ticketChannel.id, client, [row], true);
 
 }
