@@ -1,11 +1,11 @@
 const setup = async () => {
 
+    require('./src/start-up/update-console-log');
+    require('./src/start-up/process-exit');
+
     const { Client, Events, GatewayIntentBits, Partials } = require('discord.js');
     const dotenv = require('dotenv');
     const os = require('os');
-
-    require('./src/start-up/update-console-log');
-    require('./src/start-up/process-exit');
 
     global.isDevelopment = os.platform() === 'win32';
 
