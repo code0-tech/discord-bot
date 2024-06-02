@@ -13,7 +13,10 @@ const processNextLog = async () => {
         const MongoDb = new Mongo();
         const runId = generateRunId();
         logDocument = runId;
-        process['runId'] = runId;
+
+        process['dclogger'] = {
+            runid: runId
+        };
 
         const initialLogDocument = {
             "run_id": runId,
