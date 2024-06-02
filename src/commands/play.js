@@ -1,16 +1,16 @@
 const { PermissionFlagsBits } = require("discord.js");
 const { SlashCommandBuilder } = require('@discordjs/builders');
 const { Embed } = require('./../models/Embed');
-const config = require('./../../config.json');
+const config = require('../../config.json');
 const ytdl = require('ytdl-core');
 
 const data = new SlashCommandBuilder()
     .setName('play')
     .setDescription('Play music stream from yt videos.')
     .addStringOption(option =>
-        option.setName('title')
-            .setDescription('Here you can find most of our basic answear. Type "all" to get a full list.')
-            .setAutocomplete(true)
+        option.setName('url')
+            .setDescription('Use Youtube or Youtube Music urls.')
+        // .setAutocomplete(true)
     )
     .setDefaultMemberPermissions(PermissionFlagsBits.Administrator)
 
