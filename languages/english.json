@@ -125,6 +125,9 @@
         "confirm-remove-application": {
             "title": "Application Closed",
             "description": "`The Application was Closed by `<@{closeduserid}>`.`"
+        },
+        "close-info": {
+            "title": "Closing Application"
         }
     }
 }

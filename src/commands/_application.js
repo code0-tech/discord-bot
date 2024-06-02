@@ -121,6 +121,11 @@ const executeComponent = async (interaction, client, guild, buttonData, member, 
 
         interaction.message.delete();
 
+        await new Embed()
+            .setColor(config.embeds.colors.danger)
+            .addContext(lang, member, 'close-info')
+            .interactionResponse(interaction);
+
         const applicationChannel = await channelFromInteraction(interaction, guild);
 
         removeAllChannelUserPerms(applicationChannel);
