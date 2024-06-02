@@ -22,6 +22,8 @@ const data = new SlashCommandBuilder()
 const execute = async (interaction, client, guild, member, lang) => {
     await interaction.deferReply({ ephemeral: true });
 
+    return;
+
     if (global.musicPlayer.inuse == true) {
         await new Embed()
             .setColor(config.embeds.colors.info)
