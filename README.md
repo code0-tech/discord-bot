@@ -40,3 +40,12 @@ Also a MongoDb is required as this Bot needs some DataBase to store Data
 4. <span style="color:green;">Xp on Interactions with anti spam features</span>
 
 </details>
+
+## Tracking
+
+We do track stats, as you could also tell by our Bot's source code such as:
+
+- Message Stats -> message/word/char count.
+- Voice Stats -> joins/leaves/switches.
+
+We use these to determine your rank or display some cool information about you.
