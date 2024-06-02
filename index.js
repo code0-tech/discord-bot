@@ -75,19 +75,9 @@ setup();
 
 -> Fix .addInputs giving error when lang pack does not conatin and placholder and vice versa
 
--> Fix bot beeing added to the DB, reason unknown, maybe some command or xp stuff that adds him
-
 -> Double id's are saved sometimes in MongoDb user
-
--> Application channel two buttons => apply now, apply as open-contributor
-
-apply as an close team ping role
-apply as an open contributor
-
--> make the application command / interaction to work as nico intended
-
--> /stats updates when someones is in a channel or writes, the embed should have an option to resolve if the message can be updated
 
 -> add language for /search
 
+-> add /logs -> create channel with all logs < 100 should be added + when new ones are generated until channel has been deleted or the button was used
 */
