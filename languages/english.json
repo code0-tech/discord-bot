@@ -25,8 +25,7 @@
             "description": "Only Team members can close a ticket."
         },
         "close-info": {
-            "title": "Closing Ticket",
-            "description": "`Ticket will be closed in 5 seconds.`"
+            "title": "Closing Ticket"
         },
         "closed": {
             "title": "Closed",

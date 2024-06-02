@@ -147,6 +147,15 @@ const executeComponent = async (interaction, client, guild, buttonData, member, 
         applicationChannel.setName(`${applicationChannel.name}-closed`);
 
     } else {
+
+        if (!member.roles.cache.has(config.roles.team)) {
+            await new Embed()
+                .setColor(config.embeds.colors.danger)
+                .addContext(lang, member, 'no-team-member')
+                .interactionResponse(interaction);
+            return;
+        }
+
         const applicationChannel = await channelFromInteraction(interaction, guild);
         applicationChannel.delete({ reason: "Apply was closed and marked as ~fin" });
     }
