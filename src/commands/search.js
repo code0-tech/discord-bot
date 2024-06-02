@@ -1,4 +1,4 @@
-const { searchAutoComplete } = require('./../../data/search/engine');
+const { searchAutoComplete } = require('./../utils/search-engine');
 const { SlashCommandBuilder } = require('@discordjs/builders');
 const { searchData } = require('./../../data/search/search');
 const { Embed } = require('./../models/Embed');

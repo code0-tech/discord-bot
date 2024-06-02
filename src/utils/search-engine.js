@@ -1,5 +1,5 @@
-const config = require('./../../config.json');
-const { searchData } = require('./search');
+const config = require('../../config.json');
+const { searchData } = require('../../data/search/search');
 
 // Get all words form Search and hashtags into one array
 const allWords = searchData.flatMap(item => [...item.title.split(' '), ...item.hashtags.flatMap(tag => tag.split(' '))]);
@@ -104,7 +104,6 @@ function selectSimilarFunction(inputString) {
 }
 
 function findTopMatches(inputString, maxMatches = 5) {
-
 
     // Combine title and hashtags into a single string for each entry
     const combinedDocuments = searchData.map(entry => `${entry.title} ${entry.hashtags.join(' ')}`);
