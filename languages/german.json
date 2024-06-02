@@ -123,7 +123,7 @@
             "description": "`Die Bewerbung wurde von `<@{closeduserid}>` geschlossen.`"
         },
         "close-info": {
-            "title": "Bewerbung wurde geschlossen"
+            "title": "Bewerbung wird geschlossen"
         }
     }
 }
