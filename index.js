@@ -7,9 +7,10 @@ const setup = async () => {
     require('./src/start-up/update-console-log');
     require('./src/start-up/process-exit');
 
-    dotenv.config({ path: os.platform() === 'win32' ? '.env' : 'server.env' });
-
     global.isDevelopment = os.platform() === 'win32';
+
+    dotenv.config({ path: global.isDevelopment ? '.env' : 'server.env' });
+
     global.mainDir = __dirname;
     global.mongoClient = null;
     global.musicPlayer = {
