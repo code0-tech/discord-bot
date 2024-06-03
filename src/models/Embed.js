@@ -143,7 +143,12 @@ class Embed {
      */
     _replacePlaceholders(template, data) {
         return template.replace(/{([^{}]*)}/g, (match, key) => {
+            if (data[key.trim()] == undefined) {
+                console.log(`[Embed Error] a Placeholder "${key}" was not found as an input.`)
+                return '';
+            }
             return data[key.trim()];
+
         });
     }
 
@@ -165,6 +170,12 @@ class Embed {
      */
     addContext(lang, member, contextId) {
         const embedContext = lang.text[contextId];
+
+        if (embedContext == undefined) {
+            console.log('[Embed Error] Specified language context was not given.');
+            // Do not throw an error or return, because that is handeld by the interaction
+        }
+
         const contextKey = Object.keys(embedContext);
 
         this._inputs['username'] = member.user.username; // Auto replace username
