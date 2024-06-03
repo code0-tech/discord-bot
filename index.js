@@ -1,4 +1,4 @@
-const setup = async () => {
+const startCode0 = async () => {
 
     require('./src/start-up/update-console-log');
     require('./src/start-up/process-exit');
@@ -64,7 +64,7 @@ const setup = async () => {
     client.login(process.env.TOKEN);
 }
 
-setup();
+startCode0();
 
 // require('./data/search/engine');
 
