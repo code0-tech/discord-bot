@@ -1,11 +1,11 @@
 const { ChannelType, PermissionsBitField, ButtonBuilder, ButtonStyle, ActionRowBuilder } = require("discord.js");
 const { channelFromInteraction, removeAllChannelUserPerms, channelsFromParent } = require('../discord/channel');
 const { messagesFromChannel } = require('./../discord/quick-dc');
+const { isTeamMember } = require('./../discord/user');
 const { Channel } = require('./../models/Channel');
 const { keyArray } = require('./../utils/helper');
 const { Embed } = require('./../models/Embed');
 const config = require('./../../config.json');
-const { isTeamMember } = require('./../discord/user');
 
 const data = null;
 
