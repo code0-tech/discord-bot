@@ -149,6 +149,6 @@ const executeComponent = async (interaction, client, guild, buttonData, member, 
 
 }
 
-const componentIds = [];
+// const componentIds = [];
 
-module.exports = { execute, executeComponent, componentIds, data };
+module.exports = { execute, executeComponent, data };

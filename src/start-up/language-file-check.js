@@ -9,7 +9,7 @@ const checkLanguage = (exampleJson, langJson, langName) => {
             const commandTexts = Object.keys(langJson[exampleCommandKey]);
 
             exampleJson[exampleCommandKey].forEach(commandText => {
-                if (!commandTexts.includes(commandText)) {
+                if (!commandTexts.includes(commandText) && !commandText.startsWith('#')) { // Command text with # is just for one language
                     console.log(`[Lang Check] In file ${langName}, text for /${exampleCommandKey} with text "${commandText}" is missing.`);
                 }
             });
