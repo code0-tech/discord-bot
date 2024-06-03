@@ -223,6 +223,24 @@ class Embed {
 
                 // Before sending check if is not an Invalid Webhook Token
 
+                /*
+                console.log(interaction)
+
+                try {
+                    // Attempt to fetch the original message to check if the interaction still exists
+                    const originalMessage = await interaction.fetchReply();
+                    if (originalMessage) {
+                        // Update the interaction if it exists
+                        await interaction.editReply('Updating ephemeral interaction...');
+                    }
+                } catch (error) {
+                    if (error.code === 10008) { // Unknown Message
+                        console.log('The interaction message no longer exists.');
+                    } else {
+                        console.error('An unexpected error occurred:', error);
+                    }
+                } */
+
                 const interactionReply = await interaction.editReply(responseOptions);
 
                 resolve(interactionReply);

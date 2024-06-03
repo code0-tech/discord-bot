@@ -14,7 +14,6 @@ const data = new SlashCommandBuilder()
   .setDescription('Testing...')
   .setDefaultMemberPermissions(PermissionFlagsBits.Administrator)
 
-
 const { Readable } = require('stream');
 const { join } = require('path');
 const ytdl = require('ytdl-core');
@@ -26,6 +25,17 @@ const execute = async (interaction, client, guild, member, lang) => {
   // const channel = await channelFromId("1173728043223765132", guild);
 
   // channel.send('<@329279009298841600> Ich komme auch gleich zu euch');
+
+  let index = 0;
+
+  setInterval(() => {
+    index++;
+
+    new Embed()
+      .setColor(config.embeds.colors.info)
+      .setTitle(`${index}`)
+      .interactionResponse(interaction)
+  }, 3000);
 
   return;
 
