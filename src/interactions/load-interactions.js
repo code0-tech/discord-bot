@@ -25,6 +25,9 @@ const load = (client) => {
 
         // Load Components
         if (command.executeComponent && command.componentIds) {
+            if (command.componentIds.length == 0) {
+                console.log(`[Loader] Tip: Remove unused componentIds array for: ${command.data.name}`);
+            }
             for (const buttonId of command.componentIds) {
                 client.components.set(buttonId, command);
             }
