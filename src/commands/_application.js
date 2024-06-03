@@ -5,12 +5,12 @@ const { Channel } = require('./../models/Channel');
 const { keyArray } = require('./../utils/helper');
 const { Embed } = require('./../models/Embed');
 const config = require('./../../config.json');
+const { isTeamMember } = require('./../discord/user');
 
 const data = null;
 
 const autoRun = async (client, lang) => {
     const messages = await messagesFromChannel(client, config.serverid, config.channels.application);
-
     const messagesIds = keyArray(messages);
 
     messagesIds.forEach(async (messageId) => {
@@ -42,6 +42,7 @@ const autoRun = async (client, lang) => {
         .responseToChannel(config.channels.application, client, [row])
 }
 
+
 const USER_OVERRIDE = 1;
 
 const checkLastCreatedTicket = async (guild, member) => {
@@ -59,7 +60,7 @@ const checkLastCreatedTicket = async (guild, member) => {
 const executeComponent = async (interaction, client, guild, member, lang, buttonData) => {
     await interaction.deferReply({ ephemeral: true });
 
-    const isTeamMember = member.roles.cache.has(config.roles.team);
+    const isTeam = await isTeamMember(member);
     const sendEmbedResponse = async (color, contextKey) => {
         await new Embed()
             .setColor(color)
@@ -108,7 +109,7 @@ const executeComponent = async (interaction, client, guild, member, lang, button
 
     } else if (buttonData.id === 'application-close') { // Handle application close
 
-        if (!isTeamMember) {
+        if (!isTeam) {
             await sendEmbedResponse(config.embeds.colors.danger, 'no-team-member');
             return;
         }
@@ -137,7 +138,7 @@ const executeComponent = async (interaction, client, guild, member, lang, button
 
     } else { // Handle application delete
 
-        if (!isTeamMember) {
+        if (!isTeam) {
             await sendEmbedResponse(config.embeds.colors.danger, 'no-team-member');
             return;
         }

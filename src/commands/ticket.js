@@ -2,6 +2,7 @@ const { ChannelType, PermissionsBitField, ButtonBuilder, ButtonStyle, ActionRowB
 const { channelFromInteraction, removeAllChannelUserPerms, channelsFromParent } = require('../discord/channel');
 const { waitMs, snowflakeToDate, msToHumanReadableTime } = require('./../utils/time');
 const { SlashCommandBuilder } = require('@discordjs/builders');
+const { isTeamMember } = require('../discord/user');
 const { Channel } = require('./../models/Channel');
 const { Embed } = require('./../models/Embed');
 const config = require('./../../config.json');
@@ -102,7 +103,7 @@ const execute = async (interaction, client, guild, member, lang) => {
 const executeComponent = async (interaction, client, guild, member, lang, componentData) => {
     await interaction.deferReply({ ephemeral: true });
 
-    if (!member.roles.cache.has(config.roles.team)) {
+    if (!await isTeamMember(member)) {
         await new Embed()
             .setColor(config.embeds.colors.danger)
             .addContext(lang, member, 'no-team-member')
