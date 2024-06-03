@@ -12,13 +12,11 @@ const data = new SlashCommandBuilder()
 
 
 const failedMessage = async (interaction, client, member, lang, type) => {
-
     await new Embed()
         .setColor(config.embeds.colors.danger)
         .addContext(lang, member, type)
         .addCode0Footer()
         .interactionResponse(interaction);
-
 };
 
 
@@ -109,8 +107,4 @@ const execute = async (interaction, client, guild, member, lang) => {
     }
 };
 
-
-
-const componentIds = [];
-
-module.exports = { execute, componentIds, data };
+module.exports = { execute, data };

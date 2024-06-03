@@ -150,8 +150,6 @@ const executeComponent = async (interaction, client, guild, buttonData, member, 
 
 }
 
-const componentIds = [
-  'test-id1'
-];
+const componentIds = [];
 
 module.exports = { execute, executeComponent, componentIds, data };

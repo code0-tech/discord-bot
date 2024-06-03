@@ -3,9 +3,7 @@ const { MongoUser } = require('./../mongo/MongoUser');
 const { Mongo, ENUMS } = require('../models/Mongo');
 const { TableBuilder } = require('../models/table');
 const { getUser } = require('./../discord/user');
-
 const { Embed } = require('../models/Embed');
-
 const config = require('../../config.json');
 
 const MongoDb = new Mongo();

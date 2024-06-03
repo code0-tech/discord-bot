@@ -5,13 +5,13 @@ const config = require('../../config.json');
 const ytdl = require('ytdl-core');
 const { userVoiceState } = require('./../discord/voice');
 
+
 const data = new SlashCommandBuilder()
     .setName('play')
     .setDescription('Play music stream from yt videos.')
     .addStringOption(option =>
         option.setName('url')
             .setDescription('Use Youtube or Youtube Music urls.')
-        // .setAutocomplete(true)
     )
     .setDefaultMemberPermissions(PermissionFlagsBits.Administrator)
 
@@ -47,7 +47,4 @@ const execute = async (interaction, client, guild, member, lang) => {
 };
 
 
-
-const componentIds = [];
-
-module.exports = { execute, componentIds, data };
+module.exports = { execute, data };

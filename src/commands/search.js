@@ -51,6 +51,4 @@ const autoComplete = async (interaction, client, guild, member, lang) => {
 };
 
 
-const componentIds = [];
-
-module.exports = { execute, componentIds, autoComplete, data };
+module.exports = { execute, autoComplete, data };
