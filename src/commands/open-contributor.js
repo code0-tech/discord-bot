@@ -15,7 +15,6 @@ const failedMessage = async (interaction, client, member, lang, type) => {
     await new Embed()
         .setColor(config.embeds.colors.danger)
         .addContext(lang, member, type)
-        .addCode0Footer()
         .interactionResponse(interaction);
 };
 
@@ -55,7 +54,6 @@ const execute = async (interaction, client, guild, member, lang) => {
         .setColor(config.embeds.colors.info)
         .addInputs({ neededcommits: config.commands.opencontributor.commits, neededpr: config.commands.opencontributor.pr })
         .addContext(lang, member, 'initial-message')
-        .addCode0Footer()
         .interactionResponse(interaction, [row]);
 
     // Await if user used the link or not, then perform action
@@ -101,7 +99,6 @@ const execute = async (interaction, client, guild, member, lang) => {
                 githubname: name
             })
             .addContext(lang, member, messageType)
-            .addCode0Footer()
             .interactionResponse(interaction, [row]);
 
     }

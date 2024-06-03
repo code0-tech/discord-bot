@@ -13,7 +13,6 @@ const executionError = (interaction, info) => {
         new Embed()
             .setTitle('Error at Command Execution')
             .setColor(config.embeds.colors.danger)
-            .addCode0Footer()
             .setDescription(`An error occurred while\nprocessing your request\n\nMsg:\n\`${info}\``)
             .interactionResponse(interaction);
     }
@@ -50,7 +49,7 @@ const button = async (interaction, client) => {
             ? interaction.message.interaction.commandName
             : buttonCommand.data.name;
         const lang = await language(commandName, interaction, guild, client);
-        await buttonCommand.executeComponent(interaction, client, guild, buttonData, member, lang);
+        await buttonCommand.executeComponent(interaction, client, guild, member, lang, buttonData);
     } catch (error) {
         console.log(error);
         executionError(interaction, `Button Interaction failed, ${buttonData.id}`);

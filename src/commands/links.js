@@ -13,11 +13,8 @@ const execute = async (interaction, client, guild, member, lang) => {
     new Embed()
         .setColor(config.embeds.colors.info)
         .addContext(lang, member, 'list')
-        .addCode0Footer()
         .interactionResponse(interaction);
 };
 
 
-const componentIds = [];
-
-module.exports = { execute, componentIds, data };
+module.exports = { execute, data };

@@ -117,7 +117,6 @@ const execute = async (interaction, client, guild, member, lang) => {
   /* new Embed()
     .setColor(config.embeds.colors.info)
     .addContext(lang, member, 'lol')
-    .addCode0Footer()
     .interactionResponse(interaction);
 
   /* await new Card()

@@ -99,7 +99,7 @@ const execute = async (interaction, client, guild, member, lang) => {
 }
 
 
-const executeComponent = async (interaction, client, guild, componentData, member, lang) => {
+const executeComponent = async (interaction, client, guild, member, lang, componentData) => {
     await interaction.deferReply({ ephemeral: true });
 
     if (!member.roles.cache.has(config.roles.team)) {
@@ -119,7 +119,6 @@ const executeComponent = async (interaction, client, guild, componentData, membe
         await new Embed()
             .setColor(config.embeds.colors.danger)
             .addContext(lang, member, 'close-info')
-            .addCode0Footer()
             .interactionResponse(interaction);
 
         removeAllChannelUserPerms(ticketChannel);

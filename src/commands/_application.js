@@ -61,7 +61,7 @@ const checkLastCreatedTicket = async (guild, member) => {
 }
 
 
-const executeComponent = async (interaction, client, guild, buttonData, member, lang) => {
+const executeComponent = async (interaction, client, guild, member, lang, buttonData) => {
     await interaction.deferReply({ ephemeral: true });
 
     const isTeamMember = member.roles.cache.has(config.roles.team);
