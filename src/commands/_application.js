@@ -8,7 +8,7 @@ const config = require('./../../config.json');
 
 const data = null;
 
-const autoRun = async (client) => {
+const autoRun = async (client, lang) => {
     const messages = await messagesFromChannel(client, config.serverid, config.channels.application);
 
     const messagesIds = keyArray(messages);
@@ -20,31 +20,26 @@ const autoRun = async (client) => {
         }
     });
 
-    // Go and check if message is up to date
+    if (messagesIds.length !== 0) return;
 
+    const applyButtonClosedTeam = new ButtonBuilder()
+        .setCustomId('application-apply-closed-team')
+        .setLabel(lang.english['_application']['#btn-closed-team'])
+        .setStyle(ButtonStyle.Primary);
 
-    if (messagesIds.length == 0) { // Testing purpose
-        const applyButtonClosedTeam = new ButtonBuilder()
-            .setCustomId('application-apply-closed-team')
-            .setLabel('Apply as Closed Team')
-            .setStyle(ButtonStyle.Primary);
+    const applyButtonOpenContributor = new ButtonBuilder()
+        .setCustomId('application-apply-open-contributor')
+        .setLabel(lang.english['_application']['#btn-open-contributer'])
+        .setStyle(ButtonStyle.Primary);
 
-        const applyButtonOpenContributor = new ButtonBuilder()
-            .setCustomId('application-apply-open-contributor')
-            .setLabel('Apply as Open Contributor')
-            .setStyle(ButtonStyle.Primary);
+    const row = new ActionRowBuilder()
+        .addComponents(applyButtonClosedTeam, applyButtonOpenContributor);
 
-        const row = new ActionRowBuilder()
-            .addComponents(applyButtonClosedTeam, applyButtonOpenContributor);
-
-        // add message to english.json
-
-        new Embed()
-            .setColor(config.embeds.colors.info)
-            .setTitle('Welcome to the Application Channel')
-            .setDescription(`Welcome! This is where you can start your application process. As an open contributor, you now have the opportunity to become a part of our <@&${config.roles.team}>. Click the button below to create a new application channel and get in touch with our staff. We're excited to have you join Code0. If you already have an active application channel, please use that to continue your application.`)
-            .responseToChannel(config.channels.application, client, [row])
-    }
+    new Embed()
+        .setColor(config.embeds.colors.info)
+        .addInputs({ teamid: config.roles.team })
+        .addContext({ text: lang.english['_application'] }, null, '#init-message')
+        .responseToChannel(config.channels.application, client, [row])
 }
 
 const USER_OVERRIDE = 1;

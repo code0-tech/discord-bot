@@ -37,6 +37,7 @@ const setup = async () => {
     client.awaitaction = {};
     client.startDate = Date.now();
 
+    require('./src/start-up/load-languages').load(client);
     require('./src/start-up/language-file-check');
     await require('./src/start-up/mongo-setup').connect();
 
@@ -47,7 +48,6 @@ const setup = async () => {
     client.once(Events.ClientReady, readyClient => {
 
         require('./src/interactions/load-interactions').load(client);
-        require('./src/start-up/load-languages').load(client);
 
         require('./src/start-up/audit-log').setup(client);
         require('./src/start-up/client-status').start(client);

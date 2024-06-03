@@ -36,7 +36,7 @@ const load = (client) => {
 
         // Start autoRun functions
         if (command.autoRun) {
-            command.autoRun(client);
+            command.autoRun(client, client.languages);
             console.log(`[Loader] Run autoRun() function for ${commandFile}`);
         }
     }
