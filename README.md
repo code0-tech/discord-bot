@@ -49,3 +49,6 @@ We do track stats, as you could also tell by our Bot's source code such as:
 - Voice Stats -> joins/leaves/switches.
 
 We use these to determine your rank or display some cool information about you.
+
+For the Command /open-contributer we are not saving your auth url in any way,
+which also means that you have to reauth yourself at command execution.
