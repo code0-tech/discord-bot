@@ -26,17 +26,6 @@ const execute = async (interaction, client, guild, member, lang) => {
 
   // channel.send('<@329279009298841600> Ich komme auch gleich zu euch');
 
-  let index = 0;
-
-  setInterval(() => {
-    index++;
-
-    new Embed()
-      .setColor(config.embeds.colors.info)
-      .setTitle(`${index}`)
-      .interactionResponse(interaction)
-  }, 3000);
-
   return;
 
   const channel = await channelFromId("1173728357658132580", guild);
