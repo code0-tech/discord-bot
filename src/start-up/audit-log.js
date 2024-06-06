@@ -16,7 +16,6 @@ const setup = (client) => {
 
         console.log(event)
 
-
         let description = "";
 
         if (actionId == 14 && event.changes) {// CHANNEL_OVERWRITE_UPDATE
