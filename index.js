@@ -74,8 +74,6 @@ startCode0();
 
 -> MongoDb when user interaction check if his entries are up to date
 
--> Fix .addInputs giving error when lang pack does not conatin and placholder and vice versa
-
 -> Double id's are saved sometimes in MongoDb user
 
 -> add language for /search
