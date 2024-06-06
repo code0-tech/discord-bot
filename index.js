@@ -77,4 +77,5 @@ startCode0();
 -> add language for /search
 
 -> add /logs -> create channel with all logs < 100 should be added + when new ones are generated until channel has been deleted or the button was used
+
 */
