@@ -76,6 +76,10 @@ startCode0();
 
 -> add language for /search
 
--> add /logs -> create channel with all logs < 100 should be added + when new ones are generated until channel has been deleted or the button was used
+-> add /logs command
+
+- features
+Create a channel with a message to close it later
+Create a method of click a button to insert new messages
 
 */
