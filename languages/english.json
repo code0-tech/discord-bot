@@ -136,12 +136,23 @@
         "btn-back": "Previous",
         "btn-next": "Next",
         "btn-skip": "Go to last",
+        "text-current-logs": "Current Logs",
         "development": {
             "description": "In development mode `/logs show` is not available"
         },
         "session-logs": {
-            "title": "Current Logs [{totallogscount}]",
+            "title": "{logtype} [{totallogscount}]",
             "description": "Created at: {createdat}\n\n{logstring}\nLogs [{currentstart}-{currentend}] of ({totallogscount})"
+        },
+        "text-createdat": "Created at",
+        "text-count": "Count",
+        "text-time": "Time",
+        "list-logs": {
+            "title": "Log files",
+            "description": "{list}"
+        },
+        "not-found": {
+            "title": "Cannot find any logs."
         }
     }
 }
