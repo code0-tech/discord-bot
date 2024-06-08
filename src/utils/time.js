@@ -19,5 +19,17 @@ const msToHumanReadableTime = (ms) => {
     return { s: (secondsAgo % 60), m: (minutesAgo % 60), h: (hoursAgo % 24), d: daysAgo };
 }
 
+const convertUnixToTimestamp = (unixTimestamp) => {
+    const date = new Date(unixTimestamp);
 
-module.exports = { waitMs, snowflakeToDate, msToHumanReadableTime };
+    const hours = date.getUTCHours().toString().padStart(2, '0');
+    const minutes = date.getUTCMinutes().toString().padStart(2, '0');
+    const seconds = date.getUTCSeconds().toString().padStart(2, '0');
+    const day = date.getUTCDate().toString().padStart(2, '0');
+    const month = (date.getUTCMonth() + 1).toString().padStart(2, '0');
+    const year = date.getUTCFullYear();
+
+    return `${hours}:${minutes}:${seconds}, ${day}.${month}.${year}`;
+};
+
+module.exports = { waitMs, snowflakeToDate, msToHumanReadableTime,convertUnixToTimestamp };
