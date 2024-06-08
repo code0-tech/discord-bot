@@ -43,7 +43,7 @@ const getLogsWithRange = async (runid, start, end) => {
     const logFile = await getLogs(runid);
     const createdAt = convertUnixToTimestamp(logFile.created_at);
 
-    // check slice length
+    // add check for the length before processing like the length
 
     const totalLength = logFile.logs.length;
     const smallLogs = logFile.logs.slice(start, end);
@@ -56,7 +56,6 @@ const getLogsWithRange = async (runid, start, end) => {
         const partMessage = smallLogs[i];
         logString += `t: ${convertUnixToTimestamp(partMessage.time)}\n${partMessage.msg}\n`
     }
-
 
 
     // need to rework this code here because sometimes it does 10-10...
@@ -96,6 +95,13 @@ const showCurrentSessionLogs = async (interaction, member, lang, componentData) 
         .setCustomId(`logs*type=show*start=${nextStart}*end=${nextEnd}`)
         .setLabel(lang.text['btn-next'])
         .setStyle(ButtonStyle.Primary);
+
+    // add button skip to last button
+    /* 
+    const skipToLast = new ButtonBuilder()
+        .setCustomId(`logs*type=show*start=${nextStart}*end=${nextEnd}`)
+        .setLabel(lang.text['btn-next'])
+        .setStyle(ButtonStyle.Primary); */
 
     const row = new ActionRowBuilder()
         .addComponents(goBack, next);
@@ -166,6 +172,5 @@ const componentIds = [
     'logs',
 ];
 
-// add button skip to last
 
 module.exports = { execute, data, componentIds, executeComponent };
