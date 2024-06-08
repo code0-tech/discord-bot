@@ -22,12 +22,12 @@ const msToHumanReadableTime = (ms) => {
 const convertUnixToTimestamp = (unixTimestamp) => {
     const date = new Date(unixTimestamp);
 
-    const hours = date.getUTCHours().toString().padStart(2, '0');
-    const minutes = date.getUTCMinutes().toString().padStart(2, '0');
-    const seconds = date.getUTCSeconds().toString().padStart(2, '0');
-    const day = date.getUTCDate().toString().padStart(2, '0');
-    const month = (date.getUTCMonth() + 1).toString().padStart(2, '0');
-    const year = date.getUTCFullYear();
+    const hours = date.getHours().toString().padStart(2, '0'); // Local hours
+    const minutes = date.getMinutes().toString().padStart(2, '0'); // Local minutes
+    const seconds = date.getSeconds().toString().padStart(2, '0'); // Local seconds
+    const day = date.getDate().toString().padStart(2, '0'); // Local date
+    const month = (date.getMonth() + 1).toString().padStart(2, '0'); // Local month
+    const year = date.getFullYear(); // Local year
 
     return `${hours}:${minutes}:${seconds}, ${day}.${month}.${year}`;
 };
