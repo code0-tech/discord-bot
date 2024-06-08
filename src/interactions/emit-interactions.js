@@ -4,8 +4,17 @@ const config = require('./../../config.json');
 const { Events } = require('discord.js');
 
 const extractIdData = (inputString) => {
-    const [id, data] = inputString.split('*');
-    return { id, data };
+    const parts = inputString.split('*');
+
+    const id = parts[0];
+    const result = { id };
+
+    for (let i = 1; i < parts.length; i++) {
+        const [key, value] = parts[i].split('=');
+        result[key] = isNaN(value) ? value : Number(value);
+    }
+
+    return result;
 };
 
 const executionError = (interaction, info) => {
