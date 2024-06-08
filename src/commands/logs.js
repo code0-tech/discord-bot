@@ -79,7 +79,7 @@ const getLogsWithRange = async (runid, action, currentStartingPosition, currentE
 
     for (let i = 0; i < smallLogs.length; i++) {
         const partMessage = smallLogs[i];
-        logString += `${convertUnixToTimestamp(partMessage.time)}\n\`\`\`${partMessage.msg}\`\`\`\n`
+        logString += `${convertUnixToTimestamp(partMessage.time)}\n\`\`\`${partMessage.msg}\`\`\`\n`;
     }
 
     return { createdAt, logString, totalLength, rangeStart, rangeEnd };
@@ -267,7 +267,7 @@ const componentIds = [
     'logs',
 ];
 
-
+// better naming
 // add an error info like the log has 10 errors
 
 module.exports = { execute, data, componentIds, executeComponent };
