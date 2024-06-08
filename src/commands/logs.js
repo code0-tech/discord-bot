@@ -39,37 +39,90 @@ const sessionRunId = () => {
 }
 
 
-const getLogsWithRange = async (runid, start, end) => {
+const getLogsWithRange = async (runid, action, currentStartingPosition, currentEndPosition) => {
     const logFile = await getLogs(runid);
     const createdAt = convertUnixToTimestamp(logFile.created_at);
 
-    // add check for the length before processing like the length
-
+    const maxList = config.commands.logs.maxlist;
     const totalLength = logFile.logs.length;
-    const smallLogs = logFile.logs.slice(start, end);
 
+    let rangeStart = 0;
+    let rangeEnd = maxList;
+
+    if (action == 'init') {
+        rangeStart = 0;
+        rangeEnd = (totalLength > maxList) ? maxList : totalLength;
+    }
+
+    if (action == 'next') {
+        rangeStart = currentEndPosition;
+        rangeEnd = (rangeStart + maxList) > totalLength ? totalLength : (rangeStart + maxList);
+
+        if ((rangeEnd - rangeStart) !== maxList) {
+            rangeStart = (rangeEnd - maxList) < 0 ? 0 : (rangeEnd - maxList);
+        }
+    }
+
+    if (action == 'back') {
+        rangeStart = (currentStartingPosition - maxList) < 0 ? 0 : (currentStartingPosition - maxList);
+        rangeEnd = (rangeStart + maxList) > totalLength ? totalLength : (rangeStart + maxList);
+
+        if ((rangeEnd - rangeStart) !== maxList) {
+            rangeEnd = (rangeEnd + maxList) > totalLength ? totalLength : (rangeEnd + maxList);
+        }
+    }
+
+    if (action == 'last') {
+        rangeStart = (totalLength - maxList) < 0 ? 0 : (totalLength - maxList);
+        rangeEnd = (totalLength);
+    }
+
+
+    const smallLogs = logFile.logs.slice(rangeStart, rangeEnd);
 
     let logString = ``;
 
     for (let i = 0; i < smallLogs.length; i++) {
-        console.log(i);
         const partMessage = smallLogs[i];
-        logString += `t: ${convertUnixToTimestamp(partMessage.time)}\n${partMessage.msg}\n`
+        logString += `${convertUnixToTimestamp(partMessage.time)}\n\`\`\`${partMessage.msg}\`\`\`\n`
     }
 
-
-    // need to rework this code here because sometimes it does 10-10...
-
-    const nextEnd = (start + config.commands.logs.maxlist) > totalLength ? totalLength : (start + config.commands.logs.maxlist);
-    const nextStart = end;
-
-    const previousStart = (start - config.commands.logs.maxlist) <= 0 ? 0 : (start - config.commands.logs.maxlist);
-    const previousEnd = (previousStart + config.commands.logs.maxlist) > totalLength ? totalLength : (previousStart + config.commands.logs.maxlist);
-
-
-    return { createdAt, logString, totalLength, nextStart, nextEnd, previousStart, previousEnd };
+    return { createdAt, logString, totalLength, rangeStart, rangeEnd };
 }
 
+
+const sendLog = (interaction, member, lang, createdAt, logString, totalLength, rangeStart, rangeEnd) => {
+    const goBack = new ButtonBuilder()
+        .setCustomId(`logs*type=show*action=back*currentstart=${rangeStart}*currentendposition=${rangeEnd}`)
+        .setLabel(lang.text['btn-back'])
+        .setStyle(ButtonStyle.Primary);
+
+    const next = new ButtonBuilder()
+        .setCustomId(`logs*type=show*action=next*currentstart=${rangeStart}*currentendposition=${rangeEnd}`)
+        .setLabel(lang.text['btn-next'])
+        .setStyle(ButtonStyle.Primary);
+
+    const skipToLast = new ButtonBuilder()
+        .setCustomId(`logs*type=show*action=last*currentstart=${rangeStart}*currentendposition=${rangeEnd}`)
+        .setLabel(lang.text['btn-skip'])
+        .setStyle(ButtonStyle.Danger);
+
+    const row = new ActionRowBuilder()
+        .addComponents(goBack, next, skipToLast);
+
+    new Embed()
+        .setColor(config.embeds.colors.info)
+        .addInputs({
+            createdat: createdAt,
+            logstring: logString,
+            totallogscount: totalLength,
+
+            currentstart: rangeStart,
+            currentend: rangeEnd,
+        })
+        .addContext(lang, member, 'session-logs')
+        .interactionResponse(interaction, [row]);
+}
 
 const showCurrentSessionLogs = async (interaction, member, lang, componentData) => {
     if (global.isDevelopment == true) {
@@ -80,46 +133,13 @@ const showCurrentSessionLogs = async (interaction, member, lang, componentData) 
         return;
     }
 
-    const startRange = componentData == null ? 0 : componentData.start;
-    const endRange = componentData == null ? config.commands.logs.maxlist : componentData.end;
+    const action = componentData == null ? 'init' : componentData.action;
+    const currentStartingPosition = componentData == null ? 0 : componentData.currentstart;
+    const currentEndPosition = componentData == null ? config.commands.logs.maxlist : componentData.currentendposition;
 
-    const { createdAt, logString, totalLength, nextStart, nextEnd, previousStart, previousEnd } = await getLogsWithRange(sessionRunId(), startRange, endRange);
+    const { createdAt, logString, totalLength, rangeStart, rangeEnd } = await getLogsWithRange(sessionRunId(), action, currentStartingPosition, currentEndPosition);
 
-
-    const goBack = new ButtonBuilder()
-        .setCustomId(`logs*type=show*start=${previousStart}*end=${previousEnd}`)
-        .setLabel(lang.text['btn-back'])
-        .setStyle(ButtonStyle.Primary);
-
-    const next = new ButtonBuilder()
-        .setCustomId(`logs*type=show*start=${nextStart}*end=${nextEnd}`)
-        .setLabel(lang.text['btn-next'])
-        .setStyle(ButtonStyle.Primary);
-
-    // add button skip to last button
-    /* 
-    const skipToLast = new ButtonBuilder()
-        .setCustomId(`logs*type=show*start=${nextStart}*end=${nextEnd}`)
-        .setLabel(lang.text['btn-next'])
-        .setStyle(ButtonStyle.Primary); */
-
-    const row = new ActionRowBuilder()
-        .addComponents(goBack, next);
-
-    new Embed()
-        .setColor(config.embeds.colors.danger)
-        .addInputs({
-            createdat: createdAt,
-            logstring: logString,
-            totallogscount: totalLength,
-
-            currentstart: startRange,
-            currentend: endRange,
-
-            range: endRange - startRange
-        })
-        .addContext(lang, member, 'session-logs')
-        .interactionResponse(interaction, [row]);
+    sendLog(interaction, member, lang, createdAt, logString, totalLength, rangeStart, rangeEnd);
 }
 
 
@@ -154,11 +174,9 @@ const execute = async (interaction, client, guild, member, lang) => {
     await interaction.deferReply({ ephemeral: true });
 
     const subCommand = interaction.options.getSubcommand();
-
     const componentData = null;
 
     findAndExecuteSubCommand(subCommand, interaction, member, lang, componentData);
-
 };
 
 
