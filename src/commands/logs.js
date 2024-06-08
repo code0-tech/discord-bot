@@ -46,10 +46,8 @@ const getLogsWithRange = async (runid, start, end) => {
     // check slice length
 
     const totalLength = logFile.logs.length;
-    const smallLogs = logFile.logs.slice(start - 1, end);
+    const smallLogs = logFile.logs.slice(start, end);
 
-
-    console.log(logFile)
 
     let logString = ``;
 
@@ -59,11 +57,18 @@ const getLogsWithRange = async (runid, start, end) => {
         logString += `t: ${convertUnixToTimestamp(partMessage.time)}\n${partMessage.msg}\n`
     }
 
-    console.log(smallLogs);
 
 
+    // need to rework this code here because sometimes it does 10-10...
 
-    return { createdAt, logString, totalLength };
+    const nextEnd = (start + config.commands.logs.maxlist) > totalLength ? totalLength : (start + config.commands.logs.maxlist);
+    const nextStart = end;
+
+    const previousStart = (start - config.commands.logs.maxlist) <= 0 ? 0 : (start - config.commands.logs.maxlist);
+    const previousEnd = (previousStart + config.commands.logs.maxlist) > totalLength ? totalLength : (previousStart + config.commands.logs.maxlist);
+
+
+    return { createdAt, logString, totalLength, nextStart, nextEnd, previousStart, previousEnd };
 }
 
 
@@ -76,20 +81,39 @@ const showCurrentSessionLogs = async (interaction, member, lang, componentData) 
         return;
     }
 
-    const startRange = componentData == null ? 0 : componentData.rStart;
-    const endRange = componentData == null ? config.commands.logs.maxlist : componentData.eStart;
+    const startRange = componentData == null ? 0 : componentData.start;
+    const endRange = componentData == null ? config.commands.logs.maxlist : componentData.end;
 
-    const { createdAt, logString, totalLength } = await getLogsWithRange(sessionRunId(), startRange, endRange);
-    // console.log(sessionRunId())
+    const { createdAt, logString, totalLength, nextStart, nextEnd, previousStart, previousEnd } = await getLogsWithRange(sessionRunId(), startRange, endRange);
 
-    // console.log(await getLogs(sessionRunId()))
 
+    const goBack = new ButtonBuilder()
+        .setCustomId(`logs*type=show*start=${previousStart}*end=${previousEnd}`)
+        .setLabel(lang.text['btn-back'])
+        .setStyle(ButtonStyle.Primary);
+
+    const next = new ButtonBuilder()
+        .setCustomId(`logs*type=show*start=${nextStart}*end=${nextEnd}`)
+        .setLabel(lang.text['btn-next'])
+        .setStyle(ButtonStyle.Primary);
+
+    const row = new ActionRowBuilder()
+        .addComponents(goBack, next);
 
     new Embed()
         .setColor(config.embeds.colors.danger)
-        .addInputs({ createdat: createdAt, logstring: logString, totallogscount: totalLength })
+        .addInputs({
+            createdat: createdAt,
+            logstring: logString,
+            totallogscount: totalLength,
+
+            currentstart: startRange,
+            currentend: endRange,
+
+            range: endRange - startRange
+        })
         .addContext(lang, member, 'session-logs')
-        .interactionResponse(interaction);
+        .interactionResponse(interaction, [row]);
 }
 
 
@@ -119,6 +143,7 @@ const findAndExecuteSubCommand = (subCommand, interaction, member, lang, compone
     }
 }
 
+
 const execute = async (interaction, client, guild, member, lang) => {
     await interaction.deferReply({ ephemeral: true });
 
@@ -130,13 +155,17 @@ const execute = async (interaction, client, guild, member, lang) => {
 
 };
 
-const executeComponent = async (interaction, client, guild, member, lang, componentData) => {
-    findAndExecuteSubCommand(componentData.id.split("-")[1], interaction, client, guild, member, lang, componentData);
 
+const executeComponent = async (interaction, client, guild, member, lang, componentData) => {
+    await interaction.deferReply({ ephemeral: true });
+
+    findAndExecuteSubCommand(componentData.type, interaction, member, lang, componentData);
 }
 
 const componentIds = [
-    'logs-show',
+    'logs',
 ];
+
+// add button skip to last
 
 module.exports = { execute, data, componentIds, executeComponent };
