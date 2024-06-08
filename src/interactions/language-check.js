@@ -1,6 +1,6 @@
 const config = require('./../../config.json');
 
-const language = async (commandName, interaction, guild, client) => {
+const language = async (commandNameLong, interaction, guild, client) => {
     const { languages } = client;
     const member = await guild.members.fetch(interaction.user.id);
     let baseLanguage = 'english';
@@ -11,6 +11,8 @@ const language = async (commandName, interaction, guild, client) => {
             baseLanguage = config.languageroles[languageRoleId];
         }
     }
+
+    const commandName = commandNameLong.split(" ")[0]; // subcommands will be removed here
 
     // Attempt to fetch the command text in the base language
     let commandText = languages[baseLanguage]?.[commandName] || '';
