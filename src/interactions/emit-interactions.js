@@ -65,6 +65,26 @@ const button = async (interaction, client) => {
     }
 };
 
+const selectMenu = async (interaction, client) => {
+    const selectMenuData = extractIdData(interaction.customId);
+    selectMenuData.selected = interaction.values[0];
+    const selectMenuCommand = client.components.get(selectMenuData.id);
+
+    if (!selectMenuCommand) return;
+
+    try {
+        const { guild, member } = await getGuildAndMember(client, interaction.user.id);
+        const commandName = interaction.message.interaction
+            ? interaction.message.interaction.commandName
+            : selectMenuCommand.data.name;
+        const lang = await language(commandName, interaction, guild, client);
+        await selectMenuCommand.executeComponent(interaction, client, guild, member, lang, selectMenuData);
+    } catch (error) {
+        console.log(error);
+        executionError(interaction, `Select Menu Interaction failed, ${selectMenuData.id}`);
+    }
+};
+
 const autoComplete = async (interaction, client) => {
     const command = interaction.client.commands.get(interaction.commandName);
     if (!command || !command.autoComplete) return;
@@ -86,6 +106,8 @@ const setup = (client) => {
             await button(interaction, client);
         } else if (interaction.isAutocomplete()) {
             await autoComplete(interaction, client);
+        } else if (interaction.isStringSelectMenu()) {
+            await selectMenu(interaction, client);
         }
     });
 };
