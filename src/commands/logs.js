@@ -16,11 +16,6 @@ const data = new SlashCommandBuilder()
     )
     .addSubcommand(subcommand =>
         subcommand
-            .setName('view')
-            .setDescription('View older logs.')
-    )
-    .addSubcommand(subcommand =>
-        subcommand
             .setName('list')
             .setDescription('Get a list of Logs.')
     )
@@ -41,26 +36,11 @@ const sessionRunId = () => {
 
 
 const getLogsWithRange = async (runid, action, currentStartingPosition, currentEndPosition) => {
-    // console.log(runid)
-
     const logFile = await getLogs(runid);
 
-    /* if (logFile == undefined) {
-        new Embed()
-            .setColor(config.embeds.colors.info)
-            .addInputs({
-                logtype: ((sessionRunId() == sessionId) ? lang.text['text-current-logs'] : sessionId),
-                createdat: createdAt,
-                logstring: logString,
-                totallogscount: totalLength,
-
-                currentstart: rangeStart,
-                currentend: rangeEnd,
-            })
-            .addContext(lang, member, 'session-logs')
-            .interactionResponse(interaction, [row]);
+    if (!logFile) {
+        return {};
     }
-    console.log(logFile) */
 
     const createdAt = convertUnixToTimestamp(logFile.created_at);
 
@@ -114,8 +94,14 @@ const sendLog = async (interaction, member, lang, componentData, runId = null, t
 
     const { createdAt, logString, totalLength, rangeStart, rangeEnd } = await getLogsWithRange(sessionId, action, currentStartingPosition, currentEndPosition);
 
-
-    if (createdAt == undefined) { }
+    if (!createdAt) {
+        new Embed()
+            .setColor(config.embeds.colors.danger)
+            .addInputs({ runid: sessionId })
+            .addContext(lang, member, 'not-found')
+            .interactionResponse(interaction);
+        return;
+    }
 
     const goBack = new ButtonBuilder()
         .setCustomId(`logs*type=${type}*action=back*currentstart=${rangeStart}*currentendposition=${rangeEnd}*s=${sessionId}`)
@@ -168,7 +154,7 @@ const viewDbLogs = (interaction, member, lang, componentData) => {
 
     const runId = componentData.selected == undefined ? null : componentData.selected;
 
-    console.log(componentData, runId, 'view')
+    // console.log(componentData, runId, 'view')
 
     sendLog(interaction, member, lang, componentData, runId, 'view');
 }
@@ -238,7 +224,9 @@ const listDbLogs = async (interaction, member, lang, componentData) => {
             list: tableBuilder.build()
         })
         .addContext(lang, member, 'list-logs')
-        .interactionResponse(interaction, [row]);
+        .interactionResponse(interaction,);
+
+    // add [row] when !wip
 }
 
 
@@ -279,5 +267,7 @@ const componentIds = [
     'logs',
 ];
 
+
+// add an error info like the log has 10 errors
 
 module.exports = { execute, data, componentIds, executeComponent };
