@@ -48,7 +48,6 @@ const sendMessage = (interaction, member, lang, data) => {
 
     tableBuilder.addRows(...data);
 
-
     new Embed()
         .setColor(config.embeds.colors.info)
         .addInputs({ stringlist: tableBuilder.build() })
