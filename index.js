@@ -80,6 +80,8 @@ startCode0();
 
 -> add /logs command
 
+-> add .setLabel('Remove Ticket') and other ticket buttons to english.json and german.json
+
 - features
 Create a channel with a message to close it later
 Create a method of click a button to insert new messages
