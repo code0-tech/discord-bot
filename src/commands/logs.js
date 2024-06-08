@@ -1,7 +1,8 @@
-const { ButtonBuilder, ButtonStyle, ActionRowBuilder, PermissionFlagsBits } = require("discord.js");
+const { ButtonBuilder, ButtonStyle, ActionRowBuilder, StringSelectMenuBuilder, PermissionFlagsBits } = require("discord.js");
 const { SlashCommandBuilder } = require('@discordjs/builders');
 const { convertUnixToTimestamp } = require("../utils/time");
 const { Mongo, ENUMS } = require('../models/Mongo');
+const { TableBuilder } = require('../models/table');
 const { Embed } = require('./../models/Embed');
 const config = require('./../../config.json');
 
@@ -40,19 +41,34 @@ const sessionRunId = () => {
 
 
 const getLogsWithRange = async (runid, action, currentStartingPosition, currentEndPosition) => {
+    // console.log(runid)
+
     const logFile = await getLogs(runid);
+
+    /* if (logFile == undefined) {
+        new Embed()
+            .setColor(config.embeds.colors.info)
+            .addInputs({
+                logtype: ((sessionRunId() == sessionId) ? lang.text['text-current-logs'] : sessionId),
+                createdat: createdAt,
+                logstring: logString,
+                totallogscount: totalLength,
+
+                currentstart: rangeStart,
+                currentend: rangeEnd,
+            })
+            .addContext(lang, member, 'session-logs')
+            .interactionResponse(interaction, [row]);
+    }
+    console.log(logFile) */
+
     const createdAt = convertUnixToTimestamp(logFile.created_at);
 
     const maxList = config.commands.logs.maxlist;
     const totalLength = logFile.logs.length;
 
     let rangeStart = 0;
-    let rangeEnd = maxList;
-
-    if (action == 'init') {
-        rangeStart = 0;
-        rangeEnd = (totalLength > maxList) ? maxList : totalLength;
-    }
+    let rangeEnd = (totalLength > maxList) ? maxList : totalLength;
 
     if (action == 'next') {
         rangeStart = currentEndPosition;
@@ -77,7 +93,6 @@ const getLogsWithRange = async (runid, action, currentStartingPosition, currentE
         rangeEnd = (totalLength);
     }
 
-
     const smallLogs = logFile.logs.slice(rangeStart, rangeEnd);
 
     let logString = ``;
@@ -91,19 +106,29 @@ const getLogsWithRange = async (runid, action, currentStartingPosition, currentE
 }
 
 
-const sendLog = (interaction, member, lang, createdAt, logString, totalLength, rangeStart, rangeEnd) => {
+const sendLog = async (interaction, member, lang, componentData, runId = null, type) => {
+    const sessionId = runId == null ? componentData.s : runId;
+    const action = componentData == null ? 'init' : componentData.action;
+    const currentStartingPosition = componentData == null ? 0 : componentData.currentstart;
+    const currentEndPosition = componentData == null ? config.commands.logs.maxlist : componentData.currentendposition;
+
+    const { createdAt, logString, totalLength, rangeStart, rangeEnd } = await getLogsWithRange(sessionId, action, currentStartingPosition, currentEndPosition);
+
+
+    if (createdAt == undefined) { }
+
     const goBack = new ButtonBuilder()
-        .setCustomId(`logs*type=show*action=back*currentstart=${rangeStart}*currentendposition=${rangeEnd}`)
+        .setCustomId(`logs*type=${type}*action=back*currentstart=${rangeStart}*currentendposition=${rangeEnd}*s=${sessionId}`)
         .setLabel(lang.text['btn-back'])
         .setStyle(ButtonStyle.Primary);
 
     const next = new ButtonBuilder()
-        .setCustomId(`logs*type=show*action=next*currentstart=${rangeStart}*currentendposition=${rangeEnd}`)
+        .setCustomId(`logs*type=${type}*action=next*currentstart=${rangeStart}*currentendposition=${rangeEnd}*s=${sessionId}`)
         .setLabel(lang.text['btn-next'])
         .setStyle(ButtonStyle.Primary);
 
     const skipToLast = new ButtonBuilder()
-        .setCustomId(`logs*type=show*action=last*currentstart=${rangeStart}*currentendposition=${rangeEnd}`)
+        .setCustomId(`logs*type=${type}*action=last*currentstart=${rangeStart}*currentendposition=${rangeEnd}*s=${sessionId}`)
         .setLabel(lang.text['btn-skip'])
         .setStyle(ButtonStyle.Danger);
 
@@ -113,6 +138,7 @@ const sendLog = (interaction, member, lang, createdAt, logString, totalLength, r
     new Embed()
         .setColor(config.embeds.colors.info)
         .addInputs({
+            logtype: ((sessionRunId() == sessionId) ? lang.text['text-current-logs'] : sessionId),
             createdat: createdAt,
             logstring: logString,
             totallogscount: totalLength,
@@ -124,6 +150,7 @@ const sendLog = (interaction, member, lang, createdAt, logString, totalLength, r
         .interactionResponse(interaction, [row]);
 }
 
+
 const showCurrentSessionLogs = async (interaction, member, lang, componentData) => {
     if (global.isDevelopment == true) {
         new Embed()
@@ -133,23 +160,85 @@ const showCurrentSessionLogs = async (interaction, member, lang, componentData) 
         return;
     }
 
-    const action = componentData == null ? 'init' : componentData.action;
-    const currentStartingPosition = componentData == null ? 0 : componentData.currentstart;
-    const currentEndPosition = componentData == null ? config.commands.logs.maxlist : componentData.currentendposition;
-
-    const { createdAt, logString, totalLength, rangeStart, rangeEnd } = await getLogsWithRange(sessionRunId(), action, currentStartingPosition, currentEndPosition);
-
-    sendLog(interaction, member, lang, createdAt, logString, totalLength, rangeStart, rangeEnd);
+    sendLog(interaction, member, lang, componentData, sessionRunId(), 'show');
 }
 
 
 const viewDbLogs = (interaction, member, lang, componentData) => {
 
+    const runId = componentData.selected == undefined ? null : componentData.selected;
+
+    console.log(componentData, runId, 'view')
+
+    sendLog(interaction, member, lang, componentData, runId, 'view');
 }
 
 
-const listDbLogs = (interaction, member, lang, componentData) => {
+const listDbLogs = async (interaction, member, lang, componentData) => {
+    const MongoDb = new Mongo();
+    const results = await MongoDb.aggregate(ENUMS.DCB.LOGS, [
+        {
+            $project: {
+                _id: 0,
+                run_id: 1,
+                logs_length: { $size: "$logs" },
+                created_at: 1
+            }
+        },
+        {
+            $sort: { created_at: -1 }
+        },
+        {
+            $limit: 20
+        }
+    ])
 
+    const data = results.map(doc => {
+        return {
+            run_id: doc.run_id,
+            created_at: convertUnixToTimestamp(doc.created_at),
+            logs_length: doc.logs_length
+        };
+    });
+
+
+    const selectMenuOptions = data.map((doc, index) => {
+        return {
+            label: `${index + 1}, RunId: ${doc.run_id.toString()}`,
+            description: `Created at: ${doc.created_at}, Logs length: ${doc.logs_length}`,
+            value: doc.run_id.toString()
+        };
+    });
+
+    const longestrun_id = Math.max(...data.map(entry => entry.run_id.toString().length)) + 3;
+    const longestTimestamp = Math.max(...data.map(entry => entry.created_at.toString().length)) + 3;
+    const longestlogs_length = Math.max(...data.map(entry => entry.logs_length.toString().length)) + 3;
+
+    const columns = [
+        { label: 'run_id', field: 'run_id', width: longestrun_id },
+        { label: lang.text['text-createdat'], field: 'created_at', width: longestTimestamp },
+        { label: lang.text['text-count'], field: 'logs_length', width: longestlogs_length }
+    ];
+
+    const tableBuilder = new TableBuilder(columns);
+
+    tableBuilder.addRows(...data);
+
+    const selectMenu = new StringSelectMenuBuilder()
+        .setCustomId('logs*type=view')
+        .setPlaceholder('Select an log')
+        .addOptions(selectMenuOptions);
+
+    const row = new ActionRowBuilder()
+        .addComponents(selectMenu);
+
+    new Embed()
+        .setColor(config.embeds.colors.info)
+        .addInputs({
+            list: tableBuilder.build()
+        })
+        .addContext(lang, member, 'list-logs')
+        .interactionResponse(interaction, [row]);
 }
 
 
