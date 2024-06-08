@@ -131,5 +131,14 @@
         "close-info": {
             "title": "Closing Application"
         }
+    },
+    "logs": {
+        "development": {
+            "description": "In development mode `/logs show` is not available"
+        },
+        "session-logs": {
+            "title": "Current Logs [{totallogscount}]",
+            "description": "Time: {createdat}\n```{logstring}```"
+        }
     }
 }
