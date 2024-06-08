@@ -135,12 +135,13 @@
     "logs": {
         "btn-back": "Previous",
         "btn-next": "Next",
+        "btn-skip": "Go to last",
         "development": {
             "description": "In development mode `/logs show` is not available"
         },
         "session-logs": {
             "title": "Current Logs [{totallogscount}]",
-            "description": "Time: {createdat}\n```{logstring}```\nLogs [{currentstart}-{currentend}] ({range})"
+            "description": "Created at: {createdat}\n\n{logstring}\nLogs [{currentstart}-{currentend}] of ({totallogscount})"
         }
     }
 }
