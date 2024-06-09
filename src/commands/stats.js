@@ -42,7 +42,6 @@ const execute = async (interaction, client, guild, member, lang) => {
 
     const normalizedStats = normalizeData(stats);
 
-
     if (client.user.id == userIdToCheck) {
         embedMessage = 'this-bot-stats';
     }

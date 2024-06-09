@@ -28,7 +28,6 @@ const execute = async (interaction, client, guild, member, lang) => {
 
     const position = await user.getXpGlobalPosition();
 
-
     if (client.user.id == userIdToCheck) {
         embedMessage = 'this-bot-rank';
     }
