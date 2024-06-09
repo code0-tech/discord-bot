@@ -126,5 +126,32 @@
         "close-info": {
             "title": "Bewerbung wird geschlossen"
         }
+    },
+    "logs": {
+        "btn-back": "Vorherige",
+        "btn-next": "Nächste",
+        "btn-skip": "Gehe zu letzten",
+        "text-old-logs": "Alte Logs",
+        "development": {
+            "description": "Im developer modus ist `/logs show` nicht möglich"
+        },
+        "session-logs": {
+            "title": "Aktuelle Logs [{totallogscount}]",
+            "description": "Erstellt am: {createdat}\n\n{logstring}\nLogs [{currentstart}-{currentend}] von ({totallogscount})"
+        },
+        "old-session-logs": {
+            "title": "{runid} [{totallogscount}]",
+            "description": "Erstellt am: {createdat}\n\n{logstring}\nLogs [{currentstart}-{currentend}] von ({totallogscount})"
+        },
+        "text-createdat": "Erstellt am",
+        "text-count": "Anzahl",
+        "text-time": "Zeit",
+        "list-logs": {
+            "title": "Log Datein",
+            "description": "{list}"
+        },
+        "not-found": {
+            "title": "Konnte keine logs für runId: {runid}."
+        }
     }
 }

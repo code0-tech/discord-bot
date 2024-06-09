@@ -137,7 +137,6 @@
         "btn-back": "Previous",
         "btn-next": "Next",
         "btn-skip": "Go to last",
-        "text-current-logs": "Current Logs",
         "text-old-logs": "Old Logs",
         "development": {
             "description": "In development mode `/logs show` is not available"
