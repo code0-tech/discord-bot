@@ -78,8 +78,4 @@ startCode0();
 
 -> add language for /search
 
--> add /logs command
-
--> add .setLabel('Remove Ticket') and other ticket buttons to english.json and german.json
-
 */
