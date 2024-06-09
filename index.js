@@ -78,4 +78,6 @@ startCode0();
 
 -> add language for /search
 
+-> /logs list when view is on current session make Embed type = "show" and not "view"
+
 */
