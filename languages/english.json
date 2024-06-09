@@ -137,11 +137,16 @@
         "btn-next": "Next",
         "btn-skip": "Go to last",
         "text-current-logs": "Current Logs",
+        "text-old-logs": "Old Logs",
         "development": {
             "description": "In development mode `/logs show` is not available"
         },
         "session-logs": {
-            "title": "{logtype} [{totallogscount}]",
+            "title": "Current logs [{totallogscount}]",
+            "description": "Created at: {createdat}\n\n{logstring}\nLogs [{currentstart}-{currentend}] of ({totallogscount})"
+        },
+        "old-session-logs": {
+            "title": "{runid} [{totallogscount}]",
             "description": "Created at: {createdat}\n\n{logstring}\nLogs [{currentstart}-{currentend}] of ({totallogscount})"
         },
         "text-createdat": "Created at",
