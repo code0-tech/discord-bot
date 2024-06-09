@@ -31,6 +31,15 @@ const getLogs = async (runId) => {
 const getCurrentSessionRunId = () => process['dclogger'].runid;
 
 
+const formatLog = (log) => {
+    const timestamp = convertUnixToTimestamp(log.time);
+    const message = log.msg;
+    const error = log.error !== null ? `\`\`\`\nError:\n\`\`\`${log.error}` : '';
+
+    return `${timestamp}\n\`\`\`${message}${error}\`\`\`\n`;
+};
+
+
 const getLogsWithRange = async (runId, action, currentStart, currentEnd) => {
     const logFile = await getLogs(runId);
     if (!logFile) return {};
@@ -54,7 +63,7 @@ const getLogsWithRange = async (runId, action, currentStart, currentEnd) => {
     }
 
     const logsInRange = logFile.logs.slice(rangeStart, rangeEnd);
-    const logString = logsInRange.map(log => `${convertUnixToTimestamp(log.time)}\n\`\`\`${log.msg}\`\`\`\n`).join('');
+    const logString = logsInRange.map(formatLog).join('');
 
     return { createdAt, logString, totalLength, rangeStart, rangeEnd };
 }
