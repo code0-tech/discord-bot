@@ -83,7 +83,6 @@ const execute = async (interaction, client, guild, member, lang) => {
         .addContext(lang, member, 'created')
         .interactionResponse(interaction);
 
-
     const closeTicket = new ButtonBuilder()
         .setCustomId('close-ticket')
         .setLabel(lang.text['btn-close'])
