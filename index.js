@@ -80,4 +80,6 @@ startCode0();
 
 -> /logs list when view is on current session make Embed type = "show" and not "view"
 
+-> /logs add? 0-10, 10-20, 20-30 select menu
+
 */
