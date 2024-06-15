@@ -75,6 +75,10 @@ const sendLog = async (interaction, member, lang, componentData, runId = null, t
     const currentStart = componentData?.currentstart || 0;
     const currentEnd = componentData?.currentendposition || config.commands.logs.maxlist;
 
+    if (parseInt(sessionId) == getCurrentSessionRunId()) {
+        type = 'show';
+    }
+
     const { createdAt, logString, totalLength, rangeStart, rangeEnd } = await getLogsWithRange(parseInt(sessionId), action, currentStart, currentEnd);
     if (!createdAt) {
         return new Embed()

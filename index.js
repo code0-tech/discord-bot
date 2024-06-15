@@ -11,7 +11,7 @@ const startCode0 = async () => {
 
     dotenv.config({ path: global.isDevelopment ? '.env' : 'server.env' });
 
-    // global.isDevelopment = false; // Manuel override
+    global.isDevelopment = false; // Manuel override
 
     global.mainDir = __dirname;
     global.mongoClient = null;
@@ -77,8 +77,6 @@ startCode0();
 -> Double id's are saved sometimes in MongoDb user
 
 -> add language for /search
-
--> /logs list when view is on current session make Embed type = "show" and not "view"
 
 -> /logs add? 0-10, 10-20, 20-30 select menu
 
