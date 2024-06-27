@@ -11,7 +11,7 @@ const startCode0 = async () => {
 
     dotenv.config({ path: global.isDevelopment ? '.env' : 'server.env' });
 
-    // global.isDevelopment = false; // Manuel override
+    global.isDevelopment = false; // Manuel override
 
     global.mainDir = __dirname;
     global.mongoClient = null;
@@ -80,5 +80,7 @@ startCode0();
 -> add language for /search
 
 -> /logs add? 0-10, 10-20, 20-30 select menu
+
+-> add an check for when no logs are in the db to not crash for empty message
 
 */
