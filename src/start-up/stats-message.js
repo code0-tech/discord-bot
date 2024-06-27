@@ -1,6 +1,7 @@
 const { levenshteinDistance } = require('../utils/helper');
 const { MongoUser } = require('../mongo/MongoUser');
-const { Embed } = require('../models/Embed');
+const { getGuild } = require('../discord/guild');
+const { Embed, progressBar } = require('../models/Embed');
 const { waitMs } = require('../utils/time');
 const config = require('../../config.json');
 const { Events } = require('discord.js');
@@ -57,6 +58,30 @@ const checkIfValid = async (msg) => {
     return cannotPass;
 }
 
+
+const channelRankUpdateMessage = async (client, user) => {
+    const guild = await getGuild(config.serverid, client);
+    const rankMember = await guild.members.fetch(await user.getId());
+
+    const { level, neededXp, xp } = await user.getRank();
+    const position = await user.getXpGlobalPosition();
+
+    new Embed()
+        .setColor(config.embeds.colors.info)
+        .setPbThumbnail(rankMember)
+        .addInputs({
+            rankuserid: await user.getId(),
+            level,
+            neededXp,
+            xp,
+            progressbar: progressBar(xp, neededXp),
+            position
+        })
+        .addContext({ text: client.languages.english['#_rankupdate'] }, null, '#update-msg')
+        .responseToChannel(config.channels.rankupdates, client)
+}
+
+
 const start = (client) => {
     const maxLength = config.commands.rank.maxlength;
     const maxXP = config.commands.rank.maxxp;
@@ -71,7 +96,7 @@ const start = (client) => {
 
         const user = await new MongoUser(msg.author.id).init();
 
-        // const previousLevel = (await user.getRank()).level;
+        const previousLevel = (await user.getRank()).level;
 
         const adjustedLength = Math.min(msg.content.length, maxLength);
 
@@ -85,13 +110,13 @@ const start = (client) => {
 
         user.updateXpBy(xp);
 
-        // await waitMs(2000);
+        await waitMs(2000);
 
-        // const lastLevel = (await user.getRank()).level;
+        const lastLevel = (await user.getRank()).level;
 
-        // if (lastLevel !== previousLevel) {
-        // channelRankUpdateMessage(client, user);
-        // }
+        if (lastLevel !== previousLevel) {
+            channelRankUpdateMessage(client, user);
+        }
 
     })
 }

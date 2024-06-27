@@ -121,6 +121,13 @@ class MongoUser {
     }
 
     /**
+     * get user id
+     */
+    async getId() {
+        return this._userid;
+    }
+
+    /**
      * get Rank
      */
     async getRank() {

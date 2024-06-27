@@ -14,7 +14,9 @@ const checkLanguage = (exampleJson, langJson, langName) => {
                 }
             });
         } else {
-            console.log(`[Lang Check] In file ${langName}, text for /${exampleCommandKey} is missing.`);
+            if (!exampleCommandKey.startsWith('#')) {
+                console.log(`[Lang Check] In file ${langName}, text for /${exampleCommandKey} is missing.`);
+            }
         }
     }
 }

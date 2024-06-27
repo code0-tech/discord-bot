@@ -159,5 +159,10 @@
         "not-found": {
             "title": "Cannot find any logs for runId: {runid}."
         }
+    },
+    "#_rankupdate": {
+        "#update-msg": {
+            "description": "### Level: {level}\n{progressbar} [{xp} xp|{neededXp} xp]\n\n<@{rankuserid}> is now level {level} and in {position} place."
+        }
     }
 }
