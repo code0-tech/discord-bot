@@ -2,12 +2,12 @@ const { MongoUser } = require('../mongo/MongoUser');
 const { checkState } = require('../discord/voice');
 const { Events } = require('discord.js');
 
-let voiceChatUser = {};
+global.voiceChatUser = {};
 
 const updateDb = async (client, userid, packet) => {
     const user = await new MongoUser(userid).init();
 
-    const timeInVoice = Date.now() - voiceChatUser[userid].since;
+    const timeInVoice = Date.now() - global.voiceChatUser[userid].since;
 
     if (timeInVoice < 1000) return;
 
@@ -18,7 +18,7 @@ const updateDb = async (client, userid, packet) => {
 
 
 const joinVoice = (client, userid) => {
-    voiceChatUser[userid] = {
+    global.voiceChatUser[userid] = {
         since: Date.now(),
         switchs: 0
     }
@@ -26,28 +26,28 @@ const joinVoice = (client, userid) => {
 
 
 const switchVoice = (client, userid) => {
-    if (!voiceChatUser[userid]) {
-        voiceChatUser[userid] = {
+    if (!global.voiceChatUser[userid]) {
+        global.voiceChatUser[userid] = {
             since: client.startDate,
             switchs: 0
         }
     }
 
-    voiceChatUser[userid].switchs++;
+    global.voiceChatUser[userid].switchs++;
 }
 
 
 const leaveVoice = async (client, userid) => {
-    if (!voiceChatUser[userid]) {
-        voiceChatUser[userid] = {
+    if (!global.voiceChatUser[userid]) {
+        global.voiceChatUser[userid] = {
             since: client.startDate,
             switchs: 0
         }
     }
 
-    await updateDb(client, userid, voiceChatUser[userid]);
+    await updateDb(client, userid, global.voiceChatUser[userid]);
 
-    delete voiceChatUser[userid];
+    delete global.voiceChatUser[userid];
 }
 
 
