@@ -16,6 +16,16 @@ const updateDb = async (client, userid, packet) => {
     return;
 }
 
+const updateAllUsers = async (client) => {
+    const userids = Object.keys(global.voiceChatUser);
+    for (const userid of userids) {
+        await updateDb(client, userid, global.voiceChatUser[userid]);
+        global.voiceChatUser[userid].since = Date.now();
+    }
+}
+
+setInterval(() => updateAllUsers(), 5000);
+
 
 const joinVoice = (client, userid) => {
     global.voiceChatUser[userid] = {
@@ -53,7 +63,6 @@ const leaveVoice = async (client, userid) => {
 
 const start = (client) => {
     client.on(Events.VoiceStateUpdate, async (oldState, newState) => {
-
         const { state, userid } = await checkState(oldState, newState);
 
         switch (state) {
@@ -70,7 +79,6 @@ const start = (client) => {
             default:
                 break;
         }
-
     });
 }
 

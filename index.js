@@ -79,9 +79,6 @@ startCode0();
 
 -> /logs add? 0-10, 10-20, 20-30 select menu
 
--> add real timer for Embed class to determine if a message can be edited
--> function return undefined if editing cant be done anymore
-
 -> add /stats command updater using Embed class function to update live stats
 
 */
