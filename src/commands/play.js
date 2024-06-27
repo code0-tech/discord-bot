@@ -13,40 +13,40 @@ const ytdl = require('ytdl-core');
 
 
 const data = new SlashCommandBuilder()
-    .setName('play')
-    .setDescription('Play music stream from yt videos.')
-    .addStringOption(option =>
-        option.setName('url')
-            .setDescription('Use Youtube or Youtube Music urls.')
-    )
-    .setDefaultMemberPermissions(PermissionFlagsBits.Administrator)
+  .setName('play')
+  .setDescription('Play music stream from yt videos.')
+  .addStringOption(option =>
+    option.setName('url')
+      .setDescription('Use Youtube or Youtube Music urls.')
+  )
+  .setDefaultMemberPermissions(PermissionFlagsBits.Administrator)
 
 
 // This is just for fun so no entries in english.json
 
 
 const execute = async (interaction, client, guild, member, lang) => {
-    await interaction.deferReply({ ephemeral: true });
+  await interaction.deferReply({ ephemeral: true });
 
+  return;
+
+  if (global.musicPlayer.inuse == true) {
+    await new Embed()
+      .setColor(config.embeds.colors.info)
+      .setTitle('Already Playing Music')
+      .interactionResponse(interaction);
     return;
+  }
 
-    if (global.musicPlayer.inuse == true) {
-        await new Embed()
-            .setColor(config.embeds.colors.info)
-            .setTitle('Already Playing Music')
-            .interactionResponse(interaction);
-        return;
-    }
+  const { channelId } = await userVoiceState(member.id, guild);
 
-    const { channelId } = await userVoiceState(member.id, guild);
-
-    if (channelId == null) {
-        await new Embed()
-            .setColor(config.embeds.colors.info)
-            .setTitle('You are not in a Voice Channel')
-            .interactionResponse(interaction);
-        return;
-    }
+  if (channelId == null) {
+    await new Embed()
+      .setColor(config.embeds.colors.info)
+      .setTitle('You are not in a Voice Channel')
+      .interactionResponse(interaction);
+    return;
+  }
 
 
 
