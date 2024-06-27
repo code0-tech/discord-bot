@@ -1,5 +1,7 @@
 const { levenshteinDistance } = require('../utils/helper');
 const { MongoUser } = require('../mongo/MongoUser');
+const { Embed } = require('../models/Embed');
+const { waitMs } = require('../utils/time');
 const config = require('../../config.json');
 const { Events } = require('discord.js');
 
@@ -52,11 +54,8 @@ const checkIfValid = async (msg) => {
 
     userList[userid] = newpacket(msg);
 
-    // console.log(reasons);
-
     return cannotPass;
 }
-
 
 const start = (client) => {
     const maxLength = config.commands.rank.maxlength;
@@ -72,6 +71,8 @@ const start = (client) => {
 
         const user = await new MongoUser(msg.author.id).init();
 
+        // const previousLevel = (await user.getRank()).level;
+
         const adjustedLength = Math.min(msg.content.length, maxLength);
 
         let xp = Math.floor(adjustedLength * xpPerChar);
@@ -83,6 +84,15 @@ const start = (client) => {
         }
 
         user.updateXpBy(xp);
+
+        // await waitMs(2000);
+
+        // const lastLevel = (await user.getRank()).level;
+
+        // if (lastLevel !== previousLevel) {
+        // channelRankUpdateMessage(client, user);
+        // }
+
     })
 
 }
