@@ -5,6 +5,7 @@ const getUser = async (userid, guild) => {
 
     try {
         // create an check if user is in cache
+        // Or just let this like it is
 
         member = await guild.members.fetch(userid);
     } catch (err) {

@@ -68,7 +68,7 @@ const executeComponent = async (interaction, client, guild, member, lang, button
             .interactionResponse(interaction);
     };
 
-    if (buttonData.id === 'application-apply-closed-team' || buttonData.id === 'application-apply-open-contributor') { // Handle new application interaction
+    if (buttonData.id === 'application-apply-closed-team' || buttonData.id === 'application-apply-open-contributor') {
 
         if (await checkLastCreatedTicket(guild, member)) {
             await sendEmbedResponse(config.embeds.colors.danger, 'has-application');
@@ -107,7 +107,7 @@ const executeComponent = async (interaction, client, guild, member, lang, button
             .addContext(lang, member, 'new-application')
             .interactionResponse(interaction);
 
-    } else if (buttonData.id === 'application-close') { // Handle application close
+    } else if (buttonData.id === 'application-close') {
 
         if (!isTeam) {
             await sendEmbedResponse(config.embeds.colors.danger, 'no-team-member');
@@ -136,8 +136,7 @@ const executeComponent = async (interaction, client, guild, member, lang, button
 
         applicationChannel.setName(`${applicationChannel.name}-closed`);
 
-    } else { // Handle application delete
-
+    } else {
         if (!isTeam) {
             await sendEmbedResponse(config.embeds.colors.danger, 'no-team-member');
             return;

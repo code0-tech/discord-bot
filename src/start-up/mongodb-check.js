@@ -2,7 +2,6 @@ const { Mongo, ENUMS } = require('../models/Mongo');
 const MongoDb = new Mongo();
 
 const check = async () => {
-
     const results = await MongoDb.aggregate(ENUMS.DCB.USERS, [
         { $group: { _id: '$id', count: { $sum: 1 } } },
         { $match: { count: { $gt: 1 } } },
@@ -13,7 +12,6 @@ const check = async () => {
         console.log(`[MongoDb Check] found _${doublePackets._id} duplicates, count: ${doublePackets.count}`);
 
         const packets = await MongoDb.find(ENUMS.DCB.USERS, { id: doublePackets._id });
-
         const indexOfMax = packets.reduce((maxIndex, obj, currentIndex) => {
             return obj.rawxp > packets[maxIndex].rawxp ? currentIndex : maxIndex;
         }, 0);

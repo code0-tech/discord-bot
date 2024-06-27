@@ -94,7 +94,7 @@ const execute = async (interaction, client, guild, member, lang) => {
     }
 
     sendMessage(interaction, member, lang, data);
-
 };
+
 
 module.exports = { execute, data };

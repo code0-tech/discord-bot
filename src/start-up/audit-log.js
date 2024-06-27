@@ -34,10 +34,6 @@ const setup = (client) => {
             }).join('\n');
         }
 
-
-
-
-
         new Embed()
             .setColor(config.embeds.colors.info)
             .setTitle(`${AUDIT_LOG_ACTIONS[actionId]} (action: ${actionId})`)

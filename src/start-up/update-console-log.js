@@ -7,7 +7,6 @@ const generateRunId = () => {
     return Date.now();
 };
 
-
 const processNextLog = async () => {
     if (!logDocument && logBuffer.length > 0) {
         const MongoDb = new Mongo();
@@ -54,7 +53,7 @@ const logToMongoDb = async (log) => {
 const originalConsoleLog = console.log;
 
 const customLog = (...args) => {
-    const log = args.length === 1 ? args[0] : args.join(' '); // Convert multiple arguments to a single string
+    const log = args.length === 1 ? args[0] : args.join(' ');
 
     if (!global.isDevelopment) {
         logToMongoDb(log);
@@ -66,5 +65,5 @@ const customLog = (...args) => {
     originalConsoleLog(...args);
 };
 
-// Replace the default console.log with my own customLog
+
 console.log = customLog;

@@ -17,7 +17,7 @@ const execute = async (interaction, client, guild, member, lang) => {
         })
         .addContext(lang, member, 'info')
         .interactionResponse(interaction);
-
 };
+
 
 module.exports = { execute, data };

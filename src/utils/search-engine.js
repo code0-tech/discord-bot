@@ -141,7 +141,6 @@ function findTopMatches(inputString, maxMatches = 5) {
 
 
 const searchAutoComplete = async (search) => {
-
     // When the search is all show all (simple way to get an full overview of all faq's)
     // Discord only let you return 25 autocomplete responses to the user
     if (search == 'all') {
@@ -172,9 +171,6 @@ const searchAutoComplete = async (search) => {
 
     return topMatches;
 };
-
-
-// searchAutoComplete('Teaml memler')
 
 
 module.exports = { searchAutoComplete };

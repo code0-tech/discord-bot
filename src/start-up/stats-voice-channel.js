@@ -2,12 +2,12 @@ const { MongoUser } = require('../mongo/MongoUser');
 const { checkState } = require('../discord/voice');
 const { Events } = require('discord.js');
 
-global.voiceChatUser = {};
+let voiceChatUser = {};
 
 const updateDb = async (client, userid, packet) => {
     const user = await new MongoUser(userid).init();
 
-    const timeInVoice = Date.now() - global.voiceChatUser[userid].since;
+    const timeInVoice = Date.now() - voiceChatUser[userid].since;
 
     if (timeInVoice < 1000) return;
 
@@ -17,10 +17,10 @@ const updateDb = async (client, userid, packet) => {
 }
 
 const updateAllUsers = async (client) => {
-    const userids = Object.keys(global.voiceChatUser);
+    const userids = Object.keys(voiceChatUser);
     for (const userid of userids) {
-        await updateDb(client, userid, global.voiceChatUser[userid]);
-        global.voiceChatUser[userid].since = Date.now();
+        await updateDb(client, userid, voiceChatUser[userid]);
+        voiceChatUser[userid].since = Date.now();
     }
 }
 
@@ -28,7 +28,7 @@ setInterval(() => updateAllUsers(), 5000);
 
 
 const joinVoice = (client, userid) => {
-    global.voiceChatUser[userid] = {
+    voiceChatUser[userid] = {
         since: Date.now(),
         switchs: 0
     }
@@ -36,30 +36,30 @@ const joinVoice = (client, userid) => {
 
 
 const switchVoice = (client, userid) => {
-    if (!global.voiceChatUser[userid]) {
-        global.voiceChatUser[userid] = {
+    if (!voiceChatUser[userid]) {
+        voiceChatUser[userid] = {
             since: client.startDate,
             switchs: 0
         }
     }
 
-    global.voiceChatUser[userid].switchs++;
+    voiceChatUser[userid].switchs++;
 }
 
 
 const leaveVoice = async (client, userid) => {
-    if (!global.voiceChatUser[userid]) {
-        global.voiceChatUser[userid] = {
+    if (!voiceChatUser[userid]) {
+        voiceChatUser[userid] = {
             since: client.startDate,
             switchs: 0
         }
     }
 
-    global.voiceChatUser[userid].join = true
+    voiceChatUser[userid].join = true
 
-    await updateDb(client, userid, global.voiceChatUser[userid]);
+    await updateDb(client, userid, voiceChatUser[userid]);
 
-    delete global.voiceChatUser[userid];
+    delete voiceChatUser[userid];
 }
 
 

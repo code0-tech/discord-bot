@@ -26,7 +26,6 @@ const getToken = (code) => {
   })
 }
 
-
 const getGithubUserInfo = (token) => {
   const query = `
   {

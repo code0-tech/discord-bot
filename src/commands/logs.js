@@ -219,4 +219,5 @@ const executeComponent = async (interaction, client, guild, member, lang, compon
 
 const componentIds = ['logs'];
 
+
 module.exports = { execute, data, componentIds, executeComponent };

@@ -9,7 +9,7 @@ const data = new SlashCommandBuilder()
     .setDescription('Use the search to answear basic questions.')
     .addStringOption(option =>
         option.setName('query')
-            .setDescription('Here you can find most of our basic answear. Type "all" to get a full list.')
+            .setDescription('Here you can find most of our basic answear. Simply "all" to get a full list.')
             .setAutocomplete(true));
 
 

@@ -13,4 +13,5 @@ const startPuppeteer = async () => {
     }
 };
 
+
 startPuppeteer();

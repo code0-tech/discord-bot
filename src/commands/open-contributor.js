@@ -104,4 +104,5 @@ const execute = async (interaction, client, guild, member, lang) => {
     }
 };
 
+
 module.exports = { execute, data };

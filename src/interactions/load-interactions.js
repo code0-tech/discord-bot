@@ -41,6 +41,7 @@ const load = (client) => {
         }
     }
 
+    // Run the emitter
     require('./emit-interactions').setup(client);
 }
 

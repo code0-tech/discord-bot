@@ -5,7 +5,7 @@ const config = require('./../../config.json');
 
 const data = new SlashCommandBuilder()
     .setName('links')
-    .setDescription('Show our Code0 links.')
+    .setDescription('Display our Code0 links.')
 
 const execute = async (interaction, client, guild, member, lang) => {
     await interaction.deferReply({ ephemeral: true });
