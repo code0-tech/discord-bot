@@ -1,5 +1,5 @@
-const { SlashCommandBuilder } = require('@discordjs/builders');
 const { msToHumanReadableTime, waitMs } = require('./../utils/time');
+const { SlashCommandBuilder } = require('@discordjs/builders');
 const { MongoUser } = require('./../mongo/MongoUser');
 const { Embed } = require('./../models/Embed');
 const config = require('./../../config.json');
@@ -12,7 +12,8 @@ const data = new SlashCommandBuilder()
             .setName('user')
             .setDescription('Check other user stats.')
             .setRequired(false)
-    )
+    );
+
 
 const normalizeData = (data) => {
     data.messages = data.messages || { words: 0, chars: 0, count: 0 };
@@ -29,35 +30,37 @@ const normalizeData = (data) => {
 }
 
 
-const loop = async (interaction, member, lang, embedMessage, rankMember, user) => {
+const loop = async (interaction, member, lang, embedMessage, rankMember, user, previousStats = null) => {
     const stats = await user.getStats();
-
     const normalizedStats = normalizeData(stats);
 
-    const { s, m, h, d } = msToHumanReadableTime(normalizedStats.voice.time * 1000);
+    const statsChanged = !previousStats || JSON.stringify(normalizedStats) !== JSON.stringify(previousStats);
 
-    const embed = new Embed()
-        .setColor(config.embeds.colors.info)
-        .setPbThumbnail(rankMember)
-        .addInputs({
-            count: normalizedStats.messages.count,
-            words: normalizedStats.messages.words,
-            chars: normalizedStats.messages.chars,
+    if (statsChanged) {
+        const { s, m, h, d } = msToHumanReadableTime(normalizedStats.voice.time * 1000);
 
-            joins: normalizedStats.voice.joins,
-            switchs: normalizedStats.voice.switchs,
-            voicedays: d,
-            voicehours: h,
-            voiceminutes: m,
-            voiceseconds: s
-        })
-        .addContext(lang, member, embedMessage);
+        const embed = new Embed()
+            .setColor(config.embeds.colors.info)
+            .setPbThumbnail(rankMember)
+            .addInputs({
+                count: normalizedStats.messages.count,
+                words: normalizedStats.messages.words,
+                chars: normalizedStats.messages.chars,
+                joins: normalizedStats.voice.joins,
+                switchs: normalizedStats.voice.switchs,
+                voicedays: d,
+                voicehours: h,
+                voiceminutes: m,
+                voiceseconds: s
+            })
+            .addContext(lang, member, embedMessage);
 
-    const response = await embed.interactionResponse(interaction);
+        await embed.interactionResponse(interaction);
+    }
 
-    if (response !== null && embedMessage !== 'this-bot-stats' && config.commands.stats.uptodate15m == true) {
+    if (embedMessage !== 'this-bot-stats' && config.commands.stats.uptodate15m) {
         await waitMs(2000);
-        loop(interaction, member, lang, embedMessage, rankMember, user);
+        loop(interaction, member, lang, embedMessage, rankMember, user, normalizedStats);
     }
 }
 
@@ -68,12 +71,11 @@ const execute = async (interaction, client, guild, member, lang) => {
     const userIdToCheck = interaction.options._hoistedOptions.length !== 0 ? interaction.options._hoistedOptions[0].user.id : member.user.id;
     let embedMessage = interaction.options._hoistedOptions.length !== 0 && userIdToCheck !== member.user.id ? 'other-stats-response' : 'own-stats-response';
 
-    if (client.user.id == userIdToCheck) {
+    if (client.user.id === userIdToCheck) {
         embedMessage = 'this-bot-stats';
     }
 
     const rankMember = await guild.members.fetch(userIdToCheck);
-
     const user = await new MongoUser(userIdToCheck).init();
 
     loop(interaction, member, lang, embedMessage, rankMember, user);
