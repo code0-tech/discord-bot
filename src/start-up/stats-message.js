@@ -58,7 +58,7 @@ const checkIfValid = async (msg) => {
     return cannotPass;
 }
 
-
+// Put this into the user mongo class later
 const channelRankUpdateMessage = async (client, user) => {
     const guild = await getGuild(config.serverid, client);
     const rankMember = await guild.members.fetch(await user.getId());
