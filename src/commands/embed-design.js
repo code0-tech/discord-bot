@@ -21,20 +21,6 @@ const data = new SlashCommandBuilder()
 const execute = async (interaction, client, guild, member, lang) => {
   await interaction.deferReply({ ephemeral: true });
 
-  const startTime = Date.now();
-
-  index = 0;
-
-  setInterval(async () => {
-    index++;
-    const { m, s } = msToHumanReadableTime(Date.now() - startTime);
-
-    const response = await new Embed()
-      .setDescription(`I: ${index}\n\n${m} minutes, ${s} seconds.`)
-      .interactionResponse(interaction)
-
-    console.log(response)
-  }, 2000);
 
 }
 

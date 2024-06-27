@@ -16,7 +16,7 @@ const execute = async (interaction, client, guild, member, lang) => {
             neededcommits: config.commands.opencontributor.commits
         })
         .addContext(lang, member, 'info')
-        .interactionResponse(interaction)
+        .interactionResponse(interaction);
 
 };
 
