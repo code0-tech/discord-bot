@@ -58,6 +58,10 @@ const customLog = (...args) => {
 
     if (!global.isDevelopment) {
         logToMongoDb(log);
+    } else {
+        process['dclogger'] = {
+            runid: 999999999
+        };
     }
     originalConsoleLog(...args);
 };
