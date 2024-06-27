@@ -50,6 +50,8 @@ const startCode0 = async () => {
 
         require('./src/interactions/load-interactions').load(client);
 
+        require('./src/start-up/mongodb-check');
+
         require('./src/start-up/audit-log').setup(client);
         require('./src/start-up/client-status').start(client);
 

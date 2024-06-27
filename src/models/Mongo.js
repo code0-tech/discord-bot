@@ -28,6 +28,17 @@ class Mongo {
         return result;
     }
 
+    async distinct(where, string = '') {
+        try {
+            const col = await this._getWhere(where);
+            const result = await col.distinct(string);
+            return result;
+        } catch (error) {
+            console.error('Error finding documents:', error);
+            throw error;
+        }
+    }
+
     async insertOne(where, document) {
         try {
             const col = await this._getWhere(where);
@@ -46,6 +57,17 @@ class Mongo {
             return result;
         } catch (error) {
             console.error('Error updating document:', error);
+            throw error;
+        }
+    }
+
+    async deleteOne(where, query) {
+        try {
+            const col = await this._getWhere(where);
+            const result = await col.deleteOne(query);
+            return result;
+        } catch (error) {
+            console.error('Error deleting document:', error);
             throw error;
         }
     }
