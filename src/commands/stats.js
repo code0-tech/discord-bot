@@ -1,5 +1,5 @@
 const { SlashCommandBuilder } = require('@discordjs/builders');
-const { msToHumanReadableTime } = require('./../utils/time');
+const { msToHumanReadableTime, waitMs } = require('./../utils/time');
 const { MongoUser } = require('./../mongo/MongoUser');
 const { Embed } = require('./../models/Embed');
 const config = require('./../../config.json');
@@ -28,23 +28,11 @@ const normalizeData = (data) => {
     return data;
 }
 
-const execute = async (interaction, client, guild, member, lang) => {
-    await interaction.deferReply({ ephemeral: true });
 
-    const userIdToCheck = interaction.options._hoistedOptions.length !== 0 ? interaction.options._hoistedOptions[0].user.id : member.user.id;
-    let embedMessage = interaction.options._hoistedOptions.length !== 0 && userIdToCheck !== member.user.id ? 'other-stats-response' : 'own-stats-response';
-
-    const rankMember = await guild.members.fetch(userIdToCheck);
-
-    const user = await new MongoUser(userIdToCheck).init();
-
+const loop = async (interaction, member, lang, embedMessage, rankMember, user) => {
     const stats = await user.getStats();
 
     const normalizedStats = normalizeData(stats);
-
-    if (client.user.id == userIdToCheck) {
-        embedMessage = 'this-bot-stats';
-    }
 
     const { s, m, h, d } = msToHumanReadableTime(normalizedStats.voice.time * 1000);
 
@@ -65,7 +53,30 @@ const execute = async (interaction, client, guild, member, lang) => {
         })
         .addContext(lang, member, embedMessage);
 
-    embed.interactionResponse(interaction);
+    const response = await embed.interactionResponse(interaction);
+
+    if (response !== null && embedMessage !== 'this-bot-stats' && config.commands.stats.uptodate15m == true) {
+        await waitMs(2000);
+        loop(interaction, member, lang, embedMessage, rankMember, user);
+    }
+}
+
+
+const execute = async (interaction, client, guild, member, lang) => {
+    await interaction.deferReply({ ephemeral: true });
+
+    const userIdToCheck = interaction.options._hoistedOptions.length !== 0 ? interaction.options._hoistedOptions[0].user.id : member.user.id;
+    let embedMessage = interaction.options._hoistedOptions.length !== 0 && userIdToCheck !== member.user.id ? 'other-stats-response' : 'own-stats-response';
+
+    if (client.user.id == userIdToCheck) {
+        embedMessage = 'this-bot-stats';
+    }
+
+    const rankMember = await guild.members.fetch(userIdToCheck);
+
+    const user = await new MongoUser(userIdToCheck).init();
+
+    loop(interaction, member, lang, embedMessage, rankMember, user);
 };
 
 

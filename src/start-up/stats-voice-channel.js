@@ -11,7 +11,7 @@ const updateDb = async (client, userid, packet) => {
 
     if (timeInVoice < 1000) return;
 
-    user.updateVoiceStats(Math.floor(timeInVoice / 1000), 1, packet.switchs);
+    user.updateVoiceStats(Math.floor(timeInVoice / 1000), (packet.join == true ? 1 : 0), packet.switchs);
 
     return;
 }
@@ -54,6 +54,8 @@ const leaveVoice = async (client, userid) => {
             switchs: 0
         }
     }
+
+    global.voiceChatUser[userid].join = true
 
     await updateDb(client, userid, global.voiceChatUser[userid]);
 
