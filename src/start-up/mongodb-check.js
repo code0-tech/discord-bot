@@ -1,5 +1,4 @@
 const { Mongo, ENUMS } = require('../models/Mongo');
-const { ObjectId } = require('mongodb');
 const MongoDb = new Mongo();
 
 const check = async () => {
