@@ -79,6 +79,4 @@ startCode0();
 
 -> /logs add? 0-10, 10-20, 20-30 select menu
 
--> add /stats command updater using Embed class function to update live stats
-
 */
