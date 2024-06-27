@@ -6,7 +6,6 @@ const { SlashCommandBuilder } = require('@discordjs/builders');
 const { Embed, progressBar } = require('./../models/Embed');
 const { TableBuilder } = require('../models/table');
 const { Card } = require('./../models/card/Card');
-const { waitMs } = require('./../utils/time');
 const config = require('./../../config.json');
 const { Readable } = require('stream');
 const { join } = require('path');
@@ -26,23 +25,16 @@ const execute = async (interaction, client, guild, member, lang) => {
 
   index = 0;
 
-  setInterval(() => {
+  setInterval(async () => {
     index++;
-
     const { m, s } = msToHumanReadableTime(Date.now() - startTime);
 
-
-    new Embed()
+    const response = await new Embed()
       .setDescription(`I: ${index}\n\n${m} minutes, ${s} seconds.`)
       .interactionResponse(interaction)
+
+    console.log(response)
   }, 2000);
-
-
-  // const channel = await channelFromId("1173728043223765132", guild);
-
-  // channel.send('<@329279009298841600> Ich komme auch gleich zu euch');
-
-  return;
 
 }
 

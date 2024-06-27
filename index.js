@@ -46,7 +46,6 @@ const startCode0 = async () => {
     require('./src/start-up/start-puppeteer');
     require('./src/web-server/http-server').setup(client);
 
-
     client.once(Events.ClientReady, readyClient => {
 
         require('./src/interactions/load-interactions').load(client);

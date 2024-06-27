@@ -6,7 +6,6 @@ const { SlashCommandBuilder } = require('@discordjs/builders');
 const { Embed, progressBar } = require('./../models/Embed');
 const { TableBuilder } = require('../models/table');
 const { Card } = require('./../models/card/Card');
-const { waitMs } = require('./../utils/time');
 const config = require('./../../config.json');
 const { Readable } = require('stream');
 const { join } = require('path');
