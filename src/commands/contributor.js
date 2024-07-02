@@ -7,7 +7,8 @@ const data = new SlashCommandBuilder()
     .setName('contributor')
     .setDescription('Explore our Open-Contributor guidelines and decide to submit your application.')
 
-const execute = async (interaction, client, guild, member, lang) => {
+
+    const execute = async (interaction, client, guild, member, lang) => {
     await DC.defer(interaction);
 
     new Embed()
