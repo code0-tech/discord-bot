@@ -3,6 +3,7 @@ const { SlashCommandBuilder } = require('@discordjs/builders');
 const { MongoUser } = require('./../mongo/MongoUser');
 const { Embed } = require('./../models/Embed');
 const config = require('./../../config.json');
+const DC = require('./../singleton/DC');
 
 const data = new SlashCommandBuilder()
     .setName('stats')
@@ -66,7 +67,7 @@ const loop = async (interaction, member, lang, embedMessage, rankMember, user, p
 
 
 const execute = async (interaction, client, guild, member, lang) => {
-    await interaction.deferReply({ ephemeral: true });
+    await DC.defer(interaction);
 
     const userIdToCheck = interaction.options._hoistedOptions.length !== 0 ? interaction.options._hoistedOptions[0].user.id : member.user.id;
     let embedMessage = interaction.options._hoistedOptions.length !== 0 && userIdToCheck !== member.user.id ? 'other-stats-response' : 'own-stats-response';

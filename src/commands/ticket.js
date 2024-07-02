@@ -6,6 +6,7 @@ const { isTeamMember } = require('../discord/user');
 const { Channel } = require('./../models/Channel');
 const { Embed } = require('./../models/Embed');
 const config = require('./../../config.json');
+const DC = require('./../singleton/DC');
 
 const data = new SlashCommandBuilder()
     .setName('ticket')
@@ -40,7 +41,7 @@ const checkLastCreatedTicket = async (guild, member) => {
 };
 
 const execute = async (interaction, client, guild, member, lang) => {
-    await interaction.deferReply({ ephemeral: true });
+    await DC.defer(interaction);
 
     const lastTicketinMs = await checkLastCreatedTicket(guild, member);
 
@@ -100,7 +101,7 @@ const execute = async (interaction, client, guild, member, lang) => {
 
 
 const executeComponent = async (interaction, client, guild, member, lang, componentData) => {
-    await interaction.deferReply({ ephemeral: true });
+    await DC.defer(interaction);
 
     if (!await isTeamMember(member)) {
         await new Embed()

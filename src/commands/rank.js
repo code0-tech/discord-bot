@@ -3,6 +3,7 @@ const { Embed, progressBar } = require('./../models/Embed');
 const { MongoUser } = require('./../mongo/MongoUser');
 const { waitMs } = require('./../utils/time');
 const config = require('./../../config.json');
+const DC = require('./../singleton/DC');
 
 const data = new SlashCommandBuilder()
     .setName('rank')
@@ -44,7 +45,7 @@ const loop = async (interaction, member, lang, embedMessage, rankMember, user, p
 
 
 const execute = async (interaction, client, guild, member, lang) => {
-    await interaction.deferReply({ ephemeral: true });
+    await DC.defer(interaction);
 
     const userIdToCheck = interaction.options._hoistedOptions.length !== 0 ? interaction.options._hoistedOptions[0].user.id : member.user.id;
     let embedMessage = interaction.options._hoistedOptions.length !== 0 && userIdToCheck !== member.user.id ? 'other-rank-response' : 'own-rank-response';

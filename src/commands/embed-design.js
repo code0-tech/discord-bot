@@ -7,6 +7,7 @@ const { Embed, progressBar } = require('./../models/Embed');
 const { TableBuilder } = require('../models/table');
 const { Card } = require('./../models/card/Card');
 const config = require('./../../config.json');
+const DC = require('./../singleton/DC');
 const { Readable } = require('stream');
 const { join } = require('path');
 const ytdl = require('ytdl-core');

@@ -5,6 +5,7 @@ const { TableBuilder } = require('../models/table');
 const { getUser } = require('./../discord/user');
 const { Embed } = require('../models/Embed');
 const config = require('../../config.json');
+const DC = require('./../singleton/DC');
 
 const MongoDb = new Mongo();
 
@@ -57,7 +58,7 @@ const sendMessage = (interaction, member, lang, data) => {
 
 
 const execute = async (interaction, client, guild, member, lang) => {
-    await interaction.deferReply({ ephemeral: true });
+    await DC.defer(interaction);
 
     const limit = interaction.options._hoistedOptions.length !== 0 ? interaction.options._hoistedOptions[0].value : 10;
 

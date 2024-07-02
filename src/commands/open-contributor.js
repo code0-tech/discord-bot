@@ -4,6 +4,7 @@ const { SlashCommandBuilder } = require('@discordjs/builders');
 const { Embed, progressBar } = require('./../models/Embed');
 const { encryptString } = require('./../utils/crypto');
 const config = require('./../../config.json');
+const DC = require('./../singleton/DC');
 
 
 const data = new SlashCommandBuilder()
@@ -20,7 +21,8 @@ const failedMessage = async (interaction, client, member, lang, type) => {
 
 
 const execute = async (interaction, client, guild, member, lang) => {
-    await interaction.deferReply({ ephemeral: true });
+    await DC.defer(interaction);
+
 
     // Check if role is already present
     if (member.roles.cache.has(config.roles.opencontributor)) {

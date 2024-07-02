@@ -7,9 +7,11 @@ const { Embed, progressBar } = require('./../models/Embed');
 const { TableBuilder } = require('../models/table');
 const { Card } = require('./../models/card/Card');
 const config = require('./../../config.json');
+const DC = require('./../singleton/DC');
 const { Readable } = require('stream');
 const { join } = require('path');
 const ytdl = require('ytdl-core');
+
 
 
 const data = new SlashCommandBuilder()
@@ -26,7 +28,9 @@ const data = new SlashCommandBuilder()
 
 
 const execute = async (interaction, client, guild, member, lang) => {
-  await interaction.deferReply({ ephemeral: true });
+  // await interaction.deferReply({ ephemeral: true });
+  await DC.defer(interaction);
+
 
   return;
 

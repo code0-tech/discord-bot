@@ -3,6 +3,7 @@ const { SlashCommandBuilder } = require('@discordjs/builders');
 const { searchData } = require('./../../data/search/search');
 const { Embed } = require('./../models/Embed');
 const config = require('./../../config.json');
+const DC = require('./../singleton/DC');
 
 const data = new SlashCommandBuilder()
     .setName('search')
@@ -14,7 +15,7 @@ const data = new SlashCommandBuilder()
 
 
 const execute = async (interaction, client, guild, member, lang) => {
-    await interaction.deferReply({ ephemeral: true });
+    await DC.defer(interaction);
 
     const searchQuery = interaction.options.getString('query');
 

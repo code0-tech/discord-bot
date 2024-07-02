@@ -5,6 +5,7 @@ const { Mongo, ENUMS } = require('../models/Mongo');
 const { TableBuilder } = require('../models/table');
 const { Embed } = require('./../models/Embed');
 const config = require('./../../config.json');
+const DC = require('./../singleton/DC');
 
 
 const data = new SlashCommandBuilder()
@@ -205,7 +206,8 @@ const findAndExecuteSubCommand = (subCommand, interaction, member, lang, compone
 
 
 const execute = async (interaction, client, guild, member, lang) => {
-    await interaction.deferReply({ ephemeral: true });
+    await DC.defer(interaction);
+
     const subCommand = interaction.options.getSubcommand();
     const componentData = null;
     findAndExecuteSubCommand(subCommand, interaction, member, lang, componentData);
@@ -213,7 +215,8 @@ const execute = async (interaction, client, guild, member, lang) => {
 
 
 const executeComponent = async (interaction, client, guild, member, lang, componentData) => {
-    await interaction.deferReply({ ephemeral: true });
+    await DC.defer(interaction);
+
     findAndExecuteSubCommand(componentData.type, interaction, member, lang, componentData);
 }
 
