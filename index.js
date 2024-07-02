@@ -83,4 +83,6 @@ startCode0();
 
 -> add an check for when no logs are in the db to not crash for empty message
 
+-> update hoistedoptions to .get in all files
+
 */
