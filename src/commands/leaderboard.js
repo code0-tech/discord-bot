@@ -2,7 +2,6 @@ const { SlashCommandBuilder } = require('@discordjs/builders');
 const { MongoUser } = require('./../mongo/MongoUser');
 const { Mongo, ENUMS } = require('../models/Mongo');
 const { TableBuilder } = require('../models/table');
-const { getUser } = require('./../discord/user');
 const { Embed } = require('../models/Embed');
 const config = require('../../config.json');
 const DC = require('./../singleton/DC');
@@ -23,7 +22,6 @@ const data = new SlashCommandBuilder()
 
 
 const listUser = async (limit = 10) => {
-
     const list = await MongoDb.aggregate(ENUMS.DCB.USERS, [
         { $sort: { rawxp: -1 } },
         { $limit: limit }
@@ -71,7 +69,7 @@ const execute = async (interaction, client, guild, member, lang) => {
     for (let i = 0; i < userList.length; i++) {
         const user = userList[i];
 
-        let leadboardMember = await getUser(user.id, guild);
+        let leadboardMember = await DC.memberById(user.id, guild);
 
         if (leadboardMember == null) {
             leadboardMember = { user: { username: '[Left the server]' } };

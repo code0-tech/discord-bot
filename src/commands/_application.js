@@ -1,11 +1,11 @@
 const { ChannelType, PermissionsBitField, ButtonBuilder, ButtonStyle, ActionRowBuilder } = require("discord.js");
 const { channelFromInteraction, removeAllChannelUserPerms, channelsFromParent } = require('../discord/channel');
 const { messagesFromChannel } = require('./../discord/quick-dc');
-const { isTeamMember } = require('./../discord/user');
 const { Channel } = require('./../models/Channel');
 const { keyArray } = require('./../utils/helper');
 const { Embed } = require('./../models/Embed');
 const config = require('./../../config.json');
+const DC = require('./../singleton/DC');
 
 const data = null;
 
@@ -58,9 +58,9 @@ const checkLastCreatedTicket = async (guild, member) => {
 
 
 const executeComponent = async (interaction, client, guild, member, lang, buttonData) => {
-    await interaction.deferReply({ ephemeral: true });
+    await DC.defer(interaction);
 
-    const isTeam = await isTeamMember(member);
+    const isTeam = await DC.isTeamMember(member);
     const sendEmbedResponse = async (color, contextKey) => {
         await new Embed()
             .setColor(color)

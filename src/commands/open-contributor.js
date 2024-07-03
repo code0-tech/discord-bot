@@ -23,7 +23,6 @@ const failedMessage = async (interaction, client, member, lang, type) => {
 const execute = async (interaction, client, guild, member, lang) => {
     await DC.defer(interaction);
 
-
     // Check if role is already present
     if (member.roles.cache.has(config.roles.opencontributor)) {
         // User already has the role, show appropriate message
