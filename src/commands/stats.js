@@ -76,7 +76,7 @@ const execute = async (interaction, client, guild, member, lang) => {
         embedMessage = 'this-bot-stats';
     }
 
-    const rankMember = await guild.members.fetch(userIdToCheck);
+    const rankMember = await DC.memberById(userIdToCheck, guild);
     const user = await new MongoUser(userIdToCheck).init();
 
     loop(interaction, member, lang, embedMessage, rankMember, user);
