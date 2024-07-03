@@ -89,9 +89,9 @@ const start = (client) => {
 
     client.on(Events.MessageCreate, async msg => {
 
-        console.dir(msg, { depth: null });
-
         if (msg.webhookId == '1187288818840240128') { // testing something for later
+
+            // console.dir(msg, { depth: null });
 
             const embedData = msg.embeds[0].data;
 
