@@ -5,7 +5,6 @@ const { Events } = require('discord.js');
 
 const extractIdData = (inputString) => {
     const parts = inputString.split('*');
-
     const id = parts[0];
     const result = { id };
 
@@ -22,7 +21,7 @@ const executionError = (interaction, info) => {
         new Embed()
             .setTitle('Error at Command Execution')
             .setColor(config.embeds.colors.danger)
-            .setDescription(`An error occurred while\nprocessing your request\n\nMsg:\n\`${info}\``)
+            .setDescription(`An error occurred while processing your request\n\nMsg:\n\`${info}\``)
             .interactionResponse(interaction);
     }
 };
@@ -33,81 +32,79 @@ const getGuildAndMember = async (client, userId) => {
     return { guild, member };
 };
 
-const command = async (interaction, client) => {
-    const command = client.commands.get(interaction.commandName);
-    if (!command) return;
-
+const handleInteraction = async (interaction, client, handler) => {
     try {
         const { guild, member } = await getGuildAndMember(client, interaction.user.id);
-        const lang = await language(interaction.commandName, interaction, guild, client);
-        await command.execute(interaction, client, guild, member, lang);
+
+        let commandName;
+        if (interaction.isCommand() || interaction.isAutocomplete()) {
+            commandName = interaction.commandName;
+        } else if (interaction.isMessageComponent()) {
+            commandName = interaction.message.interaction
+                ? interaction.message.interaction.commandName
+                : client.components.get(interaction.customId.split('*')[0]).data.name;
+        }
+
+        if (!commandName) {
+            throw new Error('Command name is undefined');
+        }
+
+        console.log('Handling interaction for command:', commandName);
+
+        const lang = await language(commandName, interaction, guild, client);
+
+        if (!lang) {
+            throw new Error('Specified language context was not given');
+        }
+
+        await handler(interaction, client, guild, member, lang);
     } catch (error) {
-        console.log(error);
-        executionError(interaction, `${interaction.commandName} failed`);
+        console.error('Error in handleInteraction:', error);
+        const id = interaction.commandName || interaction.customId.split('*')[0];
+        executionError(interaction, `${id} failed`);
     }
 };
 
-const button = async (interaction, client) => {
+const commandHandler = async (interaction, client, guild, member, lang) => {
+    const command = client.commands.get(interaction.commandName);
+    if (!command) return;
+    await command.execute(interaction, client, guild, member, lang);
+};
+
+const buttonHandler = async (interaction, client, guild, member, lang) => {
     const buttonData = extractIdData(interaction.customId);
     const buttonCommand = client.components.get(buttonData.id);
     if (!buttonCommand) return;
 
-    try {
-        const { guild, member } = await getGuildAndMember(client, interaction.user.id);
-        const commandName = interaction.message.interaction
-            ? interaction.message.interaction.commandName
-            : buttonCommand.data.name;
-        const lang = await language(commandName, interaction, guild, client);
-        await buttonCommand.executeComponent(interaction, client, guild, member, lang, buttonData);
-    } catch (error) {
-        console.log(error);
-        executionError(interaction, `Button Interaction failed, ${buttonData.id}`);
-    }
+    console.log('Button data:', buttonData);
+
+    await buttonCommand.executeComponent(interaction, client, guild, member, lang, buttonData);
 };
 
-const selectMenu = async (interaction, client) => {
+const selectMenuHandler = async (interaction, client, guild, member, lang) => {
     const selectMenuData = extractIdData(interaction.customId);
     selectMenuData.selected = interaction.values[0];
     const selectMenuCommand = client.components.get(selectMenuData.id);
-
     if (!selectMenuCommand) return;
-
-    try {
-        const { guild, member } = await getGuildAndMember(client, interaction.user.id);
-        const commandName = interaction.message.interaction
-            ? interaction.message.interaction.commandName
-            : selectMenuCommand.data.name;
-        const lang = await language(commandName, interaction, guild, client);
-        await selectMenuCommand.executeComponent(interaction, client, guild, member, lang, selectMenuData);
-    } catch (error) {
-        console.log(error);
-        executionError(interaction, `Select Menu Interaction failed, ${selectMenuData.id}`);
-    }
+    await selectMenuCommand.executeComponent(interaction, client, guild, member, lang, selectMenuData);
 };
 
-const autoComplete = async (interaction, client) => {
+const autoCompleteHandler = async (interaction, client, guild, member, lang) => {
     const command = interaction.client.commands.get(interaction.commandName);
     if (!command || !command.autoComplete) return;
-
-    try {
-        const { guild, member } = await getGuildAndMember(client, interaction.user.id);
-        const lang = await language(interaction.commandName, interaction, guild, client);
-        await command.autoComplete(interaction, client, guild, member, lang);
-    } catch (error) {
-        console.log(error);
-    }
+    await command.autoComplete(interaction, client, guild, member, lang);
 };
 
 const setup = (client) => {
     client.on(Events.InteractionCreate, async (interaction) => {
         if (interaction.isChatInputCommand()) {
-            await command(interaction, client);
+            await handleInteraction(interaction, client, commandHandler);
         } else if (interaction.isButton()) {
-            await button(interaction, client);
+            await handleInteraction(interaction, client, buttonHandler);
         } else if (interaction.isAutocomplete()) {
-            await autoComplete(interaction, client);
+            await handleInteraction(interaction, client, autoCompleteHandler);
         } else if (interaction.isStringSelectMenu()) {
-            await selectMenu(interaction, client);
+            await handleInteraction(interaction, client, selectMenuHandler);
         }
     });
 };
