@@ -179,6 +179,18 @@ const searchData = [
             "natural language processing"
         ],
         "description": "ChatGpt, LLama3, ... these AI-powered systems are at the forefront of natural language processing (NLP) technology. They have been trained on vast amounts of text data to understand and generate human-like text. From answering questions to generating creative content, large language models are revolutionizing how we interact with and utilize language in various applications."
+    },
+    {
+        "title": "Code0 Discord Bot open source",
+        "hashtags": [
+            "open",
+            "source",
+            "discord",
+            "bot",
+            "code0",
+            "dc"
+        ],
+        "description": "This [discord bot](https://github.com/code0-tech/discord-bot) is open source you will find the code on our [Github](https://github.com/code0-tech) page."
     }
 ];
 
