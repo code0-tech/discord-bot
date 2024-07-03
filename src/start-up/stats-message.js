@@ -105,7 +105,7 @@ const start = (client) => {
                 new Embed()
                     .setColor(config.embeds.colors.info)
                     .setTitle(title)
-                    .setDescription(description + `\n\nI could filter ${parseInt(matches[0])} commits for ${msg.embeds[0].data.author.name}`)
+                    .setDescription(description + `\n\n\`\`\`filtered: ${parseInt(matches[0])} commits for ${msg.embeds[0].data.author.name}\`\`\``)
                     .setColor(color)
                     .setURL(url)
                     .setAuthor(author)
