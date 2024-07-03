@@ -6,6 +6,10 @@ class DC {
 
     // interactions options
     static async defer(interaction, ephemeral = true) {
+        if (interaction == undefined) {
+            console.log(`[DC.defer] Interaction was not defined`, '#3');
+            return;
+        }
         return await interaction.deferReply({ ephemeral });
     }
 
