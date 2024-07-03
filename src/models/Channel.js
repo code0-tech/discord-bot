@@ -61,11 +61,10 @@ class Channel {
     * @param {Guild} guild - The guild in which to create the channel.
     * @returns {Promise<GuildChannel>} - A promise that resolves to the created channel.
     */
-    createChannel(guild) {
-        return new Promise(async (resolve) => {
-            const channel = await guild.channels.create(this._channelObj);
-            resolve(channel);
-        });
+    async createChannel(guild) {
+        const channel = await guild.channels.create(this._channelObj);
+        console.log(`[Channel] Created new channel "${channel.name}"`, '#6');
+        return channel;
     }
 }
 
