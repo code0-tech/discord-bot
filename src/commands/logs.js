@@ -21,6 +21,7 @@ const data = new SlashCommandBuilder()
     )
     .setDefaultMemberPermissions(PermissionFlagsBits.Administrator);
 
+const MongoDb = new Mongo();
 
 const getLogs = async (runId) => {
     const MongoDb = new Mongo();
@@ -139,7 +140,6 @@ const viewDbLogs = (interaction, member, lang, componentData) => {
 
 
 const listDbLogs = async (interaction, member, lang, componentData) => {
-    const MongoDb = new Mongo();
     const results = await MongoDb.aggregate(ENUMS.DCB.LOGS, [
         { $project: { _id: 0, run_id: 1, logs_length: { $size: "$logs" }, created_at: 1 } },
         { $sort: { created_at: -1 } },
@@ -207,6 +207,25 @@ const findAndExecuteSubCommand = (subCommand, interaction, member, lang, compone
 
 const execute = async (interaction, client, guild, member, lang) => {
     await DC.defer(interaction);
+
+    const results = await MongoDb.aggregate(ENUMS.DCB.LOGS, [
+        {
+            $group: {
+                _id: null,
+                count: { $sum: 1 }
+            }
+        }
+    ]);
+
+    const totalCount = results.length > 0 ? results[0].count : 0;
+
+    if (totalCount == 0) {
+        new Embed()
+            .setColor(config.embeds.colors.info)
+            .addContext(lang, member, 'list-logs-empty')
+            .interactionResponse(interaction);
+        return;
+    }
 
     const subCommand = interaction.options.getSubcommand();
     const componentData = null;

@@ -156,6 +156,9 @@
             "title": "Log files",
             "description": "{list}"
         },
+        "list-logs-empty": {
+            "title": "No logs available"
+        },
         "not-found": {
             "title": "Cannot find any logs for runId: {runid}."
         }

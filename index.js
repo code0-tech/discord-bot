@@ -75,15 +75,7 @@ startCode0();
 
 - Discord Audit log Embeds
 
--> MongoDb when user interaction check if his entries are up to date
-
--> Double id's are saved sometimes in MongoDb user
-
 -> add language for /search
-
--> /logs add? 0-10, 10-20, 20-30 select menu
-
--> add an check for when no logs are in the db to not crash for empty message
 
 -> check test for stats-message.js webhook catcher
 
