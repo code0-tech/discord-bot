@@ -58,7 +58,7 @@ const sendMessage = (interaction, member, lang, data) => {
 const execute = async (interaction, client, guild, member, lang) => {
     await DC.defer(interaction);
 
-    const limit = interaction.options._hoistedOptions.length !== 0 ? interaction.options._hoistedOptions[0].value : 10;
+    const limit = interaction.options.getInteger('limit') ?? 10;
 
     const userList = await listUser(limit);
 

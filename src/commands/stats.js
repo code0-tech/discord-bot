@@ -69,8 +69,8 @@ const loop = async (interaction, member, lang, embedMessage, rankMember, user, p
 const execute = async (interaction, client, guild, member, lang) => {
     await DC.defer(interaction);
 
-    const userIdToCheck = interaction.options._hoistedOptions.length !== 0 ? interaction.options._hoistedOptions[0].user.id : member.user.id;
-    let embedMessage = interaction.options._hoistedOptions.length !== 0 && userIdToCheck !== member.user.id ? 'other-stats-response' : 'own-stats-response';
+    const userIdToCheck = interaction.options.getMember('user')?.user?.id ?? member.user.id;
+    let embedMessage = userIdToCheck == member.user.id ? 'own-stats-response' : 'other-stats-response';
 
     if (client.user.id === userIdToCheck) {
         embedMessage = 'this-bot-stats';
