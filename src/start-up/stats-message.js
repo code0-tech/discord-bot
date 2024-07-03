@@ -91,20 +91,27 @@ const start = (client) => {
 
         console.dir(msg, { depth: null });
 
+        if (msg.webhookId == '1187288818840240128') { // testing something for later
 
-        if (msg.webhookId == '1187288818840240128') {
-
-            console.dir(msg.embeds[0].data.author.name)
+            const embedData = msg.embeds[0].data;
 
             const regex = /\d+(?= new commit| new commits)/;
 
-            const matches = msg.embeds[0].data.title.match(regex);
+            const matches = embedData.title.match(regex);
             if (matches) {
-                console.log(parseInt(matches[0]));
-            } else {
-                console.log(parseInt(matches[0]));
-            }
 
+                const { title, description, color, url, author } = embedData;
+
+                new Embed()
+                    .setColor(config.embeds.colors.info)
+                    .setTitle(title)
+                    .setDescription(description + `\n\nI could filter ${parseInt(matches[0])} commits for ${msg.embeds[0].data.author.name}`)
+                    .setColor(color)
+                    .setURL(url)
+                    .setAuthor(author)
+                    .responseToChannel(config.channels.spam, client)
+
+            }
         }
 
 
