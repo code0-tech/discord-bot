@@ -11,7 +11,12 @@ class DC {
 
     // member
     static async memberById(userId, guild) {
-        return await guild.members.fetch(userId);
+        try {
+            return await guild.members.fetch(userId);
+        } catch (err) {
+            console.log(`[DC.memberById] Cannot find userId ${userId}`);
+            return undefined;
+        }
     }
 
     static async isTeamMember(member) {

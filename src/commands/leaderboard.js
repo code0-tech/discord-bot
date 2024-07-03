@@ -71,8 +71,8 @@ const execute = async (interaction, client, guild, member, lang) => {
 
         let leadboardMember = await DC.memberById(user.id, guild);
 
-        if (leadboardMember == null) {
-            leadboardMember = { user: { username: '[Left the server]' } };
+        if (leadboardMember == undefined) {
+            leadboardMember = { nickname: '[Left the server]' };
         }
 
         if (user.rawxp == 0) return;
