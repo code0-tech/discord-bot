@@ -27,7 +27,7 @@ const setup = (client) => {
 
             if (match) {
                 const latency = match[1];
-                console.log("[API] Latency:", latency);
+                console.log(`[API] Latency: ${latency}ms`);
             }
         }
     });
