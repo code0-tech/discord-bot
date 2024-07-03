@@ -172,8 +172,8 @@ class Embed {
         const embedContext = lang.text[contextId];
 
         if (embedContext == undefined) {
-            console.log('[Embed Error] Specified language context was not given.', '#3');
-            // Do not throw an error or return, because that is handeld by the interaction
+            console.log(`[Embed Error] Given contextId: ${contextId} is not part of this command.`, '#3');
+            return this;
         }
 
         const contextKey = Object.keys(embedContext);
