@@ -1,6 +1,9 @@
 
 
 const setup = (client) => {
+
+    if (!global.isDevelopment) return;
+
     client.on('debug', (message) => {
         // console.log(message)
 
@@ -19,6 +22,8 @@ const setup = (client) => {
 
         if (message.includes('Heartbeat acknowledged')) {
             const regex = /latency of (\d+)ms/;
+
+            const match = message.match(regex);
 
             if (match) {
                 const latency = match[1];

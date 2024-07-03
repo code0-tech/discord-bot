@@ -91,7 +91,6 @@ const start = (client) => {
 
         console.dir(msg, { depth: null });
 
-
         if (msg.author.bot == true) return;
         if (msg.author.system == true) return;
 
