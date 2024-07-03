@@ -74,7 +74,7 @@ But here is a list of files we dont have open source.
 
     "@discordjs/voice": "^0.17.0",
     "canvas": "^2.11.2",
-    "discord.js": "^14.14.1",
+    "discord.js": "^14.15.3",
     "dotenv": "^16.3.1",
     "html-to-image": "^1.11.11",
     "html2canvas": "^1.4.1",
