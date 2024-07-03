@@ -11,7 +11,7 @@ This this the Discord Bot for Code0 running in javascript.
 #
 The Bot is running the Discord.js Client instance and a small Web-Server for Github o-auth in order to perform some commands which includes reading commits and pull's.
 
-For that reason a Http Port is required and currently set to `http-config.port` => 7581
+For that reason a Http Port is required and currently set to `http-config.port`
 
 Also a MongoDb is required as this Bot needs some DataBase to store Data
 #
@@ -44,15 +44,31 @@ Also a MongoDb is required as this Bot needs some DataBase to store Data
 
 ## Tracking
 
-We do track stats, as you could also tell by our Bot's source code such as:
+We do track stats, as you could tell by our Bot's source code such as:
 
-- Message Stats -> message/word/char count.
-- Voice Stats -> joins/leaves/switches.
+- Message Stats -> message/word/char *count.
+- Voice Stats -> joins/leaves/switches *count.
 
-We use these to determine your rank or display some cool information about you.
+We use these to determine your rank or display stats about you.
 
-For the Command /open-contributer we are not saving your auth url in any way,
-which also means that you have to reauth yourself at command execution.
+For the Command /open-contributer we are not saving your o-auth url for github in any way,
+which also means that you have to re-auth yourself at any command execution.
+
+Command tracking is not implemented (yet).
+We are currently not saving any executed commands
+
+## Are here missing files?
+
+The code that you can see here is also the same as on the Server running the Discord Bot.
+But here is a list of files we dont have open source.
+
+- node_modules: Because saving them here makes no sense.
+- server.env: [Server side config]
+- .env: [Development config] 
+- config.json: Config for roles, channels, Embeds, etc as this alters from every server
+- http-config.json: As this is used for our Server only
+- unused-temp.js: A file where my ~Nicusch unsued code is saved for later ussage
+- .gitignore: a file so elusive, it hides even from itself
 
 ## What is?
 
