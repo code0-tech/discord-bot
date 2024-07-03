@@ -49,7 +49,7 @@ const handleInteraction = async (interaction, client, handler) => {
             throw new Error('Command name is undefined');
         }
 
-        console.log('Handling interaction for command:', commandName, '#1');
+        console.log('[Emit] Handling interaction for command:', commandName, '#5');
 
         const lang = await language(commandName, interaction, guild, client);
 
