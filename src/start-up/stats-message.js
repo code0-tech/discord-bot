@@ -92,20 +92,19 @@ const start = (client) => {
         console.dir(msg, { depth: null });
 
 
-        if (msg.webhookId == '1187288818840240128') { // is webhook
+        if (msg.webhookId == '1187288818840240128') {
 
             console.dir(msg.embeds[0].data.author.name)
 
+            const regex = /\d+(?= new commit| new commits)/;
 
-            const regex = /\d+(?= new commits)/; // Match digits followed by " new commits"
-            const matches = msg.embeds[0].data.title.match(regex);
-
+            const matches = title.match(regex);
             if (matches) {
-                const commitsCount = parseInt(matches[0]);
-                console.log(`Commits count: ${commitsCount}`);
+                console.log(parseInt(matches[0]));
             } else {
-                console.log("No commits count found.");
+                console.log(parseInt(matches[0]));
             }
+
         }
 
 
