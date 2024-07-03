@@ -76,8 +76,6 @@ const buttonHandler = async (interaction, client, guild, member, lang) => {
     const buttonCommand = client.components.get(buttonData.id);
     if (!buttonCommand) return;
 
-    console.log('Button data:', buttonData, '#');
-
     await buttonCommand.executeComponent(interaction, client, guild, member, lang, buttonData);
 };
 
