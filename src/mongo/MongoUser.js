@@ -33,7 +33,6 @@ class MongoUser {
      */
     async _getUser() {
         const userData = await MongoDb.find(ENUMS.DCB.USERS, { id: this._userid });
-
         return userData[0];
     }
 
