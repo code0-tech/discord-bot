@@ -20,6 +20,29 @@ const newpacket = (msg) => {
     }
 }
 
+const spamPatterns = [
+    /[a-z]{2}[0-9]{2}[a-z]{4}/,    // Matches patterns like di91jodij
+    /[a-z]{4}[0-9]{3}[a-z]{2}[0-9]{3}/,  // Matches more complex patterns
+    /[a-z]{2}[0-9]{2}[a-z]{6}/    // Add more patterns as needed
+];
+
+const containsSpamPattern = (message) => {
+    for (const pattern of spamPatterns) {
+        if (pattern.test(message.toLowerCase())) {
+            return true;
+        }
+    }
+    return false;
+}
+
+const nonAlphanumericRegex = /[^a-z0-9\s]/i;
+const isSuspiciousMessage = (message) => {
+    if (nonAlphanumericRegex.test(message)) {
+        return true;
+    }
+
+    return false;
+}
 
 const checkIfValid = async (msg) => {
     let cannotPass = false;
@@ -28,7 +51,7 @@ const checkIfValid = async (msg) => {
 
     if (!userList[userid]) {
         userList[userid] = newpacket(msg);
-        return cannotPass;
+        return { notValid: cannotPass, reasons: reasons };
     }
 
     const repeatedChars = /(.)\1{3,}/;
@@ -42,10 +65,13 @@ const checkIfValid = async (msg) => {
         cannotPass = true;
     }
 
-    if (levenshteinDistance(msg.content, userList[userid].last.content) < 3) {
+    const contentToLastDistance = levenshteinDistance(msg.content, userList[userid].last.content);
+    reasons.push(`levenshteinDistance: ${contentToLastDistance}`);
+    if (contentToLastDistance < 3) {
         reasons.push('Repeated message [similar]');
         cannotPass = true;
     }
+
 
     if ((Date.now() - userList[userid].last.time) <= 800) {
         reasons.push('Quick messages v1');
@@ -55,7 +81,7 @@ const checkIfValid = async (msg) => {
 
     userList[userid] = newpacket(msg);
 
-    return cannotPass;
+    return { notValid: cannotPass, reasons: reasons };
 }
 
 // Put this into the user mongo class later
@@ -114,11 +140,13 @@ const start = (client) => {
             }
         }
 
-
         if (msg.author.bot == true) return;
         if (msg.author.system == true) return;
 
-        if (await checkIfValid(msg)) return;
+        const check = await checkIfValid(msg);
+        console.log(check)
+
+        if (check.notValid) return;
 
         const user = await new MongoUser(msg.author.id).init();
 
