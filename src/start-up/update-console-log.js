@@ -83,6 +83,9 @@ const customLog = (...args) => {
             case '#5':
                 color = colors.cyan;
                 break;
+            case '#6':
+                color = colors.magenta;
+                break;
             default:
                 break;
         }
