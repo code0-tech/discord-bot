@@ -1,6 +1,4 @@
 const { ChannelType, PermissionsBitField, ButtonBuilder, ButtonStyle, ActionRowBuilder } = require("discord.js");
-const { channelFromInteraction, removeAllChannelUserPerms, channelsFromParent } = require('../discord/channel');
-const { messagesFromChannel } = require('./../discord/quick-dc');
 const { Channel } = require('./../models/Channel');
 const { keyArray } = require('./../utils/helper');
 const { Embed } = require('./../models/Embed');
@@ -10,7 +8,7 @@ const DC = require('./../singleton/DC');
 const data = null;
 
 const autoRun = async (client, lang) => {
-    const messages = await messagesFromChannel(client, config.serverid, config.channels.application);
+    const messages = await DC.messagesFromChannel(client, config.serverid, config.channels.application);
     const messagesIds = keyArray(messages);
 
     messagesIds.forEach(async (messageId) => {
@@ -46,7 +44,7 @@ const autoRun = async (client, lang) => {
 const USER_OVERRIDE = 1;
 
 const checkLastCreatedTicket = async (guild, member) => {
-    const channelsInCategory = await channelsFromParent(config.parents.applications, guild);
+    const channelsInCategory = await DC.channelsByParentId(config.parents.applications, guild);
 
     let hasChannel = channelsInCategory.some(channel => {
         const userOverWrite = channel.permissionOverwrites.cache.find(overwrite => overwrite.type === USER_OVERRIDE && overwrite.id === member.id);
@@ -117,9 +115,9 @@ const executeComponent = async (interaction, client, guild, member, lang, button
         await interaction.message.delete();
         await sendEmbedResponse(config.embeds.colors.danger, 'close-info');
 
-        const applicationChannel = await channelFromInteraction(interaction, guild);
+        const applicationChannel = await DC.channelByInteraction(interaction, guild);
 
-        removeAllChannelUserPerms(applicationChannel);
+        DC.removeChannelUserOverrides(applicationChannel);
 
         const confirmDeleteButton = new ButtonBuilder()
             .setCustomId('delete-ticket')
@@ -142,7 +140,7 @@ const executeComponent = async (interaction, client, guild, member, lang, button
             return;
         }
 
-        const applicationChannel = await channelFromInteraction(interaction, guild);
+        const applicationChannel = await DC.channelByInteraction(interaction, guild);
         await applicationChannel.delete({ reason: "Apply was closed and marked as ~fin" });
     }
 };

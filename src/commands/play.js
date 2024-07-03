@@ -1,6 +1,5 @@
 const { ChannelType, StringSelectMenuBuilder, StringSelectMenuOptionBuilder, PermissionFlagsBits, PermissionsBitField, ButtonBuilder, ButtonStyle, ActionRowBuilder, DiscordjsError, AttachmentBuilder } = require("discord.js");
 const { joinVoiceChannel, createAudioPlayer, createAudioResource, VoiceConnectionStatus, AudioPlayerStatus } = require('@discordjs/voice');
-const { channelFromInteraction, removeAllChannelUserPerms, channelFromId } = require('../discord/channel');
 const { waitMs, snowflakeToDate, msToHumanReadableTime } = require('./../utils/time');
 const { SlashCommandBuilder } = require('@discordjs/builders');
 const { Embed, progressBar } = require('./../models/Embed');

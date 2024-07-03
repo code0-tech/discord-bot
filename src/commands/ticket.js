@@ -1,5 +1,4 @@
 const { ChannelType, PermissionsBitField, ButtonBuilder, ButtonStyle, ActionRowBuilder } = require("discord.js");
-const { channelFromInteraction, removeAllChannelUserPerms, channelsFromParent } = require('../discord/channel');
 const { waitMs, snowflakeToDate, msToHumanReadableTime } = require('./../utils/time');
 const { SlashCommandBuilder } = require('@discordjs/builders');
 const { Channel } = require('./../models/Channel');
@@ -14,7 +13,7 @@ const data = new SlashCommandBuilder()
 const USER_OVERRIDE = 1;
 
 const checkLastCreatedTicket = async (guild, member) => {
-    const channelsInCategory = await channelsFromParent(config.parents.support, guild);
+    const channelsInCategory = await DC.channelsByParentId(config.parents.support, guild);
 
     let lastChannelTimestamp = null;
 
@@ -114,14 +113,14 @@ const executeComponent = async (interaction, client, guild, member, lang, compon
 
         interaction.message.delete();
 
-        const ticketChannel = await channelFromInteraction(interaction, guild);
+        const ticketChannel = await DC.channelByInteraction(interaction, guild);
 
         await new Embed()
             .setColor(config.embeds.colors.danger)
             .addContext(lang, member, 'close-info')
             .interactionResponse(interaction);
 
-        removeAllChannelUserPerms(ticketChannel);
+        DC.removeChannelUserOverrides(ticketChannel);
 
         const confirmDelete = new ButtonBuilder()
             .setCustomId('delete-ticket')
@@ -141,7 +140,7 @@ const executeComponent = async (interaction, client, guild, member, lang, compon
         ticketChannel.setName(`${ticketChannel.name}-closed`);
 
     } else if (componentData.id == 'delete-ticket') {
-        const ticketChannel = await channelFromInteraction(interaction, guild);
+        const ticketChannel = await DC.channelByInteraction(interaction, guild);
         ticketChannel.delete({ reason: "Ticket was closed and marked as ~fin" });
     }
 }

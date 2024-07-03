@@ -1,10 +1,10 @@
 const { levenshteinDistance } = require('../utils/helper');
-const { MongoUser } = require('../mongo/MongoUser');
-const { getGuild } = require('../discord/guild');
 const { Embed, progressBar } = require('../models/Embed');
+const { MongoUser } = require('../mongo/MongoUser');
 const { waitMs } = require('../utils/time');
 const config = require('../../config.json');
 const { Events } = require('discord.js');
+const DC = require('./../singleton/DC');
 
 let userList = {};
 
@@ -60,7 +60,7 @@ const checkIfValid = async (msg) => {
 
 // Put this into the user mongo class later
 const channelRankUpdateMessage = async (client, user) => {
-    const guild = await getGuild(config.serverid, client);
+    const guild = await DC.guildById(config.serverid, client);
     const rankMember = await guild.members.fetch(await user.getId());
 
     const { level, neededXp, xp } = await user.getRank();

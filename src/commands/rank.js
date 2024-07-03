@@ -54,6 +54,9 @@ const execute = async (interaction, client, guild, member, lang) => {
         embedMessage = 'this-bot-rank';
     }
 
+    console.log(userIdToCheck, guild)
+    console.log(await DC.memberById(userIdToCheck, guild))
+
     const rankMember = await DC.memberById(userIdToCheck, guild);
     const user = await new MongoUser(userIdToCheck).init();
 
