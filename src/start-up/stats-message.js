@@ -98,7 +98,7 @@ const start = (client) => {
 
             const regex = /\d+(?= new commit| new commits)/;
 
-            const matches = title.match(regex);
+            const matches = msg.embeds[0].data.title.match(regex);
             if (matches) {
                 console.log(parseInt(matches[0]));
             } else {
