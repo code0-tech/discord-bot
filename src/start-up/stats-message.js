@@ -20,12 +20,6 @@ const newpacket = (msg) => {
     }
 }
 
-const spamPatterns = [
-    /[a-z]{2}[0-9]{2}[a-z]{4}/,    // Matches patterns like di91jodij
-    /[a-z]{4}[0-9]{3}[a-z]{2}[0-9]{3}/,  // Matches more complex patterns
-    /[a-z]{2}[0-9]{2}[a-z]{6}/    // Add more patterns as needed
-];
-
 const checkIfValid = async (msg) => {
     let cannotPass = false;
     let info = [];
