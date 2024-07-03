@@ -122,10 +122,6 @@ const start = (client) => {
 
         const check = await checkIfValid(msg);
 
-        console.log("")
-        console.log(msg.content)
-        console.log(check)
-
         if (check.notValid) return;
 
         const user = await new MongoUser(msg.author.id).init();

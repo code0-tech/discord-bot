@@ -27,6 +27,6 @@ module.exports.setup = (client) => {
     });
 
     server.listen(httpConfig.port, () => {
-        console.log(`[Http Server] Http Server => http://*:${httpConfig.port}`);
+        console.log(`[Http Server] Http Server => http://*:${httpConfig.port}`, '#1');
     });
 }

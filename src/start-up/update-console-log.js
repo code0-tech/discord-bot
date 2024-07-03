@@ -52,7 +52,36 @@ const logToMongoDb = async (log) => {
 
 const originalConsoleLog = console.log;
 
+const colors = {
+    reset: '\x1b[0m',
+    red: '\x1b[31m',
+    green: '\x1b[32m',
+    yellow: '\x1b[33m',
+    blue: '\x1b[34m',
+    magenta: '\x1b[35m',
+    cyan: '\x1b[36m',
+};
+
 const customLog = (...args) => {
+    let color = colors.reset;
+
+    if (args.length > 1) {
+        const colorCode = args.pop();
+        switch (colorCode) {
+            case '#1':
+                color = colors.green;
+                break;
+            case '#2':
+                color = colors.yellow;
+                break;
+            case '#3':
+                color = colors.red;
+                break;
+            default:
+                break;
+        }
+    }
+
     const log = args.length === 1 ? args[0] : args.join(' ');
 
     if (!global.isDevelopment) {
@@ -62,7 +91,10 @@ const customLog = (...args) => {
             runid: 999999999
         };
     }
-    originalConsoleLog(...args);
+
+    const coloredLog = `${color}${log}${colors.reset}`;
+
+    originalConsoleLog(coloredLog);
 };
 
 

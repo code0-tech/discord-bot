@@ -49,7 +49,7 @@ const handleInteraction = async (interaction, client, handler) => {
             throw new Error('Command name is undefined');
         }
 
-        console.log('Handling interaction for command:', commandName);
+        console.log('Handling interaction for command:', commandName, '#1');
 
         const lang = await language(commandName, interaction, guild, client);
 
@@ -76,7 +76,7 @@ const buttonHandler = async (interaction, client, guild, member, lang) => {
     const buttonCommand = client.components.get(buttonData.id);
     if (!buttonCommand) return;
 
-    console.log('Button data:', buttonData);
+    console.log('Button data:', buttonData, '#');
 
     await buttonCommand.executeComponent(interaction, client, guild, member, lang, buttonData);
 };

@@ -14,7 +14,7 @@ class DC {
         try {
             return await guild.members.fetch(userId);
         } catch (err) {
-            console.log(`[DC.memberById] Cannot find userId ${userId}`);
+            console.log(`[DC.memberById] Cannot find userId ${userId}`, '#3');
             return undefined;
         }
     }

@@ -1,5 +1,5 @@
 const quit = () => {
-    console.log('Exiting gracefully...');
+    console.log('Exiting gracefully...', '#1');
     process.exit(0);
 }
 

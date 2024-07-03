@@ -5,7 +5,7 @@ const mongoClient = new MongoClient(process.env.MONGO_URL);
 const connect = async () => {
     mongoClient.connect()
         .then(() => {
-            console.log('[MongoDb] Connected to MongoDB');
+            console.log('[MongoDb] Connected to MongoDB', '#1');
             return true;
         })
         .catch((err) => {

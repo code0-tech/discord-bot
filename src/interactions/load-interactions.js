@@ -18,7 +18,7 @@ const load = (client) => {
         // Load Slash-Command
         if (command.data) {
             client.commands.set(command.data.name, command);
-            console.log(`[Loader] Loaded command: ${command.data.name}`);
+            console.log(`[Loader] Loaded command: ${command.data.name}`, '#2');
         } else {
             command.data = { name: commandName };
         }
@@ -26,18 +26,18 @@ const load = (client) => {
         // Load Components
         if (command.executeComponent && command.componentIds) {
             if (command.componentIds.length == 0) {
-                console.log(`[Loader] Tip: Remove unused componentIds array for: ${command.data.name}`);
+                console.log(`[Loader] Tip: Remove unused componentIds array for: ${command.data.name}`, '#2');
             }
             for (const buttonId of command.componentIds) {
                 client.components.set(buttonId, command);
             }
-            console.log(`[Loader] Loaded component: ${command.componentIds.length ? command.componentIds : '[]'} for: ${command.data.name}`);
+            console.log(`[Loader] Loaded component: ${command.componentIds.length ? command.componentIds : '[]'} for: ${command.data.name}`, '#2');
         }
 
         // Start autoRun functions
         if (command.autoRun) {
             command.autoRun(client, client.languages);
-            console.log(`[Loader] Run autoRun() function for ${commandFile}`);
+            console.log(`[Loader] Run autoRun() function for ${commandFile}`, '#2');
         }
     }
 

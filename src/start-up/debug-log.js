@@ -16,7 +16,7 @@ const setup = (client) => {
                 const total = match[1];
                 const remaining = match[2];
 
-                console.log(`[Connection Limit] ${remaining}/${total}`);
+                console.log(`[Connection Limit] ${remaining}/${total}`, '#2');
             }
         }
 
@@ -27,7 +27,7 @@ const setup = (client) => {
 
             if (match) {
                 const latency = match[1];
-                console.log(`[API] Latency: ${latency}ms`);
+                console.log(`[API] Latency: ${latency}ms`, '#2');
             }
         }
     });

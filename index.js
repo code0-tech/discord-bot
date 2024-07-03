@@ -55,7 +55,7 @@ const startCode0 = async () => {
         require('./src/start-up/audit-log').setup(client);
         require('./src/start-up/client-status').start(client);
 
-        console.log(`\nCode0 Discord Client ready => ${readyClient.user.tag}`);
+        console.log(`\nCode0 Discord Client ready => ${readyClient.user.tag}`, '#1');
 
         require('./src/start-up/stats-message').start(client);
         require('./src/start-up/stats-voice-channel').start(client);
