@@ -70,6 +70,22 @@ But here is a list of files we dont have open source.
 - unused-temp.js: A file where my ~Nicusch unsued code is saved for later ussage
 - .gitignore: a file so elusive, it hides even from itself
 
+## Versions
+
+    "@discordjs/voice": "^0.17.0",
+    "canvas": "^2.11.2",
+    "discord.js": "^14.14.1",
+    "dotenv": "^16.3.1",
+    "html-to-image": "^1.11.11",
+    "html2canvas": "^1.4.1",
+    "libsodium-wrappers": "^0.7.13",
+    "mongo": "^0.1.0",
+    "node-fetch": "^2.6.12",
+    "puppeteer": "^22.10.0",
+    "ytdl-core": "^4.11.5"
+
+The Code works 100% with these versions.
+
 ## What is?
 
 - wip: Work in Progess
