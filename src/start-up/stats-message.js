@@ -26,63 +26,46 @@ const spamPatterns = [
     /[a-z]{2}[0-9]{2}[a-z]{6}/    // Add more patterns as needed
 ];
 
-const containsSpamPattern = (message) => {
-    for (const pattern of spamPatterns) {
-        if (pattern.test(message.toLowerCase())) {
-            return true;
-        }
-    }
-    return false;
-}
-
-const nonAlphanumericRegex = /[^a-z0-9\s]/i;
-const isSuspiciousMessage = (message) => {
-    if (nonAlphanumericRegex.test(message)) {
-        return true;
-    }
-
-    return false;
-}
-
 const checkIfValid = async (msg) => {
     let cannotPass = false;
-    let reasons = [];
+    let info = [];
     const userid = msg.author.id;
 
     if (!userList[userid]) {
         userList[userid] = newpacket(msg);
-        return { notValid: cannotPass, reasons: reasons };
+        return { notValid: cannotPass, info: info };
     }
 
     const repeatedChars = /(.)\1{3,}/;
     if (repeatedChars.test(msg.content)) {
-        reasons.push('Unusual character repetition');
+        info.push('Unusual character repetition');
         cannotPass = true;
     }
 
     if (msg.content == userList[userid].last.content) {
-        reasons.push('Repeated message');
+        info.push('Repeated message');
         cannotPass = true;
     }
 
     const contentToLastDistance = levenshteinDistance(msg.content, userList[userid].last.content);
-    reasons.push(`levenshteinDistance: ${contentToLastDistance}`);
+    info.push(`Levenshtein Distance: ${contentToLastDistance}`);
     if (contentToLastDistance < 3) {
-        reasons.push('Repeated message [similar]');
+        info.push('Repeated message [similar]');
         cannotPass = true;
     }
 
-
-    if ((Date.now() - userList[userid].last.time) <= 800) {
-        reasons.push('Quick messages v1');
+    const timeSpan = (Date.now() - userList[userid].last.time);
+    info.push(`Ms between this/last msg: ${timeSpan}`);
+    if (timeSpan <= 900) {
+        info.push('Quick messages v1');
         cannotPass = true;
     }
-
 
     userList[userid] = newpacket(msg);
 
-    return { notValid: cannotPass, reasons: reasons };
+    return { notValid: cannotPass, info: info };
 }
+
 
 // Put this into the user mongo class later
 const channelRankUpdateMessage = async (client, user) => {
@@ -144,6 +127,9 @@ const start = (client) => {
         if (msg.author.system == true) return;
 
         const check = await checkIfValid(msg);
+
+        console.log("")
+        console.log(msg.content)
         console.log(check)
 
         if (check.notValid) return;
@@ -162,9 +148,7 @@ const start = (client) => {
             xp = 1;
         }
 
-        user.updateXpBy(xp);
-
-        await waitMs(2000);
+        await user.updateXpBy(xp);
 
         const lastLevel = (await user.getRank()).level;
 
