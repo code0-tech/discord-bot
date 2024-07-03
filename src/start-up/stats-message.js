@@ -91,6 +91,13 @@ const start = (client) => {
 
         console.dir(msg, { depth: null });
 
+
+        if (msg.webhookId == '1187288818840240128') { // is webhook
+
+            console.dir(msg.embeds[0].data.author.name)
+        }
+
+
         if (msg.author.bot == true) return;
         if (msg.author.system == true) return;
 
