@@ -79,8 +79,6 @@ startCode0();
 
 -> check test for stats-message.js webhook catcher
 
--> update hoistedoptions to .get in all files
-
 -> DC.[all] add try catch
 
 */
