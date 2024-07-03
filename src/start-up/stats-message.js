@@ -89,6 +89,9 @@ const start = (client) => {
 
     client.on(Events.MessageCreate, async msg => {
 
+        console.dir(msg, { depth: null });
+
+
         if (msg.author.bot == true) return;
         if (msg.author.system == true) return;
 
