@@ -5,7 +5,8 @@ const config = require('./../../config.json');
 
 class DC {
 
-/*     static get channel() {
+    /*
+    static get channel() {
         return {
             byId() {
                 return 'lol'
