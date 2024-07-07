@@ -32,16 +32,6 @@ Also a MongoDb is required as this Bot needs some DataBase to store Data
 | 10  | `/logs show` or `/logs list`                 | Finished     |
 
 
-<details>
-<summary>Included Functions</summary>
-
-1. <span style="color:green;">Auto script command upload</span>
-2. <span style="color:green;">Web server for o-auth github</span>
-3. <span style="color:green;">Check Languages pack's for missing entries</span>
-4. <span style="color:green;">Xp on Interactions with anti spam features</span>
-
-</details>
-
 ## Tracking
 
 We do track stats, as you could tell by our Bot's source code such as:
@@ -84,16 +74,15 @@ MongoDb entries last updated in ReadMe: 7.07.2024
 
 ## Are here missing files?
 
-The code that you can see here is also the same as on the Server running the Discord Bot.
-But here is a list of files we dont have open source.
+The code you see here mirrors what's running on the Discord Bot server. However, some files are not open-source:
 
-- node_modules: Because saving them here makes no sense.
-- server.env: [Server side config]
-- .env: [Development config] 
-- config.json: Config for roles, channels, Embeds, etc as this alters from every server
-- http-config.json: As this is used for our Server only
-- unused-temp.js: A file where my ~Nicusch unsued code is saved for later ussage
-- .gitignore: a file so elusive, it hides even from itself
+- node_modules: Not included here because storing them wouldn't be practical.
+- server.env: Server-side configuration.
+- .env: Development configuration.
+- config.json: Contains server-specific settings like roles, channels, embeds, etc.
+- http-config.json: Specifically used for our server.
+- unused-temp.js: Stores unused code snippets for potential future use.
+- .gitignore: A mysterious file that even hides from itself.
 
 ## Versions
 
@@ -120,3 +109,17 @@ The Code works 100% with these versions.
 - todo: When creating my simple todo's i do a new commit which will be named after "todo".
 
 - readme: Is also a commit whenever i update the readme.
+
+## Why Does Code Sometimes Fall Short?
+
+- Reason 1: Code is often hastily written just to achieve functionality.
+
+- Reason 2: Requirements frequently change, necessitating frequent code revisions.
+
+- Reason 3: Code undergoes continuous style and functional evolution in Code0.
+
+- Reason 4: While the current state might seem messy, it functions without known bugs; any issues are documented in TODO => index.js.
+
+- Reason 5: Rapid development can lead to shortcuts, resulting in functional but sometimes suboptimal code.
+
+Since this bot is under development, significant changes may occur.
