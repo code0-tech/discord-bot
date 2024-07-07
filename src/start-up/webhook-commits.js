@@ -9,50 +9,58 @@ const DC = require('./../singleton/DC');
 
 const MongoDb = new Mongo();
 
-const start = (client) => {
-    client.on(Events.MessageCreate, async msg => {
-
+const handleGitHubCommitMessage = async (client, msg) => {
+    try {
         if (msg.webhookId !== config.github.dcwebhookid) return;
 
-        const embedData = msg.embeds[0].data;
+        const embedData = msg.embeds[0]?.data;
+        if (!embedData) return;
 
-        const regex = /\d+(?= new commit| new commits)/;
-
-        const matches = embedData.title.match(regex);
+        const regexCommitCount = /\d+(?= new commit| new commits)/;
+        const matches = embedData.title.match(regexCommitCount);
         if (!matches) return;
 
-        const regex2 = /\[(.*?):(.*?)\]/;
+        const regexRepoInfo = /\[(.*?):(.*?)\]/;
+        const githubInfo = regexRepoInfo.exec(embedData.title);
+        if (!githubInfo || githubInfo.length < 3) return;
 
-        const github = regex2.exec(embedData.title);
-        const repo = github[1];
-        const branchName = github[2];
+        const repo = githubInfo[1];
+        const branchName = githubInfo[2];
+
+        const commitCount = parseInt(matches[0]);
 
         const doc = {
-            name: msg.embeds[0].data.author.name,
+            name: embedData.author.name,
             id: null,
             repo,
             branchname: branchName,
-            commitscount: parseInt(matches[0]),
+            commitscount: commitCount,
             time: Date.now()
-        }
+        };
 
-        MongoDb.insertOne(ENUMS.DCB.GITHUB_COMMITS, doc);
+        await MongoDb.insertOne(ENUMS.DCB.GITHUB_COMMITS, doc);
 
         const { title, description, color, url, author } = embedData;
 
-        new Embed()
+        const embed = new Embed()
             .setColor(config.embeds.colors.info)
             .setTitle(title)
-            .setDescription(description + `\n\n\`\`\`filtered: ${parseInt(matches[0])} commits for ${msg.embeds[0].data.author.name}\`\`\``)
+            .setDescription(`${description}\n\n\`\`\`filtered: ${commitCount} commits for ${embedData.author.name}\`\`\``)
             .setColor(color)
             .setURL(url)
-            .setAuthor(author)
-            .responseToChannel(config.channels.spam, client)
+            .setAuthor(author);
 
+        embed.responseToChannel(config.channels.spam, client);
+    } catch (error) {
+        console.error('Error handling GitHub commit message:', error);
+    }
+};
 
-
-    })
-}
+const start = (client) => {
+    client.on(Events.MessageCreate, async (msg) => {
+        await handleGitHubCommitMessage(client, msg);
+    });
+};
 
 
 module.exports = { start };

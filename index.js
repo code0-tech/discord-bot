@@ -57,6 +57,8 @@ const startCode0 = async () => {
         require('./src/start-up/stats-message').start(client);
         require('./src/start-up/stats-voice-channel').start(client);
 
+        require('./src/start-up/webhook-commits').start(client);
+
         require('./src/start-up/user-stats').start(client);
 
     });
