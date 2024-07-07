@@ -98,7 +98,8 @@
         "board": {
             "title": "Leaderboard",
             "description": "{stringlist}"
-        }
+        },
+        "left-server": "Server verlassen"
     },
     "_application": {
         "btn-remove": "Lösche diese Bewerbung",

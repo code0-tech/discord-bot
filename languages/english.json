@@ -98,7 +98,8 @@
         "board": {
             "title": "Leaderboard",
             "description": "{stringlist}"
-        }
+        },
+        "left-server": "Left the Server"
     },
     "_application": {
         "#btn-closed-team": "Apply as Closed Team",
