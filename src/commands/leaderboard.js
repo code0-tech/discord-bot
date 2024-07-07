@@ -21,7 +21,7 @@ const data = new SlashCommandBuilder()
     );
 
 
-const listUser = async (limit = 10) => {
+const listUser = async (limit) => {
     const list = await MongoDb.aggregate(ENUMS.DCB.USERS, [
         { $sort: { rawxp: -1 } },
         { $limit: limit }
@@ -58,7 +58,7 @@ const sendMessage = (interaction, member, lang, data) => {
 const execute = async (interaction, client, guild, member, lang) => {
     await DC.defer(interaction);
 
-    const limit = interaction.options.getInteger('limit') ?? 10;
+    const limit = interaction.options.getInteger('limit') ?? config.commands.leaderboard.baselistlimit;
 
     const userList = await listUser(limit);
 
@@ -81,8 +81,8 @@ const execute = async (interaction, client, guild, member, lang) => {
 
         let username = leadboardMember.nickname == null ? leadboardMember.user.username : leadboardMember.nickname;
 
-        if (username.length > 20) {
-            username = username.substring(0, 17) + "...";
+        if (username.length > config.commands.leaderboard.maxnamelength) {
+            username = username.substring(0, (config.commands.leaderboard.maxnamelength - 3)) + "...";
         }
 
         data.push({ name: username, lvl: level, xp: `[${xp}|${neededXp}]` });
