@@ -7,7 +7,7 @@ const DC = require('./../singleton/DC');
 
 const data = new SlashCommandBuilder()
     .setName('rank')
-    .setDescription('Check your current Rank.')
+    .setDescription('Check your current rank.')
     .addUserOption(option =>
         option
             .setName('user')
