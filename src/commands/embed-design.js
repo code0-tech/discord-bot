@@ -14,13 +14,12 @@ const ytdl = require('ytdl-core');
 
 const data = new SlashCommandBuilder()
   .setName('embed-design')
-  .setDescription('Testing...')
+  .setDescription('Command for tests.')
   .setDefaultMemberPermissions(PermissionFlagsBits.Administrator)
 
 
 const execute = async (interaction, client, guild, member, lang) => {
   await DC.defer(interaction);
-
 
 
 }
