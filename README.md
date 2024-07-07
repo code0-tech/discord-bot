@@ -57,6 +57,31 @@ which also means that you have to re-auth yourself at any command execution.
 Command tracking is not implemented (yet).
 We are currently not saving any executed commands
 
+The entries look like this:
+
+    {
+      "_id": {
+        "$oid": "6644f92412346d3e083052fe" // _id given by Mongo
+      },
+    "id": "380808844093292555", // user id, no name
+     "rawxp": 220, // your rawXp, the xp of 380808844093292555 have been altered for tests
+      "stats": {
+        "messages": {
+         "words": 3245, // word count
+         "chars": 16104, // char count
+         "count": 500 // message total count
+       },
+       "voice": {
+         "joins": 86, // voice channel joins
+        "switchs": 165, // voice switchts aka channel changes while beeing connected
+         "time": 31225 // total time in seconds
+       }
+      },
+     "commandstats": {} // empty unused
+    }
+
+MongoDb entries last updated in ReadMe: 7.07.2024
+
 ## Are here missing files?
 
 The code that you can see here is also the same as on the Server running the Discord Bot.
