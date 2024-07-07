@@ -73,12 +73,13 @@ class Mongo {
     }
 }
 
-const ENUMS = { // const ENMUS > config.json: autocomplet of VSC works better and faster
+const ENUMS = {
     DCB: {
         USERS: { "db": "Code0", "t": "users" },
         LOGS: { "db": "Code0", "t": "logs" },
         GITHUB_COMMITS: { "db": "Code0", "t": "githubcommits" },
     }
 };
+
 
 module.exports = { Mongo, ENUMS };
