@@ -83,4 +83,6 @@ startCode0();
 
 -> Go over naming
 
+-> /stats and /rank do not break the loop when message time is up [BUG]
+
 */
