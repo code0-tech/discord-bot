@@ -27,7 +27,6 @@ const data = new SlashCommandBuilder()
 
 
 const execute = async (interaction, client, guild, member, lang) => {
-  // await interaction.deferReply({ ephemeral: true });
   await DC.defer(interaction);
 
 
@@ -50,8 +49,6 @@ const execute = async (interaction, client, guild, member, lang) => {
       .interactionResponse(interaction);
     return;
   }
-
-
 
 };
 
