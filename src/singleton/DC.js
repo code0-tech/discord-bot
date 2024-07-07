@@ -42,11 +42,10 @@ class DC {
     }
 
     static async memberVoiceChannel(member) {
-        // Check if the member is in a voice channel
         if (member.voice.channel) {
             return member.voice.channel;
         } else {
-            return null; // Member is not in a voice channel
+            return null;
         }
     }
 
