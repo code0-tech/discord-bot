@@ -31,7 +31,7 @@ const normalizeData = (data) => {
 }
 
 
-const loop = async (interaction, member, lang, embedMessage, rankMember, user, previousStats = null, client) => {
+const loop = async (client, interaction, member, lang, embedMessage, rankMember, user, previousStats = null) => {
     const stats = await user.getStats();
     const normalizedStats = normalizeData(stats);
 
@@ -63,7 +63,7 @@ const loop = async (interaction, member, lang, embedMessage, rankMember, user, p
 
     if (embedMessage !== 'this-bot-stats' && config.commands.stats.uptodate15m) {
         await waitMs(2000);
-        loop(interaction, member, lang, embedMessage, rankMember, user, normalizedStats, client);
+        loop(client, interaction, member, lang, embedMessage, rankMember, user, normalizedStats);
     }
 }
 
@@ -81,7 +81,7 @@ const execute = async (interaction, client, guild, member, lang) => {
     const rankMember = await DC.memberById(userIdToCheck, guild);
     const user = await new MongoUser(userIdToCheck).init();
 
-    loop(interaction, member, lang, embedMessage, rankMember, user, null, client);
+    loop(client, interaction, member, lang, embedMessage, rankMember, user);
 };
 
 
