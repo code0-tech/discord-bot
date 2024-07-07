@@ -11,7 +11,7 @@ const data = new SlashCommandBuilder()
     .addUserOption(option =>
         option
             .setName('user')
-            .setDescription('Check other @user ranks.')
+            .setDescription('Check other @User ranks.')
             .setRequired(false)
     );
 
