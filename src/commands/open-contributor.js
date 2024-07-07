@@ -24,7 +24,7 @@ const execute = async (interaction, client, guild, member, lang) => {
     await DC.defer(interaction);
 
     // Check if role is already present
-    if (DC.memberHasRole(member, config.roles.opencontributor)) {
+    if (await DC.memberHasRole(member, config.roles.opencontributor)) {
         // User already has the role, show appropriate message
         failedMessage(interaction, client, member, lang, 'error-already-has-role');
         return;

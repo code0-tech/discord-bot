@@ -28,8 +28,8 @@ const executionError = (interaction, info) => {
 };
 
 const getGuildAndMember = async (client, userId) => {
-    const guild = DC.guildById(process.env.GUILD_ID, client);
-    const member = DC.memberById(userId, guild);
+    const guild = await DC.guildById(process.env.GUILD_ID, client);
+    const member = await DC.memberById(userId, guild);
     return { guild, member };
 };
 
