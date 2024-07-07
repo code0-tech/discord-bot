@@ -66,8 +66,10 @@ const channelRankUpdateMessage = async (client, user) => {
     const guild = await DC.guildById(config.serverid, client);
     const rankMember = await guild.members.fetch(await user.getId());
 
-    const { level, neededXp, xp } = await user.getRank();
+    const { level, neededXp } = await user.getRank();
     const position = await user.getXpGlobalPosition();
+
+    const xp = 0; // overwrite to 0
 
     new Embed()
         .setColor(config.embeds.colors.info)
