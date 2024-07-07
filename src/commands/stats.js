@@ -58,7 +58,8 @@ const loop = async (client, interaction, member, lang, embedMessage, rankMember,
             })
             .addContext(lang, member, embedMessage);
 
-        await embed.interactionResponse(interaction);
+        const response = await embed.interactionResponse(interaction);
+        if (response == null) return;
     }
 
     if (embedMessage !== 'this-bot-stats' && config.commands.stats.uptodate15m) {

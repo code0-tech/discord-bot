@@ -34,7 +34,8 @@ const loop = async (interaction, member, lang, embedMessage, rankMember, user, p
             })
             .addContext(lang, member, embedMessage);
 
-        await embed.interactionResponse(interaction);
+        const response = await embed.interactionResponse(interaction);
+        if (response == null) return;
     }
 
     if (embedMessage !== 'this-bot-rank' && config.commands.rank.uptodate15m) {
