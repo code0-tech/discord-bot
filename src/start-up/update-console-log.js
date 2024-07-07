@@ -51,15 +51,17 @@ const logToMongoDb = async (log) => {
 };
 
 const originalConsoleLog = console.log;
-
 const colors = {
     reset: '\x1b[0m',
-    red: '\x1b[31m',
-    green: '\x1b[32m',
-    yellow: '\x1b[33m',
-    blue: '\x1b[34m',
-    magenta: '\x1b[35m',
-    cyan: '\x1b[36m',
+    green: '\x1b[32m', // Good 1
+    yellow: '\x1b[33m', // Doing 2
+    red: '\x1b[31m', // Error 3
+
+    blue: '\x1b[34m', // Loading 4
+    magenta: '\x1b[35m', // Info 5
+    cyan: '\x1b[36m', // Found or got 6
+
+    bgGreen: '\x1b[42m'
 };
 
 const customLog = (...args) => {
@@ -67,31 +69,15 @@ const customLog = (...args) => {
 
     if (args.length > 1) {
         const colorCode = args.pop();
-        switch (colorCode) {
-            case '#1':
-                color = colors.green;
-                break;
-            case '#2':
-                color = colors.yellow;
-                break;
-            case '#3':
-                color = colors.red;
-                break;
-            case '#4':
-                color = colors.blue;
-                break;
-            case '#5':
-                color = colors.cyan;
-                break;
-            case '#6':
-                color = colors.magenta;
-                break;
-            default:
-                break;
+        const index = parseInt(colorCode.replace('#', ''));
+
+        const colorKeys = Object.keys(colors);
+        if (index >= 1 && index <= colorKeys.length - 1) {
+            color = colors[colorKeys[index]];
         }
     }
 
-    const log = args.length === 1 ? args[0] : args.join(' ');
+    const log = args.join(' ');
 
     if (!global.isDevelopment) {
         logToMongoDb(log);
@@ -105,6 +91,5 @@ const customLog = (...args) => {
 
     originalConsoleLog(coloredLog);
 };
-
 
 console.log = customLog;
