@@ -27,6 +27,10 @@ class DC {
         return await member.roles.cache.has(config.roles.team);
     }
 
+    static async memberHasRole(member, roleId) {
+        return await member.roles.cache.has(roleId);
+    }
+
     // channel
     static async channelsByParentId(parentid, guild) {
         const allChannels = guild.channels.cache;
