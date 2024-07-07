@@ -154,7 +154,7 @@ class Embed {
 
     /**
      * Add values that will replace the Text values.
-     * @param {json} inputs - Overwrite the placeholder values.
+     * @param {json} inputs - Replace the placeholder values.
      */
     addInputs(inputs) {
         this._inputs = inputs;
@@ -164,7 +164,7 @@ class Embed {
 
     /**
      * Set the Context of the Embed based on Inputs and Lang.
-     * @param {json} lang - Lang pack delivered on any Interaction.
+     * @param {json} lang - Language pack delivered by emit-interaction on any Interaction.
      * @param {member} member - Member from the Interaction.
      * @param {id} contextId - Id for the Embed language pack.
      */
@@ -179,12 +179,11 @@ class Embed {
         const contextKey = Object.keys(embedContext);
 
         if (member !== null) {
-            this._inputs['username'] = member.user.username; // Auto replace username
-            this._inputs['userid'] = member.user.id; // Auto replace username
+            this._inputs['username'] = member.user.username;
+            this._inputs['userid'] = member.user.id;
         }
 
         contextKey.forEach((inputType) => {
-
             const inputTypeText = embedContext[inputType];
             const finalText = this._replacePlaceholders(inputTypeText, this._inputs);
 
@@ -198,7 +197,6 @@ class Embed {
                 default:
                     break;
             }
-
         });
 
         return this;
