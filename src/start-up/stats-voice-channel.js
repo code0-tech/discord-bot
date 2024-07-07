@@ -65,11 +65,6 @@ const leaveVoice = async (client, userid) => {
 }
 
 
-const loadCurrentUserIntoMemory = (userId, channelId) => {
-
-}
-
-
 const start = async (client) => {
     const guild = await DC.guildById(process.env.GUILD_ID, client);
     const channels = await DC.channelsByGuild(guild);
