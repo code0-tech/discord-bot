@@ -40,6 +40,7 @@ const execute = async (interaction, client, guild, member, lang) => {
     }
 };
 
+
 const autoComplete = async (interaction, client, guild, member, lang) => {
     const focusedValue = interaction.options.getFocused();
 
