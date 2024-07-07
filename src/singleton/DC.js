@@ -5,7 +5,15 @@ const config = require('./../../config.json');
 
 class DC {
 
-    // interactions options
+/*     static get channel() {
+        return {
+            byId() {
+                return 'lol'
+            }
+        };
+    } */
+
+    // Interactions options
     static async defer(interaction, ephemeral = true) {
         if (interaction == undefined) {
             console.log(`[DC.defer] Interaction was not defined`, '#3');
@@ -14,7 +22,7 @@ class DC {
         return await interaction.deferReply({ ephemeral });
     }
 
-    // member
+    // Member
     static async memberById(userId, guild) {
         try {
             return await guild.members.fetch(userId);
@@ -41,7 +49,7 @@ class DC {
         }
     }
 
-    // channel
+    // Channel
     static async channelsByGuild(guild) {
         return await guild.channels.fetch();
     }
@@ -74,7 +82,7 @@ class DC {
         return;
     }
 
-    // messages
+    // Messages
     static async messageByChannel(channel, fetchLimit = 100) {
         return await channel.messages.fetch({ limit: fetchLimit });
     }
@@ -87,7 +95,7 @@ class DC {
         return messages;
     }
 
-    // guild
+    // Guild
     static async guildById(guildId, client) {
         return await client.guilds.fetch(guildId);
     }
