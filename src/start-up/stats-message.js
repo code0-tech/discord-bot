@@ -7,9 +7,6 @@ const config = require('../../config.json');
 const { Events } = require('discord.js');
 const DC = require('./../singleton/DC');
 
-
-const MongoDb = new Mongo();
-
 let userList = {};
 
 const newpacket = (msg) => {
@@ -65,7 +62,6 @@ const checkIfValid = async (msg) => {
 }
 
 
-// Put this into the user mongo class later
 const channelRankUpdateMessage = async (client, user) => {
     const guild = await DC.guildById(config.serverid, client);
     const rankMember = await guild.members.fetch(await user.getId());
@@ -95,40 +91,6 @@ const start = (client) => {
     const xpPerChar = config.commands.rank.xpperchar;
 
     client.on(Events.MessageCreate, async msg => {
-
-        if (msg.webhookId == '1187288818840240128') { // testing something for later
-
-            // console.dir(msg, { depth: null });
-
-            const embedData = msg.embeds[0].data;
-
-            const regex = /\d+(?= new commit| new commits)/;
-
-            const matches = embedData.title.match(regex);
-            if (matches) {
-
-                const doc = {
-                    name: msg.embeds[0].data.author.name,
-                    id: null,
-                    commitscount: parseInt(matches[0]),
-                    time: Date.now()
-                }
-
-                MongoDb.insertOne(ENUMS.DCB.GITHUB_COMMITS, doc);
-
-                const { title, description, color, url, author } = embedData;
-
-                new Embed()
-                    .setColor(config.embeds.colors.info)
-                    .setTitle(title)
-                    .setDescription(description + `\n\n\`\`\`filtered: ${parseInt(matches[0])} commits for ${msg.embeds[0].data.author.name}\`\`\``)
-                    .setColor(color)
-                    .setURL(url)
-                    .setAuthor(author)
-                    .responseToChannel(config.channels.spam, client)
-
-            }
-        }
 
         if (msg.author.bot == true) return;
         if (msg.author.system == true) return;
