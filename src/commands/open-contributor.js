@@ -52,7 +52,7 @@ const execute = async (interaction, client, guild, member, lang) => {
         .addContext(lang, member, 'initial-message')
         .interactionResponse(interaction, [row]);
 
-    const resolvedAwait = await awaitCodeResolve(client, awaitCodeId, 120000, data.reference, true);
+    const resolvedAwait = await awaitCodeResolve(client, awaitCodeId, config.commands.opencontributor.authtimeout, data.reference, true);
 
     if (!resolvedAwait) {
         failedMessage(interaction, client, member, lang, resolvedAwait === false ? 'error-timeout' : 'error-similar-inquiry');
