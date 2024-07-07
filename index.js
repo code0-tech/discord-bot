@@ -2,6 +2,8 @@ const startCode0 = async () => {
 
     require('./src/start-up/update-console-log');
     require('./src/start-up/process-exit');
+    const Constants = require('./data/constants');
+
 
     const { Client, Events, GatewayIntentBits, Partials } = require('discord.js');
     const dotenv = require('dotenv');
@@ -52,7 +54,7 @@ const startCode0 = async () => {
         require('./src/start-up/audit-log').setup(client);
         require('./src/start-up/client-status').start(client);
 
-        console.log(`\nCode0 Discord Client ready => ${readyClient.user.tag}`, '#1');
+        console.log(`\nCode0 Discord Client ready => ${readyClient.user.tag}`, Constants.CONSOLE.GOOD);
 
         require('./src/start-up/stats-message').start(client);
         require('./src/start-up/stats-voice-channel').start(client);

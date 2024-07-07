@@ -1,3 +1,4 @@
+const Constants = require('./../../data/constants');
 const { EmbedBuilder } = require("discord.js");
 const config = require('./../../config.json');
 
@@ -144,7 +145,7 @@ class Embed {
     _replacePlaceholders(template, data) {
         return template.replace(/{([^{}]*)}/g, (match, key) => {
             if (data[key.trim()] == undefined) {
-                console.log(`[Embed Error] a Placeholder "${key}" was not found as an input.`, '#3')
+                console.log(`[Embed Error] a Placeholder "${key}" was not found as an input.`, Constants.CONSOLE.ERROR)
                 return '';
             }
             return data[key.trim()];
@@ -172,7 +173,7 @@ class Embed {
         const embedContext = lang.text[contextId];
 
         if (embedContext == undefined) {
-            console.log(`[Embed Error] Given contextId: ${contextId} is not part of this command.`, '#3');
+            console.log(`[Embed Error] Given contextId: ${contextId} is not part of this command.`, Constants.CONSOLE.ERROR);
             return this;
         }
 

@@ -1,3 +1,4 @@
+const Constants = require('./../../data/constants');
 const { Collection } = require('discord.js');
 const path = require('path');
 const fs = require('fs');
@@ -18,7 +19,7 @@ const load = (client) => {
         // Load Slash-Command
         if (command.data) {
             client.commands.set(command.data.name, command);
-            console.log(`[Loader] Loaded command: ${command.data.name}`, '#4');
+            console.log(`[Loader] Loaded command: ${command.data.name}`, Constants.CONSOLE.LOADING);
         } else {
             command.data = { name: commandName };
         }
@@ -26,18 +27,18 @@ const load = (client) => {
         // Load Components
         if (command.executeComponent && command.componentIds) {
             if (command.componentIds.length == 0) {
-                console.log(`[Loader] Tip: Remove unused componentIds array for: ${command.data.name}`, '#4');
+                console.log(`[Loader] Tip: Remove unused componentIds array for: ${command.data.name}`, Constants.CONSOLE.LOADING);
             }
             for (const buttonId of command.componentIds) {
                 client.components.set(buttonId, command);
             }
-            console.log(`[Loader] Loaded component: ${command.componentIds.length ? command.componentIds : '[]'} for: ${command.data.name}`, '#4');
+            console.log(`[Loader] Loaded component: ${command.componentIds.length ? command.componentIds : '[]'} for: ${command.data.name}`, Constants.CONSOLE.LOADING);
         }
 
         // Start autoRun functions
         if (command.autoRun) {
             command.autoRun(client, client.languages);
-            console.log(`[Loader] Run autoRun() function for ${commandFile}`, '#4');
+            console.log(`[Loader] Run autoRun() function for ${commandFile}`, Constants.CONSOLE.LOADING);
         }
     }
 

@@ -1,3 +1,4 @@
+const Constants = require('./../../data/constants');
 const { ChannelType } = require("discord.js");
 
 class Channel {
@@ -63,7 +64,7 @@ class Channel {
     */
     async createChannel(guild) {
         const channel = await guild.channels.create(this._channelObj);
-        console.log(`[Channel] Created new channel "${channel.name}"`, '#6');
+        console.log(`[Channel] Created new channel "${channel.name}"`, Constants.CONSOLE.WORKING);
         return channel;
     }
 }

@@ -1,8 +1,10 @@
+const Constants = require('./../../data/constants');
 const { language } = require('./language-check');
 const { Embed } = require('./../models/Embed');
 const config = require('./../../config.json');
 const { Events } = require('discord.js');
 const DC = require('./../singleton/DC');
+
 
 const extractIdData = (inputString) => {
     const parts = inputString.split('*');
@@ -50,7 +52,7 @@ const handleInteraction = async (interaction, client, handler) => {
             throw new Error('Command name is undefined');
         }
 
-        console.log('[Emit] Handling interaction for command:', commandName, '#5');
+        console.log('[Emit] Handling interaction for command:', commandName, Constants.CONSOLE.WORKING);
 
         const lang = await language(commandName, interaction, guild, client);
 

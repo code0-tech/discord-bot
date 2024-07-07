@@ -1,5 +1,7 @@
+const Constants = require('./../../data/constants');
+
 const quit = () => {
-    console.log('Exiting gracefully...', '#1');
+    console.log('Exiting gracefully...', Constants.CONSOLE.WORKING);
     process.exit(0);
 }
 

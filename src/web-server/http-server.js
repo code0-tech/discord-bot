@@ -1,3 +1,4 @@
+const Constants = require('./../../data/constants');
 const httpConfig = require('./../../http-config.json');
 const http = require('http');
 const path = require('path');
@@ -27,6 +28,6 @@ module.exports.setup = (client) => {
     });
 
     server.listen(httpConfig.port, () => {
-        console.log(`[Http Server] Http Server => http://*:${httpConfig.port}`, '#1');
+        console.log(`[Http Server] Http Server => http://*:${httpConfig.port}`, Constants.CONSOLE.GOOD);
     });
 }

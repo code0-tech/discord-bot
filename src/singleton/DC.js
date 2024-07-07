@@ -17,7 +17,7 @@ class DC {
     // Interactions options
     static async defer(interaction, ephemeral = true) {
         if (interaction == undefined) {
-            console.log(`[DC.defer] Interaction was not defined`, '#3');
+            console.log(`[DC.defer] Interaction was not defined`, Constants.CONSOLE.ERROR);
             return;
         }
         return await interaction.deferReply({ ephemeral });
@@ -28,7 +28,7 @@ class DC {
         try {
             return await guild.members.fetch(userId);
         } catch (err) {
-            console.log(`[DC.memberById] Cannot find userId ${userId}`, '#3');
+            console.log(`[DC.memberById] Cannot find userId ${userId}`, Constants.CONSOLE.ERROR);
             return undefined;
         }
     }
@@ -78,7 +78,7 @@ class DC {
             channel.permissionOverwrites.delete(userId);
         });
 
-        console.log(`[Channel Perms] User Perms removed from "${channel.name}"`, '#6');
+        console.log(`[Channel Perms] User Perms removed from "${channel.name}"`, Constants.CONSOLE.WORKING);
         return;
     }
 

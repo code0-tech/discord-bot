@@ -1,4 +1,5 @@
 const { loadJSONFilesFromFolder } = require('../utils/json');
+const Constants = require('./../../data/constants');
 const fs = require('fs').promises;
 const path = require('path');
 
@@ -10,12 +11,12 @@ const checkLanguage = (exampleJson, langJson, langName) => {
 
             exampleJson[exampleCommandKey].forEach(commandText => {
                 if (!commandTexts.includes(commandText) && !commandText.startsWith('#')) { // Command text with # is just for one language
-                    console.log(`[Lang Check] In file ${langName}, text for /${exampleCommandKey} with text "${commandText}" is missing.`, '#3');
+                    console.log(`[Lang Check] In file ${langName}, text for /${exampleCommandKey} with text "${commandText}" is missing.`, Constants.CONSOLE.ERROR);
                 }
             });
         } else {
             if (!exampleCommandKey.startsWith('#')) {
-                console.log(`[Lang Check] In file ${langName}, text for /${exampleCommandKey} is missing.`, '#3');
+                console.log(`[Lang Check] In file ${langName}, text for /${exampleCommandKey} is missing.`, Constants.CONSOLE.ERROR);
             }
         }
     }

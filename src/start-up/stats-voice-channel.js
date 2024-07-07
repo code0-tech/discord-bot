@@ -1,4 +1,5 @@
 const { Events, ChannelType } = require('discord.js');
+const Constants = require('./../../data/constants');
 const { MongoUser } = require('../mongo/MongoUser');
 const { checkState } = require('../discord/voice');
 const { keyArray } = require('./../utils/helper');
@@ -72,7 +73,7 @@ const start = async (client) => {
     channels.forEach(channel => {
         if (channel.type == ChannelType.GuildVoice) {
             channel.members.forEach(member => {
-                console.log(`[Voice Stats] found User ${member.user.username} in ${channel.name}`, '#6');
+                console.log(`[Voice Stats] found User ${member.user.username} in ${channel.name}`, Constants.CONSOLE.FOUND);
                 joinVoice(client, member.user.id);
             });
         }

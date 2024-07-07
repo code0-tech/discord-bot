@@ -1,12 +1,10 @@
-
+const Constants = require('./../../data/constants');
 
 const setup = (client) => {
 
     if (!global.isDevelopment) return;
 
     client.on('debug', (message) => {
-        // console.log(message)
-
         if (message.includes('Remaining')) {
             const regex = /^\[WS => Manager\] Session Limit Information\s+Total: (\d+)\s+Remaining: (\d+)$/;
 
@@ -16,7 +14,7 @@ const setup = (client) => {
                 const total = match[1];
                 const remaining = match[2];
 
-                console.log(`[Connection Limit] ${remaining}/${total}`, '#2');
+                console.log(`[Connection Limit] ${remaining}/${total}`, Constants.CONSOLE.INFO);
             }
         }
 
@@ -27,7 +25,7 @@ const setup = (client) => {
 
             if (match) {
                 const latency = match[1];
-                console.log(`[API] Latency: ${latency}ms`, '#2');
+                console.log(`[API] Latency: ${latency}ms`, Constants.CONSOLE.INFO);
             }
         }
     });

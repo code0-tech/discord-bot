@@ -1,3 +1,4 @@
+const Constants = require('./../../data/constants');
 const { MongoClient } = require('mongodb');
 
 const mongoClient = new MongoClient(process.env.MONGO_URL);
@@ -5,7 +6,7 @@ const mongoClient = new MongoClient(process.env.MONGO_URL);
 const connect = async () => {
     mongoClient.connect()
         .then(() => {
-            console.log('[MongoDb] Connected to MongoDB', '#1');
+            console.log('[MongoDb] Connected to MongoDB', Constants.CONSOLE.GOOD);
             return true;
         })
         .catch((err) => {
