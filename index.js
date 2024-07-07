@@ -15,9 +15,6 @@ const startCode0 = async () => {
 
     global.mainDir = __dirname;
     global.mongoClient = null;
-    global.musicPlayer = {
-        inuse: false
-    };
 
     const client = new Client({
         intents: [
