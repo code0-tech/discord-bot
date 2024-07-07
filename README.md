@@ -72,7 +72,7 @@ The entries look like this:
 
 MongoDb entries last updated in ReadMe: 7.07.2024
 
-## Are here missing files?
+## Were are the missing files?
 
 The code you see here mirrors what's running on the Discord Bot server. However, some files are not open-source:
 
@@ -83,6 +83,12 @@ The code you see here mirrors what's running on the Discord Bot server. However,
 - http-config.json: Specifically used for our server.
 - unused-temp.js: Stores unused code snippets for potential future use.
 - .gitignore: A mysterious file that even hides from itself.
+
+If you'd like to set up this bot for testing purposes, please contact me at [DC:nixkuchen]. I can provide you with a template to get started.
+
+## None Discord Bot files?
+
+In `./data/_app/*` are files that are just to setup the Discord server
 
 ## Versions
 
