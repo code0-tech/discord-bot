@@ -1,10 +1,14 @@
 const { levenshteinDistance } = require('../utils/helper');
 const { Embed, progressBar } = require('../models/Embed');
+const { Mongo, ENUMS } = require('../models/Mongo');
 const { MongoUser } = require('../mongo/MongoUser');
 const { waitMs } = require('../utils/time');
 const config = require('../../config.json');
 const { Events } = require('discord.js');
 const DC = require('./../singleton/DC');
+
+
+const MongoDb = new Mongo();
 
 let userList = {};
 
@@ -102,6 +106,15 @@ const start = (client) => {
 
             const matches = embedData.title.match(regex);
             if (matches) {
+
+                const doc = {
+                    name: msg.embeds[0].data.author.name,
+                    id: null,
+                    commitscount: parseInt(matches[0]),
+                    time: Date.now()
+                }
+
+                MongoDb.insertOne(ENUMS.DCB.GITHUB_COMMITS, doc);
 
                 const { title, description, color, url, author } = embedData;
 
