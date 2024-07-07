@@ -2,6 +2,7 @@ const { language } = require('./language-check');
 const { Embed } = require('./../models/Embed');
 const config = require('./../../config.json');
 const { Events } = require('discord.js');
+const DC = require('./../singleton/DC');
 
 const extractIdData = (inputString) => {
     const parts = inputString.split('*');
@@ -27,8 +28,8 @@ const executionError = (interaction, info) => {
 };
 
 const getGuildAndMember = async (client, userId) => {
-    const guild = client.guilds.cache.get(process.env.GUILD_ID);
-    const member = await guild.members.fetch(userId);
+    const guild = DC.guildById(process.env.GUILD_ID, client);
+    const member = DC.memberById(userId, guild);
     return { guild, member };
 };
 
