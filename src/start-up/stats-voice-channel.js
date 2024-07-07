@@ -1,6 +1,8 @@
+const { Events, ChannelType } = require('discord.js');
 const { MongoUser } = require('../mongo/MongoUser');
 const { checkState } = require('../discord/voice');
-const { Events } = require('discord.js');
+const { keyArray } = require('./../utils/helper');
+const DC = require('./../singleton/DC');
 
 let voiceChatUser = {};
 
@@ -63,7 +65,25 @@ const leaveVoice = async (client, userid) => {
 }
 
 
-const start = (client) => {
+const loadCurrentUserIntoMemory = (userId, channelId) => {
+
+}
+
+
+const start = async (client) => {
+    const guild = await DC.guildById(process.env.GUILD_ID, client);
+    const channels = await DC.channelsByGuild(guild);
+
+    channels.forEach(channel => {
+        if (channel.type == ChannelType.GuildVoice) {
+            channel.members.forEach(member => {
+                console.log(`[Voice Stats] found User ${member.user.username} in ${channel.name}`, '#6');
+                joinVoice(client, member.user.id);
+            });
+        }
+    });
+
+
     client.on(Events.VoiceStateUpdate, async (oldState, newState) => {
         const { state, userid } = await checkState(oldState, newState);
 
@@ -83,5 +103,6 @@ const start = (client) => {
         }
     });
 }
+
 
 module.exports = { start };

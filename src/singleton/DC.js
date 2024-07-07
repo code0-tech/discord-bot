@@ -32,6 +32,10 @@ class DC {
     }
 
     // channel
+    static async channelsByGuild(guild) {
+        return await guild.channels.fetch();
+    }
+
     static async channelsByParentId(parentid, guild) {
         const allChannels = guild.channels.cache;
         const channelsInCategory = allChannels.filter(channel => channel.parentId === parentid);
@@ -39,7 +43,7 @@ class DC {
     }
 
     static async channelById(channelId, guild) {
-        const channel = guild.channels.cache.get(channelId);
+        const channel = guild.channels.fetch(channelId);
         return channel;
     }
 
