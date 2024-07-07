@@ -62,7 +62,7 @@ const loop = async (client, interaction, member, lang, embedMessage, rankMember,
     }
 
     if (embedMessage !== 'this-bot-stats' && config.commands.stats.uptodate15m) {
-        await waitMs(2000);
+        await waitMs(config.commands.stats.updatemessage);
         loop(client, interaction, member, lang, embedMessage, rankMember, user, normalizedStats);
     }
 }
