@@ -1,5 +1,5 @@
 const config = require('../../config.json');
-const { searchData } = require('../../data/search/search');
+// const { searchData } = require('../../data/search/search');
 
 // Get all words form Search and hashtags into one array
 const allWords = searchData.flatMap(item => [...item.title.split(' '), ...item.hashtags.flatMap(tag => tag.split(' '))]);
