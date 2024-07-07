@@ -10,11 +10,11 @@ const MongoDb = new Mongo();
 
 const data = new SlashCommandBuilder()
     .setName('leaderboard')
-    .setDescription('Show the leaderboard with the best 10 users.')
+    .setDescription('Leaderboard of the top users.')
     .addIntegerOption(option =>
         option
             .setName('limit')
-            .setDescription('How many users should be displayed.')
+            .setDescription('Change how many users should be displayed.')
             .setMinValue(1)
             .setMaxValue(20)
             .setRequired(false)
