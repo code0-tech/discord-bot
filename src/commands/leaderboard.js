@@ -10,15 +10,15 @@ const MongoDb = new Mongo();
 
 const data = new SlashCommandBuilder()
     .setName('leaderboard')
-    .setDescription('Leaderboard of the top users.')
+    .setDescription('Display the leaderboard of top users.')
     .addIntegerOption(option =>
         option
             .setName('limit')
-            .setDescription('Change how many users should be displayed.')
+            .setDescription('Specify the number of users to display (1-20).')
             .setMinValue(1)
             .setMaxValue(20)
             .setRequired(false)
-    )
+    );
 
 
 const listUser = async (limit = 10) => {

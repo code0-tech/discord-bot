@@ -11,7 +11,7 @@ const data = new SlashCommandBuilder()
     .addUserOption(option =>
         option
             .setName('user')
-            .setDescription('Check other @User stats.')
+            .setDescription('View stats for another user.')
             .setRequired(false)
     );
 

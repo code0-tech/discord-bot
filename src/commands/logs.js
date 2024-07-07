@@ -10,10 +10,10 @@ const DC = require('./../singleton/DC');
 
 const data = new SlashCommandBuilder()
     .setName('logs')
-    .setDescription('Show Code0 Bot logs.')
+    .setDescription('Code0 Bot logs.')
     .addSubcommand(subcommand => subcommand
         .setName('show')
-        .setDescription('Show current session logs.')
+        .setDescription('Show current session.')
     )
     .addSubcommand(subcommand => subcommand
         .setName('list')
