@@ -31,7 +31,7 @@ const normalizeData = (data) => {
 }
 
 
-const loop = async (interaction, member, lang, embedMessage, rankMember, user, previousStats = null) => {
+const loop = async (interaction, member, lang, embedMessage, rankMember, user, previousStats = null, client) => {
     const stats = await user.getStats();
     const normalizedStats = normalizeData(stats);
 
@@ -39,11 +39,13 @@ const loop = async (interaction, member, lang, embedMessage, rankMember, user, p
 
     if (statsChanged) {
         const { s, m, h, d } = msToHumanReadableTime(normalizedStats.voice.time * 1000);
+        const userChannel = await DC.memberVoiceChannel(rankMember, client);
 
         const embed = new Embed()
             .setColor(config.embeds.colors.info)
             .setPbThumbnail(rankMember)
             .addInputs({
+                channelmention: (userChannel == null ? '---' : `<#${userChannel.id}>`),
                 count: normalizedStats.messages.count,
                 words: normalizedStats.messages.words,
                 chars: normalizedStats.messages.chars,
@@ -61,7 +63,7 @@ const loop = async (interaction, member, lang, embedMessage, rankMember, user, p
 
     if (embedMessage !== 'this-bot-stats' && config.commands.stats.uptodate15m) {
         await waitMs(2000);
-        loop(interaction, member, lang, embedMessage, rankMember, user, normalizedStats);
+        loop(interaction, member, lang, embedMessage, rankMember, user, normalizedStats, client);
     }
 }
 
@@ -79,7 +81,7 @@ const execute = async (interaction, client, guild, member, lang) => {
     const rankMember = await DC.memberById(userIdToCheck, guild);
     const user = await new MongoUser(userIdToCheck).init();
 
-    loop(interaction, member, lang, embedMessage, rankMember, user);
+    loop(interaction, member, lang, embedMessage, rankMember, user, null, client);
 };
 
 

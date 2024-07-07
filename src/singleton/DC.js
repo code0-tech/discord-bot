@@ -1,4 +1,5 @@
 const Constants = require('./../../data/constants');
+const { ChannelType } = require('discord.js');
 const config = require('./../../config.json');
 
 
@@ -29,6 +30,26 @@ class DC {
 
     static async memberHasRole(member, roleId) {
         return await member.roles.cache.has(roleId);
+    }
+
+
+    static async memberVoiceChannel(member, client) {
+        const guild = await this.guildById(process.env.GUILD_ID, client);
+        const channels = await this.channelsByGuild(guild);
+
+        let userChannel = null;
+
+        channels.forEach(channel => {
+            if (channel.type == ChannelType.GuildVoice) {
+                channel.members.forEach(channelMember => {
+                    if (channelMember.user.id == member.user.id) {
+                        userChannel = channel;
+                    }
+                });
+            }
+        });
+
+        return userChannel;
     }
 
     // channel
