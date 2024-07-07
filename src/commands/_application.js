@@ -1,4 +1,5 @@
 const { ChannelType, PermissionsBitField, ButtonBuilder, ButtonStyle, ActionRowBuilder } = require("discord.js");
+const Constants = require('./../../data/constants');
 const { Channel } = require('./../models/Channel');
 const { keyArray } = require('./../utils/helper');
 const { Embed } = require('./../models/Embed');
@@ -41,13 +42,11 @@ const autoRun = async (client, lang) => {
 }
 
 
-const USER_OVERRIDE = 1;
-
 const checkLastCreatedTicket = async (guild, member) => {
     const channelsInCategory = await DC.channelsByParentId(config.parents.applications, guild);
 
     let hasChannel = channelsInCategory.some(channel => {
-        const userOverWrite = channel.permissionOverwrites.cache.find(overwrite => overwrite.type === USER_OVERRIDE && overwrite.id === member.id);
+        const userOverWrite = channel.permissionOverwrites.cache.find(overwrite => overwrite.type === Constants.DISCORD.PERMS.USER_OVERRIDE && overwrite.id === member.id);
         return userOverWrite !== undefined && channel.id !== null;
     });
 

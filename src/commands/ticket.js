@@ -1,6 +1,7 @@
 const { ChannelType, PermissionsBitField, ButtonBuilder, ButtonStyle, ActionRowBuilder } = require("discord.js");
 const { waitMs, snowflakeToDate, msToHumanReadableTime } = require('./../utils/time');
 const { SlashCommandBuilder } = require('@discordjs/builders');
+const Constants = require('./../../data/constants');
 const { Channel } = require('./../models/Channel');
 const { Embed } = require('./../models/Embed');
 const config = require('./../../config.json');
@@ -10,8 +11,6 @@ const data = new SlashCommandBuilder()
     .setName('ticket')
     .setDescription('Opens a new support ticket.')
 
-const USER_OVERRIDE = 1;
-
 const checkLastCreatedTicket = async (guild, member) => {
     const channelsInCategory = await DC.channelsByParentId(config.parents.support, guild);
 
@@ -19,7 +18,7 @@ const checkLastCreatedTicket = async (guild, member) => {
 
     channelsInCategory.forEach(channel => {
         const userOverwrite = channel.permissionOverwrites.cache.find(
-            overwrite => overwrite.type === USER_OVERRIDE && overwrite.id === member.id
+            overwrite => overwrite.type === Constants.DISCORD.PERMS.USER_OVERRIDE && overwrite.id === member.id
         );
 
         if (!userOverwrite || !channel.id) return;

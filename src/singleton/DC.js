@@ -1,6 +1,6 @@
+const Constants = require('./../../data/constants');
 const config = require('./../../config.json');
 
-const USER_OVERRIDE = 1;
 
 class DC {
 
@@ -46,7 +46,7 @@ class DC {
 
     static async removeChannelUserOverrides(channel) {
         const permissionOverwrites = channel.permissionOverwrites.cache;
-        const type1Overwrites = permissionOverwrites.filter(overwrite => overwrite.type === USER_OVERRIDE);
+        const type1Overwrites = permissionOverwrites.filter(overwrite => overwrite.type === Constants.DISCORD.PERMS.USER_OVERRIDE);
 
         [...type1Overwrites.keys()].forEach(userId => {
             channel.permissionOverwrites.delete(userId);
