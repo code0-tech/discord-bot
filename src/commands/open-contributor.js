@@ -59,7 +59,7 @@ const execute = async (interaction, client, guild, member, lang) => {
     } else {
         const { name, github } = resolvedAwait;
 
-        let repostring = ""; // add repo string later when my design idea is better
+        let repostring = ""; // add repo string when my design has changed to a better version
         let messageType = '';
 
         if (github.contributions.length === 0) {
