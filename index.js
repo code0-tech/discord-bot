@@ -74,8 +74,6 @@ startCode0();
 
 - Discord Audit log Embeds
 
--> add language for /search
-
 -> check test for stats-message.js webhook catcher
 -> maybe make an graph for the webhook catcher
 
