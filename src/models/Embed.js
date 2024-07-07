@@ -212,35 +212,33 @@ class Embed {
      * @param {string|null} [content=null] - The content of the response.
      * @returns {Promise<void>} - A promise that resolves when the message is sent.
      */
-    interactionResponse(interaction, components = [], ephemeral = true, content = null, attachment) {
-        return new Promise(async (resolve) => {
+    async interactionResponse(interaction, components = [], ephemeral = true, content = null, attachment) {
+        try {
+            const responseOptions = {
+                content,
+                embeds: [this.getEmbed()],
+                components,
+                files: attachment ? [attachment] : [],
+                ephemeral
+            };
+
+            let interactionReply = undefined;
+
             try {
-                const responseOptions = {
-                    content,
-                    embeds: [this.getEmbed()],
-                    components,
-                    files: attachment ? [attachment] : [],
-                    ephemeral
-                };
-
-                let interactionReply = undefined;
-
-                try {
-                    interactionReply = await interaction.editReply(responseOptions);
-                } catch (error) {
-                    if (error.code === 50027) {
-                        interactionReply = null;
-                    } else {
-                        throw error;
-                    }
-                }
-
-                resolve(interactionReply);
+                interactionReply = await interaction.editReply(responseOptions);
             } catch (error) {
-                console.error(`Error sending interaction response: ${error.message}`);
-                throw error;
+                if (error.code === 50027) {
+                    interactionReply = null;
+                } else {
+                    throw error;
+                }
             }
-        })
+
+            return interactionReply;
+        } catch (error) {
+            console.error(`Error sending interaction response: ${error.message}`);
+            throw error;
+        }
     }
 
 
@@ -252,28 +250,26 @@ class Embed {
     * @param {boolean} [pinMessage=false] - Whether to pin the sent message (default: false).
     * @returns {Promise<void>} - A promise that resolves when the message is sent.
     */
-    responseToChannel(channelId, client, components, pinMessage = false) {
-        return new Promise(async (resolve) => {
-            try {
-                const channel = await client.channels.fetch(channelId);
-                const messageOptions = { embeds: [this.getEmbed()] };
+    async responseToChannel(channelId, client, components, pinMessage = false) {
+        try {
+            const channel = await client.channels.fetch(channelId);
+            const messageOptions = { embeds: [this.getEmbed()] };
 
-                if (components) {
-                    messageOptions.components = components;
-                }
-
-                const messageResponse = await channel.send(messageOptions);
-
-                if (pinMessage) {
-                    await messageResponse.pin();
-                }
-
-                resolve(messageResponse);
-            } catch (error) {
-                console.error(`Error sending message to channel ${channelId}: ${error.message}`);
-                throw error;
+            if (components) {
+                messageOptions.components = components;
             }
-        })
+
+            const messageResponse = await channel.send(messageOptions);
+
+            if (pinMessage) {
+                await messageResponse.pin();
+            }
+
+            return messageResponse;
+        } catch (error) {
+            console.error(`Error sending message to channel ${channelId}: ${error.message}`);
+            throw error;
+        }
     }
 }
 
