@@ -49,6 +49,10 @@ class DC {
         }
     }
 
+    static async memberAddRoleId(member, roleId) {
+        return member.roles.add(roleId);
+    }
+
     // Channel
     static async channelsByGuild(guild) {
         return await guild.channels.fetch();

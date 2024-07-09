@@ -72,7 +72,7 @@ const execute = async (interaction, client, guild, member, lang) => {
 
         if (github.totalCommitContributions >= config.commands.opencontributor.commits && github.totalPullRequests >= config.commands.opencontributor.pr) {
             messageType = 'results-complete';
-            member.roles.add(config.roles.opencontributor);
+            DC.memberAddRoleId(member, config.roles.opencontributor);
         } else {
             messageType = 'results-not-complete';
         }
