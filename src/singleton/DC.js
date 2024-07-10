@@ -67,15 +67,34 @@ class DC {
         return await guild.channels.fetch();
     }
 
-    static async channelsByParentId(parentid, guild) {
-        const allChannels = guild.channels.cache;
-        const channelsInCategory = allChannels.filter(channel => channel.parentId === parentid);
-        return channelsInCategory;
+    static async channelsByParentId(parentId, guild) {
+        try {
+            const allChannels = guild.channels.cache;
+            const channelsInCategory = allChannels.filter(channel => channel.parentId === parentId);
+            console.log(`[DC.channelsByParentId] Channels for parentId ${parentId} found in cache`, Constants.CONSOLE.FOUND);
+            return channelsInCategory;
+        } catch (err) {
+            console.log(`[DC.channelsByParentId] Cannot find channels for parentId ${parentId}`, Constants.CONSOLE.ERROR);
+            return undefined;
+        }
     }
 
     static async channelById(channelId, guild) {
-        const channel = guild.channels.fetch(channelId);
-        return channel;
+        try {
+            let channel = guild.channels.cache.get(channelId);
+
+            if (channel) {
+                console.log(`[DC.channelById] ChannelId ${channelId} found in cache`, Constants.CONSOLE.FOUND);
+            } else {
+                channel = await guild.channels.fetch(channelId);
+                console.log(`[DC.channelById] ChannelId ${channelId} fetched from API`, Constants.CONSOLE.FOUND);
+            }
+
+            return channel;
+        } catch (err) {
+            console.log(`[DC.channelById] Cannot find channelId ${channelId}`, Constants.CONSOLE.ERROR);
+            return undefined;
+        }
     }
 
     static channelByInteraction(interaction, guild) {
