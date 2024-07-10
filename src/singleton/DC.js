@@ -26,7 +26,16 @@ class DC {
     // Member
     static async memberById(userId, guild) {
         try {
-            return await guild.members.fetch(userId);
+            let member = guild.members.cache.get(userId);
+
+            if (member) {
+                console.log(`[DC.memberById] UserId ${userId} found in cache`, Constants.CONSOLE.FOUND);
+            } else {
+                member = await guild.members.fetch(userId);
+                console.log(`[DC.memberById] UserId ${userId} fetched from API`, Constants.CONSOLE.FOUND);
+            }
+
+            return member;
         } catch (err) {
             console.log(`[DC.memberById] Cannot find userId ${userId}`, Constants.CONSOLE.ERROR);
             return undefined;
