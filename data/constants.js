@@ -33,6 +33,14 @@ class Constants {
             }
         };
     }
+
+    static get IMAGES() {
+        return {
+            get CHART_BACKGROUND() {
+                return 'chart-bg.png';
+            }
+        };
+    }
 }
 
 module.exports = Constants;
