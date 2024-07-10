@@ -54,7 +54,7 @@ const checkLastCreatedTicket = async (guild, member) => {
 }
 
 
-const executeComponent = async (interaction, client, guild, member, lang, buttonData) => {
+/* const executeComponent = async (interaction, client, guild, member, lang, buttonData) => {
     await DC.defer(interaction);
 
     const isTeam = await DC.isTeamMember(member);
@@ -136,6 +136,104 @@ const executeComponent = async (interaction, client, guild, member, lang, button
     } else {
         if (!isTeam) {
             await sendEmbedResponse(config.embeds.colors.danger, 'no-team-member');
+            return;
+        }
+
+        const applicationChannel = await DC.channelByInteraction(interaction, guild);
+        await applicationChannel.delete({ reason: "Apply was closed and marked as ~fin" });
+    }
+}; */
+
+const sendEmbedResponse = async (interaction, lang, member, color, contextKey) => {
+    await new Embed()
+        .setColor(color)
+        .addContext(lang, member, contextKey)
+        .interactionResponse(interaction);
+};
+
+
+const handleApplicationApply = async (interaction, client, guild, member, lang, buttonData) => {
+    if (await checkLastCreatedTicket(guild, member)) {
+        await sendEmbedResponse(interaction, lang, member, config.embeds.colors.danger, 'has-application');
+        return;
+    }
+
+    const applicationChannel = await new Channel()
+        .setName(`${config.emojis.application}${config.emojis["default-combine-symbol"]}${member.user.username}`)
+        .setParent(config.parents.applications)
+        .setType(ChannelType.GuildText)
+        .setPermissionOverwrite(interaction.user.id, [
+            PermissionsBitField.Flags.ViewChannel,
+            PermissionsBitField.Flags.AttachFiles,
+            PermissionsBitField.Flags.SendMessages,
+            PermissionsBitField.Flags.EmbedLinks,
+            PermissionsBitField.Flags.AddReactions
+        ])
+        .setPermissionOverwrite(interaction.guild.id, [], [PermissionsBitField.Flags.ViewChannel])
+        .createChannel(guild);
+
+    const closeApplicationButton = new ButtonBuilder()
+        .setCustomId('application-close')
+        .setLabel(lang.text['btn-close'])
+        .setStyle(ButtonStyle.Danger);
+
+    const row = new ActionRowBuilder().addComponents(closeApplicationButton);
+
+    await new Embed()
+        .setColor(config.embeds.colors.info)
+        .addContext(lang, member, 'application-message')
+        .responseToChannel(applicationChannel.id, client, [row], true);
+
+    await new Embed()
+        .setColor(config.embeds.colors.info)
+        .addInputs({ channelid: applicationChannel.id })
+        .addContext(lang, member, 'new-application')
+        .interactionResponse(interaction);
+};
+
+
+const handleApplicationClose = async (interaction, client, guild, member, lang, isTeam) => {
+    if (!isTeam) {
+        await sendEmbedResponse(interaction, lang, member, config.embeds.colors.danger, 'no-team-member');
+        return;
+    }
+
+    await interaction.message.delete();
+    await sendEmbedResponse(interaction, lang, member, config.embeds.colors.danger, 'close-info');
+
+    const applicationChannel = await DC.channelByInteraction(interaction, guild);
+
+    DC.removeChannelUserOverrides(applicationChannel);
+
+    const confirmDeleteButton = new ButtonBuilder()
+        .setCustomId('delete-ticket')
+        .setLabel(lang.text['btn-remove'])
+        .setStyle(ButtonStyle.Danger);
+
+    const row = new ActionRowBuilder().addComponents(confirmDeleteButton);
+
+    await new Embed()
+        .setColor(config.embeds.colors.danger)
+        .addInputs({ closeduserid: interaction.user.id })
+        .addContext(lang, member, 'confirm-remove-application')
+        .responseToChannel(applicationChannel.id, client, [row]);
+
+    applicationChannel.setName(`${applicationChannel.name}-closed`);
+};
+
+
+const executeComponent = async (interaction, client, guild, member, lang, buttonData) => {
+    await DC.defer(interaction);
+
+    const isTeam = await DC.isTeamMember(member);
+
+    if (buttonData.id === 'application-apply-closed-team' || buttonData.id === 'application-apply-open-contributor') {
+        await handleApplicationApply(interaction, client, guild, member, lang, buttonData);
+    } else if (buttonData.id === 'application-close') {
+        await handleApplicationClose(interaction, client, guild, member, lang, isTeam);
+    } else {
+        if (!isTeam) {
+            await sendEmbedResponse(interaction, lang, member, config.embeds.colors.danger, 'no-team-member');
             return;
         }
 
