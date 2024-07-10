@@ -92,7 +92,9 @@ const execute = async (interaction, client, guild, member, lang) => {
     await new Embed()
         .setColor(config.embeds.colors.info)
         .addContext(lang, member, 'info-message')
-        .responseToChannel(ticketChannel.id, client, [row], true);
+        .setPin(true)
+        .setCompontens([row])
+        .responseToChannel(ticketChannel.id, client);
 
 }
 
@@ -133,7 +135,8 @@ const executeComponent = async (interaction, client, guild, member, lang, compon
             .setColor(config.embeds.colors.danger)
             .addInputs({ closeduserid: interaction.user.id })
             .addContext(lang, member, 'closed')
-            .responseToChannel(ticketChannel.id, client, [row]);
+            .setComponents([row])
+            .responseToChannel(ticketChannel.id, client);
 
 
         ticketChannel.setName(`${ticketChannel.name}-closed`);

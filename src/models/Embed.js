@@ -12,6 +12,7 @@ class Embed {
         this._files = [];
         this._content = null;
 
+        this._pin = false;
 
         this._inputs = {};
     }
@@ -214,7 +215,7 @@ class Embed {
     */
     async setEphemeral(ephemeral = true) {
         this._ephemeral = ephemeral;
-
+        return this;
     }
 
     /** 
@@ -222,7 +223,7 @@ class Embed {
     */
     async setComponents(components = []) {
         this._components = components;
-
+        return this;
     }
 
     /** 
@@ -230,7 +231,7 @@ class Embed {
     */
     async setContent(content = null) {
         this._content = content;
-
+        return this;
     }
 
     /** 
@@ -238,7 +239,7 @@ class Embed {
     */
     async setAttachment(attachment) {
         this._files.push(attachment);
-
+        return this;
     }
 
     /**
@@ -275,25 +276,33 @@ class Embed {
         }
     }
 
+    /** 
+    * @param {boolean} [pin=true] - Whether to pin the sent message (default: false).
+    */
+    async setPin(pin = true) {
+        this._pin = pin;
+        return this;
+    }
 
     /**
      * Send a message to a specific channel with optional components and pin the message.
     * @param {string} channelId - The ID of the channel to send the message to.
     * @param {Client} client - The client to send the message from.
-    * @param {MessageActionRow[]} [components] - The components to include in the message.
-    * @param {boolean} [pinMessage=false] - Whether to pin the sent message (default: false).
     * @returns {Promise<void>} - A promise that resolves when the message is sent.
     */
-    async responseToChannel(channelId, client, components, pinMessage = false) {
+    async responseToChannel(channelId, client) {
         try {
             const channel = await client.channels.fetch(channelId);
-            const messageOptions = { embeds: [this.getEmbed()] };
 
-            if (components) {
-                messageOptions.components = components;
-            }
+            const responseOptions = {
+                content: this._content,
+                embeds: [this.getEmbed()],
+                components: this._components,
+                files: this._files,
+                ephemeral: this._ephemeral
+            };
 
-            const messageResponse = await channel.send(messageOptions);
+            const messageResponse = await channel.send(responseOptions);
 
             if (pinMessage) {
                 await messageResponse.pin();

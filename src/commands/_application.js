@@ -38,7 +38,8 @@ const autoRun = async (client, lang) => {
         .setColor(config.embeds.colors.info)
         .addInputs({ teamid: config.roles.team })
         .addContext({ text: lang.english['_application'] }, null, '#init-message')
-        .responseToChannel(config.channels.application, client, [row])
+        .setComponents([row])
+        .responseToChannel(config.channels.application, client)
 }
 
 
@@ -92,7 +93,9 @@ const handleApplicationApply = async (interaction, client, guild, member, lang, 
     await new Embed()
         .setColor(config.embeds.colors.info)
         .addContext(lang, member, 'application-message')
-        .responseToChannel(applicationChannel.id, client, [row], true);
+        .setPin(true)
+        .setComponents([row])
+        .responseToChannel(applicationChannel.id, client);
 
     await new Embed()
         .setColor(config.embeds.colors.info)
@@ -126,7 +129,8 @@ const handleApplicationClose = async (interaction, client, guild, member, lang, 
         .setColor(config.embeds.colors.danger)
         .addInputs({ closeduserid: interaction.user.id })
         .addContext(lang, member, 'confirm-remove-application')
-        .responseToChannel(applicationChannel.id, client, [row]);
+        .setComponents([row])
+        .responseToChannel(applicationChannel.id, client);
 
     applicationChannel.setName(`${applicationChannel.name}-closed`);
 };
