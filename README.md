@@ -86,7 +86,7 @@ The code you see here mirrors what's running on the Discord Bot server. However,
 
 If you'd like to set up this bot for testing purposes, please contact me at [DC:nixkuchen]. I can provide you with a template to get started.
 
-## None Discord Bot files?
+## Unused files for the Discord Bot process
 
 In `./data/_app/*` are files that are just to setup the Discord server
 
@@ -129,3 +129,13 @@ The Code works 100% with these versions.
 - Reason 5: Rapid development can lead to shortcuts, resulting in functional but sometimes suboptimal code.
 
 Since this bot is under development, significant changes may occur.
+
+## Nicusch Version System
+
+0.0.1 => Bug fixes or small changes
+
+0.1.0 => Command changes
+
+0.0.0 => Changes of entire Class or Interaction method structures
+
+Very simple to keep track of, this NVS was not used correctly until now 10.07.2024.
