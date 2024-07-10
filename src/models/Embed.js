@@ -5,7 +5,13 @@ const config = require('./../../config.json');
 class Embed {
     constructor() {
         /** @type {MessageEmbed} */
-        this._embed = new EmbedBuilder()
+        this._embed = new EmbedBuilder();
+
+        this._ephemeral = true;
+        this._components = [];
+        this._files = [];
+        this._content = null;
+
 
         this._inputs = {};
     }
@@ -203,23 +209,51 @@ class Embed {
         return this;
     }
 
+    /** 
+    * @param {boolean} [ephemeral=true] - Whether the response should be ephemeral. 
+    */
+    async setEphemeral(ephemeral = true) {
+        this._ephemeral = ephemeral;
+
+    }
+
+    /** 
+    * @param {MessageActionRow[]} [components] - The components to include in the message.
+    */
+    async setComponents(components = []) {
+        this._components = components;
+
+    }
+
+    /** 
+    * @param {boolean} [ephemeral=true] - Whether the response should be ephemeral. 
+    */
+    async setContent(content = null) {
+        this._content = content;
+
+    }
+
+    /** 
+    * @param {MessageAttachment|null} [attachment=null] - Optional attachment to include in the response.
+    */
+    async setAttachment(attachment) {
+        this._files.push(attachment);
+
+    }
+
     /**
      * Send a response to an interaction.
      * @param {Interaction} interaction - The interaction object.
-     * @param {MessageActionRow[]} [components] - The components to include in the message.
-     * @param {boolean} [ephemeral=true] - Whether the response should be ephemeral. 
-     * @param {string|null} [content=null] - The content of the response.
-     * @param {MessageAttachment|null} [attachment=null] - Optional attachment to include in the response.
      * @returns {Promise<void>} - A promise that resolves when the message is sent.
      */
-    async interactionResponse(interaction, components = [], ephemeral = true, content = null, attachment) {
+    async interactionResponse(interaction) {
         try {
             const responseOptions = {
-                content,
+                content: this._content,
                 embeds: [this.getEmbed()],
-                components,
-                files: attachment ? [attachment] : [],
-                ephemeral
+                components: this._components,
+                files: this._files,
+                ephemeral: this._ephemeral
             };
 
             let interactionReply = undefined;

@@ -118,7 +118,8 @@ const sendLog = async (interaction, member, lang, componentData, runId = null, t
             currentend: rangeEnd
         })
         .addContext(lang, member, type === 'show' ? 'session-logs' : 'old-session-logs')
-        .interactionResponse(interaction, [row]);
+        .setComponents([row])
+        .interactionResponse(interaction);
 }
 
 
@@ -184,7 +185,8 @@ const listDbLogs = async (interaction, member, lang, componentData) => {
         .setColor(config.embeds.colors.info)
         .addInputs({ list: tableBuilder.build() })
         .addContext(lang, member, 'list-logs')
-        .interactionResponse(interaction, [row]);
+        .setComponents([row])
+        .interactionResponse(interaction);
 }
 
 

@@ -50,7 +50,8 @@ const execute = async (interaction, client, guild, member, lang) => {
         .setColor(config.embeds.colors.info)
         .addInputs({ neededcommits: config.commands.opencontributor.commits, neededpr: config.commands.opencontributor.pr })
         .addContext(lang, member, 'initial-message')
-        .interactionResponse(interaction, [row]);
+        .setComponents([row])
+        .interactionResponse(interaction);
 
     const resolvedAwait = await awaitCodeResolve(client, awaitCodeId, config.commands.opencontributor.authtimeout, data.reference, true);
 
@@ -93,7 +94,8 @@ const execute = async (interaction, client, guild, member, lang) => {
                 githubname: name
             })
             .addContext(lang, member, messageType)
-            .interactionResponse(interaction, [row]);
+            .setComponents([row])
+            .interactionResponse(interaction);
 
     }
 };
