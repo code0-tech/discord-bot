@@ -47,6 +47,8 @@ const startCode0 = async () => {
 
     client.once(Events.ClientReady, readyClient => {
 
+        require('./src/start-up/discord-fetch').fetch(client);
+
         require('./src/interactions/load-interactions').load(client);
 
         require('./src/start-up/mongodb-check');
