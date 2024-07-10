@@ -93,7 +93,7 @@ const execute = async (interaction, client, guild, member, lang) => {
         .setColor(config.embeds.colors.info)
         .addContext(lang, member, 'info-message')
         .setPin(true)
-        .setCompontens([row])
+        .setComponents([row])
         .responseToChannel(ticketChannel.id, client);
 
 }
