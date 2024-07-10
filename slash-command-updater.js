@@ -1,7 +1,7 @@
 const { REST, Routes } = require('discord.js');
 const path = require('path');
-const fs = require('fs');
 require('dotenv').config();
+const fs = require('fs');
 
 let commands = [];
 
@@ -20,6 +20,6 @@ const rest = new REST({ version: '10' }).setToken(process.env.TOKEN);
 rest.put(Routes.applicationGuildCommands(process.env.CLIENT_ID, process.env.GUILD_ID),
     { body: commands })
     .then(() => {
-        console.log("Sucessfully registered Commands!")
+        console.log("Registered Commands!")
     })
     .catch(console.error)
