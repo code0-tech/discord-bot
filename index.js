@@ -81,8 +81,6 @@ startCode0();
 -> check test for stats-message.js webhook catcher
 -> maybe make an graph for the webhook catcher
 
--> DC.[all] add try catch
-
 -> Go over naming
 
 */
