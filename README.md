@@ -94,6 +94,7 @@ In `./data/_app/*` are files that are just to setup the Discord server
 
     "@discordjs/voice": "^0.17.0",
     "canvas": "^2.11.2",
+    "chartjs-node-canvas": "^4.1.6",
     "discord.js": "^14.15.3",
     "dotenv": "^16.3.1",
     "html-to-image": "^1.11.11",
@@ -103,6 +104,7 @@ In `./data/_app/*` are files that are just to setup the Discord server
     "node-fetch": "^2.6.12",
     "puppeteer": "^22.10.0",
     "ytdl-core": "^4.11.5"
+
 
 The Code works 100% with these versions.
 
