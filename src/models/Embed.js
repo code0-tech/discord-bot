@@ -209,6 +209,7 @@ class Embed {
      * @param {MessageActionRow[]} [components] - The components to include in the message.
      * @param {boolean} [ephemeral=true] - Whether the response should be ephemeral. 
      * @param {string|null} [content=null] - The content of the response.
+     * @param {MessageAttachment|null} [attachment=null] - Optional attachment to include in the response.
      * @returns {Promise<void>} - A promise that resolves when the message is sent.
      */
     async interactionResponse(interaction, components = [], ephemeral = true, content = null, attachment) {
