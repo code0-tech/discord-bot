@@ -11,6 +11,8 @@ const { Readable } = require('stream');
 const { join } = require('path');
 const ytdl = require('ytdl-core');
 
+const Chart = require('./../models/Chart');
+
 
 const data = new SlashCommandBuilder()
   .setName('embed-design')
@@ -21,6 +23,15 @@ const data = new SlashCommandBuilder()
 const execute = async (interaction, client, guild, member, lang) => {
   await DC.defer(interaction);
 
+
+  const chart = new Chart(800, 600)
+    .setType('line')
+    .setLabels(['January', 'February', 'March', 'April', 'May', 'June', 'July'])
+    .addDataset('Sample Data', [65, 59, 80, 81, 56, 55, 40])
+    .interactionResponse(interaction)
+
+  // const attachment = await chart.getAttachment();
+  // await interaction.channel.send({ files: [attachment] });
 
 }
 
