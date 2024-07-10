@@ -213,7 +213,7 @@ class Embed {
     /** 
     * @param {boolean} [ephemeral=true] - Whether the response should be ephemeral. 
     */
-    async setEphemeral(ephemeral = true) {
+    setEphemeral(ephemeral = true) {
         this._ephemeral = ephemeral;
         return this;
     }
@@ -221,7 +221,7 @@ class Embed {
     /** 
     * @param {MessageActionRow[]} [components] - The components to include in the message.
     */
-    async setComponents(components = []) {
+    setComponents(components = []) {
         this._components = components;
         return this;
     }
@@ -229,7 +229,7 @@ class Embed {
     /** 
     * @param {boolean} [ephemeral=true] - Whether the response should be ephemeral. 
     */
-    async setContent(content = null) {
+    setContent(content = null) {
         this._content = content;
         return this;
     }
@@ -237,7 +237,7 @@ class Embed {
     /** 
     * @param {MessageAttachment|null} [attachment=null] - Optional attachment to include in the response.
     */
-    async setAttachment(attachment) {
+    setAttachment(attachment) {
         this._files.push(attachment);
         return this;
     }
@@ -279,7 +279,7 @@ class Embed {
     /** 
     * @param {boolean} [pin=true] - Whether to pin the sent message (default: false).
     */
-    async setPin(pin = true) {
+    setPin(pin = true) {
         this._pin = pin;
         return this;
     }
@@ -304,7 +304,7 @@ class Embed {
 
             const messageResponse = await channel.send(responseOptions);
 
-            if (pinMessage) {
+            if (this._pin) {
                 await messageResponse.pin();
             }
 
