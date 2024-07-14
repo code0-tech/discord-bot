@@ -21,7 +21,21 @@ const language = async (commandNameLong, interaction, guild, client) => {
 
     return {
         userlang: baseLanguage,
-        text: commandText
+        text: commandText,
+        _replacePlaceholders(template, data) {
+            return template.replace(/{([^{}]*)}/g, (match, key) => {
+                if (data[key.trim()] == undefined) {
+                    console.log(`[Lang Error] a Placeholder "${key}" was not found as an input.`, Constants.CONSOLE.ERROR)
+                    return '';
+                }
+                return data[key.trim()];
+            });
+        },
+        getText(key, replaceOptions) {
+            const text = commandText;
+            const finalText = this._replacePlaceholders(text[key], replaceOptions);
+            return finalText;
+        }
     };
 }
 
