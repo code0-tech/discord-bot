@@ -15,6 +15,9 @@ class DC {
     } */
 
     // Interactions options
+    /**
+    * Defer the reply
+    */
     static async defer(interaction, ephemeral = true) {
         if (interaction == undefined) {
             console.log(`[DC.defer] Interaction was not defined`, Constants.CONSOLE.ERROR);
@@ -24,6 +27,9 @@ class DC {
     }
 
     // Member
+    /**
+    * Get Member by UserId
+    */
     static async memberById(userId, guild) {
         try {
             let member = guild.members.cache.get(userId);
@@ -42,14 +48,23 @@ class DC {
         }
     }
 
+    /**
+    * Check if the Member has the Team role
+    */
     static async isTeamMember(member) {
         return await member.roles.cache.has(config.roles.team);
     }
 
+    /**
+    * Check if the Member has a roleId
+    */
     static async memberHasRole(member, roleId) {
         return await member.roles.cache.has(roleId);
     }
 
+    /**
+    * Check if the Member is in a voice channel
+    */
     static async memberVoiceChannel(member) {
         if (member.voice.channel) {
             return member.voice.channel;
@@ -58,15 +73,24 @@ class DC {
         }
     }
 
+    /**
+    * Add a role to a Member by the roleId
+    */
     static async memberAddRoleId(member, roleId) {
         return member.roles.add(roleId);
     }
 
     // Channel
+    /**
+    * Get all channels inside a guild
+    */
     static async channelsByGuild(guild) {
         return await guild.channels.fetch();
     }
 
+    /**
+    * Get a channels under a parent id
+    */
     static async channelsByParentId(parentId, guild) {
         try {
             const allChannels = guild.channels.cache;
@@ -79,6 +103,9 @@ class DC {
         }
     }
 
+    /**
+    * Get a channel by its id
+    */
     static async channelById(channelId, guild) {
         try {
             let channel = guild.channels.cache.get(channelId);
@@ -97,11 +124,17 @@ class DC {
         }
     }
 
+    /**
+    * Get the channel in which the interaction takes place
+    */
     static channelByInteraction(interaction, guild) {
         const channel = guild.channels.cache.get(interaction.message.channelId);
         return channel;
     }
 
+    /**
+    * Remove all perm overrides
+    */
     static async removeChannelUserOverrides(channel) {
         const permissionOverwrites = channel.permissionOverwrites.cache;
         const type1Overwrites = permissionOverwrites.filter(overwrite => overwrite.type === Constants.DISCORD.PERMS.USER_OVERRIDE);
@@ -115,10 +148,16 @@ class DC {
     }
 
     // Messages
+    /**
+    * Get all messages by Channel (hard limit to 100)
+    */
     static async messageByChannel(channel, fetchLimit = 100) {
         return await channel.messages.fetch({ limit: fetchLimit });
     }
 
+    /**
+    * Get messages from channel
+    */
     static async messagesFromChannel(client, serverid, channelid, fetchLimit = 100) {
         const guild = await this.guildById(serverid, client);
         const channel = await this.channelById(channelid, guild);
@@ -128,6 +167,9 @@ class DC {
     }
 
     // Guild
+    /**
+    * Get guild by id
+    */
     static async guildById(guildId, client) {
         return await client.guilds.fetch(guildId);
     }
