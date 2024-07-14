@@ -23,10 +23,6 @@ const data = new SlashCommandBuilder()
     .setDefaultMemberPermissions(PermissionFlagsBits.Administrator)
 
 
-const info = (title, des) => {
-
-}
-
 const debugs = {
     async mongoLeftUsers(interaction, client, guild, member, lang) {
         new Embed()
