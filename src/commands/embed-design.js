@@ -27,7 +27,8 @@ const execute = async (interaction, client, guild, member, lang) => {
   const chart = new Chart(800, 600)
     .setType('line')
     .setLabels(['January', 'February', 'March', 'April', 'May', 'June', 'July'])
-    .addDataset('Sample Data', [65, 59, 80, 81, 56, 55, 40])
+    .addDataset('Sample Data', [65, 59, 80, 81, 56, 55, 40], 'rgb(200,200,100)')
+    .addDataset('Sample Data2', [62, 51, 20, 84, 56, 65, 10])
     .interactionResponse(interaction)
 
   // const attachment = await chart.getAttachment();
