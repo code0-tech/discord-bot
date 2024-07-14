@@ -10,12 +10,21 @@ const DC = require('./../singleton/DC');
 const data = new SlashCommandBuilder()
     .setName('debug')
     .setDescription('Code0 Debug commands.')
+    .addStringOption(option =>
+        option.setName('type')
+            .setDescription('Select a Debug command')
+            .setRequired(true)
+            .addChoices(
+                { name: 'Mongo => Check left Users', value: 'mongo_left_users' },
+            ))
     .setDefaultMemberPermissions(PermissionFlagsBits.Administrator)
 
+// show bar of server user / left user in procentage
 
 const execute = async (interaction, client, guild, member, lang) => {
     await DC.defer(interaction);
 
+    const subCommand = interaction.options.getSubcommand();
 
 }
 
