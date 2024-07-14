@@ -83,4 +83,6 @@ startCode0();
 
 -> Go over naming
 
+-> lang .getText() Add error message if key in text exist but was not given
+
 */
