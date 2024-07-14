@@ -85,7 +85,7 @@ const handleApplicationApply = async (interaction, client, guild, member, lang, 
 
     const closeApplicationButton = new ButtonBuilder()
         .setCustomId('application-close')
-        .setLabel(lang.text['btn-close'])
+        .setLabel(lang.getText('btn-close'))
         .setStyle(ButtonStyle.Danger);
 
     const row = new ActionRowBuilder().addComponents(closeApplicationButton);
@@ -120,7 +120,7 @@ const handleApplicationClose = async (interaction, client, guild, member, lang, 
 
     const confirmDeleteButton = new ButtonBuilder()
         .setCustomId('delete-ticket')
-        .setLabel(lang.text['btn-remove'])
+        .setLabel(lang.getText('btn-remove'))
         .setStyle(ButtonStyle.Danger);
 
     const row = new ActionRowBuilder().addComponents(confirmDeleteButton);

@@ -93,15 +93,15 @@ const sendLog = async (interaction, member, lang, componentData, runId = null, t
     const buttons = [
         new ButtonBuilder()
             .setCustomId(`logs*type=${type}*action=back*currentstart=${rangeStart}*currentendposition=${rangeEnd}*s=${sessionId}`)
-            .setLabel(lang.text['btn-back'])
+            .setLabel(lang.getText('btn-back'))
             .setStyle(ButtonStyle.Primary),
         new ButtonBuilder()
             .setCustomId(`logs*type=${type}*action=next*currentstart=${rangeStart}*currentendposition=${rangeEnd}*s=${sessionId}`)
-            .setLabel(lang.text['btn-next'])
+            .setLabel(lang.getText('btn-next'))
             .setStyle(ButtonStyle.Primary),
         new ButtonBuilder()
             .setCustomId(`logs*type=${type}*action=last*currentstart=${rangeStart}*currentendposition=${rangeEnd}*s=${sessionId}`)
-            .setLabel(lang.text['btn-skip'])
+            .setLabel(lang.getText('btn-skip'))
             .setStyle(ButtonStyle.Danger),
     ];
 
@@ -167,8 +167,8 @@ const listDbLogs = async (interaction, member, lang, componentData) => {
 
     const columns = [
         { label: 'run_id', field: 'run_id', width: columnWidths.run_id },
-        { label: lang.text['text-createdat'], field: 'created_at', width: columnWidths.created_at },
-        { label: lang.text['text-count'], field: 'logs_length', width: columnWidths.logs_length }
+        { label: lang.getText('text-createdat'), field: 'created_at', width: columnWidths.created_at },
+        { label: lang.getText('text-count'), field: 'logs_length', width: columnWidths.logs_length }
     ];
 
     const tableBuilder = new TableBuilder(columns);
