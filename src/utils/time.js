@@ -33,4 +33,4 @@ const convertUnixToTimestamp = (unixTimestamp) => {
 };
 
 
-module.exports = { waitMs, snowflakeToDate, msToHumanReadableTime,convertUnixToTimestamp };
+module.exports = { waitMs, snowflakeToDate, msToHumanReadableTime, convertUnixToTimestamp };
