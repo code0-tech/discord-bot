@@ -24,7 +24,6 @@ const data = new SlashCommandBuilder()
 const MongoDb = new Mongo();
 
 const getLogs = async (runId) => {
-    const MongoDb = new Mongo();
     const results = await MongoDb.find(ENUMS.DCB.LOGS, { run_id: runId });
     return results[0];
 }
