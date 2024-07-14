@@ -125,7 +125,7 @@ const executeComponent = async (interaction, client, guild, member, lang, compon
 
         const confirmDelete = new ButtonBuilder()
             .setCustomId('delete-ticket')
-            .setLabel(lang.text['btn-delete-ticket']) // into lang
+            .setLabel(lang.getText('btn-delete-ticket'))
             .setStyle(ButtonStyle.Danger);
 
         const row = new ActionRowBuilder()
