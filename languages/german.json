@@ -1,4 +1,19 @@
 {
+    "debug": {
+        "mongo-left-users": {
+            "title": "Mongo Left User",
+            "description": "Gefunden:\n{userstring}\n\nFake Benutzer:\n{progressbar}"
+        },
+        "mongo-left-users-loading": {
+            "title": "Mongo Left User",
+            "description": "Prüfen..."
+        },
+        "found-none": "Keine",
+        "client-session-time": {
+            "title": "Client Session Time",
+            "description": "Online seit: {upsince}\n\n`{days}` Tagen, `{hours}` Stunden, `{minutes}` Minuten, `{seconds}` Sekunden."
+        }
+    },
     "ticket": {
         "btn-close": "Schließen",
         "btn-delete-ticket": "Ticket löschen",
