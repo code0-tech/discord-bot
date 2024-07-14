@@ -13,7 +13,7 @@ const data = new SlashCommandBuilder()
     .setName('debug')
     .setDescription('Code0 Debug commands.')
     .addStringOption(option =>
-        option.setName('type')
+        option.setName('action')
             .setDescription('Select a Debug command')
             .setRequired(true)
             .addChoices(
@@ -94,7 +94,7 @@ const debugs = {
 const execute = async (interaction, client, guild, member, lang) => {
     await DC.defer(interaction);
 
-    const type = interaction.options.getString('type');
+    const type = interaction.options.getString('action');
 
     await debugs[type](interaction, client, guild, member, lang);
 }
