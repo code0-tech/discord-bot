@@ -17,8 +17,8 @@ const data = new SlashCommandBuilder()
             .setDescription('Select a Debug command')
             .setRequired(true)
             .addChoices(
-                { name: 'Mongo => Check left Users', value: 'mongoLeftUsers' },
-                { name: 'Client => This session time', value: 'clientSessionTime' }
+                { name: 'Client => This session time', value: 'clientSessionTime' },
+                { name: 'Mongo => Check left Users', value: 'mongoLeftUsers' }
             ))
     .setDefaultMemberPermissions(PermissionFlagsBits.Administrator)
 
