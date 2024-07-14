@@ -3,9 +3,8 @@ const { waitMs, snowflakeToDate, msToHumanReadableTime } = require('./../utils/t
 const { SlashCommandBuilder } = require('@discordjs/builders');
 const { Embed, progressBar } = require('./../models/Embed');
 const config = require('./../../config.json');
-const DC = require('./../singleton/DC');
-
 const Chart = require('./../models/Chart');
+const DC = require('./../singleton/DC');
 
 
 const data = new SlashCommandBuilder()
@@ -16,7 +15,6 @@ const data = new SlashCommandBuilder()
 
 const execute = async (interaction, client, guild, member, lang) => {
     await DC.defer(interaction);
-
 
 
 }
