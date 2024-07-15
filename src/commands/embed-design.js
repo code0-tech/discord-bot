@@ -29,6 +29,12 @@ const getRandomColor = () => {
   return `rgb(${r},${g},${b})`;
 }
 
+const getNextDate = (dateString) => {
+  const date = new Date(dateString);
+  date.setDate(date.getDate() + 1);
+  return date.toISOString().slice(0, 10);
+}
+
 
 const execute = async (interaction, client, guild, member, lang) => {
   await DC.defer(interaction);
@@ -62,14 +68,13 @@ const execute = async (interaction, client, guild, member, lang) => {
   console.dir(cursor);
   console.dir(cursor.length);
 
-
   const dbEntries = [];
   await cursor.forEach(doc => dbEntries.push(doc));
 
-  console.dir(dbEntries);
+  console.log(dbEntries);
 
-  // Calculate cumulative commits for each user
   const cumulativeCommits = {};
+
   dbEntries.forEach(entry => {
     const { name, date } = entry._id;
     const dailyCommits = entry.dailyCommits;
@@ -78,14 +83,41 @@ const execute = async (interaction, client, guild, member, lang) => {
       cumulativeCommits[name] = [];
     }
 
-    const previousTotal = cumulativeCommits[name].length > 0 ? cumulativeCommits[name][cumulativeCommits[name].length - 1].commits : 0;
-    cumulativeCommits[name].push({ date, commits: previousTotal + dailyCommits });
+    cumulativeCommits[name].push({ date, commits: dailyCommits });
   });
 
-  console.dir(cumulativeCommits);
+  for (const name in cumulativeCommits) {
+    const userData = cumulativeCommits[name];
+    const allDates = userData.map(entry => entry.date);
 
-  // Prepare data for the chart
-  const labels = dbEntries.map(entry => entry._id.date).filter((value, index, self) => self.indexOf(value) === index);
+    const firstDate = allDates[0];
+    const lastDate = allDates[allDates.length - 1];
+    // const lastDate = Date.now();
+
+    console.dir(lastDate)
+
+
+    const filledData = [];
+
+    let currentDate = firstDate;
+    let currentIndex = 0;
+    let currentCumulative = 0;
+
+    while (currentDate <= lastDate) {
+      if (allDates[currentIndex] === currentDate) {
+        currentCumulative += userData[currentIndex].commits;
+        filledData.push({ date: currentDate, commits: currentCumulative });
+        currentIndex++;
+      } else {
+        filledData.push({ date: currentDate, commits: currentCumulative });
+      }
+      currentDate = getNextDate(currentDate);
+    }
+
+    cumulativeCommits[name] = filledData;
+  }
+
+  const labels = Object.values(cumulativeCommits).flatMap(user => user.map(entry => entry.date)).filter((value, index, self) => self.indexOf(value) === index);
   const datasets = [];
 
   for (const [name, data] of Object.entries(cumulativeCommits)) {
@@ -97,8 +129,7 @@ const execute = async (interaction, client, guild, member, lang) => {
     });
   }
 
-  // Create the chart
-  const chart = new Chart(800, 600)
+  const chart = new Chart(1000, 600)
     .setType('line')
     .setLabels(labels);
 
