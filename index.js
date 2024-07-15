@@ -78,9 +78,6 @@ startCode0();
 
 - Discord Audit log Embeds
 
--> check test for stats-message.js webhook catcher
--> maybe make an graph for the webhook catcher
-
 -> Go over naming
 
 -> lang .getText() Add error message if key in text exist but was not given
