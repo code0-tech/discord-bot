@@ -1,3 +1,4 @@
+const Constants = require('./../../data/constants');
 const config = require('./../../config.json');
 
 const language = async (commandNameLong, interaction, guild, client) => {
@@ -24,14 +25,20 @@ const language = async (commandNameLong, interaction, guild, client) => {
         text: commandText,
         _replacePlaceholders(template, data) {
             return template.replace(/{([^{}]*)}/g, (match, key) => {
+
+                if (data == null) {
+                    console.log(`[Lang Error] no inputs where given at all. Missing Placeholder replace for "${key}".`, Constants.CONSOLE.ERROR);
+                    return '';
+                }
+
                 if (data[key.trim()] == undefined) {
-                    console.log(`[Lang Error] a Placeholder "${key}" was not found as an input.`, Constants.CONSOLE.ERROR)
+                    console.log(`[Lang Error] a Placeholder "${key}" was not found as an input.`, Constants.CONSOLE.ERROR);
                     return '';
                 }
                 return data[key.trim()];
             });
         },
-        getText(key, replaceOptions) {
+        getText(key, replaceOptions = null) {
             const text = commandText;
             const finalText = this._replacePlaceholders(text[key], replaceOptions);
             return finalText;
