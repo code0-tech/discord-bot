@@ -49,15 +49,17 @@ const handleInteraction = async (interaction, client, handler) => {
         }
 
         if (!commandName) {
-            throw new Error('Command name is undefined');
+            console.log(`[Emit] Command name is undefined`, Constants.CONSOLE.ERROR);
+            return;
         }
 
-        console.log('[Emit] Handling interaction for command:', commandName, Constants.CONSOLE.WORKING);
+        console.log(`[Emit] Handling interaction for command: ${commandName}`, Constants.CONSOLE.WORKING);
 
         const lang = await language(commandName, interaction, guild, client);
 
         if (!lang) {
-            throw new Error('Specified language context was not given');
+            console.log(`[Emit] Specified language context was not given`, Constants.CONSOLE.ERROR);
+            return;
         }
 
         await handler(interaction, client, guild, member, lang);
