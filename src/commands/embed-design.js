@@ -14,7 +14,6 @@ const ytdl = require('ytdl-core');
 
 
 const { Mongo, ENUMS } = require('../models/Mongo');
-
 const MongoDb = new Mongo();
 
 const data = new SlashCommandBuilder()
@@ -22,22 +21,22 @@ const data = new SlashCommandBuilder()
   .setDescription('Command for tests.')
   .setDefaultMemberPermissions(PermissionFlagsBits.Administrator)
 
-const getRandomColor = () => {
-  const r = Math.floor(Math.random() * 255);
-  const g = Math.floor(Math.random() * 255);
-  const b = Math.floor(Math.random() * 255);
-  return `rgb(${r},${g},${b})`;
-}
-
-const getNextDate = (dateString) => {
-  const date = new Date(dateString);
-  date.setDate(date.getDate() + 1);
-  return date.toISOString().slice(0, 10);
-}
-
 
 const execute = async (interaction, client, guild, member, lang) => {
   await DC.defer(interaction);
+
+  const getRandomColor = () => {
+    const r = Math.floor(Math.random() * 255);
+    const g = Math.floor(Math.random() * 255);
+    const b = Math.floor(Math.random() * 255);
+    return `rgb(${r},${g},${b})`;
+  }
+
+  const getNextDate = (dateString) => {
+    const date = new Date(dateString);
+    date.setDate(date.getDate() + 1);
+    return date.toISOString().slice(0, 10);
+  }
 
   const uniqIds = await MongoDb.distinct(ENUMS.DCB.GITHUB_COMMITS, "name");
 
@@ -45,7 +44,7 @@ const execute = async (interaction, client, guild, member, lang) => {
 
   const pipeline = [
     {
-      $sort: { time: 1 } // Sort documents by time in ascending order
+      $sort: { time: 1 }
     },
     {
       $group: {
@@ -59,19 +58,18 @@ const execute = async (interaction, client, guild, member, lang) => {
       }
     },
     {
-      $sort: { "_id.date": 1 } // Sort results by date in ascending order
+      $sort: { "_id.date": 1 }
     }
   ];
 
   const cursor = await MongoDb.aggregate(ENUMS.DCB.GITHUB_COMMITS, pipeline);
   const dbEntries = await cursor;
 
-  console.log(dbEntries);
+  const firstDate = dbEntries[0]._id.date;
+  const lastDate = new Date().toISOString().slice(0, 10);
 
-  // Initialize cumulative commits object
   const cumulativeCommits = {};
 
-  // Fill cumulative commits data
   dbEntries.forEach(entry => {
     const { name, date } = entry._id;
     const dailyCommits = entry.dailyCommits;
@@ -83,16 +81,9 @@ const execute = async (interaction, client, guild, member, lang) => {
     cumulativeCommits[name].push({ date, commits: dailyCommits });
   });
 
-  // Ensure each user's data spans all dates in the range and fill in missing dates
   for (const name in cumulativeCommits) {
     const userData = cumulativeCommits[name];
     const allDates = userData.map(entry => entry.date);
-
-    // const firstDate = allDates[0];
-    const firstDate = new Date(dbEntries[0].time).toISOString().slice(0, 10);
-    const lastDate = new Date().toISOString().slice(0, 10);
-
-    console.log(lastDate)
 
     const filledData = [];
     let currentDate = firstDate;
@@ -105,18 +96,15 @@ const execute = async (interaction, client, guild, member, lang) => {
         filledData.push({ date: currentDate, commits: currentCumulative });
         currentIndex++;
       } else {
-        // If no commits for that day, carry forward the last known cumulative count
         filledData.push({ date: currentDate, commits: currentCumulative });
       }
 
-      console.dir(name + " - " + currentDate)
       currentDate = getNextDate(currentDate);
     }
 
     cumulativeCommits[name] = filledData;
   }
 
-  // Prepare data for the chart
   const labels = Object.values(cumulativeCommits).flatMap(user => user.map(entry => entry.date)).filter((value, index, self) => self.indexOf(value) === index);
   const datasets = [];
 
@@ -129,10 +117,6 @@ const execute = async (interaction, client, guild, member, lang) => {
     });
   }
 
-  console.dir(datasets)
-
-
-  // Create the chart
   const chart = new Chart(1000, 600)
     .setType('line')
     .setLabels(labels);
