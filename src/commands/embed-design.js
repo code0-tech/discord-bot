@@ -64,7 +64,7 @@ const execute = async (interaction, client, guild, member, lang) => {
   ];
 
   const cursor = await MongoDb.aggregate(ENUMS.DCB.GITHUB_COMMITS, pipeline);
-  const dbEntries = await cursor.toArray();
+  const dbEntries = await cursor;
 
   console.log(dbEntries);
 
