@@ -2,7 +2,7 @@ const Constants = require('./../../data/constants');
 const { Mongo, ENUMS } = require('../models/Mongo');
 const MongoDb = new Mongo();
 
-const check = async () => {
+const checkDuplicate = async () => {
     const results = await MongoDb.aggregate(ENUMS.DCB.USERS, [
         { $group: { _id: '$id', count: { $sum: 1 } } },
         { $match: { count: { $gt: 1 } } },
@@ -30,4 +30,4 @@ const check = async () => {
 }
 
 
-check();
+checkDuplicate();
