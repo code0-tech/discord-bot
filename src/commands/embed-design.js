@@ -64,17 +64,14 @@ const execute = async (interaction, client, guild, member, lang) => {
   ];
 
   const cursor = await MongoDb.aggregate(ENUMS.DCB.GITHUB_COMMITS, pipeline);
-  // const dbEntries = await cursor.toArray();
-  console.dir(cursor);
-  console.dir(cursor.length);
-
-  const dbEntries = [];
-  await cursor.forEach(doc => dbEntries.push(doc));
+  const dbEntries = await cursor.toArray();
 
   console.log(dbEntries);
 
+  // Initialize cumulative commits object
   const cumulativeCommits = {};
 
+  // Fill cumulative commits data
   dbEntries.forEach(entry => {
     const { name, date } = entry._id;
     const dailyCommits = entry.dailyCommits;
@@ -86,29 +83,26 @@ const execute = async (interaction, client, guild, member, lang) => {
     cumulativeCommits[name].push({ date, commits: dailyCommits });
   });
 
+  // Ensure each user's data spans all dates in the range and fill in missing dates
   for (const name in cumulativeCommits) {
     const userData = cumulativeCommits[name];
     const allDates = userData.map(entry => entry.date);
 
     const firstDate = allDates[0];
-    const lastDate = allDates[allDates.length - 1];
-    // const lastDate = Date.now();
-
-    console.dir(lastDate)
-
+    const lastDate = new Date().toISOString().slice(0, 10); // Today's date as the last date
 
     const filledData = [];
-
     let currentDate = firstDate;
     let currentIndex = 0;
     let currentCumulative = 0;
 
     while (currentDate <= lastDate) {
-      if (allDates[currentIndex] === currentDate) {
+      if (currentIndex < userData.length && allDates[currentIndex] === currentDate) {
         currentCumulative += userData[currentIndex].commits;
         filledData.push({ date: currentDate, commits: currentCumulative });
         currentIndex++;
       } else {
+        // If no commits for that day, carry forward the last known cumulative count
         filledData.push({ date: currentDate, commits: currentCumulative });
       }
       currentDate = getNextDate(currentDate);
@@ -117,6 +111,7 @@ const execute = async (interaction, client, guild, member, lang) => {
     cumulativeCommits[name] = filledData;
   }
 
+  // Prepare data for the chart
   const labels = Object.values(cumulativeCommits).flatMap(user => user.map(entry => entry.date)).filter((value, index, self) => self.indexOf(value) === index);
   const datasets = [];
 
@@ -129,6 +124,7 @@ const execute = async (interaction, client, guild, member, lang) => {
     });
   }
 
+  // Create the chart
   const chart = new Chart(1000, 600)
     .setType('line')
     .setLabels(labels);
@@ -138,7 +134,6 @@ const execute = async (interaction, client, guild, member, lang) => {
   });
 
   chart.interactionResponse(interaction);
-
 }
 
 
