@@ -19,8 +19,7 @@ const data = new SlashCommandBuilder()
             .addChoices(
                 { name: '[Client] => This session time', value: 'clientSessionTime' },
                 { name: '[Mongo] => Check left users', value: 'mongoLeftUsers' },
-                { name: '[Mongo] => githubcommits -> new Chart', value: 'githubTotalCommits' }
-
+                { name: '[Mongo] => githubcommits -> new Chart', value: 'chartFromGithubTotalCommits' }
             ))
     .setDefaultMemberPermissions(PermissionFlagsBits.Administrator)
 
@@ -85,7 +84,7 @@ const debugs = {
         this.clientSessionTime(interaction, client, guild, member, lang);
     },
 
-    async githubTotalCommits(interaction, client, guild, member, lang) {
+    async chartFromGithubTotalCommits(interaction, client, guild, member, lang) {
         const getRandomColor = () => {
             const r = Math.floor(Math.random() * 255);
             const g = Math.floor(Math.random() * 255);
