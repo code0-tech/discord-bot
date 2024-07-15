@@ -32,7 +32,6 @@ const check = async () => {
 
     let exampleJson = [];
 
-
     for (const key in compareJson) {
         exampleJson[key] = Object.keys(compareJson[key]);
     }

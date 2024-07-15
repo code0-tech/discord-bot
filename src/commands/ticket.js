@@ -95,7 +95,6 @@ const execute = async (interaction, client, guild, member, lang) => {
         .setPin(true)
         .setComponents([row])
         .responseToChannel(ticketChannel.id, client);
-
 }
 
 

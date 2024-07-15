@@ -5,7 +5,7 @@ const DC = require('./../singleton/DC');
 
 const data = new SlashCommandBuilder()
     .setName('contributor')
-    .setDescription('Explore our Open-Contributor guidelines and decide to submit your application.')
+    .setDescription('Explore our Open-Contributor guidelines.')
 
 const execute = async (interaction, client, guild, member, lang) => {
     await DC.defer(interaction);

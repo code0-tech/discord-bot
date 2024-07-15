@@ -35,14 +35,14 @@ const load = (client) => {
             console.log(`[Loader] Loaded component: ${command.componentIds.length ? command.componentIds : '[]'} for: ${command.data.name}`, Constants.CONSOLE.LOADING);
         }
 
-        // Start autoRun functions
+        // Run autoRun functions
         if (command.autoRun) {
             command.autoRun(client, client.languages);
             console.log(`[Loader] Run autoRun() function for ${commandFile}`, Constants.CONSOLE.LOADING);
         }
     }
 
-    // Run the emitter
+    // Setup the emitter
     require('./emit-interactions').setup(client);
 }
 

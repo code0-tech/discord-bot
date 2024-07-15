@@ -17,10 +17,9 @@ class TableBuilder {
     }
 
     build() {
-        // Header
         let result = `\`${this._buildRow(this._createHeader())}\n`;
         result += padString('', this._totalWidth(), '―');
-        // Content
+
         if (this._options.sortBy) {
             this._sortRows();
         }
@@ -66,11 +65,9 @@ class TableBuilder {
     _sortRows() {
         this._items.sort((a, b) => {
             let diff = 0;
-            // Go through each of the sortBy columns, ordered in descending priority
             for (const columnField of this._options.sortBy) {
                 const field = this._columns.find((col) => col.field === columnField).field;
                 diff = this._compareValues(a[field], b[field]);
-                // Only continue if the cells are equal in the current column
                 if (diff !== 0) {
                     break;
                 }
@@ -80,7 +77,6 @@ class TableBuilder {
     }
 
     _compareValues(a, b) {
-        // Find the label of the column to sort by
         if (this._options.sortDirection === 'desc') {
             [a, b] = [b, a];
         }

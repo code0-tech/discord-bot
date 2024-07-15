@@ -99,8 +99,6 @@ const debugs = {
             return date.toISOString().slice(0, 10);
         }
 
-        // const uniqIds = await MongoDb.distinct(ENUMS.DCB.GITHUB_COMMITS, "name");
-
         const pipeline = [
             {
                 $sort: { time: 1 }

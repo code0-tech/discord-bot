@@ -19,28 +19,28 @@ class Chart {
                     x: {
                         beginAtZero: true,
                         ticks: {
-                            color: 'white' // X-axis labels color
+                            color: 'white'
                         }
                     },
                     y: {
                         beginAtZero: true,
                         ticks: {
-                            color: 'white' // Y-axis labels color
+                            color: 'white'
                         }
                     }
                 },
                 plugins: {
                     legend: {
                         labels: {
-                            color: 'white' // Legend text color
+                            color: 'white'
                         }
                     }
                 },
                 layout: {
                     padding: 20
                 },
-                // backgroundColor: 'transparent', // Transparent background
-                color: 'white', // Data color
+                // backgroundColor: 'transparent',
+                color: 'white',
                 backgroundImage: this.backgroundImageFilePath
             }
         };
@@ -115,7 +115,7 @@ class Chart {
 
             return interactionReply;
         } catch (error) {
-            console.error(`Error sending interaction response: ${error.message}`);
+            console.error(`Error sending Chart interaction response: ${error.message}`);
             throw error;
         }
     }
