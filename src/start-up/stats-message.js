@@ -69,7 +69,7 @@ const channelRankUpdateMessage = async (client, user) => {
     const { level, neededXp } = await user.getRank();
     const position = await user.getXpGlobalPosition();
 
-    const xp = 0; // overwrite to 0
+    const xp = 0;
 
     new Embed()
         .setColor(config.embeds.colors.info)
