@@ -18,7 +18,7 @@ const data = new SlashCommandBuilder()
             .setRequired(true)
             .addChoices(
                 { name: '[Client] => This session time', value: 'clientSessionTime' },
-                { name: '[Mongo] => Check left Users', value: 'mongoLeftUsers' },
+                { name: '[Mongo] => Check left users', value: 'mongoLeftUsers' },
                 { name: '[Mongo] => githubcommits -> new Chart', value: 'githubTotalCommits' }
 
             ))
