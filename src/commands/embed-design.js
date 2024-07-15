@@ -115,14 +115,24 @@ const execute = async (interaction, client, guild, member, lang) => {
   const labels = Object.values(cumulativeCommits).flatMap(user => user.map(entry => entry.date)).filter((value, index, self) => self.indexOf(value) === index);
   const datasets = [];
 
+  // Ensure all dates are included with their respective cumulative commits
   for (const [name, data] of Object.entries(cumulativeCommits)) {
+    const dataMap = new Map(data.map(({ date, commits }) => [date, commits]));
+
+    const fullData = labels.map(date => ({
+      date,
+      commits: dataMap.get(date) || (datasets.length > 0 ? datasets[datasets.length - 1].data[datasets[datasets.length - 1].data.length - 1] : 0)
+    }));
+
     datasets.push({
       label: name,
-      data: data.map(entry => entry.commits),
+      data: fullData.map(entry => entry.commits),
       borderColor: getRandomColor(),
       fill: false
     });
   }
+
+  console.dir(datasets)
 
   // Create the chart
   const chart = new Chart(1000, 600)
