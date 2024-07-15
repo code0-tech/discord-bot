@@ -24,10 +24,10 @@ const newpacket = (msg) => {
 const checkIfValid = async (msg) => {
     let cannotPass = false;
     let info = [];
-    const userid = msg.author.id;
+    const userId = msg.author.id;
 
-    if (!userList[userid]) {
-        userList[userid] = newpacket(msg);
+    if (!userList[userId]) {
+        userList[userId] = newpacket(msg);
         return { notValid: cannotPass, info: info };
     }
 
@@ -37,26 +37,26 @@ const checkIfValid = async (msg) => {
         cannotPass = true;
     }
 
-    if (msg.content == userList[userid].last.content) {
+    if (msg.content == userList[userId].last.content) {
         info.push('Repeated message');
         cannotPass = true;
     }
 
-    const contentToLastDistance = levenshteinDistance(msg.content, userList[userid].last.content);
+    const contentToLastDistance = levenshteinDistance(msg.content, userList[userId].last.content);
     info.push(`Levenshtein Distance: ${contentToLastDistance}`);
     if (contentToLastDistance < 3) {
         info.push('Repeated message [similar]');
         cannotPass = true;
     }
 
-    const timeSpan = (Date.now() - userList[userid].last.time);
+    const timeSpan = (Date.now() - userList[userId].last.time);
     info.push(`Ms between this/last msg: ${timeSpan}`);
     if (timeSpan <= 900) {
         info.push('Quick messages v1');
         cannotPass = true;
     }
 
-    userList[userid] = newpacket(msg);
+    userList[userId] = newpacket(msg);
 
     return { notValid: cannotPass, info: info };
 }

@@ -7,10 +7,10 @@ const DC = require('./../singleton/DC');
 
 let voiceChatUser = {};
 
-const updateDb = async (client, userid, packet) => {
-    const user = await new MongoUser(userid).init();
+const updateDb = async (client, userId, packet) => {
+    const user = await new MongoUser(userId).init();
 
-    const timeInVoice = Date.now() - voiceChatUser[userid].since;
+    const timeInVoice = Date.now() - voiceChatUser[userId].since;
 
     if (timeInVoice < 1000) return;
 
@@ -20,49 +20,49 @@ const updateDb = async (client, userid, packet) => {
 }
 
 const updateAllUsers = async (client) => {
-    const userids = Object.keys(voiceChatUser);
-    for (const userid of userids) {
-        await updateDb(client, userid, voiceChatUser[userid]);
-        voiceChatUser[userid].since = Date.now();
+    const userIds = Object.keys(voiceChatUser);
+    for (const userId of userIds) {
+        await updateDb(client, userId, voiceChatUser[userId]);
+        voiceChatUser[userId].since = Date.now();
     }
 }
 
 setInterval(() => updateAllUsers(), 5000);
 
 
-const joinVoice = (client, userid) => {
-    voiceChatUser[userid] = {
+const joinVoice = (client, userId) => {
+    voiceChatUser[userId] = {
         since: Date.now(),
         switchs: 0
     }
 }
 
 
-const switchVoice = (client, userid) => {
-    if (!voiceChatUser[userid]) {
-        voiceChatUser[userid] = {
+const switchVoice = (client, userId) => {
+    if (!voiceChatUser[userId]) {
+        voiceChatUser[userId] = {
             since: client.startDate,
             switchs: 0
         }
     }
 
-    voiceChatUser[userid].switchs++;
+    voiceChatUser[userId].switchs++;
 }
 
 
-const leaveVoice = async (client, userid) => {
-    if (!voiceChatUser[userid]) {
-        voiceChatUser[userid] = {
+const leaveVoice = async (client, userId) => {
+    if (!voiceChatUser[userId]) {
+        voiceChatUser[userId] = {
             since: client.startDate,
             switchs: 0
         }
     }
 
-    voiceChatUser[userid].join = true
+    voiceChatUser[userId].join = true
 
-    await updateDb(client, userid, voiceChatUser[userid]);
+    await updateDb(client, userId, voiceChatUser[userId]);
 
-    delete voiceChatUser[userid];
+    delete voiceChatUser[userId];
 }
 
 
@@ -81,17 +81,17 @@ const start = async (client) => {
 
 
     client.on(Events.VoiceStateUpdate, async (oldState, newState) => {
-        const { state, userid } = await checkState(oldState, newState);
+        const { state, userId } = await checkState(oldState, newState);
 
         switch (state) {
             case 'JOIN':
-                joinVoice(client, userid);
+                joinVoice(client, userId);
                 break;
             case 'LEAVE':
-                leaveVoice(client, userid);
+                leaveVoice(client, userId);
                 break;
             case 'SWITCH':
-                switchVoice(client, userid);
+                switchVoice(client, userId);
                 break;
 
             default:

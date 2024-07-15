@@ -6,14 +6,14 @@ const checkState = async (oldState, newState) => {
     if (oldUserChannel === null && newUserChannel !== null) {
         return {
             state: 'JOIN',
-            userid: userId,
+            userId,
             newChannel: newUserChannel,
             oldChannel: oldUserChannel
         };
     } else if (oldUserChannel !== null && newUserChannel === null) {
         return {
             state: 'LEAVE',
-            userid: userId,
+            userId,
             newChannel: newUserChannel,
             oldChannel: oldUserChannel
         };
@@ -24,14 +24,14 @@ const checkState = async (oldState, newState) => {
     ) {
         return {
             state: 'SWITCH',
-            userid: userId,
+            userId,
             newChannel: newUserChannel,
             oldChannel: oldUserChannel
         };
     } else {
         return {
             state: 'NO_CHANGE',
-            userid: userId,
+            userId,
             newChannel: newUserChannel,
             oldChannel: oldUserChannel
 
@@ -39,8 +39,8 @@ const checkState = async (oldState, newState) => {
     }
 }
 
-const userVoiceState = async (userid, guild) => {
-    return guild.voiceStates.cache.get(userid);
+const userVoiceState = async (userId, guild) => {
+    return guild.voiceStates.cache.get(userId);
 }
 
 
