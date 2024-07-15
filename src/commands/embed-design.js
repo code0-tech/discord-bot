@@ -23,7 +23,7 @@ const data = new SlashCommandBuilder()
 
 
 const execute = async (interaction, client, guild, member, lang) => {
-
+  await DC.defer(interaction);
 
 
 }
