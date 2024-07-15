@@ -28,8 +28,8 @@ Also a MongoDb is required as this Bot needs some DataBase to store Data
 | 6   | `/leaderboard` or `/leaderboard limit: 1-20` | Finished     |
 | 7   | `Code0 Application Ticket/`                  | Finished     |
 | 8   | `/stats` or `/stats @user` + uptodate15      | Finished     |
-| 9   | `/search`                                    | WIP          |
-| 10  | `/logs show` or `/logs list`                 | Finished     |
+| 9   | `/logs show` or `/logs list`                 | Finished     |
+| 10  | `/debug` for debugging                       | WIP          |
 
 
 ## Tracking
