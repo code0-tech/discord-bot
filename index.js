@@ -2,8 +2,8 @@ const startCode0 = async () => {
 
     require('./src/start-up/update-console-log');
     require('./src/start-up/process-exit');
-    const Constants = require('./data/constants');
 
+    const Constants = require('./data/constants');
 
     const { Client, Events, GatewayIntentBits, Partials } = require('discord.js');
     const dotenv = require('dotenv');
@@ -79,7 +79,5 @@ startCode0();
 - Discord Audit log Embeds
 
 -> Go over naming
-
--> lang .getText() Add error message if key in text exist but was not given
 
 */
