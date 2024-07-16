@@ -10,6 +10,7 @@ const data = new SlashCommandBuilder()
         de: 'Open-Contributor Guidelines',
     })
 
+
 const execute = async (interaction, client, guild, member, lang) => {
     await DC.defer(interaction);
 

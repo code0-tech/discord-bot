@@ -11,7 +11,7 @@ const data = new SlashCommandBuilder()
     .setName('open-contributor')
     .setDescription('Use oAuth with Github to check if you can be an Open-Contributor.')
     .setDescriptionLocalizations({
-        de: 'Nutze oAuth und verknüpfe deinen Github Account um nachzuschauen ob du bereits ein Open-Contributor bekommen kannst.',
+        de: 'Verknüpfe deinen Github Account um nachzuschauen ob du bereits ein Open-Contributor bist.',
     })
 
 
