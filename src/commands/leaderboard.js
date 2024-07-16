@@ -11,10 +11,16 @@ const MongoDb = new Mongo();
 const data = new SlashCommandBuilder()
     .setName('leaderboard')
     .setDescription('Display the leaderboard of top users.')
+    .setDescriptionLocalizations({
+        de: 'Leaderboard von top Nutzner',
+    })
     .addIntegerOption(option =>
         option
             .setName('limit')
             .setDescription('Specify the number of users to display (1-20).')
+            .setDescriptionLocalizations({
+                de: 'Anzahl der angezeigten Nutzern im Leaderboard (1-20).',
+            })
             .setMinValue(1)
             .setMaxValue(20)
             .setRequired(false)

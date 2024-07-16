@@ -10,6 +10,9 @@ const DC = require('./../singleton/DC');
 const data = new SlashCommandBuilder()
     .setName('ticket')
     .setDescription('Open a new support ticket.')
+    .setDescriptionLocalizations({
+        de: 'Erstellt ein neues Support Ticket.',
+    })
 
 const checkLastCreatedTicket = async (guild, member) => {
     const channelsInCategory = await DC.channelsByParentId(config.parents.support, guild);

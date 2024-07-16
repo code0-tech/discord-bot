@@ -7,6 +7,9 @@ const DC = require('./../singleton/DC');
 const data = new SlashCommandBuilder()
     .setName('links')
     .setDescription('Get a list of Code0 links.')
+    .setDescriptionLocalizations({
+        de: 'List wichtiger Code0 links.',
+    })
 
 const execute = async (interaction, client, guild, member, lang) => {
     await DC.defer(interaction);

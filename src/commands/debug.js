@@ -12,6 +12,9 @@ const MongoDb = new Mongo();
 const data = new SlashCommandBuilder()
     .setName('debug')
     .setDescription('Code0 Debug commands.')
+    .setDescriptionLocalizations({
+        de: 'Code0 Debug Befehle',
+    })
     .addStringOption(option =>
         option.setName('action')
             .setDescription('Select a Debug command')

@@ -8,10 +8,16 @@ const DC = require('./../singleton/DC');
 const data = new SlashCommandBuilder()
     .setName('stats')
     .setDescription('Check your stats.')
+    .setDescriptionLocalizations({
+        de: 'Zeigt deine eigenen Statistiken.',
+    })
     .addUserOption(option =>
         option
             .setName('user')
             .setDescription('View stats for another user.')
+            .setDescriptionLocalizations({
+                de: 'Zeigt die Statistiken eines anderen Nutzers.',
+            })
             .setRequired(false)
     );
 

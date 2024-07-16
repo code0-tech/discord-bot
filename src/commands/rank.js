@@ -8,10 +8,16 @@ const DC = require('./../singleton/DC');
 const data = new SlashCommandBuilder()
     .setName('rank')
     .setDescription('Check your current rank.')
+    .setDescriptionLocalizations({
+        de: 'Zeig deinen aktuellen Rang.',
+    })
     .addUserOption(option =>
         option
             .setName('user')
             .setDescription('View another user\'s rank.')
+            .setDescriptionLocalizations({
+                de: 'Zeig den Rang eines anderen Benutzers an.',
+            })
             .setRequired(false)
     );
 

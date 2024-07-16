@@ -19,6 +19,9 @@ const MongoDb = new Mongo();
 const data = new SlashCommandBuilder()
   .setName('embed-design')
   .setDescription('Command for tests.')
+  .setDescriptionLocalizations({
+    de: 'Befehl zum testen.',
+})
   .setDefaultMemberPermissions(PermissionFlagsBits.Administrator)
 
 
