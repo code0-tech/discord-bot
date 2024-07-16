@@ -8,6 +8,21 @@ class Chart {
     constructor(width, height) {
         this.backgroundImageFilePath = path.join(global.mainDir, 'data', 'images', Constants.IMAGES.CHART_BACKGROUND);
         this.chartJSNodeCanvas = new ChartJSNodeCanvas({ width, height });
+
+        const plugin = {
+            id: 'customCanvasBackgroundColor',
+            beforeDraw: (chart, args, options) => {
+                const { ctx } = chart;
+                ctx.save();
+                ctx.globalCompositeOperation = 'destination-over';
+                ctx.fillStyle = '#99ffff';
+                ctx.fillRect(0, 0, chart.width, chart.height);
+                ctx.restore();
+            }
+        };
+
+        // plugin cannot set background color
+
         this.configuration = {
             type: 'line',
             data: {
@@ -34,14 +49,16 @@ class Chart {
                         labels: {
                             color: 'white'
                         }
+                    },
+                    customCanvasBackgroundColor: { // plugin cannot set background color
+                        color: 'lightGreen',
                     }
                 },
                 layout: {
                     padding: 20
                 },
-                // backgroundColor: 'transparent',
-                color: 'white',
-                backgroundImage: this.backgroundImageFilePath
+                backgroundColor: 'white', // Set the background color of the handels
+                plugins: [plugin] // plugin cannot set background color
             }
         };
     }

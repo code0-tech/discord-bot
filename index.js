@@ -65,6 +65,8 @@ const startCode0 = async () => {
 
         require('./src/start-up/user-stats').start(client);
 
+        require('./src/start-up/git-rank').setup(client);
+
     });
 
     require('./src/start-up/debug-log').setup(client)
@@ -83,5 +85,7 @@ startCode0();
 -> Remove ticket when user left the server
 
 -> Git commits last day 16 - 16 o`clock github message
+
+-> chart set background color fix
 
 */
