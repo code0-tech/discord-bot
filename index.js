@@ -88,4 +88,6 @@ startCode0();
 
 -> chart set background color fix
 
+-> chart make 
+
 */
