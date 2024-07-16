@@ -88,6 +88,6 @@ startCode0();
 
 -> chart set background color fix
 
--> chart make 
+-> chart make color by hex by calc username
 
 */

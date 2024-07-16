@@ -181,9 +181,6 @@ Commits: \`${formattedUserStats[0].total}\` in the last 24 hours.
 
 
 const setup = (client) => {
-
-    sendGitRankMessage(client);
-
     const job = schedule.scheduleJob('0 16 * * *', function () {
         sendGitRankMessage(client);
     });
