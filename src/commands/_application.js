@@ -70,7 +70,7 @@ const handleApplicationApply = async (interaction, client, guild, member, lang, 
     }
 
     const applicationChannel = await new Channel()
-        .setName(`${config.emojis.application}${config.emojis["default-combine-symbol"]}${member.user.username}`)
+        .setName(`${Constants.DISCORD.EMOJIS.COMMAND_APPLY}${Constants.DISCORD.EMOJIS.COMBINELINE}${member.user.username}`)
         .setParent(config.parents.applications)
         .setType(ChannelType.GuildText)
         .setPermissionOverwrite(interaction.user.id, [

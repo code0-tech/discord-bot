@@ -63,7 +63,7 @@ const execute = async (interaction, client, guild, member, lang) => {
         .interactionResponse(interaction);
 
     const ticketChannel = await new Channel()
-        .setName(`${config.emojis.support}${config.emojis['default-combine-symbol']}${member.user.username}`)
+        .setName(`${Constants.DISCORD.EMOJIS.COMMAND_SUPPORT}${Constants.DISCORD.EMOJIS.COMBINELINE}${member.user.username}`)
         .setParent(config.parents.support)
         .setType(ChannelType.GuildText)
         .setPermissionOverwrite(interaction.guild.id, [], [
