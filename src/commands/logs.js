@@ -167,7 +167,7 @@ const listDbLogs = async (interaction, member, lang, componentData) => {
     }));
 
     const columns = [
-        { label: 'run_id', key: 'run_id' },
+        { label: lang.getText('run-id'), key: 'run_id' },
         { label: lang.getText('text-createdat'), key: 'created_at' },
         { label: lang.getText('text-count'), key: 'logs_length' }
     ];

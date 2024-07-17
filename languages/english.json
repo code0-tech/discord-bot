@@ -46,6 +46,9 @@
         }
     },
     "open-contributor": {
+        "repo": "Repo",
+        "commits": "Commits",
+        "prs": "PRs",
         "error-timeout": {
             "title": "Code expired",
             "description": "This code is expired. Use /open-contributor to get a new one."
@@ -110,6 +113,9 @@
         }
     },
     "leaderboard": {
+        "username": "Username",
+        "level": "Lvl.",
+        "xp": "Xp",
         "board": {
             "title": "Leaderboard",
             "description": "{stringlist}"
@@ -154,6 +160,7 @@
         "btn-next": "Next",
         "btn-skip": "Go to last",
         "text-old-logs": "Old Logs",
+        "run-id": "run_id",
         "development": {
             "description": "In development mode `/logs show` is not available"
         },

@@ -39,9 +39,9 @@ const listUser = async (limit) => {
 
 const sendMessage = async (interaction, member, lang, data) => {
     const columns = [
-        { label: 'Name', key: 'name' },
-        { label: 'Lvl.', key: 'lvl' },
-        { label: 'Xp', key: 'xp' }
+        { label: lang.getText('username'), key: 'name' },
+        { label: lang.getText('level'), key: 'lvl' },
+        { label: lang.getText('xp'), key: 'xp' }
     ];
 
     const table = new SimpleTable(columns);

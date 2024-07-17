@@ -69,7 +69,7 @@ const startCode0 = async () => {
 
     });
 
-    require('./src/start-up/debug-log').setup(client)
+    require('./src/start-up/debug-log').setup(client);
 
     client.login(process.env.TOKEN);
 }

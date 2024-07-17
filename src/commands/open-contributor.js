@@ -76,9 +76,9 @@ const execute = async (interaction, client, guild, member, lang) => {
         messageType = 'results-no-data';
     } else {
         const columns = [
-            { label: 'Repository', key: 'repository' },
-            { label: 'Commits', key: 'commitCount' },
-            { label: 'PRs', key: 'pullRequestCount' }
+            { label: lang.getText('repo'), key: 'repository' },
+            { label: lang.getText('commits'), key: 'commitCount' },
+            { label: lang.getText('prs'), key: 'pullRequestCount' }
         ];
 
         table = new SimpleTable(columns);
