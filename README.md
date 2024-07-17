@@ -70,7 +70,7 @@ The entries look like this:
      "commandstats": {} // empty unused
     }
 
-MongoDb entries last updated in ReadMe: 7.07.2024
+MongoDb entries last updated in ReadMe: 18.07.2024
 
 ## Were are the missing files?
 
@@ -82,6 +82,7 @@ The code you see here mirrors what's running on the Discord Bot server. However,
 - config.json: Contains server-specific settings like roles, channels, embeds, etc.
 - http-config.json: Specifically used for our server.
 - unused-temp.js: Stores unused code snippets for potential future use.
+- a-workon: Is a folder with files which are still wip and not able to be used now.
 - .gitignore: A mysterious file that even hides from itself.
 
 If you'd like to set up this bot for testing purposes, please contact me at [DC:nixkuchen]. I can provide you with a template to get started.
