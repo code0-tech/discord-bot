@@ -12,7 +12,7 @@ const data = new SlashCommandBuilder()
     .setName('leaderboard')
     .setDescription('Display the leaderboard of top users.')
     .setDescriptionLocalizations({
-        de: 'Leaderboard von top Nutzner',
+        de: 'Leaderboard von top Nutzner.',
     })
     .addIntegerOption(option =>
         option

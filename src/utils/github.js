@@ -26,7 +26,7 @@ const getToken = (code) => {
   })
 }
 
-const getGithubUserInfo = (token) => {
+const getGithubUserInfo = async (token) => {
   const query = `
   {
     viewer {

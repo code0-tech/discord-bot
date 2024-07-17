@@ -11,6 +11,7 @@ const data = new SlashCommandBuilder()
         de: 'Liste wichtiger Code0 links.',
     })
 
+
 const execute = async (interaction, client, guild, member, lang) => {
     await DC.defer(interaction);
 

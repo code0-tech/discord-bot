@@ -14,6 +14,7 @@ const data = new SlashCommandBuilder()
         de: 'Erstellt ein neues Support Ticket.',
     })
 
+
 const checkLastCreatedTicket = async (guild, member) => {
     const channelsInCategory = await DC.channelsByParentId(config.parents.support, guild);
 

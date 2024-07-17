@@ -27,8 +27,8 @@ const levenshteinDistance = (a, b) => {
             }
         }
     }
-
     return matrix[b.length][a.length];
 }
+
 
 module.exports = { keyArray, levenshteinDistance };

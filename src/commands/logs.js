@@ -7,12 +7,11 @@ const { Embed } = require('./../models/Embed');
 const config = require('./../../config.json');
 const DC = require('./../singleton/DC');
 
-
 const data = new SlashCommandBuilder()
     .setName('logs')
     .setDescription('Code0 Bot logs.')
     .setDescriptionLocalizations({
-        de: 'Code0 Bot logs',
+        de: 'Code0 Bot logs.',
     })
     .addSubcommand(subcommand => subcommand
         .setName('show')

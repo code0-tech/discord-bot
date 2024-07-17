@@ -6,7 +6,6 @@ const snowflakeToDate = (id) => {
     EPOCH_OFFSET = 1420070400000; // Discord epoch (2015-01-01)
 
     const timestamp = (id / 4194304) + EPOCH_OFFSET;
-
     return timestamp;
 }
 
@@ -22,12 +21,12 @@ const msToHumanReadableTime = (ms) => {
 const convertUnixToTimestamp = (unixTimestamp) => {
     const date = new Date(unixTimestamp);
 
-    const hours = date.getHours().toString().padStart(2, '0'); // Local hours
-    const minutes = date.getMinutes().toString().padStart(2, '0'); // Local minutes
-    const seconds = date.getSeconds().toString().padStart(2, '0'); // Local seconds
-    const day = date.getDate().toString().padStart(2, '0'); // Local date
-    const month = (date.getMonth() + 1).toString().padStart(2, '0'); // Local month
-    const year = date.getFullYear(); // Local year
+    const hours = date.getHours().toString().padStart(2, '0');
+    const minutes = date.getMinutes().toString().padStart(2, '0');
+    const seconds = date.getSeconds().toString().padStart(2, '0');
+    const day = date.getDate().toString().padStart(2, '0');
+    const month = (date.getMonth() + 1).toString().padStart(2, '0');
+    const year = date.getFullYear();
 
     return `${hours}:${minutes}:${seconds}, ${day}.${month}.${year}`;
 };

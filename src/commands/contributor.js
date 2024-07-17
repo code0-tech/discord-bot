@@ -7,7 +7,7 @@ const data = new SlashCommandBuilder()
     .setName('contributor')
     .setDescription('Explore our Open-Contributor guidelines.')
     .setDescriptionLocalizations({
-        de: 'Open-Contributor Guidelines',
+        de: 'Open-Contributor Guidelines.',
     })
 
 

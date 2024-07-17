@@ -21,13 +21,12 @@ const data = new SlashCommandBuilder()
   .setDescription('Command for tests.')
   .setDescriptionLocalizations({
     de: 'Befehl zum testen.',
-})
+  })
   .setDefaultMemberPermissions(PermissionFlagsBits.Administrator)
 
 
 const execute = async (interaction, client, guild, member, lang) => {
   await DC.defer(interaction);
-
 
 }
 

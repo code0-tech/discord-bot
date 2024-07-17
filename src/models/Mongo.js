@@ -20,10 +20,26 @@ class Mongo {
         }
     }
 
+    async findOne(where, query = {}) {
+        try {
+            const col = await this._getWhere(where);
+            const result = await col.findOne(query);
+            return result;
+        } catch (error) {
+            console.error('Error finding document:', error);
+            throw error;
+        }
+    }
+
     async aggregate(where, input) {
-        const col = await this._getWhere(where);
-        const result = await col.aggregate(input).toArray();
-        return result;
+        try {
+            const col = await this._getWhere(where);
+            const result = await col.aggregate(input).toArray();
+            return result;
+        } catch (error) {
+            console.error('Error aggregate documents:', error);
+            throw error;
+        }
     }
 
     async distinct(where, string = '') {
@@ -32,7 +48,7 @@ class Mongo {
             const result = await col.distinct(string);
             return result;
         } catch (error) {
-            console.error('Error finding documents:', error);
+            console.error('Error distinct documents:', error);
             throw error;
         }
     }

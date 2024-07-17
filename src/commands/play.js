@@ -11,7 +11,6 @@ const { Readable } = require('stream');
 const { join } = require('path');
 const ytdl = require('ytdl-core');
 
-
 const data = new SlashCommandBuilder()
   .setName('play')
   .setDescription('Play music stream from yt videos.')

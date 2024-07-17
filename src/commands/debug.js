@@ -13,11 +13,14 @@ const data = new SlashCommandBuilder()
     .setName('debug')
     .setDescription('Code0 Debug commands.')
     .setDescriptionLocalizations({
-        de: 'Code0 Debug Befehle',
+        de: 'Code0 Debug Befehle.',
     })
     .addStringOption(option =>
         option.setName('action')
-            .setDescription('Select a Debug command')
+            .setDescription('Select a Debug command.')
+            .setDescriptionLocalizations({
+                de: 'Wähl ein Debug Befehl aus.',
+            })
             .setRequired(true)
             .addChoices(
                 { name: '[Client] => This session time', value: 'clientSessionTime' },
