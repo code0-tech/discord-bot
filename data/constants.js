@@ -1,11 +1,35 @@
 class Constants {
-    static EXAMPLE = "Example";
-
     static get DISCORD() {
         return {
             PERMS: {
                 get USER_OVERRIDE() {
                     return 1;
+                }
+            },
+            EMOJIS: {
+                get COMMAND_APPLY() {
+                    return '💌';
+                },
+                get COMMAND_SUPPORT() {
+                    return '📞';
+                },
+                get COMMAND_APPLICATION() {
+                    return '💌';
+                },
+                get COMBINELINE() {
+                    return '｜';
+                },
+                get FIRSTPLACE() {
+                    return '🥇';
+                },
+                get SECONDPLACE() {
+                    return '🥈';
+                },
+                get THIRDPLACE() {
+                    return '🥉';
+                },
+                get TROPHY() {
+                    return '🏆';
                 }
             }
         };
@@ -38,6 +62,14 @@ class Constants {
         return {
             get CHART_BACKGROUND() {
                 return 'chart-bg.png';
+            }
+        };
+    }
+
+    static get SEEDS() {
+        return {
+            get GITCHART() {
+                return 232;
             }
         };
     }
