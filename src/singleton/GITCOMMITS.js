@@ -2,7 +2,6 @@ const { getNextDayByDateString } = require('../utils/time');
 const { getColorByString } = require('./../utils/color');
 const { Mongo, ENUMS } = require('../models/Mongo');
 const Constants = require('./../../data/constants');
-const { ChannelType } = require('discord.js');
 const config = require('./../../config.json');
 const Chart = require('./../models/Chart');
 
