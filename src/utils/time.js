@@ -32,5 +32,11 @@ const convertUnixToTimestamp = (unixTimestamp) => {
     return `${hours}:${minutes}:${seconds}, ${day}.${month}.${year}`;
 };
 
+const getNextDayByDateString = (dateString) => {
+    const date = new Date(dateString);
+    date.setDate(date.getDate() + 1);
+    return date.toISOString().slice(0, 10);
+}
 
-module.exports = { waitMs, snowflakeToDate, msToHumanReadableTime, convertUnixToTimestamp };
+
+module.exports = { waitMs, snowflakeToDate, msToHumanReadableTime, convertUnixToTimestamp, getNextDayByDateString };
