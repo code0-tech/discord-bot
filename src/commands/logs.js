@@ -2,7 +2,7 @@ const { ButtonBuilder, ButtonStyle, ActionRowBuilder, StringSelectMenuBuilder, P
 const { SlashCommandBuilder } = require('@discordjs/builders');
 const { convertUnixToTimestamp } = require("../utils/time");
 const { Mongo, ENUMS } = require('../models/Mongo');
-const { TableBuilder } = require('../models/table');
+const { SimpleTable } = require('../models/SimpleTable');
 const { Embed } = require('./../models/Embed');
 const config = require('./../../config.json');
 const DC = require('./../singleton/DC');
@@ -166,20 +166,18 @@ const listDbLogs = async (interaction, member, lang, componentData) => {
         value: doc.run_id.toString()
     }));
 
-    const columnWidths = {
-        run_id: Math.max(...data.map(entry => entry.run_id.toString().length)) + 3,
-        created_at: Math.max(...data.map(entry => entry.created_at.length)) + 3,
-        logs_length: Math.max(...data.map(entry => entry.logs_length.toString().length)) + 3,
-    };
-
     const columns = [
-        { label: 'run_id', field: 'run_id', width: columnWidths.run_id },
-        { label: lang.getText('text-createdat'), field: 'created_at', width: columnWidths.created_at },
-        { label: lang.getText('text-count'), field: 'logs_length', width: columnWidths.logs_length }
+        { label: 'run_id', key: 'run_id' },
+        { label: lang.getText('text-createdat'), key: 'created_at' },
+        { label: lang.getText('text-count'), key: 'logs_length' }
     ];
 
-    const tableBuilder = new TableBuilder(columns);
-    tableBuilder.addRows(...data);
+    const table = new SimpleTable(columns);
+
+    table.setJsonArrayInputs(data);
+    table.setStringOffset(2);
+    table.addVerticalBar();
+    table.addIndex(1);
 
     const selectMenu = new StringSelectMenuBuilder()
         .setCustomId('logs*type=view')
@@ -190,7 +188,7 @@ const listDbLogs = async (interaction, member, lang, componentData) => {
 
     new Embed()
         .setColor(config.embeds.colors.info)
-        .addInputs({ list: tableBuilder.build() })
+        .addInputs({ list: await table.build() })
         .addContext(lang, member, 'list-logs')
         .setComponents([row])
         .interactionResponse(interaction);

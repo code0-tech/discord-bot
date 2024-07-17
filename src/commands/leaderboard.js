@@ -1,7 +1,7 @@
 const { SlashCommandBuilder } = require('@discordjs/builders');
 const { MongoUser } = require('./../mongo/MongoUser');
 const { Mongo, ENUMS } = require('../models/Mongo');
-const { TableBuilder } = require('../models/table');
+const { SimpleTable } = require('../models/SimpleTable');
 const { Embed } = require('../models/Embed');
 const config = require('../../config.json');
 const DC = require('./../singleton/DC');
@@ -37,24 +37,23 @@ const listUser = async (limit) => {
 }
 
 
-const sendMessage = (interaction, member, lang, data) => {
-    const longestNameLength = Math.max(...data.map(entry => entry.name.length)) + 3;
-    const longestLevelLength = Math.max(...data.map(entry => entry.lvl.toString().length)) + 4;
-    const longestXPLength = Math.max(...data.map(entry => entry.xp.toString().length)) + 2;
-
+const sendMessage = async (interaction, member, lang, data) => {
     const columns = [
-        { label: 'Name', field: 'name', width: longestNameLength },
-        { label: 'Lvl.', field: 'lvl', width: longestLevelLength },
-        { label: 'Xp', field: 'xp', width: longestXPLength }
+        { label: 'Name', key: 'name' },
+        { label: 'Lvl.', key: 'lvl' },
+        { label: 'Xp', key: 'xp' }
     ];
 
-    const tableBuilder = new TableBuilder(columns);
+    const table = new SimpleTable(columns);
 
-    tableBuilder.addRows(...data);
+    table.setJsonArrayInputs(data);
+    table.setStringOffset(2);
+    table.addVerticalBar();
+    table.addIndex(1);
 
     new Embed()
         .setColor(config.embeds.colors.info)
-        .addInputs({ stringlist: tableBuilder.build() })
+        .addInputs({ stringlist: await table.build() })
         .addContext(lang, member, 'board')
         .interactionResponse(interaction);
 }

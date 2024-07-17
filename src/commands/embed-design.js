@@ -3,7 +3,6 @@ const { joinVoiceChannel, createAudioPlayer, createAudioResource, VoiceConnectio
 const { waitMs, snowflakeToDate, msToHumanReadableTime } = require('./../utils/time');
 const { SlashCommandBuilder } = require('@discordjs/builders');
 const { Embed, progressBar } = require('./../models/Embed');
-const { TableBuilder } = require('../models/table');
 const { Card } = require('./../models/card/Card');
 const config = require('./../../config.json');
 const Chart = require('./../models/Chart');

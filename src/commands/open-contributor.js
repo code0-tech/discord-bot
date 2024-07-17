@@ -3,7 +3,7 @@ const { awaiterCodeId, awaitCodeResolve } = require('./../utils/await-action');
 const { SlashCommandBuilder } = require('@discordjs/builders');
 const { Embed, progressBar } = require('./../models/Embed');
 const { encryptString } = require('./../utils/crypto');
-const { TableBuilder } = require('../models/table');
+const { SimpleTable } = require('../models/SimpleTable');
 const config = require('./../../config.json');
 const DC = require('./../singleton/DC');
 
@@ -69,25 +69,24 @@ const execute = async (interaction, client, guild, member, lang) => {
 
     const { name, github } = resolvedAwait;
 
-    let tableBuilder = null;
+    let table = null;
     let messageType = '';
 
     if (github.contributions.length === 0) {
         messageType = 'results-no-data';
     } else {
-        const longestRepoLength = Math.max(...github.contributions.map(entry => entry.repository.length)) + 3;
-        const longestCommitsLength = Math.max(...github.contributions.map(entry => entry.commitCount.toString().length)) + 7;
-        const longestPRsLength = Math.max(...github.contributions.map(entry => entry.pullRequestCount.toString().length)) + 4;
-
         const columns = [
-            { label: 'Repository', field: 'repository', width: longestRepoLength },
-            { label: 'Commits', field: 'commitCount', width: longestCommitsLength },
-            { label: 'PRs', field: 'pullRequestCount', width: longestPRsLength }
+            { label: 'Repository', key: 'repository' },
+            { label: 'Commits', key: 'commitCount' },
+            { label: 'PRs', key: 'pullRequestCount' }
         ];
 
-        tableBuilder = new TableBuilder(columns);
+        table = new SimpleTable(columns);
 
-        tableBuilder.addRows(...github.contributions);
+        table.setJsonArrayInputs(github.contributions);
+        table.setStringOffset(2);
+        table.addVerticalBar();
+        table.addIndex(1);
     }
 
     if (github.totalCommitContributions >= config.commands.opencontributor.commits && github.totalPullRequests >= config.commands.opencontributor.pr) {
@@ -100,7 +99,7 @@ const execute = async (interaction, client, guild, member, lang) => {
     await new Embed()
         .setColor(config.embeds.colors.info)
         .addInputs({
-            tablestring: tableBuilder.build(),
+            tablestring: await table.build(),
             yourpr: github.totalPullRequests,
             neededpr: config.commands.opencontributor.pr,
 
