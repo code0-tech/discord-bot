@@ -64,11 +64,11 @@
         },
         "results-complete": {
             "title": "Github Results",
-            "description": "Account: `{githubname}`\n\n{pbpr}\nYou got {yourpr} of {neededpr} pull requests.\n\n{pbcm}\nYou got {yourcommits} of {neededcommits} commits.\n\nWe have added you to our Open Contributor"
+            "description": "Account: `{githubname}`\n\n{pbpr}\nYou got {yourpr} of {neededpr} pull requests.\n\n{pbcm}\nYou got {yourcommits} of {neededcommits} commits.\n\n{tablestring}\n\nWe have added you to our Open Contributor"
         },
         "results-not-complete": {
             "title": "Github Results",
-            "description": "Account: `{githubname}`\n\n{pbpr}\nYou got {yourpr} of {neededpr} pull requests.\n\n{pbcm}\nYou got {yourcommits} of {neededcommits} commits.\n\nFulfill all requirements to become an Open Contributor."
+            "description": "Account: `{githubname}`\n\n{pbpr}\nYou got {yourpr} of {neededpr} pull requests.\n\n{pbcm}\nYou got {yourcommits} of {neededcommits} commits.\n\n{tablestring}\n\nFulfill all requirements to become an Open Contributor."
         },
         "results-no-data": {
             "title": "Github Results for {githubname}",

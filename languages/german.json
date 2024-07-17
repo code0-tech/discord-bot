@@ -64,11 +64,11 @@
         },
         "results-complete": {
             "title": "Github Ergebnisse",
-            "description": "Benutzer: `{githubname}`\n\n{pbpr}\nDu hast {yourpr} von {neededpr} Pull Requests.\n\n{pbcm}\nDu hast {yourcommits} von {neededcommits} Commits.\n\nWir haben Dich zu unseren Open Contributor hinzugefügt."
+            "description": "Benutzer: `{githubname}`\n\n{pbpr}\nDu hast {yourpr} von {neededpr} Pull Requests.\n\n{pbcm}\nDu hast {yourcommits} von {neededcommits} Commits.\n\n{tablestring}\n\nWir haben Dich zu unseren Open Contributor hinzugefügt."
         },
         "results-not-complete": {
             "title": "Github Ergebnisse",
-            "description": "Benutzer: `{githubname}`\n\n{pbpr}\nDu hast {yourpr}/{neededpr} Pull Requests.\n\n{pbcm}\nDu hast {yourcommits}/{neededcommits} Commits.\n\nErfülle alle Anforderungen und versuche es erneut."
+            "description": "Benutzer: `{githubname}`\n\n{pbpr}\nDu hast {yourpr}/{neededpr} Pull Requests.\n\n{pbcm}\nDu hast {yourcommits}/{neededcommits} Commits.\n\n{tablestring}\n\nErfülle alle Anforderungen und versuche es erneut."
         },
         "results-no-data": {
             "title": "Github Ergebnisse für {githubname}",

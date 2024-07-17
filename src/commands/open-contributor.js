@@ -3,6 +3,7 @@ const { awaiterCodeId, awaitCodeResolve } = require('./../utils/await-action');
 const { SlashCommandBuilder } = require('@discordjs/builders');
 const { Embed, progressBar } = require('./../models/Embed');
 const { encryptString } = require('./../utils/crypto');
+const { TableBuilder } = require('../models/table');
 const config = require('./../../config.json');
 const DC = require('./../singleton/DC');
 
@@ -22,6 +23,18 @@ const failedMessage = async (interaction, client, member, lang, type) => {
         .interactionResponse(interaction);
 };
 
+const createButtonRow = (data) => {
+    const userIdEncrypted = encryptString(JSON.stringify(data));
+    const githubScopes = 'user:read read:org';
+    const oAuthLink = `https://github.com/login/oauth/authorize?client_id=${process.env.GITHUB_CLIENT_ID}&state=${userIdEncrypted}&scope=${encodeURIComponent(githubScopes)}`;
+
+    const oAuthLinkButton = new ButtonBuilder()
+        .setLabel('Github OAuth Link')
+        .setURL(oAuthLink)
+        .setStyle(ButtonStyle.Link);
+
+    return new ActionRowBuilder().addComponents(oAuthLinkButton);
+}
 
 const execute = async (interaction, client, guild, member, lang) => {
     await DC.defer(interaction);
@@ -38,16 +51,7 @@ const execute = async (interaction, client, guild, member, lang) => {
         reference: `${interaction.user.id}-open-contributor`
     };
 
-    const userIdEncrypted = encryptString(JSON.stringify(data));
-    const githubScopes = 'user:read read:org';
-    const oAuthLink = `https://github.com/login/oauth/authorize?client_id=${process.env.GITHUB_CLIENT_ID}&state=${userIdEncrypted}&scope=${encodeURIComponent(githubScopes)}`;
-
-    const oAuthLinkButton = new ButtonBuilder()
-        .setLabel('Github OAuth Link')
-        .setURL(oAuthLink)
-        .setStyle(ButtonStyle.Link);
-
-    const row = new ActionRowBuilder().addComponents(oAuthLinkButton);
+    const row = createButtonRow(data);
 
     await new Embed()
         .setColor(config.embeds.colors.info)
@@ -60,47 +64,57 @@ const execute = async (interaction, client, guild, member, lang) => {
 
     if (!resolvedAwait) {
         failedMessage(interaction, client, member, lang, resolvedAwait === false ? 'error-timeout' : 'error-similar-inquiry');
-    } else {
-        const { name, github } = resolvedAwait;
-
-        let repostring = ""; // add repo string when my design has changed to a better version
-        let messageType = '';
-
-        if (github.contributions.length === 0) {
-            messageType = 'results-no-data';
-        } else {
-            github.contributions.forEach(obj => {
-                repostring += `\n\`Repo: ${obj.repository}, commits: ${obj.commitCount}, Pull Request's: ${obj.pullRequestCount}\``;
-            });
-        }
-
-        if (github.totalCommitContributions >= config.commands.opencontributor.commits && github.totalPullRequests >= config.commands.opencontributor.pr) {
-            messageType = 'results-complete';
-            DC.memberAddRoleId(member, config.roles.opencontributor);
-        } else {
-            messageType = 'results-not-complete';
-        }
-
-        await new Embed()
-            .setColor(config.embeds.colors.info)
-            .addInputs({
-                repostring, // unused
-                yourpr: github.totalPullRequests,
-                neededpr: config.commands.opencontributor.pr,
-
-                pbpr: progressBar(github.totalPullRequests, config.commands.opencontributor.pr),
-                pbcm: progressBar(github.totalCommitContributions, config.commands.opencontributor.commits),
-
-                yourcommits: github.totalCommitContributions,
-                neededcommits: config.commands.opencontributor.commits,
-
-                githubname: name
-            })
-            .addContext(lang, member, messageType)
-            .setComponents([row])
-            .interactionResponse(interaction);
-
+        return;
     }
+
+    const { name, github } = resolvedAwait;
+
+    let tableBuilder = null;
+    let messageType = '';
+
+    if (github.contributions.length === 0) {
+        messageType = 'results-no-data';
+    } else {
+        const longestRepoLength = Math.max(...github.contributions.map(entry => entry.repository.length)) + 3;
+        const longestCommitsLength = Math.max(...github.contributions.map(entry => entry.commitCount.toString().length)) + 7;
+        const longestPRsLength = Math.max(...github.contributions.map(entry => entry.pullRequestCount.toString().length)) + 4;
+
+        const columns = [
+            { label: 'Repository', field: 'repository', width: longestRepoLength },
+            { label: 'Commits', field: 'commitCount', width: longestCommitsLength },
+            { label: 'PRs', field: 'pullRequestCount', width: longestPRsLength }
+        ];
+
+        tableBuilder = new TableBuilder(columns);
+
+        tableBuilder.addRows(...github.contributions);
+    }
+
+    if (github.totalCommitContributions >= config.commands.opencontributor.commits && github.totalPullRequests >= config.commands.opencontributor.pr) {
+        messageType = 'results-complete';
+        DC.memberAddRoleId(member, config.roles.opencontributor);
+    } else {
+        messageType = 'results-not-complete';
+    }
+
+    await new Embed()
+        .setColor(config.embeds.colors.info)
+        .addInputs({
+            tablestring: tableBuilder.build(),
+            yourpr: github.totalPullRequests,
+            neededpr: config.commands.opencontributor.pr,
+
+            pbpr: progressBar(github.totalPullRequests, config.commands.opencontributor.pr),
+            pbcm: progressBar(github.totalCommitContributions, config.commands.opencontributor.commits),
+
+            yourcommits: github.totalCommitContributions,
+            neededcommits: config.commands.opencontributor.commits,
+
+            githubname: name
+        })
+        .addContext(lang, member, messageType)
+        .setComponents([row])
+        .interactionResponse(interaction);
 };
 
 
