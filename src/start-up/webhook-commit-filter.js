@@ -1,8 +1,8 @@
 const { Mongo, ENUMS } = require('../models/Mongo');
+const Constants = require('../../data/constants');
 const { Embed } = require('../models/Embed');
 const config = require('../../config.json');
 const { Events } = require('discord.js');
-const DC = require('../singleton/DC');
 
 const MongoDb = new Mongo();
 
@@ -48,6 +48,8 @@ const handleGitHubCommitMessage = async (client, msg) => {
             .setAuthor(author);
 
         embed.responseToChannel(config.channels.spam, client);
+
+        console.log(`[Webhook Commit Filter] got ${commitCount} commits for ${embedData.author.name}.`, Constants.CONSOLE.WORKING);
     } catch (error) {
         console.error('Error handling GitHub commit message:', error);
     }
