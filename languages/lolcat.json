@@ -1,0 +1,194 @@
+{
+    "debug": {
+        "mongo-left-users": {
+            "title": "Kongo Left Usr",
+            "description": "Found:\n{userstring}\n\nFake Usrz:\n{progressbar}"
+        },
+        "mongo-left-users-loading": {
+            "title": "Kongo Left Usr",
+            "description": "Checkin..."
+        },
+        "found-none": "NUN",
+        "client-session-time": {
+            "title": "Clint Seshun Time",
+            "description": "Up Sinence: {upsince}\n\n`{days}` dayz, `{hours}` hourz, `{minutes}` minoots, `{seconds}` secundz."
+        }
+    },
+    "ticket": {
+        "btn-close": "Cloz",
+        "btn-delete-ticket": "Deleet Tikkit",
+        "timeout": {
+            "title": "Tiimeowt",
+            "description": "Ur last tikkit wuz creatd `{m} minoots` an `{s} secundz` ago.\nPlz wate be4 creatin ur next Tikkit."
+        },
+        "create": {
+            "title": "Tikkit",
+            "description": "Creatin a nu tikkit."
+        },
+        "created": {
+            "title": "We got ur Tikkit",
+            "description": "U will find ur tikkit <#{channelid}> undur teh `Support` category."
+        },
+        "info-message": {
+            "title": "Support Tikkit",
+            "description": "Hai <@{userid}>,\nplz taek a moment 2 describe teh issue ur facin.\nTeh moar details u provid, teh better we can assist u.\nIf applicabul, include error messages, stepz 2 reproduc teh problm, an any othr relevant info."
+        },
+        "no-team-member": {
+            "title": "Sowwy",
+            "description": "Only Teeaam memburz can cloz a tikkit."
+        },
+        "close-info": {
+            "title": "Clozin Tikkit"
+        },
+        "closed": {
+            "title": "Clozd",
+            "description": "`Teh tikkit wuz Clozd by `<@{closeduserid}>`.`"
+        }
+    },
+    "open-contributor": {
+        "repo": "Repo",
+        "commits": "Commitz",
+        "prs": "PRz",
+        "error-timeout": {
+            "title": "Code expired",
+            "description": "Dis codr is expirat. Use /open-contributor toz geat a new onee."
+        },
+        "error-similar-inquiry": {
+            "title": "Request cancelld",
+            "description": "It appearz dat a similer inquiry or request has alrdy been submitd elswhere, as a ressult, teh current request has been cancelld."
+        },
+        "error-already-has-role": {
+            "title": "Well... u r an Open Contributor",
+            "description": "U alrdy r an Open Contributor. There is no need to use dis command."
+        },
+        "initial-message": {
+            "title": "How 2 becum an Open Contributor",
+            "description": "For becumin an Open Contributor an its roles u must fulfill teh following thingz:\n\n1. Hav {neededcommits} or moar commitz\n2. Hav {neededpr} or moar pull requests\n\nClick teh link button an check if u can becum an Open Contributor."
+        },
+        "results-complete": {
+            "title": "Github Resulsts",
+            "description": "Account: `{githubname}`\n\n{pbpr}\nU got {yourpr} of {neededpr} pull requests.\n\n{pbcm}\nU got {yourcommits} of {neededcommits} commits.\n\n{tablestring}\n\nWe haz added u 2 our Open Contributor"
+        },
+        "results-not-complete": {
+            "title": "Github Resssults",
+            "description": "Account: `{githubname}`\n\n{pbpr}\nU got {yourpr} of {neededpr} pull requests.\n\n{pbcm}\nU got {yourcommits} of {neededcommits} commits.\n\n{tablestring}\n\nFulfill all requiremints to becum an Open Contributor."
+        },
+        "results-no-data": {
+            "title": "Github Ressults for {githubname}",
+            "description": "U got no commitz nor pull request's."
+        }
+    },
+    "links": {
+        "list": {
+            "title": "Theez links mite interest u!",
+            "description": "Our Github: [Code0 Github](https://github.com/code0-tech)\n\nOur Siteweb: [Code0 Website](https://code0.tech)"
+        }
+    },
+    "contributor": {
+        "info": {
+            "title": "How 2 becum an Open Contributor",
+            "description": "2 be an Open Contributor, meet theez criteria:\n\n1. Hav {neededcommits} or moar commits.\n2. Hav {neededpr} or moar pull requests.\n\nU can check or get teh role by usin `/open-contributer` command."
+        }
+    },
+    "rank": {
+        "own-rank-response": {
+            "description": "### Livel: {level}\n{progressbar} [{xp} xp|{neededXp} xp]\n\nU <@{rankuserid}> r currently on teh {position} place.\nErn XP by interactin on dis server with others."
+        },
+        "other-rank-response": {
+            "description": "### Livel: {level}\n{progressbar} [{xp} xp|{neededXp} xp]\n\nCurrently <@{rankuserid}> is on teh {position} place."
+        },
+        "this-bot-rank": {
+            "description": "### Well, Ima not rly into collectin XP.\nMaybe try a `user` an not a Bot like me c:"
+        }
+    },
+    "stats": {
+        "own-stats-response": {
+            "description": "### Message:\nCount: `{count}`\nWordz: `{words}`\nChars: `{chars}`\n### Voice:\nJoinz: `{joins}`\nSwitchs: `{switchs}`\nTotal Time: `{voicedays}` dayz, `{voicehours}` hourz, `{voiceminutes}` minoots, `{voiceseconds}` secundz.\nIn Channel: {channelmention}\n\nNote:\nXP is nevr equul to ur message statz.\nVoice stat \"Join\" is only updatd after u left an channel."
+        },
+        "other-stats-response": {
+            "description": "### Message:\nCount: `{count}`\nWordz: `{words}`\nChars: `{chars}`\n### Voice:\nJoinz: `{joins}`\nSwitchs: `{switchs}`\nTotal Time: `{voicedays}` dayz, `{voicehours}` hourz, `{voiceminutes}` minoots, `{voiceseconds}` secundz.\nIn Channel: {channelmention}\n\nNote:\nXP is nevr equul to his/her message statz.\nVoice stat \"Join\" is only updatd after he/she left an channel."
+        },
+        "this-bot-stats": {
+            "description": "### Well, I'm not rly into collectin statz.\nMaybe try a `user` an not a Bot like me c:"
+        }
+    },
+    "leaderboard": {
+        "username": "Usarnaem",
+        "level": "Levolo.",
+        "xp": "Xp-eo",
+        "board": {
+            "title": "Leedurboard",
+            "description": "{stringlist}"
+        },
+        "left-server": "Left teh Servr"
+    },
+    "_application": {
+        "#btn-closed-team": "Applie as Clozd Teem",
+        "#btn-open-contributer": "Applie as Open Contributor",
+        "#init-message": {
+            "title": "Applikashun Channel",
+            "description": "Dis is wher u can start ur applikashun process.\n\nU haz now teh opportunitee to becum a part of our <@&{teamid}>.\nClick teh button below to create a nu applikashun channel.\nWe're excited to haz u join Code0.\n\nIf u already haz an active applikashun channel, plz use dat to continue ur applikashun. "
+        },
+        "btn-remove": "Remove Applikashun",
+        "btn-close": "Cloz Applikashun",
+        "new-application": {
+            "title": "Applikashun Channel Created",
+            "description": "A nu applikashun channel haz been creatd for u: <#{channelid}>."
+        },
+        "has-application": {
+            "title": "Existin Applikashun Channel Found",
+            "description": "Sowwy, but u can only haz one applikashun channel at a time."
+        },
+        "application-message": {
+            "title": "Applie Here",
+            "description": "Here u can applie an communicat with our staff to get involvd with Code0."
+        },
+        "no-team-member": {
+            "title": "Sowwy",
+            "description": "Only Teem memburz can cloz an Applikashun."
+        },
+        "confirm-remove-application": {
+            "title": "Applikashun Clozd",
+            "description": "`Teh Applikashun wuz Clozd by `<@{closeduserid}>`.`"
+        },
+        "close-info": {
+            "title": "Clozin Applikashun"
+        }
+    },
+    "logs": {
+        "btn-back": "Previs",
+        "btn-next": "Nextus",
+        "btn-skip": "Go 2 last",
+        "text-old-logs": "Old Logz",
+        "run-id": "krun_id",
+        "development": {
+            "description": "In devement mode `/logs show` iz not availabul"
+        },
+        "session-logs": {
+            "title": "Current logz [{totallogscount}]",
+            "description": "Creatd at: {createdat}\n\n{logstring}\nLogz [{currentstart}-{currentend}] of ({totallogscount})"
+        },
+        "old-session-logs": {
+            "title": "{runid} [{totallogscount}]",
+            "description": "Creatd at: {createdat}\n\n{logstring}\nLogz [{currentstart}-{currentend}] of ({totallogscount})"
+        },
+        "text-createdat": "Creatd at",
+        "text-count": "Caunta",
+        "text-time": "Tima",
+        "list-logs": {
+            "title": "Log filez",
+            "description": "{list}"
+        },
+        "list-logs-empty": {
+            "title": "No logz availabul"
+        },
+        "not-found": {
+            "title": "Cannot find any logz for runId: {runid}."
+        }
+    },
+    "#_rankupdate": {
+        "#update-msg": {
+            "description": "### Livel: {level}\n{progressbar} [{xp} xp|{neededXp} xp]\n\n<@{rankuserid}> is now levlo {level} an in {position} place."
+        }
+    }
+}
