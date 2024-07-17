@@ -1,7 +1,7 @@
 const { msToHumanReadableTime, convertUnixToTimestamp, waitMs } = require('./../utils/time');
+const { debug_sendGitRankMessage } = require('../start-up/git-rank');
 const { SlashCommandBuilder } = require('@discordjs/builders');
 const { Embed, progressBar } = require('./../models/Embed');
-const GITCOMMITS = require('./../singleton/GITCOMMITS');
 const { PermissionFlagsBits } = require("discord.js");
 const { Mongo, ENUMS } = require('../models/Mongo');
 const config = require('./../../config.json');
@@ -88,11 +88,8 @@ const debugs = {
     },
 
     async chartFromGithubTotalCommits(interaction, client, guild, member, lang) {
-        new Embed()
-            .setColor(config.embeds.colors.info)
-            .setAttachment(await GITCOMMITS.getAttachment())
-            .setImage(`attachment://chart.png`)
-            .interactionResponse(interaction);
+        const embed = await debug_sendGitRankMessage();
+        embed.interactionResponse(interaction);
     }
 }
 

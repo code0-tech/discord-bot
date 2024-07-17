@@ -52,7 +52,7 @@ const sendGitRankMessage = async (client) => {
     formattedUserStats.sort((a, b) => b.total - a.total);
 
     let description = `
-### ${Constants.DISCORD.EMOJIS.TROPHY} Winner: ${Constants.DISCORD.EMOJIS.TROPHY}
+### ${Constants.DISCORD.EMOJIS.TROPHY} Winner: ${formattedUserStats[0].name} ${Constants.DISCORD.EMOJIS.TROPHY}
 
 Commits: \`${formattedUserStats[0].total}\` in the last 24 hours.
 ### Leaderboard\n`;
@@ -62,16 +62,20 @@ Commits: \`${formattedUserStats[0].total}\` in the last 24 hours.
         description += `${placeMedal} ${user.name}: \`${user.total} commits\`\n`;
     });
 
-    new Embed()
+    const embed = new Embed()
         .setColor(config.embeds.colors.info)
         .setDescription(description)
         .setAttachment(await GITCOMMITS.getAttachment())
         .setImage(`attachment://chart.png`)
-        .responseToChannel(config.channels.gitranks, client);
+
+    if (client == null) { // for debug only
+        return embed;
+    }
+
+    embed.responseToChannel(config.channels.gitranks, client);
 
     console.log(`[Git-ranks] sent message to channel.`, Constants.CONSOLE.WORKING);
 }
-
 
 const setup = (client) => {
     const job = schedule.scheduleJob('0 16 * * *', function () {
@@ -79,5 +83,9 @@ const setup = (client) => {
     });
 }
 
+const debug_sendGitRankMessage = async () => {
+    return await sendGitRankMessage(null);
+}
 
-module.exports = { setup };
+
+module.exports = { setup, debug_sendGitRankMessage };
