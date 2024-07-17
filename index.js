@@ -78,16 +78,10 @@ startCode0();
 
 /* TODO
 
-- Discord Audit log Embeds
-
--> Go over naming
+- Discord Audit log Embeds [Todo since: 28.04.2024]
 
 -> Remove ticket when user left the server
 
--> Git commits last day 16 - 16 o`clock github message
-
 -> chart set background color fix
-
--> chart make color by hex by calc username
 
 */
