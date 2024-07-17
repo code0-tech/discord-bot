@@ -5,7 +5,6 @@ const GITCOMMITS = require('./../singleton/GITCOMMITS');
 const { PermissionFlagsBits } = require("discord.js");
 const { Mongo, ENUMS } = require('../models/Mongo');
 const config = require('./../../config.json');
-const Chart = require('./../models/Chart');
 const DC = require('./../singleton/DC');
 
 const MongoDb = new Mongo();

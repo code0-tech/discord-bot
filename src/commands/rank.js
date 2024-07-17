@@ -16,7 +16,7 @@ const data = new SlashCommandBuilder()
             .setName('user')
             .setDescription('View another user\'s rank.')
             .setDescriptionLocalizations({
-                de: 'Zeig den Rang eines anderen Benutzers an.',
+                de: 'Zeigt den Rang eines anderen Benutzers an.',
             })
             .setRequired(false)
     );

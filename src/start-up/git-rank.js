@@ -1,10 +1,10 @@
 const { Embed, progressBar } = require('../models/Embed');
+const GITCOMMITS = require('./../singleton/GITCOMMITS');
 const { Mongo, ENUMS } = require('../models/Mongo');
+const Constants = require('../../data/constants');
 const config = require('./../../config.json');
 const schedule = require('node-schedule');
 
-const GITCOMMITS = require('./../singleton/GITCOMMITS');
-const Constants = require('../../data/constants');
 
 const MongoDb = new Mongo();
 

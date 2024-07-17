@@ -8,7 +8,7 @@ const data = new SlashCommandBuilder()
     .setName('links')
     .setDescription('Get a list of Code0 links.')
     .setDescriptionLocalizations({
-        de: 'List wichtiger Code0 links.',
+        de: 'Liste wichtiger Code0 links.',
     })
 
 const execute = async (interaction, client, guild, member, lang) => {

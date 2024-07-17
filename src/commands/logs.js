@@ -25,7 +25,7 @@ const data = new SlashCommandBuilder()
         .setName('list')
         .setDescription('Get a list of Logs.')
         .setDescriptionLocalizations({
-            de: 'Zeig eine List der Logs.',
+            de: 'Zeigt eine Liste der Logs.',
         })
     )
     .setDefaultMemberPermissions(PermissionFlagsBits.Administrator);

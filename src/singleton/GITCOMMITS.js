@@ -5,7 +5,6 @@ const Constants = require('./../../data/constants');
 const config = require('./../../config.json');
 const Chart = require('./../models/Chart');
 
-
 const MongoDb = new Mongo();
 
 class GITCOMMITS {
