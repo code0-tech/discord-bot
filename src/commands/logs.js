@@ -172,12 +172,12 @@ const listDbLogs = async (interaction, member, lang, componentData) => {
         { label: lang.getText('text-count'), key: 'logs_length' }
     ];
 
-    const table = new SimpleTable(columns);
-
-    table.setJsonArrayInputs(data);
-    table.setStringOffset(2);
-    table.addVerticalBar();
-    table.addIndex(1);
+    const buildTable = await new SimpleTable(columns)
+        .setJsonArrayInputs(data)
+        .setStringOffset(2)
+        .addVerticalBar()
+        .addIndex(1)
+        .build()
 
     const selectMenu = new StringSelectMenuBuilder()
         .setCustomId('logs*type=view')
@@ -188,7 +188,7 @@ const listDbLogs = async (interaction, member, lang, componentData) => {
 
     new Embed()
         .setColor(config.embeds.colors.info)
-        .addInputs({ list: await table.build() })
+        .addInputs({ list: buildTable })
         .addContext(lang, member, 'list-logs')
         .setComponents([row])
         .interactionResponse(interaction);

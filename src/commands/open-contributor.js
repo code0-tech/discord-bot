@@ -81,12 +81,11 @@ const execute = async (interaction, client, guild, member, lang) => {
             { label: lang.getText('prs'), key: 'pullRequestCount' }
         ];
 
-        table = new SimpleTable(columns);
-
-        table.setJsonArrayInputs(github.contributions);
-        table.setStringOffset(2);
-        table.addVerticalBar();
-        table.addIndex(1);
+        table = new SimpleTable(columns)
+            .setJsonArrayInputs(github.contributions)
+            .setStringOffset(2)
+            .addVerticalBar()
+            .addIndex(1)
     }
 
     if (github.totalCommitContributions >= config.commands.opencontributor.commits && github.totalPullRequests >= config.commands.opencontributor.pr) {

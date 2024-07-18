@@ -45,16 +45,17 @@ const sendMessage = async (interaction, member, lang, data) => {
         { label: lang.getText('xp'), key: 'xp' }
     ];
 
-    const table = new SimpleTable(columns);
+    const buildTable = await new SimpleTable(columns)
+        .setJsonArrayInputs(data)
+        .setStringOffset(2)
+        .addVerticalBar()
+        .addIndex(1)
+        .build();
 
-    table.setJsonArrayInputs(data);
-    table.setStringOffset(2);
-    table.addVerticalBar();
-    table.addIndex(1);
 
     new Embed()
         .setColor(config.embeds.colors.info)
-        .addInputs({ stringlist: await table.build() })
+        .addInputs({ stringlist: buildTable })
         .addContext(lang, member, 'board')
         .interactionResponse(interaction);
 }

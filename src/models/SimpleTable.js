@@ -8,11 +8,12 @@ class SimpleTable {
         this._verticalBar = false;
     }
 
-    async setStringOffset(offset = 2) {
+    setStringOffset(offset = 2) {
         this._stringOffset = offset;
+        return this;
     }
 
-    async addIndex(startValue = 1) {
+    addIndex(startValue = 1) {
         this._items = this._items.map((item, index) => {
             return { ...item, index: startValue + index };
         });
@@ -23,7 +24,7 @@ class SimpleTable {
         return this;
     }
 
-    async setJsonArrayInputs(jsonArray) {
+    setJsonArrayInputs(jsonArray) {
         jsonArray.forEach((row) => this._items.push(row));
 
         if (jsonArray.length > 0) {
@@ -39,6 +40,7 @@ class SimpleTable {
 
     addVerticalBar(add = true) {
         this._verticalBar = add;
+        return this;
     }
 
     updateWidthForKeys() {
