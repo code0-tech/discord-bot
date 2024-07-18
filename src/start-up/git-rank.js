@@ -1,5 +1,6 @@
 const { convertUnixToTimestampSmall } = require('../utils/time');
 const { Embed, progressBar } = require('../models/Embed');
+const { SimpleTable } = require('../models/SimpleTable');
 const GITCOMMITS = require('./../singleton/GITCOMMITS');
 const { Mongo, ENUMS } = require('../models/Mongo');
 const Constants = require('../../data/constants');
@@ -56,12 +57,37 @@ const sendGitRankMessage = async (client) => {
 ### ${Constants.DISCORD.EMOJIS.TROPHY} Winner: ${formattedUserStats[0].name} ${Constants.DISCORD.EMOJIS.TROPHY}
 
 Commits: \`${formattedUserStats[0].total}\` in the last 24 hours.
-### Leaderboard\n`;
+### Commits Leaderboard\n`;
 
-    formattedUserStats.forEach((user, index) => {
-        const placeMedal = placeMedals[index] || `${index + 1}.`;
-        description += `${placeMedal} ${user.name}: \`${user.total} commits\`\n`;
-    });
+    let updatedPackets = [];
+
+    for (const packet of formattedUserStats) {
+        const alldaystotal = (await MongoDb.aggregate(ENUMS.DCB.GITHUB_COMMITS, [
+            { $match: { name: packet.name } },
+            { $group: { _id: '$name', totalCommits: { $sum: '$commitscount' } } }
+        ]))[0].totalCommits;
+        const updatedPacket = {
+            name: packet.name,
+            total: packet.total,
+            alldaystotal
+        };
+        updatedPackets.push(updatedPacket);
+    }
+
+    const columns = [
+        { label: 'User', key: 'name' },
+        { label: 'Total', key: 'alldaystotal' },
+        { label: 'last 24h', key: 'total' }
+    ];
+
+    const tableString = await new SimpleTable(columns)
+        .setJsonArrayInputs(updatedPackets)
+        .setStringOffset(2)
+        .addVerticalBar()
+        .addIndex(1)
+        .build();
+
+    description += tableString;
 
     const embed = new Embed()
         .setColor(config.embeds.colors.info)
