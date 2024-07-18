@@ -18,7 +18,7 @@ const msToHumanReadableTime = (ms) => {
     return { s: (secondsAgo % 60), m: (minutesAgo % 60), h: (hoursAgo % 24), d: daysAgo };
 }
 
-const convertUnixToTimestamp = (unixTimestamp) => {
+const convertUnixToTimestamp = (unixTimestamp, includeSeconds = true) => {
     const date = new Date(unixTimestamp);
 
     const hours = date.getHours().toString().padStart(2, '0');
@@ -28,7 +28,11 @@ const convertUnixToTimestamp = (unixTimestamp) => {
     const month = (date.getMonth() + 1).toString().padStart(2, '0');
     const year = date.getFullYear();
 
-    return `${hours}:${minutes}:${seconds}, ${day}.${month}.${year}`;
+    if (includeSeconds) {
+        return `${hours}:${minutes}:${seconds}, ${day}.${month}.${year}`;
+    } else {
+        return `${hours}:${minutes}, ${day}.${month}.${year}`;
+    }
 };
 
 const getNextDayByDateString = (dateString) => {
