@@ -30,5 +30,32 @@ const levenshteinDistance = (a, b) => {
     return matrix[b.length][a.length];
 }
 
+// Format numbers for human readability with thousands separators (not included).
+// Consider international conventions where commas (,) and periods (.) 
+// may be reversed in different languages:
+// 
+// - German: 100000.00 => 100.000,00
+// - English: 100000.00 => 100,000.00
+//
+// It's important to use localization libraries or functions to ensure
+// consistent and accurate number formatting across diverse linguistic contexts.
+//
+// Despite a team member's insistence that differences exist (and that I shouldn't care),
+// remember that formats for thousands separators can vary significantly between languages and locales.
+const humanizeNumber = (number) => {
+    const strNumber = String(number);
+    const parts = strNumber.split('.');
+    let integerPart = parts[0];
+    const decimalPart = parts[1] || '';
 
-module.exports = { keyArray, levenshteinDistance };
+    integerPart = integerPart.split('').reverse().join('');
+
+    const formattedInteger = integerPart.match(/.{1,3}/g).join('.').split('').reverse().join('');
+
+    const formattedNumber = decimalPart.length > 0 ? `${formattedInteger},${decimalPart}` : formattedInteger;
+
+    return formattedNumber;
+};
+
+
+module.exports = { keyArray, levenshteinDistance, humanizeNumber };

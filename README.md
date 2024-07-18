@@ -26,10 +26,11 @@ Also a MongoDb is required as this Bot needs some DataBase to store Data
 | 4   | `/contributor`                               | Finished     |
 | 5   | `/rank` or `/rank @user` +uptodate15         | Finished     |
 | 6   | `/leaderboard` or `/leaderboard limit: 1-20` | Finished     |
-| 7   | `Code0 Application Ticket/`                  | Finished     |
+| 7   | `Code0 Application Ticket`                   | Finished     |
 | 8   | `/stats` or `/stats @user` + uptodate15      | Finished     |
 | 9   | `/logs show` or `/logs list`                 | Finished     |
-| 10  | `/debug` for debugging                       | WIP          |
+| 10  | `/debug` for debugging                       | Debug (WIP)  |
+| 11  | `Git rank message every 24 hours`            | Finished     |
 
 
 ## Tracking
@@ -50,21 +51,21 @@ We are currently not saving any executed commands
 The entries look like this:
 
     {
-      "_id": {
-        "$oid": "6644f92412346d3e083052fe" // _id given by Mongo
+      "_id": {  
+        "$oid": "18cc07cc20024a04cc01cc2024" // _id given by Mongo
       },
     "id": "380808844093292555", // user id, no name
-     "rawxp": 220, // your rawXp, the xp of 380808844093292555 have been altered for tests
+     "rawxp": 383, // your rawXp, the xp of 380808844093292555 have been altered for tests
       "stats": {
         "messages": {
-         "words": 3245, // word count
-         "chars": 16104, // char count
-         "count": 500 // message total count
+         "words": 3556, // word count
+         "chars": 17884, // char count
+         "count": 585 // message total count
        },
        "voice": {
-         "joins": 86, // voice channel joins
-        "switchs": 165, // voice switchts aka channel changes while beeing connected
-         "time": 31225 // total time in seconds
+         "joins": 96, // voice channel joins
+        "switchs": 830, // voice switchts aka channel changes while beeing connected
+         "time": 47968 // total time in seconds
        }
       },
      "commandstats": {} // empty unused
