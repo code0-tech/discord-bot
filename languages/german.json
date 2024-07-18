@@ -10,7 +10,7 @@
         },
         "found-none": "Keine",
         "client-session-time": {
-            "title": "Client Session Time",
+            "title": "Client-Sitzungszeit",
             "description": "Online seit: {upsince}\n\n`{days}` Tagen, `{hours}` Stunden, `{minutes}` Minuten, `{seconds}` Sekunden."
         }
     },
@@ -19,7 +19,7 @@
         "btn-delete-ticket": "Ticket löschen",
         "timeout": {
             "title": "Bitte warte",
-            "description": "Dein letztes Ticket wurde vor `{m} Minuten` und `{s} Sekunden` erstellt.\nBitte warten, bevor Du Ihr nächstes Ticket erstellen."
+            "description": "Dein letztes Ticket wurde vor `{m} Minuten` und `{s} Sekunden` erstellt.\nBitte warten, bevor Du dein nächstes Ticket erstellst."
         },
         "create": {
             "title": "Ticket",
