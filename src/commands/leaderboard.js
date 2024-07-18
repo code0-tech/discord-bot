@@ -1,7 +1,8 @@
 const { SlashCommandBuilder } = require('@discordjs/builders');
-const { MongoUser } = require('./../mongo/MongoUser');
-const { Mongo, ENUMS } = require('../models/Mongo');
 const { SimpleTable } = require('../models/SimpleTable');
+const { MongoUser } = require('./../mongo/MongoUser');
+const { humanizeNumber } = require('../utils/helper');
+const { Mongo, ENUMS } = require('../models/Mongo');
 const { Embed } = require('../models/Embed');
 const config = require('../../config.json');
 const DC = require('./../singleton/DC');
@@ -89,7 +90,7 @@ const execute = async (interaction, client, guild, member, lang) => {
             username = username.substring(0, (config.commands.leaderboard.maxnamelength - 3)) + "...";
         }
 
-        data.push({ name: username, lvl: level, xp: `[${xp}|${neededXp}]` });
+        data.push({ name: username, lvl: humanizeNumber(level), xp: `[${humanizeNumber(xp)}|${humanizeNumber(neededXp)}]` });
 
         if ((i + 1) % 5 == 0) {
             sendMessage(interaction, member, lang, data);
