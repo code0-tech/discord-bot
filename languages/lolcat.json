@@ -5,8 +5,8 @@
             "description": "Found:\n{userstring}\n\nFake Usrz:\n{progressbar}"
         },
         "mongo-left-users-loading": {
-            "title": "Kongo Left Usr",
-            "description": "Checkin..."
+            "title": "Mongo Left User",
+            "description": "Cheakad [{checked}|{totaluser}], gefounde {found}."
         },
         "found-none": "NUN",
         "client-session-time": {

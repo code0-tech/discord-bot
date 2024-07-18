@@ -6,7 +6,7 @@
         },
         "mongo-left-users-loading": {
             "title": "Mongo Left User",
-            "description": "Checking..."
+            "description": "Checked [{checked}|{totaluser}], found {found}."
         },
         "found-none": "None",
         "client-session-time": {
@@ -49,7 +49,7 @@
         "repo": "Repo",
         "commits": "Commits",
         "prs": "PRs",
-        "button-link":"Github OAuth Link",
+        "button-link": "Github OAuth Link",
         "error-timeout": {
             "title": "Code expired",
             "description": "This code is expired. Use /open-contributor to get a new one."

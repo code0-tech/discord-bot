@@ -32,10 +32,15 @@ const data = new SlashCommandBuilder()
 
 const debugs = {
     async mongoLeftUsers(interaction, client, guild, member, lang) {
-        new Embed()
-            .setColor(config.embeds.colors.info)
-            .addContext(lang, member, 'mongo-left-users-loading')
-            .interactionResponse(interaction);
+        const updateSearchingEmbed = (totaluser = 0, checked = 0, found = 0) => {
+            new Embed()
+                .setColor(config.embeds.colors.info)
+                .addInputs({ totaluser, checked, found })
+                .addContext(lang, member, 'mongo-left-users-loading')
+                .interactionResponse(interaction);
+        }
+
+        updateSearchingEmbed();
 
         const pipeline = [
             {
@@ -48,6 +53,13 @@ const debugs = {
 
         const userIds = await MongoDb.aggregate(ENUMS.DCB.USERS, pipeline);
 
+        let checked = 0;
+        let found = 0;
+
+        updateSearchingEmbed(userIds.length, checked, found);
+
+        const interval = setInterval(() => updateSearchingEmbed(userIds.length, checked, found), 2000);
+
         let usersLeft = [];
 
         for (let i = 0; i < userIds.length; i++) {
@@ -55,8 +67,13 @@ const debugs = {
             const result = await DC.memberById(userPacket.id, guild);
             if (!result) {
                 usersLeft.push(userPacket.id);
+                found++;
             }
+
+            checked++;
         }
+
+        clearInterval(interval);
 
         new Embed()
             .setColor(config.embeds.colors.info)

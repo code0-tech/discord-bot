@@ -6,7 +6,7 @@
         },
         "mongo-left-users-loading": {
             "title": "Mongo Left User",
-            "description": "Prüfen..."
+            "description": "Geprüft [{checked}|{totaluser}], gefunden {found}."
         },
         "found-none": "Keine",
         "client-session-time": {
