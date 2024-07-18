@@ -24,11 +24,11 @@ const updateAllUsers = async (client) => {
     for (const userId of userIds) {
         await updateDb(client, userId, voiceChatUser[userId]);
         voiceChatUser[userId].since = Date.now();
+        voiceChatUser[userId].switchs = 0;
     }
 }
 
 setInterval(() => updateAllUsers(), 5000);
-
 
 const joinVoice = (client, userId) => {
     voiceChatUser[userId] = {
@@ -36,7 +36,6 @@ const joinVoice = (client, userId) => {
         switchs: 0
     }
 }
-
 
 const switchVoice = (client, userId) => {
     if (!voiceChatUser[userId]) {
@@ -48,7 +47,6 @@ const switchVoice = (client, userId) => {
 
     voiceChatUser[userId].switchs++;
 }
-
 
 const leaveVoice = async (client, userId) => {
     if (!voiceChatUser[userId]) {
@@ -65,7 +63,6 @@ const leaveVoice = async (client, userId) => {
     delete voiceChatUser[userId];
 }
 
-
 const start = async (client) => {
     const guild = await DC.guildById(process.env.GUILD_ID, client);
     const channels = await DC.channelsByGuild(guild);
@@ -78,7 +75,6 @@ const start = async (client) => {
             });
         }
     });
-
 
     client.on(Events.VoiceStateUpdate, async (oldState, newState) => {
         const { state, userId } = await checkState(oldState, newState);
