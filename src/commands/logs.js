@@ -169,7 +169,7 @@ const listDbLogs = async (interaction, member, lang, componentData) => {
     const columns = [
         { label: lang.getText('run-id'), key: 'run_id' },
         { label: lang.getText('text-createdat'), key: 'created_at' },
-        { label: lang.getText('text-count'), key: 'logs_length' }
+        { label: lang.getText('text-size'), key: 'logs_length' }
     ];
 
     const buildTable = await new SimpleTable(columns)
@@ -181,7 +181,7 @@ const listDbLogs = async (interaction, member, lang, componentData) => {
 
     const selectMenu = new StringSelectMenuBuilder()
         .setCustomId('logs*type=view')
-        .setPlaceholder('Log')
+        .setPlaceholder(lang.getText('select-menu-placholder'))
         .addOptions(selectMenuOptions);
 
     const row = new ActionRowBuilder().addComponents(selectMenu);

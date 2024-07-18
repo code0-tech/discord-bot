@@ -49,6 +49,7 @@
         "repo": "Repo",
         "commits": "Commits",
         "prs": "PRs",
+        "button-link": "Github authentifizierungs Link",
         "error-timeout": {
             "title": "Der Code ist abgelaufen",
             "description": "Der Code ist abgelaufen. Nutze /open-contributor um einen neuen Code zu generieren."
@@ -150,6 +151,7 @@
         }
     },
     "logs": {
+        "select-menu-placholder": "Logs",
         "btn-back": "Vorherige",
         "btn-next": "Nächste",
         "btn-skip": "Gehe zu letzten",
@@ -167,7 +169,7 @@
             "description": "Erstellt am: {createdat}\n\n{logstring}\nLogs [{currentstart}-{currentend}] von ({totallogscount})"
         },
         "text-createdat": "Erstellt am",
-        "text-count": "Anzahl",
+        "text-size": "Größe",
         "text-time": "Zeit",
         "list-logs": {
             "title": "Log Datein",

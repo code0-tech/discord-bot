@@ -49,6 +49,7 @@
         "repo": "Repo",
         "commits": "Commits",
         "prs": "PRs",
+        "button-link":"Github OAuth Link",
         "error-timeout": {
             "title": "Code expired",
             "description": "This code is expired. Use /open-contributor to get a new one."
@@ -156,6 +157,7 @@
         }
     },
     "logs": {
+        "select-menu-placholder": "Logs",
         "btn-back": "Previous",
         "btn-next": "Next",
         "btn-skip": "Go to last",
@@ -173,7 +175,7 @@
             "description": "Created at: {createdat}\n\n{logstring}\nLogs [{currentstart}-{currentend}] of ({totallogscount})"
         },
         "text-createdat": "Created at",
-        "text-count": "Count",
+        "text-size": "Size",
         "text-time": "Time",
         "list-logs": {
             "title": "Log files",

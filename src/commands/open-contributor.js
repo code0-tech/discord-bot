@@ -23,13 +23,13 @@ const failedMessage = async (interaction, client, member, lang, type) => {
         .interactionResponse(interaction);
 };
 
-const createButtonRow = (data) => {
+const createButtonRow = (data, lang) => {
     const userIdEncrypted = encryptString(JSON.stringify(data));
     const githubScopes = 'user:read read:org';
     const oAuthLink = `https://github.com/login/oauth/authorize?client_id=${process.env.GITHUB_CLIENT_ID}&state=${userIdEncrypted}&scope=${encodeURIComponent(githubScopes)}`;
 
     const oAuthLinkButton = new ButtonBuilder()
-        .setLabel('Github OAuth Link')
+        .setLabel(lang.getText('button-link'))
         .setURL(oAuthLink)
         .setStyle(ButtonStyle.Link);
 
@@ -51,7 +51,7 @@ const execute = async (interaction, client, guild, member, lang) => {
         reference: `${interaction.user.id}-open-contributor`
     };
 
-    const row = createButtonRow(data);
+    const row = createButtonRow(data, lang);
 
     await new Embed()
         .setColor(config.embeds.colors.info)
@@ -111,7 +111,7 @@ const execute = async (interaction, client, guild, member, lang) => {
             githubname: name
         })
         .addContext(lang, member, messageType)
-        .setComponents([row])
+        .setComponents([])
         .interactionResponse(interaction);
 };
 

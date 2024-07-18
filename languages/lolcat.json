@@ -49,6 +49,7 @@
         "repo": "Repo",
         "commits": "Commitz",
         "prs": "PRz",
+        "button-link": "Githubo Lank",
         "error-timeout": {
             "title": "Code expired",
             "description": "Dis codr is expirat. Use /open-contributor toz geat a new onee."
@@ -156,6 +157,7 @@
         }
     },
     "logs": {
+        "select-menu-placholder": "Loges",
         "btn-back": "Previs",
         "btn-next": "Nextus",
         "btn-skip": "Go 2 last",
@@ -173,7 +175,7 @@
             "description": "Creatd at: {createdat}\n\n{logstring}\nLogz [{currentstart}-{currentend}] of ({totallogscount})"
         },
         "text-createdat": "Creatd at",
-        "text-count": "Caunta",
+        "text-size": "Bignes",
         "text-time": "Tima",
         "list-logs": {
             "title": "Log filez",
