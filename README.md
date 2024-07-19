@@ -52,26 +52,26 @@ The entries look like this:
 
     {
       "_id": {  
-        "$oid": "18cc07cc20024a04cc01cc2024" // _id given by Mongo
+        "$oid": "19cc07cc20024a04cc01cc2024" // _id given by Mongo
       },
     "id": "380808844093292555", // user id, no name
-     "rawxp": 383, // your rawXp, the xp of 380808844093292555 have been altered for tests
+     "rawxp": 631, // your rawXp, the xp of 380808844093292555 have been altered for tests
       "stats": {
         "messages": {
-         "words": 3556, // word count
-         "chars": 17884, // char count
-         "count": 585 // message total count
+         "words": 3739, // word count
+         "chars": 18850, // char count
+         "count": 617 // message total count
        },
        "voice": {
-         "joins": 96, // voice channel joins
-        "switchs": 830, // voice switchts aka channel changes while beeing connected
+         "joins": 100, // voice channel joins
+        "switchs": 14, // voice switchts aka channel changes while beeing connected
          "time": 47968 // total time in seconds
        }
       },
      "commandstats": {} // empty unused
     }
 
-MongoDb entries last updated in ReadMe: 18.07.2024
+MongoDb entries last updated in ReadMe: 19.07.2024
 
 ## Were are the missing files?
 
@@ -143,3 +143,7 @@ Since this bot is under development, significant changes may occur.
 0.0.0 => Changes of entire Class or Interaction method structures
 
 Very simple to keep track of, this NVS was not used correctly until now 10.07.2024.
+
+## Know issues
+
+- 1: Tables and Bars are not displayed correctly on Mobile devices
