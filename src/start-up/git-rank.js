@@ -8,6 +8,12 @@ const schedule = require('node-schedule');
 
 const MongoDb = new Mongo();
 
+const placeMedals = [
+    Constants.DISCORD.EMOJIS.FIRSTPLACE,
+    Constants.DISCORD.EMOJIS.SECONDPLACE,
+    Constants.DISCORD.EMOJIS.THIRDPLACE
+];
+
 const totalDays = async () => {
     const result = await MongoDb.aggregate(ENUMS.DCB.GITHUB_COMMITS, [
         { $group: { _id: null, minTime: { $min: '$time' } } }
@@ -81,23 +87,14 @@ const buildLeaderboardDescription = async (formattedUserStats, updatedPackets) =
     let description = `
 ### ${Constants.DISCORD.EMOJIS.TROPHY} Winner: ${formattedUserStats[0].name} ${Constants.DISCORD.EMOJIS.TROPHY}
 
-Commits: \`${formattedUserStats[0].total}\` in the last 24 hours.
+The winner made \`${formattedUserStats[0].total}\` commits in the last 24 hours.
 ### Commits Leaderboard\n`;
 
-    const columns = [
-        { label: 'User', key: 'name' },
-        { label: `Last ${await totalDays()} days`, key: 'alldaystotal' },
-        { label: `Last 24h`, key: 'total' }
-    ];
+    formattedUserStats.forEach((user, index) => {
+        const placeMedal = placeMedals[index] || `${index + 1}.`;
+        description += `${placeMedal} ${user.name}: \`${user.total} commits\`\n`;
+    });
 
-    const tableString = await new SimpleTable(columns)
-        .setJsonArrayInputs(updatedPackets)
-        .setStringOffset(2)
-        .addVerticalBar()
-        .addIndex(1)
-        .build();
-
-    description += tableString;
     return description;
 }
 
@@ -106,6 +103,7 @@ const createEmbedMessage = async (description) => {
         .setColor(config.embeds.colors.info)
         .setDescription(description)
         .setAttachment(await GITCOMMITS.getAttachment())
+        .setFooter(`Stats over the last ${await totalDays()} days.`)
         .setImage(`attachment://chart.png`);
 }
 
