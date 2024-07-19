@@ -121,9 +121,9 @@ class Embed {
      * @param {string} text - The text of the footer.
      * @param {string} [iconURL] - The URL of the footer's icon.
      */
-    setFooter(text, iconURL) {
+    setFooter(text, iconURL = null) {
         if (text) {
-            this._embed.setFooter(text, iconURL);
+            this._embed.setFooter({ text: text, icon_url: iconURL })
         }
         return this;
     }
