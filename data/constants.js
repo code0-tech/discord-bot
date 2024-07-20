@@ -30,6 +30,15 @@ class Constants {
                 },
                 get TROPHY() {
                     return '🏆';
+                },
+                get LOCK_CLOSED() {
+                    return '🔒';
+                },
+                get KEY_LOCKED() {
+                    return '🔐';
+                },
+                get FILE_CABINET() {
+                    return '🗄️'
                 }
             }
         };
