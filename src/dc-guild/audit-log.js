@@ -42,10 +42,12 @@ const setup = (client) => {
             .responseToChannel(config.channels.auditlog, client);
         */
 
+        const executorName = (await DC.memberById(event.executorId, guild)).user.username;
+
         const attachment = await new Card()
             .header({}, card => {
                 card.headerIcon({ value: 'X' }, card => { });
-                card.headerTitle({ value: `Executer: ${event.executorId}` }, card => { });
+                card.headerTitle({ value: `Executer: ${executorName}` }, card => { });
                 card.label({ value: 'Debug' }, card => { });
             })
             .body({}, card => {
