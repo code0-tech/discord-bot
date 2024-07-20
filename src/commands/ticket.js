@@ -87,7 +87,7 @@ const execute = async (interaction, client, guild, member, lang) => {
 
     const closeTicket = new ButtonBuilder()
         .setCustomId('close-ticket')
-        .setLabel(lang.text['btn-close'])
+        .setLabel(lang.getText('btn-close'))
         .setStyle(ButtonStyle.Danger);
 
     const row = new ActionRowBuilder()
@@ -124,7 +124,7 @@ const executeComponent = async (interaction, client, guild, member, lang, compon
             .addContext(lang, member, 'close-info')
             .interactionResponse(interaction);
 
-        DC.removeChannelUserOverrides(ticketChannel);
+        const { removedIds } = await DC.removeChannelUserOverrides(ticketChannel);
 
         const confirmDelete = new ButtonBuilder()
             .setCustomId('delete-ticket')
@@ -134,19 +134,28 @@ const executeComponent = async (interaction, client, guild, member, lang, compon
         const row = new ActionRowBuilder()
             .addComponents(confirmDelete);
 
+        const timeStamp = snowflakeToDate(interaction.channel.id);
+        const { d, h, m, s } = msToHumanReadableTime(Date.now() - timeStamp);
+
         await new Embed()
             .setColor(config.embeds.colors.danger)
-            .addInputs({ closeduserid: interaction.user.id })
+            .addInputs({
+                closeduserid: interaction.user.id,
+                ticketuserid: removedIds[0],
+                days: d,
+                hours: h,
+                minutes: m,
+                seconds: s
+            })
             .addContext(lang, member, 'closed')
             .setComponents([row])
             .responseToChannel(ticketChannel.id, client);
 
-
-        ticketChannel.setName(`${ticketChannel.name}-closed`);
+        ticketChannel.setName(`${Constants.DISCORD.EMOJIS.KEY_LOCKED}${ticketChannel.name}`);
 
     } else if (componentData.id == 'delete-ticket') {
         const ticketChannel = await DC.channelByInteraction(interaction, guild);
-        ticketChannel.delete({ reason: "Ticket was closed and marked as ~fin" });
+        ticketChannel.delete({ reason: "Ticket marked as closed" });
     }
 }
 
