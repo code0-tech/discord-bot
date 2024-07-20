@@ -3,7 +3,8 @@ const { Embed } = require('../models/Embed');
 const config = require('../../config.json');
 const { Events } = require('discord.js');
 const AUDIT_LOG_ACTIONS = require('../../data/discord/action-ids');
-const OVERWRITE_PERMISSIONS = require('../../data/discord/permission-ids')
+const OVERWRITE_PERMISSIONS = require('../../data/discord/permission-ids');
+const DC = require('../singleton/DC');
 
 const setup = (client) => {
     const guild = client.guilds.cache.get(process.env.GUILD_ID);
@@ -39,7 +40,7 @@ const setup = (client) => {
             .setTitle(`${AUDIT_LOG_ACTIONS[actionId]} (action: ${actionId})`)
             .setDescription(description)
             .responseToChannel(config.channels.auditlog, client);
- */
+        */
 
         const attachment = await new Card()
             .header({}, card => {
@@ -61,12 +62,10 @@ const setup = (client) => {
             })
             .getAttachment();
 
-
         const messageOptions = { files: [attachment] };
 
         await channel.send(messageOptions);
     }
-
 
     setInterval(() => {
         if (eventHand.length !== 0) {
@@ -76,7 +75,6 @@ const setup = (client) => {
     }, 5000);
 
     client.on(Events.GuildAuditLogEntryCreate, auditLog => {
-        // eventHand.push(auditLog);
         sendEvent(auditLog);
     })
 };

@@ -9,8 +9,8 @@ const config = require('./../../config.json');
 const Chart = require('./../models/Chart');
 const DC = require('./../singleton/DC');
 const { Readable } = require('stream');
-const { join } = require('path');
 const ytdl = require('ytdl-core');
+const { join } = require('path');
 
 const { Mongo, ENUMS } = require('../models/Mongo');
 const MongoDb = new Mongo();
@@ -26,7 +26,6 @@ const data = new SlashCommandBuilder()
 
 const execute = async (interaction, client, guild, member, lang) => {
   await DC.defer(interaction);
-
 
 }
 
