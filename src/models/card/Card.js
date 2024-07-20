@@ -258,9 +258,7 @@ class Card {
             }
         }
 
-        if (options.value > 100) {
-            options.value = 100;
-        }
+        if (options.value > 100) options.value = 100;
 
         return this._addCard('progressBar', options, fn);
     }
