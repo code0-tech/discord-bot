@@ -152,7 +152,7 @@ const executeComponent = async (interaction, client, guild, member, lang, button
         }
 
         const applicationChannel = await DC.channelByInteraction(interaction, guild);
-        await applicationChannel.delete({ reason: "Apply was closed and marked as ~fin" });
+        await applicationChannel.delete({ reason: "---" });
     }
 };
 
