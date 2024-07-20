@@ -84,4 +84,6 @@ startCode0();
 
 -> chart set background color fix
 
+-> maybe add same end message from ticket to _application [20.07.2024]
+
 */
