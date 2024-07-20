@@ -8,6 +8,11 @@
             "title": "Mongo Left User",
             "description": "Cheakad [{checked}|{totaluser}], gefounde {found}."
         },
+        "mongo-removed-user": {
+            "title": "Removad to tzh moon {userid}."
+        },
+        "left-user-reload": "Reloaddad",
+        "left-user-remove": "Removo mongo userz",
         "found-none": "NUN",
         "client-session-time": {
             "title": "Clint Seshun Time",

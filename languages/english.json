@@ -8,6 +8,11 @@
             "title": "Mongo Left User",
             "description": "Checked [{checked}|{totaluser}], found {found}."
         },
+        "mongo-removed-user": {
+            "title": "Removed {userid}."
+        },
+        "left-user-reload": "Reload",
+        "left-user-remove": "Remove from DB",
         "found-none": "None",
         "client-session-time": {
             "title": "Client Session Time",
