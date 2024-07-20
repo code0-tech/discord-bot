@@ -1,3 +1,4 @@
+const { ButtonBuilder, ButtonStyle, ActionRowBuilder, StringSelectMenuBuilder } = require("discord.js");
 const { msToHumanReadableTime, convertUnixToTimestamp, waitMs } = require('./../utils/time');
 const { debug_sendGitRankMessage } = require('../dc-guild/git-rank');
 const { SlashCommandBuilder } = require('@discordjs/builders');
@@ -69,11 +70,30 @@ const debugs = {
                 usersLeft.push(userPacket.id);
                 found++;
             }
-
             checked++;
         }
 
         clearInterval(interval);
+
+        const selectMenuOptions = usersLeft.map((userId, index) => ({
+            label: `${userId}`,
+            description: `Remove ${userId}`,
+            value: `${userId}`
+        }));
+
+        const selectMenu = new StringSelectMenuBuilder()
+            .setCustomId('debug*type=removefromdb')
+            .setPlaceholder(lang.getText('left-user-remove'))
+            .addOptions(selectMenuOptions);
+
+        const rowWithSelectMenu = new ActionRowBuilder().addComponents(selectMenu);
+
+        const button = new ButtonBuilder()
+            .setCustomId(`debug*type=mongoLeftUsers`)
+            .setLabel(lang.getText('left-user-reload'))
+            .setStyle(ButtonStyle.Primary);
+
+        const rowWithReloadButton = new ActionRowBuilder().addComponents(button);
 
         new Embed()
             .setColor(config.embeds.colors.info)
@@ -82,6 +102,7 @@ const debugs = {
                 progressbar: progressBar(usersLeft.length, userIds.length) + ` [${usersLeft.length}|${userIds.length}]`
             })
             .addContext(lang, member, 'mongo-left-users')
+            .setComponents((usersLeft.length !== 0 ? [rowWithSelectMenu] : [rowWithReloadButton]))
             .interactionResponse(interaction);
     },
 
@@ -113,6 +134,25 @@ const debugs = {
     }
 }
 
+const removeFromDB = async (interaction, client, guild, member, lang, componentData) => {
+    const userId = componentData.selected;
+
+    await MongoDb.deleteOne(ENUMS.DCB.USERS, { id: userId });
+
+    const button = new ButtonBuilder()
+        .setCustomId(`debug*type=mongoLeftUsers`)
+        .setLabel(lang.getText('left-user-reload'))
+        .setStyle(ButtonStyle.Primary);
+
+    const row = new ActionRowBuilder().addComponents(button);
+
+    new Embed()
+        .setColor(config.embeds.colors.danger)
+        .addInputs({ userid: userId })
+        .addContext(lang, member, 'mongo-removed-user')
+        .setComponents([row])
+        .interactionResponse(interaction);
+}
 
 const execute = async (interaction, client, guild, member, lang) => {
     await DC.defer(interaction);
@@ -122,11 +162,22 @@ const execute = async (interaction, client, guild, member, lang) => {
     debugs[type](interaction, client, guild, member, lang);
 }
 
-
-const executeComponent = async (interaction, client, guild, buttonData, member, lang) => {
+const executeComponent = async (interaction, client, guild, member, lang, componentData) => {
     await DC.defer(interaction);
+
+    if (componentData.type == 'removefromdb') {
+        removeFromDB(interaction, client, guild, member, lang, componentData);
+        return
+    }
+
+    if (debugs[componentData.type]) {
+        debugs[componentData.type](interaction, client, guild, member, lang, componentData);
+    }
 }
 
-const componentIds = [];
+const componentIds = [
+    'debug'
+];
 
-module.exports = { execute, executeComponent, data };
+
+module.exports = { execute, executeComponent, componentIds, data };
