@@ -3,6 +3,7 @@ const { joinVoiceChannel, createAudioPlayer, createAudioResource, VoiceConnectio
 const { waitMs, snowflakeToDate, msToHumanReadableTime } = require('./../utils/time');
 const { SlashCommandBuilder } = require('@discordjs/builders');
 const { Embed, progressBar } = require('./../models/Embed');
+const { SimpleTable } = require('../models/SimpleTable');
 const { Card } = require('./../models/card/Card');
 const config = require('./../../config.json');
 const Chart = require('./../models/Chart');
@@ -11,7 +12,6 @@ const { Readable } = require('stream');
 const { join } = require('path');
 const ytdl = require('ytdl-core');
 
-const { SimpleTable } = require('../models/SimpleTable');
 
 
 const { Mongo, ENUMS } = require('../models/Mongo');

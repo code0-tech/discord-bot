@@ -177,7 +177,7 @@ const listDbLogs = async (interaction, member, lang, componentData) => {
         .setStringOffset(2)
         .addVerticalBar()
         .addIndex(1)
-        .build()
+        .build();
 
     const selectMenu = new StringSelectMenuBuilder()
         .setCustomId('logs*type=view')

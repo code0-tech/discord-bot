@@ -1,6 +1,5 @@
 const { AttachmentBuilder, Attachment } = require("discord.js");
 const { convertJsonToHtml } = require('./html-builder');
-
 const config = require('./../../../config.json');
 
 class Card {
