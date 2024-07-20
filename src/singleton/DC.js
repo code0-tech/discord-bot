@@ -139,12 +139,15 @@ class DC {
         const permissionOverwrites = channel.permissionOverwrites.cache;
         const type1Overwrites = permissionOverwrites.filter(overwrite => overwrite.type === Constants.DISCORD.PERMS.USER_OVERRIDE);
 
+        let removedIds = [];
+
         [...type1Overwrites.keys()].forEach(userId => {
+            removedIds.push(userId);
             channel.permissionOverwrites.delete(userId);
         });
 
         console.log(`[Channel Perms] User Perms removed from "${channel.name}"`, Constants.CONSOLE.WORKING);
-        return;
+        return { removedIds };
     }
 
     // Messages
