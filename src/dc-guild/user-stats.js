@@ -1,4 +1,4 @@
-const { MongoUser } = require('./../mongo/MongoUser');
+const { MongoUser } = require('../mongo/MongoUser');
 
 const saveMessageStats = async (msg, count, words, chars) => {
     const user = await new MongoUser(msg.author.id).init();

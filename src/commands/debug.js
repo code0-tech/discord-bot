@@ -1,5 +1,5 @@
 const { msToHumanReadableTime, convertUnixToTimestamp, waitMs } = require('./../utils/time');
-const { debug_sendGitRankMessage } = require('../start-up/git-rank');
+const { debug_sendGitRankMessage } = require('../dc-guild/git-rank');
 const { SlashCommandBuilder } = require('@discordjs/builders');
 const { Embed, progressBar } = require('./../models/Embed');
 const { PermissionFlagsBits } = require("discord.js");

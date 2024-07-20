@@ -1,8 +1,8 @@
 const { SimpleTable } = require('../models/SimpleTable');
-const GITCOMMITS = require('./../singleton/GITCOMMITS');
+const GITCOMMITS = require('../singleton/GITCOMMITS');
 const { Mongo, ENUMS } = require('../models/Mongo');
 const Constants = require('../../data/constants');
-const config = require('./../../config.json');
+const config = require('../../config.json');
 const { Embed } = require('../models/Embed');
 const schedule = require('node-schedule');
 

@@ -1,5 +1,5 @@
-const { loadJSONFilesFromFolder } = require('./../utils/json');
-const Constants = require('./../../data/constants');
+const { loadJSONFilesFromFolder } = require('../utils/json');
+const Constants = require('../../data/constants');
 const path = require('path');
 
 const load = (client) => {

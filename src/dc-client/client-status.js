@@ -1,4 +1,4 @@
-const config = require('./../../config.json');
+const config = require('../../config.json');
 
 const start = (client) => {
     const messages = config.status.messages;

@@ -38,8 +38,8 @@ const startCode0 = async () => {
     client.awaitaction = {};
     client.startDate = Date.now();
 
-    require('./src/start-up/load-languages').load(client);
-    require('./src/start-up/language-file-check');
+    require('./src/dc-client/load-languages').load(client);
+    require('./src/dc-client/language-file-check');
     await require('./src/start-up/mongo-setup').connect();
 
     require('./src/start-up/start-puppeteer');
@@ -47,29 +47,29 @@ const startCode0 = async () => {
 
     client.once(Events.ClientReady, readyClient => {
 
-        require('./src/start-up/discord-fetch').fetch(client);
+        require('./src/dc-guild/discord-fetch').fetch(client);
 
         require('./src/interactions/load-interactions').load(client);
 
         require('./src/start-up/mongodb-check');
 
-        require('./src/start-up/audit-log').setup(client);
-        require('./src/start-up/client-status').start(client);
+        require('./src/dc-guild/audit-log').setup(client);
+        require('./src/dc-client/client-status').start(client);
 
         console.log(`\nCode0 Discord Client ready => ${readyClient.user.tag}`, Constants.CONSOLE.GOOD);
 
-        require('./src/start-up/stats-message').start(client);
-        require('./src/start-up/stats-voice-channel').start(client);
+        require('./src/dc-guild/stats-message').start(client);
+        require('./src/dc-guild/stats-voice-channel').start(client);
 
-        require('./src/start-up/webhook-commit-filter').start(client);
+        require('./src/dc-guild/webhook-commit-filter').start(client);
 
-        require('./src/start-up/user-stats').start(client);
+        require('./src/dc-guild/user-stats').start(client);
 
-        require('./src/start-up/git-rank').setup(client);
+        require('./src/dc-guild/git-rank').setup(client);
 
     });
 
-    require('./src/start-up/debug-log').setup(client);
+    require('./src/dc-client/debug-log').setup(client);
 
     client.login(process.env.TOKEN);
 }

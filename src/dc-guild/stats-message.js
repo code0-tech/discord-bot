@@ -5,7 +5,7 @@ const { MongoUser } = require('../mongo/MongoUser');
 const { waitMs } = require('../utils/time');
 const config = require('../../config.json');
 const { Events } = require('discord.js');
-const DC = require('./../singleton/DC');
+const DC = require('../singleton/DC');
 
 let userList = {};
 

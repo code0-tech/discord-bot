@@ -1,5 +1,5 @@
 const Constants = require('../../data/constants');
-const config = require('./../../config.json');
+const config = require('../../config.json');
 
 const fetch = async (client) => {
     const guild = await client.guilds.fetch(config.serverid);

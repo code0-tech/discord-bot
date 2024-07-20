@@ -1,4 +1,4 @@
-const Constants = require('./../../data/constants');
+const Constants = require('../../data/constants');
 
 const setup = (client) => {
 
