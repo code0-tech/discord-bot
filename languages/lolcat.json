@@ -42,7 +42,7 @@
         },
         "closed": {
             "title": "Clozd",
-            "description": "`Teh tikkit wuz Clozd by `<@{closeduserid}>`.`"
+            "description": "`Thids Tickes war fourr `<@{ticketuserid}>`.`\n\n`TThe tacket was Clozid by `<@{closeduserid}>`.`\n`Tim_e opens: {days} dayz, {hours} h0urs, {minutes} minutos, {seconds} secondus.`"
         }
     },
     "open-contributor": {

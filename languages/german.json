@@ -42,7 +42,7 @@
         },
         "closed": {
             "title": "Geschlossen",
-            "description": "`Das Ticket wurde von `<@{closeduserid}>` geschlossen.`"
+            "description": "`Das Ticket war für `<@{ticketuserid}>`.`\n\n`Das Ticket wurde durch `<@{closeduserid}>` geschlossen.`\n`Gesamte Ticket Zeit: {days} days, {hours} hours, {minutes} minutes, {seconds} seconds.`"
         }
     },
     "open-contributor": {
