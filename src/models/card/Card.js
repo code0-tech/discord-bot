@@ -1,10 +1,15 @@
 const { AttachmentBuilder, Attachment } = require("discord.js");
 const { convertJsonToHtml } = require('./html-builder');
+const Constants = require("../../../data/constants");
 const config = require('./../../../config.json');
 
 class Card {
     constructor() {
         this._cards = [];
+
+        this._ephemeral = true;
+        this._components = [];
+        this._content = null;
     }
 
     /**
@@ -19,77 +24,87 @@ class Card {
      * Get the current generated Html by using the Json from this Class.
      * @returns {string} - Html as a String.
      */
-    getHtml() {
-        return new Promise(async (resolve) => {
-            const cardsHtml = await convertJsonToHtml(this._cards);
-            resolve(cardsHtml);
-        })
+    async getHtml() {
+        const cardsHtml = await convertJsonToHtml(this._cards);
+        return cardsHtml;
     }
 
     /**
      * Get the Attachment for Discord filled with the ImageBuffer from the Html screenshot.
      * @returns {Attachment} - Image Attachment.
      */
-    getAttachment() {
-        return new Promise(async (resolve) => {
-            const page = await global.renderPuppeteer.newPage();
+    async getAttachment() {
+        const page = await global.renderPuppeteer.newPage();
 
-            await page.setContent(await this.getHtml());
+        await page.setContent(await this.getHtml());
 
-            await page.waitForSelector('.card');
+        await page.waitForSelector('.card');
 
-            const elementHandle = await page.$('.card');
-            const imageBuffer = await elementHandle.screenshot({ omitBackground: true });
+        const elementHandle = await page.$('.card');
+        const imageBuffer = await elementHandle.screenshot({ omitBackground: true });
 
-            // await global.renderPuppeteer.close();
-            await page.close();
+        // await global.renderPuppeteer.close();
+        await page.close();
 
-            const attachment = new AttachmentBuilder(imageBuffer, 'image.png');
+        const attachment = new AttachmentBuilder(imageBuffer, 'image.png');
 
-            resolve(attachment);
-        })
+        console.log(`[Puppeteer: Card] created a new card.`, Constants.CONSOLE.WORKING);
+
+        return attachment;
+    }
+
+    /** 
+    * @param {boolean} [ephemeral=true] - Whether the response should be ephemeral. 
+    */
+    setEphemeral(ephemeral = true) {
+        this._ephemeral = ephemeral;
+        return this;
+    }
+
+    /** 
+    * @param {MessageActionRow[]} [components] - The components to include in the message.
+    */
+    setComponents(components = []) {
+        this._components = components;
+        return this;
+    }
+
+    /** 
+    * @param {boolean} [ephemeral=true] - Whether the response should be ephemeral. 
+    */
+    setContent(content = null) {
+        this._content = content;
+        return this;
     }
 
     /**
-     * Get the Embed for Discord.
-     * @returns {Embed} - Embed.
-     */
-    getEmbed() {
-        return new Promise(async (resolve) => {
-            const embed = await convertJsonToEmbed(this._cards);
-            resolve(embed);
-        })
-    }
+    * Send a response to an interaction.
+    * @param {Interaction} interaction - The interaction object.
+    * @returns {Promise<void>} - A promise that resolves when the message is sent.
+    */
+    async interactionResponse(interaction) {
+        const attachment = await this.getAttachment()
 
-    /**
-     * Send the reponse [image/embed depending on user role] to the User.
-     * @param {Interaction} interaction - The interaction object.
-     * @param {Client} client - The client to send the message from.
-     * @param {Guild} guild - The guild where the message comes from.
-     * @param {MessageActionRow[]} [components] - The components to include in the message.
-     * @param {boolean} [ephemeral=true] - Whether the response should be ephemeral.
-     * @param {string} [overwriteResponseType = 'USER_ROLE_CHECK'] - What should the reponse be? Role Based: USER_ROLE_CHECK, Image: IMAGE, Embed: EMBED, or both: EMBED_AND_IMAGE.
-     * @returns {Promise<void>} - Interaction Response.
-     */
-    interactionResponse(interaction, components, ephemeral = true) {
-        return new Promise(async (resolve) => {
+        const responseOptions = {
+            content: this._content,
+            components: this._components,
+            files: [attachment],
+            ephemeral: this._ephemeral
+        };
 
-            const attachment = await this.getAttachment()
+        let interactionReply = undefined;
 
-            const responseOptions = {
-                // content: 'null',
-                files: [attachment], // Only include attachment if it's not null
-                ephemeral: true
-            };
-
-            if (components) {
-                responseOptions.components = components;
+        try {
+            interactionReply = await interaction.editReply(responseOptions);
+        } catch (error) {
+            if (error.code === 50027) {
+                interactionReply = null;
+            } else {
+                throw error;
             }
+        }
 
-            const interactionReply = await interaction.editReply(responseOptions);
-
-            resolve(interactionReply);
-        })
+        return interactionReply;
     }
 
     _addCard(type, options = {}, fn = () => { }) {

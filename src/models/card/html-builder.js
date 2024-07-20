@@ -31,18 +31,15 @@ const traverseObject = (obj) => {
     return htmlText;
 }
 
+const convertJsonToHtml = async (json) => {
+    let htmlText = ``;
+    json.forEach(obj => {
+        htmlText += traverseObject(obj);
+    });
 
-const convertJsonToHtml = (json) => {
-    return new Promise((resolve) => {
-        let htmlText = ``;
-        json.forEach(obj => {
-            htmlText += traverseObject(obj);
-        });
+    const XHTMLText = `${htmlItems.xHtml[0]}${htmlText}${htmlItems.xHtml[1]}`;
 
-        const XHTMLText = `${htmlItems.xHtml[0]}${htmlText}${htmlItems.xHtml[1]}`;
-
-        resolve(XHTMLText);
-    })
+    return XHTMLText;
 }
 
 // Info
