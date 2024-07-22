@@ -34,6 +34,7 @@ const fetchGitCommits = async (spanStartDate, spanEndDate) => {
             $lte: spanEndDate
         }
     };
+
     return await MongoDb.find(ENUMS.DCB.GITHUB_COMMITS, query);
 }
 
@@ -64,7 +65,7 @@ const formatUserStats = (userStats) => {
 }
 
 const fetchAllCommitsCounts = async (names) => {
-    const results = await MongoDb.aggregate(ENUMS.DCB.GITHUB_COMMITS, [
+    let results = await MongoDb.aggregate(ENUMS.DCB.GITHUB_COMMITS, [
         { $match: { name: { $in: names } } },
         { $group: { _id: '$name', totalCommits: { $sum: '$commitscount' } } }
     ]);
@@ -84,6 +85,11 @@ const updatePackets = (formattedUserStats, commitsCounts) => {
 }
 
 const buildLeaderboardDescription = async (formattedUserStats, updatedPackets) => {
+
+    if (!formattedUserStats[0]) {
+        return `### No Winner Today.\nNo commits in the last 24 hours.`;
+    }
+
     let description = `
 ### ${Constants.DISCORD.EMOJIS.TROPHY} Winner: ${formattedUserStats[0].name} ${Constants.DISCORD.EMOJIS.TROPHY}
 
