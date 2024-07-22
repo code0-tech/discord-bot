@@ -8,7 +8,7 @@ const schedule = require('node-schedule');
 
 const MongoDb = new Mongo();
 
-const placeMedals = [
+const medals = [
     Constants.DISCORD.EMOJIS.FIRSTPLACE,
     Constants.DISCORD.EMOJIS.SECONDPLACE,
     Constants.DISCORD.EMOJIS.THIRDPLACE
@@ -84,7 +84,7 @@ const updatePackets = (formattedUserStats, commitsCounts) => {
     }));
 }
 
-const buildLeaderboardDescription = async (formattedUserStats, updatedPackets) => {
+const buildLeaderboardDescription = async (formattedUserStats) => {
 
     if (!formattedUserStats[0]) {
         return `### No Winner Today.\nNo commits in the last 24 hours.`;
@@ -97,8 +97,8 @@ The winner made \`${formattedUserStats[0].total}\` commits in the last 24 hours.
 ### Commits Leaderboard\n`;
 
     formattedUserStats.forEach((user, index) => {
-        const placeMedal = placeMedals[index] || `${index + 1}.`;
-        description += `${placeMedal} ${user.name}: \`${user.total} commits\`\n`;
+        const medal = medals[index] || `${index + 1}.`;
+        description += `${medal} ${user.name}: \`${user.total} commits\`\n`;
     });
 
     return description;
@@ -122,8 +122,8 @@ const sendGitRankMessage = async (client) => {
     const formattedUserStats = formatUserStats(userStats);
     const names = formattedUserStats.map(packet => packet.name);
     const commitsCounts = await fetchAllCommitsCounts(names);
-    const updatedPackets = updatePackets(formattedUserStats, commitsCounts);
-    const description = await buildLeaderboardDescription(formattedUserStats, updatedPackets);
+    // const updatedPackets = updatePackets(formattedUserStats, commitsCounts); // remove later when unused
+    const description = await buildLeaderboardDescription(formattedUserStats);
     const embed = await createEmbedMessage(description);
 
     if (client == null) {
