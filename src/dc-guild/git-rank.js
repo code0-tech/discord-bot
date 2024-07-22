@@ -1,4 +1,3 @@
-const { SimpleTable } = require('../models/SimpleTable');
 const GITCOMMITSTOTAL = require('../singleton/GITCOMMITSTOTAL');
 const { Mongo, ENUMS } = require('../models/Mongo');
 const Constants = require('../../data/constants');
