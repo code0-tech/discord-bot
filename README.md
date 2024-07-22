@@ -18,20 +18,21 @@ Also a MongoDb is required as this Bot needs some DataBase to store Data
 
 ## Main Interactions
 
-|     | Command                                      | Status       |
-| --- | ---------------------------------------------| ------------ |
-| 1   | `/open-contributer`                          | Finished     |
-| 2   | `/ticket`                                    | Finished     |
-| 3   | `/links`                                     | Design       |
-| 4   | `/contributor`                               | Finished     |
-| 5   | `/rank` or `/rank @user` +uptodate15         | Finished     |
-| 6   | `/leaderboard` or `/leaderboard limit: 1-20` | Finished     |
-| 7   | `Code0 Application Ticket`                   | Finished     |
-| 8   | `/stats` or `/stats @user` + uptodate15      | Finished     |
-| 9   | `/logs show` or `/logs list`                 | Finished     |
-| 10  | `/debug` for debugging                       | Debug (WIP)  |
-| 11  | `Git rank message every 24 hours`            | Finished     |
+|     | Command                                      | Status       | Bugs Fixed
+| --- | ---------------------------------------------| ------------ | --------- |
+| 1   | `/open-contributer`                          | Finished     |         3 |
+| 2   | `/ticket`                                    | Finished     |         2 |
+| 3   | `/links`                                     | Design       |         X |
+| 4   | `/contributor`                               | Finished     |         X |
+| 5   | `/rank` or `/rank @user` +uptodate15         | Finished     |         1 |
+| 6   | `/leaderboard` or `/leaderboard limit: 1-20` | Finished     |         1 |
+| 7   | `Code0 Application Ticket`                   | Finished     |         X |
+| 8   | `/stats` or `/stats @user` + uptodate15      | Finished     |         1 |
+| 9   | `/logs show` or `/logs list`                 | Finished     |         1 |
+| 10  | `/debug` for debugging                       | Debug (WIP)  |         - |
+| 11  | `Git rank message every 24 hours`            | Finished     |         1 |
 
+Bugs Fixed: Since i save them / remember.
 
 ## Tracking
 
@@ -52,7 +53,7 @@ The entries look like this:
 
     {
       "_id": {  
-        "$oid": "19cc07cc20024a04cc01cc2024" // _id given by Mongo
+        "$oid": "22cc07cc20024a04cc01cc2024" // _id given by Mongo
       },
     "id": "380808844093292555", // user id, no name
      "rawxp": 631, // your rawXp, the xp of 380808844093292555 have been altered for tests
@@ -71,7 +72,7 @@ The entries look like this:
      "commandstats": {} // empty unused
     }
 
-MongoDb entries last updated in ReadMe: 19.07.2024
+MongoDb entries last updated in ReadMe: 22.07.2024
 
 ## Were are the missing files?
 
