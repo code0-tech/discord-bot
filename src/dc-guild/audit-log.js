@@ -13,35 +13,6 @@ const setup = (client) => {
     let eventHand = [];
 
     const sendEvent = async (event) => {
-        /* const actionId = event.action;
-
-        console.log(event)
-
-        let description = "";
-
-        if (actionId == 14 && event.changes) {// CHANNEL_OVERWRITE_UPDATE
-            description += event.changes.map(change => {
-                let oldValue = change.old;
-                let newValue = change.new;
-
-                if (Array.isArray(oldValue)) {
-                    oldValue = oldValue.join(', ');
-                }
-                if (Array.isArray(newValue)) {
-                    newValue = newValue.join(', ');
-                }
-
-                return `\`${change.key}\` from \`${OVERWRITE_PERMISSIONS[oldValue]}\` to \`${OVERWRITE_PERMISSIONS[newValue]}\``;
-            }).join('\n');
-        }
-
-        new Embed()
-            .setColor(config.embeds.colors.info)
-            .setTitle(`${AUDIT_LOG_ACTIONS[actionId]} (action: ${actionId})`)
-            .setDescription(description)
-            .responseToChannel(config.channels.auditlog, client);
-        */
-
         const executorName = (await DC.memberById(event.executorId, guild)).user.username;
 
         const attachment = await new Card()

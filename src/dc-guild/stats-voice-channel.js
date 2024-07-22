@@ -2,7 +2,6 @@ const { Events, ChannelType } = require('discord.js');
 const Constants = require('../../data/constants');
 const { MongoUser } = require('../mongo/MongoUser');
 const { checkState } = require('../discord/voice');
-const { keyArray } = require('../utils/helper');
 const DC = require('../singleton/DC');
 
 let voiceChatUser = {};

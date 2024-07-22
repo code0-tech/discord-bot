@@ -1,4 +1,3 @@
-const { ButtonBuilder, ButtonStyle, ActionRowBuilder } = require("discord.js");
 const { SlashCommandBuilder } = require('@discordjs/builders');
 const { Embed } = require('./../models/Embed');
 const config = require('./../../config.json');

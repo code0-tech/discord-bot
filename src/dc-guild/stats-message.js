@@ -1,8 +1,6 @@
 const { levenshteinDistance } = require('../utils/helper');
 const { Embed, progressBar } = require('../models/Embed');
-const { Mongo, ENUMS } = require('../models/Mongo');
 const { MongoUser } = require('../mongo/MongoUser');
-const { waitMs } = require('../utils/time');
 const config = require('../../config.json');
 const { Events } = require('discord.js');
 const DC = require('../singleton/DC');
