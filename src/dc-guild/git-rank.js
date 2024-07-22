@@ -1,5 +1,5 @@
 const { SimpleTable } = require('../models/SimpleTable');
-const GITCOMMITS = require('../singleton/GITCOMMITS');
+const GITCOMMITSTOTAL = require('../singleton/GITCOMMITSTOTAL');
 const { Mongo, ENUMS } = require('../models/Mongo');
 const Constants = require('../../data/constants');
 const config = require('../../config.json');
@@ -108,7 +108,7 @@ const createEmbedMessage = async (description) => {
     return new Embed()
         .setColor(config.embeds.colors.info)
         .setDescription(description)
-        .setAttachment(await GITCOMMITS.getAttachment())
+        .setAttachment(await GITCOMMITSTOTAL.getAttachment())
         .setFooter(`Stats over the last ${await totalDays()} days.`)
         .setImage(`attachment://chart.png`);
 }

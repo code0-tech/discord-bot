@@ -1,13 +1,13 @@
 const { getNextDayByDateString } = require('../utils/time');
-const { getColorByString } = require('./../utils/color');
+const { getColorByString } = require('../utils/color');
 const { Mongo, ENUMS } = require('../models/Mongo');
-const Constants = require('./../../data/constants');
-const config = require('./../../config.json');
-const Chart = require('./../models/Chart');
+const Constants = require('../../data/constants');
+const config = require('../../config.json');
+const Chart = require('../models/Chart');
 
 const MongoDb = new Mongo();
 
-class GITCOMMITS {
+class GITCOMMITSTOTAL {
     static getCommitsMongo = async () => {
         const pipeline = [
             {
@@ -114,4 +114,4 @@ class GITCOMMITS {
 }
 
 
-module.exports = GITCOMMITS;
+module.exports = GITCOMMITSTOTAL;
