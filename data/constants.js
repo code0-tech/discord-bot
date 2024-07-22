@@ -78,7 +78,7 @@ class Constants {
     static get SEEDS() {
         return {
             get GITCHART() {
-                return 232;
+                return 32188084552374576;
             }
         };
     }

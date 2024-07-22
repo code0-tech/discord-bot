@@ -87,7 +87,6 @@ class GITCOMMITSTOTAL {
             });
         }
 
-
         return { datasets, labels };
     }
 
