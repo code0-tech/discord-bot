@@ -6,13 +6,13 @@
         },
         "mongo-left-users-loading": {
             "title": "Mongo Left User",
-            "description": "Checked [{checked}|{totaluser}], found {found}."
+            "description": "Checked: [{checked}|{totaluser}], found: {found}."
         },
         "mongo-removed-user": {
             "title": "Removed {userid}."
         },
         "left-user-reload": "Reload",
-        "left-user-remove": "Remove from DB",
+        "left-user-remove": "Remove from MongoDB",
         "found-none": "None",
         "client-session-time": {
             "title": "Client Session Time",
@@ -65,7 +65,7 @@
         },
         "error-already-has-role": {
             "title": "Well... you are an Open Contributor",
-            "description": "You already are an Open Contributor. There is no need to use this command."
+            "description": "There is no need to use this command."
         },
         "initial-message": {
             "title": "How to become an Open Contributor",

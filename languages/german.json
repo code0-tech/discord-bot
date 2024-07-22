@@ -6,7 +6,7 @@
         },
         "mongo-left-users-loading": {
             "title": "Mongo Left User",
-            "description": "Geprüft [{checked}|{totaluser}], gefunden {found}."
+            "description": "Geprüft: [{checked}|{totaluser}], gefunden: {found}."
         },
         "mongo-removed-user": {
             "title": "Entfernt {userid}."
@@ -64,8 +64,8 @@
             "description": "Es scheint, dass eine ähnliche Anfrage bereits gestellt wurde, so dass der aktuelle Antrag storniert wurde."
         },
         "error-already-has-role": {
-            "title": "Ähm... Du bist schon ein Open Contributor",
-            "description": "Du bist schon ein Open Contributor. Dieser Befehl ist nicht notwendig."
+            "title": "Also... Du bist schon ein Open Contributor",
+            "description": "Dieser Befehl ist nicht notwendig."
         },
         "initial-message": {
             "title": "Wie man Open Contributor wird",
@@ -93,7 +93,7 @@
     "contributor": {
         "info": {
             "title": "Wie werde ich ein Open Contributor?",
-            "description": "Um ein Open Contributor zu werden, erfülle diese Kriterien:\n\n1. Hab {neededcommits} oder mehr Commits.\n2. Hab {neededpr} oder mehr Pull Requests.\n\nDu kannst deinen Status mit dem Befehl `/open-contributer` überprüfen."
+            "description": "Um ein Open Contributor zu werden, erfülle folgende Kriterien:\n\n1. Hab mindestens {neededcommits} oder mehr Commits.\n2. Hab mindestens {neededpr} oder mehr Pull Requests.\n\nDu kannst deinen Status mit dem Befehl `/open-contributer` überprüfen."
         }
     },
     "rank": {

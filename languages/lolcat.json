@@ -6,7 +6,7 @@
         },
         "mongo-left-users-loading": {
             "title": "Mongo Left User",
-            "description": "Cheakad [{checked}|{totaluser}], gefounde {found}."
+            "description": "Cheakad: [{checked}|{totaluser}], gefounde: {found}."
         },
         "mongo-removed-user": {
             "title": "Removad to tzh moon {userid}."
@@ -15,7 +15,7 @@
         "left-user-remove": "Removo mongo userz",
         "found-none": "NUN",
         "client-session-time": {
-            "title": "Clint Seshun Time",
+            "title": "Clint Sessioun Time",
             "description": "Up Sinence: {upsince}\n\n`{days}` dayz, `{hours}` hourz, `{minutes}` minoots, `{seconds}` secundz."
         }
     },
