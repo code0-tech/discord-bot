@@ -140,9 +140,5 @@ const setup = (client) => {
     });
 }
 
-const debug_sendGitRankMessage = async () => {
-    return await sendGitRankMessage(null);
-}
 
-
-module.exports = { setup, debug_sendGitRankMessage };
+module.exports = { setup, sendGitRankMessage };

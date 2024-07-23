@@ -1,6 +1,6 @@
 const { ButtonBuilder, ButtonStyle, ActionRowBuilder, StringSelectMenuBuilder } = require("discord.js");
 const { msToHumanReadableTime, convertUnixToTimestamp, waitMs } = require('./../utils/time');
-const { debug_sendGitRankMessage } = require('../dc-guild/git-rank');
+const { sendGitRankMessage } = require('../dc-guild/git-rank');
 const { SlashCommandBuilder } = require('@discordjs/builders');
 const { Embed, progressBar } = require('./../models/Embed');
 const { PermissionFlagsBits } = require("discord.js");
@@ -129,7 +129,7 @@ const debugs = {
     },
 
     async chartFromGithubTotalCommits(interaction, client, guild, member, lang) {
-        const embed = await debug_sendGitRankMessage();
+        const embed = await sendGitRankMessage(null);
         embed.interactionResponse(interaction);
     }
 }
