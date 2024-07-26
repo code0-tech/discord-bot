@@ -37,18 +37,6 @@ const handleGitHubCommitMessage = async (client, msg) => {
 
         await MongoDb.insertOne(ENUMS.DCB.GITHUB_COMMITS, doc);
 
-        const { title, description, color, url, author } = embedData;
-
-        const embed = new Embed()
-            .setColor(config.embeds.colors.info)
-            .setTitle(title)
-            .setDescription(`${description}\n\n\`\`\`filtered: ${commitCount} commits for ${embedData.author.name}\`\`\``)
-            .setColor(color)
-            .setURL(url)
-            .setAuthor(author);
-
-        embed.responseToChannel(config.channels.spam, client);
-
         console.log(`[Webhook Commit Filter] got ${commitCount} commits for ${embedData.author.name}.`, Constants.CONSOLE.WORKING);
     } catch (error) {
         console.error('Error handling GitHub commit message:', error);
