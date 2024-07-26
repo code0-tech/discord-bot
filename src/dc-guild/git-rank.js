@@ -63,26 +63,6 @@ const formatUserStats = (userStats) => {
     })).sort((a, b) => b.total - a.total);
 }
 
-const fetchAllCommitsCounts = async (names) => {
-    let results = await MongoDb.aggregate(ENUMS.DCB.GITHUB_COMMITS, [
-        { $match: { name: { $in: names } } },
-        { $group: { _id: '$name', totalCommits: { $sum: '$commitscount' } } }
-    ]);
-
-    return results.reduce((acc, { _id, totalCommits }) => {
-        acc[_id] = totalCommits;
-        return acc;
-    }, {});
-}
-
-const updatePackets = (formattedUserStats, commitsCounts) => {
-    return formattedUserStats.map(packet => ({
-        name: packet.name,
-        total: packet.total,
-        alldaystotal: commitsCounts[packet.name]
-    }));
-}
-
 const buildLeaderboardDescription = async (formattedUserStats) => {
 
     if (!formattedUserStats[0]) {
@@ -120,8 +100,6 @@ const sendGitRankMessage = async (client) => {
     const userStats = calculateUserStats(documents);
     const formattedUserStats = formatUserStats(userStats);
     const names = formattedUserStats.map(packet => packet.name);
-    const commitsCounts = await fetchAllCommitsCounts(names);
-    // const updatedPackets = updatePackets(formattedUserStats, commitsCounts); // remove later when unused
     const description = await buildLeaderboardDescription(formattedUserStats);
     const embed = await createEmbedMessage(description);
 
