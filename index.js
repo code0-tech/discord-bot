@@ -85,6 +85,4 @@ startCode0();
 
 -> Remove ticket when user left the server
 
--> Remove unused code at git-rank when its not beeing used after group disc
-
 */
