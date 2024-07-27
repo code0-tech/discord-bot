@@ -87,4 +87,6 @@ startCode0();
 
 -> overall activit of a project
 
+-> update from simpeltable to discord-simpletable npm
+
 */
