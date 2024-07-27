@@ -82,6 +82,14 @@ class MongoUser {
     }
 
     /**
+     * get Json
+     */
+    async getJson() {
+        const user = await this._getUser();
+        return user;
+    }
+
+    /**
      * get Level and Xp by raw Xp
      */
     async _getLvlAndXpByRawXp(rawXp) {
