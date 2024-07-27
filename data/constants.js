@@ -82,6 +82,21 @@ class Constants {
             }
         };
     }
+
+    static get GIT(){
+        return {
+            get GRAPH() {
+                return {
+                    get SIZEX() {
+                        return 1000;
+                    },
+                    get SIZEY() {
+                        return 600;
+                    }
+                };
+            }
+        };
+    }
 }
 
 module.exports = Constants;

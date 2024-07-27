@@ -91,7 +91,7 @@ class GITCOMMITSTOTAL {
     }
 
     static makeChartByDataset = (datasets, labels) => {
-        const chart = new Chart(1000, 600)
+        const chart = new Chart(Constants.GIT.GRAPH.SIZEX, Constants.GIT.GRAPH.SIZEY)
             .setType('line')
             .setLabels(labels);
 
@@ -101,7 +101,6 @@ class GITCOMMITSTOTAL {
 
         return chart;
     }
-
 
     static getAttachment = async () => {
         const dbData = await this.getCommitsMongo();
