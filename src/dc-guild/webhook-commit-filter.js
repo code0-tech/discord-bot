@@ -13,14 +13,14 @@ const handleGitHubCommitMessage = async (client, msg) => {
         const embedData = msg.embeds[0]?.data;
         if (!embedData) return;
 
+        const regexCommitCount = /\d+(?= new commit| new commits)/;
+        const matches = embedData.title.match(regexCommitCount);
+        if (!matches) return;
+
         if (config.commands.gitrank.users.blacklist.includes(embedData.author.name)) {
             console.log(`[Webhook Commit Filter] wont save commits for blacklist user: ${embedData.author.name}.`, Constants.CONSOLE.WORKING);
             return;
         }
-
-        const regexCommitCount = /\d+(?= new commit| new commits)/;
-        const matches = embedData.title.match(regexCommitCount);
-        if (!matches) return;
 
         const regexRepoInfo = /\[(.*?):(.*?)\]/;
         const githubInfo = regexRepoInfo.exec(embedData.title);
