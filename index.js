@@ -89,4 +89,6 @@ startCode0();
 
 -> update from simpeltable to discord-simpletable npm
 
+-> Emojis can now be added at the bot developer state, implement this usecase
+
 */
