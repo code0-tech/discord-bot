@@ -172,7 +172,7 @@ const listDbLogs = async (interaction, member, lang, componentData) => {
         { label: lang.getText('text-size'), key: 'logs_length' }
     ];
 
-    const buildTable = await new SimpleTable(columns)
+    const buildTable = new SimpleTable(columns)
         .setJsonArrayInputs(data)
         .setStringOffset(2)
         .addVerticalBar()

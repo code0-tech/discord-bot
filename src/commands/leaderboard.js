@@ -45,7 +45,7 @@ const sendMessage = async (interaction, member, lang, data) => {
         { label: lang.getText('xp'), key: 'xp' }
     ];
 
-    const buildTable = await new SimpleTable(columns)
+    const buildTable = new SimpleTable(columns)
         .setJsonArrayInputs(data)
         .setStringOffset(2)
         .addVerticalBar()

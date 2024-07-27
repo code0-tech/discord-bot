@@ -101,7 +101,7 @@ class SimpleTable {
         return string;
     }
 
-    async build() {
+    build() {
         this.updateWidthForKeys();
 
         let string = this.makeTopHeader();
