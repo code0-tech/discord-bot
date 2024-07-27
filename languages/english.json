@@ -197,5 +197,11 @@
         "#update-msg": {
             "description": "### Level: {level}\n{progressbar} [{xp} xp|{neededXp} xp]\n\n<@{rankuserid}> is now level {level} and in {position} place."
         }
+    },
+    "mydata": {
+        "your-data": {
+            "title": "We got your Data",
+            "description": "This json file contains all the information we have saved about you in our DB."
+        }
     }
 }
