@@ -197,5 +197,11 @@
         "#update-msg": {
             "description": "### Livel: {level}\n{progressbar} [{xp} xp|{neededXp} xp]\n\n<@{rankuserid}> is now levlo {level} an in {position} place."
         }
+    },
+    "mydata": {
+        "your-data": {
+            "title": "We gotaaa your Dat",
+            "description": "dis jason filer containZ dall tfe infortation wes havve saveddd aout yor in DB."
+        }
     }
 }

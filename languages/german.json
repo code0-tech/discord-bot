@@ -186,5 +186,11 @@
         "not-found": {
             "title": "Konnte keine logs für runId: {runid}."
         }
+    },
+    "mydata": {
+        "your-data": {
+            "title": "Wir haben deine Daten",
+            "description": "Diese json Datei beinhaltet alles was wir über dich in unseren Datenbank über dich gespeichert haben."
+        }
     }
 }
