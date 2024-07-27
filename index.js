@@ -85,4 +85,6 @@ startCode0();
 
 -> Remove ticket when user left the server
 
+-> overall activit of a project
+
 */
