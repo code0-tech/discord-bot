@@ -83,7 +83,7 @@ class Constants {
         };
     }
 
-    static get GIT(){
+    static get GIT() {
         return {
             get GRAPH() {
                 return {
@@ -92,6 +92,16 @@ class Constants {
                     },
                     get SIZEY() {
                         return 600;
+                    }
+                };
+            },
+            get PIECHART() {
+                return {
+                    get SIZEX() {
+                        return 1000;
+                    },
+                    get SIZEY() {
+                        return 1000;
                     }
                 };
             }
