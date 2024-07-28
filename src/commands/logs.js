@@ -2,7 +2,7 @@ const { ButtonBuilder, ButtonStyle, ActionRowBuilder, StringSelectMenuBuilder, P
 const { SlashCommandBuilder } = require('@discordjs/builders');
 const { convertUnixToTimestamp } = require("../utils/time");
 const { Mongo, ENUMS } = require('../models/Mongo');
-const { SimpleTable } = require('../models/SimpleTable');
+const DiscordSimpleTable = require('discord-simpletable');
 const { Embed } = require('./../models/Embed');
 const config = require('./../../config.json');
 const DC = require('./../singleton/DC');
@@ -172,7 +172,7 @@ const listDbLogs = async (interaction, member, lang, componentData) => {
         { label: lang.getText('text-size'), key: 'logs_length' }
     ];
 
-    const buildTable = new SimpleTable(columns)
+    const buildTable = new DiscordSimpleTable(columns)
         .setJsonArrayInputs(data)
         .setStringOffset(2)
         .addVerticalBar()

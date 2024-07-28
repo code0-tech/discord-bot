@@ -3,7 +3,7 @@ const { awaiterCodeId, awaitCodeResolve } = require('./../utils/await-action');
 const { SlashCommandBuilder } = require('@discordjs/builders');
 const { Embed, progressBar } = require('./../models/Embed');
 const { encryptString } = require('./../utils/crypto');
-const { SimpleTable } = require('../models/SimpleTable');
+const DiscordSimpleTable = require('discord-simpletable');
 const config = require('./../../config.json');
 const DC = require('./../singleton/DC');
 
@@ -81,7 +81,7 @@ const execute = async (interaction, client, guild, member, lang) => {
             { label: lang.getText('prs'), key: 'pullRequestCount' }
         ];
 
-        table = new SimpleTable(columns)
+        table = new DiscordSimpleTable(columns)
             .setJsonArrayInputs(github.contributions)
             .setStringOffset(2)
             .addVerticalBar()

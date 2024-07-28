@@ -1,5 +1,5 @@
 const { SlashCommandBuilder } = require('@discordjs/builders');
-const { SimpleTable } = require('../models/SimpleTable');
+const DiscordSimpleTable = require('discord-simpletable');
 const { MongoUser } = require('./../mongo/MongoUser');
 const { humanizeNumber } = require('../utils/helper');
 const { Mongo, ENUMS } = require('../models/Mongo');
@@ -45,7 +45,7 @@ const sendMessage = async (interaction, member, lang, data) => {
         { label: lang.getText('xp'), key: 'xp' }
     ];
 
-    const buildTable = new SimpleTable(columns)
+    const buildTable = new DiscordSimpleTable(columns)
         .setJsonArrayInputs(data)
         .setStringOffset(2)
         .addVerticalBar()
