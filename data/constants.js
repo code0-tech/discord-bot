@@ -85,6 +85,9 @@ class Constants {
 
     static get GIT() {
         return {
+            get START_DAYS_BACK_FROM_TODAY() {
+                return 30;
+            },
             get GRAPH() {
                 return {
                     get SIZEX() {

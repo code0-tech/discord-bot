@@ -8,7 +8,15 @@ const MongoDb = new Mongo();
 
 class GITCOMMITSTOTAL {
     static getCommitsMongo = async () => {
+        const startFromXXdaysAgo = new Date();
+        startFromXXdaysAgo.setDate(startFromXXdaysAgo.getDate() - Constants.GIT.START_DAYS_BACK_FROM_TODAY);
+
         const pipeline = [
+            {
+                $match: {
+                    time: { $gte: startFromXXdaysAgo.getTime() }
+                }
+            },
             {
                 $sort: { time: 1 }
             },
