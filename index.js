@@ -85,8 +85,6 @@ startCode0();
 
 -> Remove ticket when user left the server
 
--> overall activit of a project
-
 -> update from simpeltable to discord-simpletable npm
 
 -> Emojis can now be added at the bot developer site, implement this usecase
