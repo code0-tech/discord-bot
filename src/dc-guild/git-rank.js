@@ -1,8 +1,8 @@
 const GITCOMMITSTOTAL = require('../singleton/GITCOMMITSTOTAL');
 const { Mongo, ENUMS } = require('../models/Mongo');
 const Constants = require('../../data/constants');
-const config = require('../../config.json');
 const { Embed } = require('../models/Embed');
+const config = require('../../config.json');
 const schedule = require('node-schedule');
 
 const MongoDb = new Mongo();
