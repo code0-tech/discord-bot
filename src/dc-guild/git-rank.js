@@ -14,16 +14,31 @@ const medals = [
 ];
 
 const totalDays = async () => {
+    const currentDate = new Date();
+    const currentTimestamp = currentDate.getTime();
+    const adjustedTimestamp = currentTimestamp - (Constants.GIT.START_DAYS_BACK_FROM_TODAY * Constants.TIME_MULTIPLIER_MS.DAY);
+    const adjustedDate = new Date(adjustedTimestamp);
+
     const result = await MongoDb.aggregate(ENUMS.DCB.GITHUB_COMMITS, [
-        { $group: { _id: null, minTime: { $min: '$time' } } }
+        {
+            $match: {
+                time: { $gte: adjustedDate.getTime() }
+            }
+        },
+        {
+            $group: {
+                _id: null,
+                minTime: { $min: '$time' }
+            }
+        }
     ])
 
     const time = result.length > 0 ? result[0].minTime : null;
 
     const now = Date.now();
     const differenceInMillis = now - time;
-    const days = Math.floor(differenceInMillis / (1000 * 60 * 60 * 24));
-    return `${days}`;
+    const days = Math.floor(differenceInMillis / Constants.TIME_MULTIPLIER_MS.DAY);
+    return `${days + 1}`;
 }
 
 const fetchGitCommits = async (spanStartDate, spanEndDate) => {
@@ -94,7 +109,7 @@ const createEmbedMessage = async (description) => {
 
 const sendGitRankMessage = async (client) => {
     const spanEndDate = Date.now();
-    const spanStartDate = spanEndDate - 24 * 60 * 60 * 1000;
+    const spanStartDate = spanEndDate - Constants.TIME_MULTIPLIER_MS.DAY;
 
     const documents = await fetchGitCommits(spanStartDate, spanEndDate);
     const userStats = calculateUserStats(documents);
@@ -113,7 +128,7 @@ const sendGitRankMessage = async (client) => {
 }
 
 const setup = (client) => {
-    const job = schedule.scheduleJob('0 16 * * *', function () {
+    const job = schedule.scheduleJob(Constants.GIT.GRAPH.SCHEDULE, function () {
         sendGitRankMessage(client);
     });
 }
