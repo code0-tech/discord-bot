@@ -40,6 +40,9 @@ class Constants {
                 get FILE_CABINET() {
                     return '🗄️'
                 }
+            },
+            get EPOCH_OFFSET() {
+                return 1420070400000; // Discord epoch (2015-01-01)
             }
         };
     }
@@ -95,6 +98,9 @@ class Constants {
                     },
                     get SIZEY() {
                         return 600;
+                    },
+                    get SCHEDULE() {
+                        return '0 16 * * *';
                     }
                 };
             },
@@ -107,6 +113,23 @@ class Constants {
                         return 1000;
                     }
                 };
+            }
+        };
+    }
+
+    static get TIME_MULTIPLIER_MS() {
+        return {
+            get SECONDS() {
+                return 1000;
+            },
+            get MINUTE() {
+                return 1000 * 60;
+            },
+            get DAY() {
+                return 1000 * 60 * 60 * 24;
+            },
+            get MONTH() {
+                return 1000 * 60 * 60 * 24 * 30;
             }
         };
     }
