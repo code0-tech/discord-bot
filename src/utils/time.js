@@ -1,11 +1,11 @@
+const Constants = require("../../data/constants");
+
 const waitMs = (ms) => {
     return new Promise((resolve) => setTimeout(resolve, ms));
 }
 
 const snowflakeToDate = (id) => {
-    EPOCH_OFFSET = 1420070400000; // Discord epoch (2015-01-01)
-
-    const timestamp = (id / 4194304) + EPOCH_OFFSET;
+    const timestamp = (id / 4194304) + Constants.DISCORD.EPOCH_OFFSET;
     return timestamp;
 }
 
