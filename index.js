@@ -89,7 +89,7 @@ startCode0();
 
 -> update from simpeltable to discord-simpletable npm
 
--> Emojis can now be added at the bot developer state, implement this usecase
+-> Emojis can now be added at the bot developer site, implement this usecase
 
 -> command to display overall commits, with carry over
 
