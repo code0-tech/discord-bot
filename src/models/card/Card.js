@@ -1,6 +1,6 @@
 const { AttachmentBuilder, Attachment } = require("discord.js");
 const { convertJsonToHtml } = require('./html-builder');
-const Constants = require("../../../data/constants");
+const Constants = require('../../../data/constants');
 const config = require('./../../../config.json');
 
 class Card {

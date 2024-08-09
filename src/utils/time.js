@@ -1,4 +1,4 @@
-const Constants = require("../../data/constants");
+const Constants = require('../../data/constants');
 
 const waitMs = (ms) => {
     return new Promise((resolve) => setTimeout(resolve, ms));

@@ -1,6 +1,6 @@
 const { ButtonBuilder, ButtonStyle, ActionRowBuilder, StringSelectMenuBuilder, PermissionFlagsBits } = require("discord.js");
 const { SlashCommandBuilder } = require('@discordjs/builders');
-const { convertUnixToTimestamp } = require("../utils/time");
+const { convertUnixToTimestamp } = require('../utils/time');
 const { Mongo, ENUMS } = require('../models/Mongo');
 const DiscordSimpleTable = require('discord-simpletable');
 const { Embed } = require('./../models/Embed');
