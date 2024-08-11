@@ -30,7 +30,7 @@ Also a MongoDb is required as this Bot needs some DataBase to store Data
 | 8   | `/stats` or `/stats @user` + uptodate15      | Finished     |         1 |
 | 9   | `/logs show` or `/logs list`                 | Finished     |         1 |
 | 10  | `/debug` for debugging                       | Debug (WIP)  |         - |
-| 11  | `Git rank message every 24 hours`            | Finished     |         1 |
+| 11  | `Git rank message every 24 hours`            | Finished     |         2 |
 
 Bugs Fixed: Since i save them / remember.
 
@@ -50,29 +50,32 @@ Command tracking is not implemented (yet).
 We are currently not saving any executed commands
 
 The entries look like this:
-
-    {
-      "_id": {  
-        "$oid": "22cc07cc20024a04cc01cc2024" // _id given by Mongo
-      },
+```json
+{
+    "_id": {
+        "$oid": "6644f92497346d3e063052fe" // MongoDb unique id
+    },
     "id": "380808844093292555", // user id, no name
-     "rawxp": 631, // your rawXp, the xp of 380808844093292555 have been altered for tests
-      "stats": {
+    "rawxp": 744, // Your rawXp
+    "stats": {
         "messages": {
-         "words": 3739, // word count
-         "chars": 18850, // char count
-         "count": 617 // message total count
-       },
-       "voice": {
-         "joins": 100, // voice channel joins
-        "switchs": 14, // voice switchts aka channel changes while beeing connected
-         "time": 47968 // total time in seconds
-       }
-      },
-     "commandstats": {} // empty unused
-    }
+            "words": 3847, // Total words count
+            "chars": 19610, // Total chars count
+            "count": 641 // Total messages count
+        },
+        "voice": {
+            "joins": 106, // Voice channel joins
+            "switchs": 14, // Voice channel changes like from Talk#1 to Talk#2 (while remaining connection)
+            "time": 60633 // Voice time in seconds
+        }
+    },
+    "commandstats": {} // empty unused
+}
+```
 
-MongoDb entries last updated in ReadMe: 22.07.2024
+MongoDb entries last updated in ReadMe: 11.08.2024
+
+Ps: On Discord you can do <@user_id> to find out the name of a discord user id.
 
 ## Were are the missing files?
 
