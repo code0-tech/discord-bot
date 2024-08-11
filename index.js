@@ -93,4 +93,6 @@ startCode0();
 
 -> pie chart for repos
 
+-> update modules like DiscordSimpleTable, etc
+
 */
