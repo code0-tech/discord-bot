@@ -31,6 +31,7 @@ Also a MongoDb is required as this Bot needs some DataBase to store Data
 | 9   | `/logs show` or `/logs list`                 | Finished     |         1 |
 | 10  | `/debug` for debugging                       | Debug (WIP)  |         - |
 | 11  | `Git rank message every 24 hours`            | Finished     |         2 |
+| 12  | `/git` display charts of Git activity        | WIP          |         0 |
 
 Bugs Fixed: Since i save them / remember.
 
