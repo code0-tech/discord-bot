@@ -192,5 +192,6 @@
             "title": "Wir haben deine Daten",
             "description": "Diese json Datei beinhaltet alles was wir über dich in unseren Datenbank über dich gespeichert haben."
         }
-    }
+    },
+    "git": {}
 }
