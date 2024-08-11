@@ -89,6 +89,8 @@ startCode0();
 
 -> Emojis can now be added at the bot developer site, implement this usecase
 
--> command to display overall commits, with carry over
+-> command to display overall commits, with carry over from all days
+
+-> pie chart for repos
 
 */
