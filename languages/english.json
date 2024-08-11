@@ -203,5 +203,6 @@
             "title": "We got your Data",
             "description": "This json file contains all the information we have saved about you in our DB."
         }
-    }
+    },
+    "git": {}
 }
