@@ -91,8 +91,8 @@ startCode0();
 
 -> command to display overall commits, with carry over from all days
 
--> pie chart for repos
+-> pie chart for repos (WIP)
 
--> update modules like DiscordSimpleTable, etc
+-> update modules like DiscordSimpleTable, etc [11.08.2024]
 
 */
