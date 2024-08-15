@@ -7,6 +7,28 @@ class Constants {
                 }
             },
             EMOJIS: {
+                get CUSTOM() {
+                    return {
+                        get PBL0() {
+                            return '<:pbl0:1273720212536954972>';
+                        },
+                        get PBL1() {
+                            return '<:pbl1:1273720260633297029>';
+                        },
+                        get PBM0() {
+                            return '<:pbm0:1273720276839829564>';
+                        },
+                        get PBM1() {
+                            return '<:pbm1:1273720293822697624>';
+                        },
+                        get PBR0() {
+                            return '<:pbr0:1273720327335313418>';
+                        },
+                        get PBR1() {
+                            return '<:pbr1:1273720346809339976>';
+                        }
+                    }
+                },
                 get COMMAND_APPLY() {
                     return '💌';
                 },
