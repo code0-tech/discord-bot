@@ -3,6 +3,7 @@ const { Embed } = require('./../models/Embed');
 const config = require('./../../config.json');
 const DC = require('./../singleton/DC');
 
+
 const data = new SlashCommandBuilder()
     .setName('links')
     .setDescription('Get a list of Code0 links.')

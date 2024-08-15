@@ -5,12 +5,14 @@ const { Embed } = require('./../models/Embed');
 const config = require('./../../config.json');
 const DC = require('./../singleton/DC');
 
+
 const data = new SlashCommandBuilder()
     .setName('mydata')
     .setDescription('Retrieve your Data which is stored in our DB.')
     .setDescriptionLocalizations({
         de: 'Erhalte deine Daten die wir über Dich gespeichert haben.',
     })
+
 
 const execute = async (interaction, client, guild, member, lang) => {
     await DC.defer(interaction);

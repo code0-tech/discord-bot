@@ -5,6 +5,7 @@ const { waitMs } = require('./../utils/time');
 const config = require('./../../config.json');
 const DC = require('./../singleton/DC');
 
+
 const data = new SlashCommandBuilder()
     .setName('rank')
     .setDescription('Check your current rank.')

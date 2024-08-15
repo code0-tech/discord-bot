@@ -28,7 +28,6 @@ const execute = async (interaction, client, guild, member, lang) => {
 
 }
 
-
 const executeComponent = async (interaction, client, guild, buttonData, member, lang) => {
   await DC.defer(interaction);
 
@@ -36,5 +35,6 @@ const executeComponent = async (interaction, client, guild, buttonData, member, 
 }
 
 const componentIds = [];
+
 
 module.exports = { execute, executeComponent, data };

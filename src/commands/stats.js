@@ -6,6 +6,7 @@ const { Embed } = require('./../models/Embed');
 const config = require('./../../config.json');
 const DC = require('./../singleton/DC');
 
+
 const data = new SlashCommandBuilder()
     .setName('stats')
     .setDescription('Check your stats.')

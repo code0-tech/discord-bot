@@ -37,7 +37,6 @@ const listUser = async (limit) => {
     return list;
 }
 
-
 const sendMessage = async (interaction, member, lang, data) => {
     const columns = [
         { label: lang.getText('username'), key: 'name' },
@@ -59,7 +58,6 @@ const sendMessage = async (interaction, member, lang, data) => {
         .addContext(lang, member, 'board')
         .interactionResponse(interaction);
 }
-
 
 const execute = async (interaction, client, guild, member, lang) => {
     await DC.defer(interaction);

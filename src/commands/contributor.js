@@ -3,6 +3,7 @@ const { Embed } = require('./../models/Embed');
 const config = require('./../../config.json');
 const DC = require('./../singleton/DC');
 
+
 const data = new SlashCommandBuilder()
     .setName('contributor')
     .setDescription('Explore our Open-Contributor guidelines.')

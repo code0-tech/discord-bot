@@ -34,6 +34,7 @@ const data = new SlashCommandBuilder()
         })
     )
 
+
 const commands = {
     async repoPie(interaction, client, guild, member, lang) {
 

@@ -54,14 +54,12 @@ const checkLastCreatedTicket = async (guild, member) => {
     return hasChannel;
 }
 
-
 const sendEmbedResponse = async (interaction, lang, member, color, contextKey) => {
     await new Embed()
         .setColor(color)
         .addContext(lang, member, contextKey)
         .interactionResponse(interaction);
 };
-
 
 const handleApplicationApply = async (interaction, client, guild, member, lang, buttonData) => {
     if (await checkLastCreatedTicket(guild, member)) {
@@ -104,7 +102,6 @@ const handleApplicationApply = async (interaction, client, guild, member, lang, 
         .interactionResponse(interaction);
 };
 
-
 const handleApplicationClose = async (interaction, client, guild, member, lang, isTeam) => {
     if (!isTeam) {
         await sendEmbedResponse(interaction, lang, member, config.embeds.colors.danger, 'no-team-member');
@@ -135,7 +132,6 @@ const handleApplicationClose = async (interaction, client, guild, member, lang, 
     applicationChannel.setName(`${applicationChannel.name}-closed`);
 };
 
-
 const executeComponent = async (interaction, client, guild, member, lang, buttonData) => {
     await DC.defer(interaction);
 
@@ -156,12 +152,12 @@ const executeComponent = async (interaction, client, guild, member, lang, button
     }
 };
 
-
 const componentIds = [
     'application-apply-closed-team',
     'application-apply-open-contributor',
     'application-close',
     'application-remove'
 ];
+
 
 module.exports = { executeComponent, componentIds, data, autoRun };

@@ -7,6 +7,8 @@ const { Embed } = require('./../models/Embed');
 const config = require('./../../config.json');
 const DC = require('./../singleton/DC');
 
+const MongoDb = new Mongo();
+
 const data = new SlashCommandBuilder()
     .setName('logs')
     .setDescription('Code0 Bot logs.')
@@ -29,7 +31,6 @@ const data = new SlashCommandBuilder()
     )
     .setDefaultMemberPermissions(PermissionFlagsBits.Administrator);
 
-const MongoDb = new Mongo();
 
 const getLogs = async (runId) => {
     const results = await MongoDb.find(ENUMS.DCB.LOGS, { run_id: runId });
