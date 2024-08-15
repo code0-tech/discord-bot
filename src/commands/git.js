@@ -1,6 +1,6 @@
 const { SlashCommandBuilder } = require('@discordjs/builders');
-const { Mongo, ENUMS } = require('../models/Mongo');
 const DiscordSimpleTable = require('discord-simpletable');
+const { Mongo, ENUMS } = require('../models/Mongo');
 const { Embed } = require('./../models/Embed');
 const config = require('./../../config.json');
 const DC = require('./../singleton/DC');
