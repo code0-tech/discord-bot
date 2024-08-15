@@ -91,10 +91,10 @@ startCode0();
 
 -> command to display overall commits, with carry over from all days
 
--> pie chart for repos (WIP)
+-> pie chart for repos (WIP) [since 11.08.2024]
 
 -> update modules like DiscordSimpleTable, etc [11.08.2024]
 
--> debug remove double users
+-> debug remove double users [15.08.2024]
 
 */
