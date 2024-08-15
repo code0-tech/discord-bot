@@ -50,7 +50,6 @@ const loop = async (interaction, member, lang, embedMessage, rankMember, user, p
     }
 };
 
-
 const execute = async (interaction, client, guild, member, lang) => {
     await DC.defer(interaction);
 

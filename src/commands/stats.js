@@ -37,7 +37,6 @@ const normalizeData = (data) => {
     return data;
 }
 
-
 const loop = async (client, interaction, member, lang, embedMessage, rankMember, user, previousStats = null) => {
     const stats = await user.getStats();
     const normalizedStats = normalizeData(stats);
@@ -74,7 +73,6 @@ const loop = async (client, interaction, member, lang, embedMessage, rankMember,
         loop(client, interaction, member, lang, embedMessage, rankMember, user, normalizedStats);
     }
 }
-
 
 const execute = async (interaction, client, guild, member, lang) => {
     await DC.defer(interaction);

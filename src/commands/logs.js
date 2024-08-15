@@ -36,9 +36,7 @@ const getLogs = async (runId) => {
     return results[0];
 }
 
-
 const getCurrentSessionRunId = () => process['dclogger'].runid;
-
 
 const formatLog = (log) => {
     const timestamp = convertUnixToTimestamp(log.time);
@@ -47,7 +45,6 @@ const formatLog = (log) => {
 
     return `${timestamp}\n\`\`\`${message}${error}\`\`\`\n`;
 };
-
 
 const getLogsWithRange = async (runId, action, currentStart, currentEnd) => {
     const logFile = await getLogs(runId);
@@ -76,7 +73,6 @@ const getLogsWithRange = async (runId, action, currentStart, currentEnd) => {
 
     return { createdAt, logString, totalLength, rangeStart, rangeEnd };
 }
-
 
 const sendLog = async (interaction, member, lang, componentData, runId = null, type) => {
     const sessionId = runId || componentData.s;
@@ -129,7 +125,6 @@ const sendLog = async (interaction, member, lang, componentData, runId = null, t
         .interactionResponse(interaction);
 }
 
-
 const showCurrentSessionLogs = async (interaction, member, lang, componentData) => {
     if (global.isDevelopment) {
         return new Embed()
@@ -140,12 +135,10 @@ const showCurrentSessionLogs = async (interaction, member, lang, componentData) 
     sendLog(interaction, member, lang, componentData, getCurrentSessionRunId(), 'show');
 }
 
-
 const viewDbLogs = (interaction, member, lang, componentData) => {
     const runId = componentData.selected || null;
     sendLog(interaction, member, lang, componentData, runId, 'view');
 }
-
 
 const listDbLogs = async (interaction, member, lang, componentData) => {
     const results = await MongoDb.aggregate(ENUMS.DCB.LOGS, [
@@ -194,7 +187,6 @@ const listDbLogs = async (interaction, member, lang, componentData) => {
         .interactionResponse(interaction);
 }
 
-
 const findAndExecuteSubCommand = (subCommand, interaction, member, lang, componentData) => {
     switch (subCommand) {
         case 'show':
@@ -210,7 +202,6 @@ const findAndExecuteSubCommand = (subCommand, interaction, member, lang, compone
             break;
     }
 }
-
 
 const execute = async (interaction, client, guild, member, lang) => {
     await DC.defer(interaction);
@@ -238,7 +229,6 @@ const execute = async (interaction, client, guild, member, lang) => {
     const componentData = null;
     findAndExecuteSubCommand(subCommand, interaction, member, lang, componentData);
 }
-
 
 const executeComponent = async (interaction, client, guild, member, lang, componentData) => {
     await DC.defer(interaction);

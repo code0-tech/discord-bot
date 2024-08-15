@@ -101,7 +101,6 @@ const execute = async (interaction, client, guild, member, lang) => {
         .responseToChannel(ticketChannel.id, client);
 }
 
-
 const executeComponent = async (interaction, client, guild, member, lang, componentData) => {
     await DC.defer(interaction);
 
