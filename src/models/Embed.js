@@ -332,17 +332,17 @@ const progressBar = (total, whole, info = true, segments = 10) => {
     let end = '';
 
     if (filledSegments >= segments) {
-        end = config.embeds.progressbar.pbr1;
+        end = Constants.DISCORD.EMOJIS.CUSTOM.PBR1;
         filledSegments--;
     } else {
-        end = config.embeds.progressbar.pbr0;
+        end = Constants.DISCORD.EMOJIS.CUSTOM.PBR0;
         if (emptySegments > 0) {
             emptySegments--;
         }
     }
 
     if (filledSegments >= 1) {
-        string = config.embeds.progressbar.pbl1;
+        string = Constants.DISCORD.EMOJIS.CUSTOM.PBL1;
         if (filledSegments == 0) {
             emptySegments--;
         } else {
@@ -350,17 +350,15 @@ const progressBar = (total, whole, info = true, segments = 10) => {
         }
     } else {
         emptySegments--;
-        string = config.embeds.progressbar.pbl0;
+        string = Constants.DISCORD.EMOJIS.CUSTOM.PBL0;
     }
 
-    string += config.embeds.progressbar.pbm1.repeat(filledSegments);
-    string += config.embeds.progressbar.pbm0.repeat(emptySegments);
-
+    string += Constants.DISCORD.EMOJIS.CUSTOM.PBM1.repeat(filledSegments);
+    string += Constants.DISCORD.EMOJIS.CUSTOM.PBM0.repeat(emptySegments);
 
     if (info) {
         end += " " + percentage + "%";
     }
-
 
     return string + end;
 }
