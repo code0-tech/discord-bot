@@ -113,6 +113,9 @@ class Constants {
                         return 1000;
                     }
                 };
+            },
+            OAUTH_LINK(state, scope) {
+                return `https://github.com/login/oauth/authorize?client_id=${process.env.GITHUB_CLIENT_ID}&state=${state}&scope=${encodeURIComponent(scope)}`;
             }
         };
     }
