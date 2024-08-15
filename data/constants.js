@@ -42,7 +42,7 @@ class Constants {
                 }
             },
             get EPOCH_OFFSET() {
-                return 1420070400000; // Discord epoch (2015-01-01)
+                return 1420070400000; // (2015-01-01) for Discord
             }
         };
     }
@@ -81,14 +81,14 @@ class Constants {
     static get SEEDS() {
         return {
             get GITCHART() {
-                return 32188084552374576;
+                return 32188084552374576; // Seed for user colors
             }
         };
     }
 
     static get GIT() {
         return {
-            get START_DAYS_BACK_FROM_TODAY() {
+            get START_DAYS_BACK_FROM_TODAY() { // Git rank graph total days
                 return 30;
             },
             get GRAPH() {
@@ -137,5 +137,6 @@ class Constants {
         };
     }
 }
+
 
 module.exports = Constants;
