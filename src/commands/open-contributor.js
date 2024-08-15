@@ -4,6 +4,7 @@ const { SlashCommandBuilder } = require('@discordjs/builders');
 const { Embed, progressBar } = require('./../models/Embed');
 const DiscordSimpleTable = require('discord-simpletable');
 const { encryptString } = require('./../utils/crypto');
+const Constants = require("../../data/constants");
 const config = require('./../../config.json');
 const DC = require('./../singleton/DC');
 
@@ -26,7 +27,7 @@ const failedMessage = async (interaction, client, member, lang, type) => {
 const createButtonRow = (data, lang) => {
     const userIdEncrypted = encryptString(JSON.stringify(data));
     const githubScopes = 'user:read read:org';
-    const oAuthLink = `https://github.com/login/oauth/authorize?client_id=${process.env.GITHUB_CLIENT_ID}&state=${userIdEncrypted}&scope=${encodeURIComponent(githubScopes)}`;
+    const oAuthLink = Constants.GIT.OAUTH_LINK(userIdEncrypted, githubScopes);
 
     const oAuthLinkButton = new ButtonBuilder()
         .setLabel(lang.getText('button-link'))
