@@ -11,9 +11,9 @@ This this the Discord Bot for Code0 running in javascript.
 #
 The Bot is running the Discord.js Client instance and a small Web-Server for Github o-auth in order to perform some commands which includes reading commits and pull's.
 
-For that reason a Http Port is required and currently set to `http-config.port`
+For that reason a Http Port is required and currently set to `http-config.port` inside the http-config.json
 
-Also a MongoDb is required as this Bot needs some DataBase to store Data
+A MongoDb is required as this Bot stores some Data
 #
 
 ## Main Interactions
@@ -74,9 +74,9 @@ The entries look like this:
 }
 ```
 
-MongoDb entries last updated in ReadMe: 13.08.2024
+MongoDb entries last updated inside this ReadMe: 15.08.2024
 
-Ps: On Discord you can do <@user_id> to find out the name of a discord user id.
+Ps: On Discord you can do <@user_id> to find out the name of a discord by his user id.
 
 ## Were are the missing files?
 
@@ -95,7 +95,7 @@ If you'd like to set up this bot for testing purposes, please contact me at [DC:
 
 ## Unused files for the Discord Bot process
 
-In `./data/_app/*` are files that are just to setup the Discord server
+In `./_app/*` are files that are just to setup the Discord server, like images
 
 ## Versions
 
