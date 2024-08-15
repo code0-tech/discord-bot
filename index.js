@@ -87,9 +87,7 @@ startCode0();
 
 -> update from simpeltable to discord-simpletable npm
 
--> Emojis can now be added at the bot developer site, implement this usecase
-
--> command to display overall commits, with carry over from all days
+-> command to display overall commits, with carry over for all days
 
 -> pie chart for repos (WIP) [since 11.08.2024]
 
