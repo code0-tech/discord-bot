@@ -74,7 +74,7 @@ The entries look like this:
 }
 ```
 
-MongoDb entries last updated inside this ReadMe: 15.08.2024
+MongoDb entries last updated inside this ReadMe: 17.08.2024
 
 Ps: On Discord you can do <@user_id> to find out the name of a discord by his user id.
 
@@ -119,9 +119,9 @@ The Code works 100% with these versions.
 
 - wip: Work in Progess
 
-- uptodate15: This means the message will be updated when changes occur up to 15 more minutes which would mean that the interaction token expires.
+- uptodate15: This means the message will be updated when changes occur up to 15 more minutes after the interaction execution.
 
-- todo: When creating my simple todo's i do a new commit which will be named after "todo".
+- todo: When creating my todos i will create a new commit which will be named after "todo".
 
 - readme: Is also a commit whenever i update the readme.
 
@@ -145,7 +145,7 @@ Since this bot is under development, significant changes may occur.
 
 0.1.0 => Command changes
 
-0.0.0 => Changes of entire Class or Interaction method structures
+1.0.0 => Changes of entire Class or Interaction method structures
 
 Very simple to keep track of, this NVS was not used correctly until now 10.07.2024.
 
