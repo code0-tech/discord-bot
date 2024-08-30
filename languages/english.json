@@ -21,7 +21,7 @@
     },
     "ticket": {
         "btn-close": "Close",
-        "btn-delete-ticket": "Delete Ticket",
+        "btn-remove-ticket": "Remove Ticket",
         "timeout": {
             "title": "Timeout",
             "description": "Your last ticket was created `{m} minutes` and `{s} seconds` ago.\nPlease wait before creating your next Ticket."
@@ -154,8 +154,8 @@
             "description": "Only Team members can close an Application."
         },
         "confirm-remove-application": {
-            "title": "Application Closed",
-            "description": "`The Application was Closed by `<@{closeduserid}>`.`"
+            "title": "Closed",
+            "description": "`This Application was for `<@{ticketuserid}>`.`\n\n`The Application was Closed by `<@{closeduserid}>`.`\n`Time open: {days} days, {hours} hours, {minutes} minutes, {seconds} seconds.`"
         },
         "close-info": {
             "title": "Closing Application"
