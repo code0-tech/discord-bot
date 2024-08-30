@@ -51,7 +51,6 @@ const sendMessage = async (interaction, member, lang, data) => {
         .addIndex(1)
         .build();
 
-
     new Embed()
         .setColor(config.embeds.colors.info)
         .addInputs({ stringlist: buildTable })
