@@ -1,4 +1,5 @@
 const { ChannelType, PermissionsBitField, ButtonBuilder, ButtonStyle, ActionRowBuilder } = require("discord.js");
+const { snowflakeToDate, msToHumanReadableTime } = require('./../utils/time');
 const Constants = require('./../../data/constants');
 const { Channel } = require('./../models/Channel');
 const { keyArray } = require('./../utils/helper');
@@ -113,7 +114,7 @@ const handleApplicationClose = async (interaction, client, guild, member, lang, 
 
     const applicationChannel = await DC.channelByInteraction(interaction, guild);
 
-    DC.removeChannelUserOverrides(applicationChannel);
+    const { removedIds } = await DC.removeChannelUserOverrides(applicationChannel);
 
     const confirmDeleteButton = new ButtonBuilder()
         .setCustomId('delete-ticket')
@@ -122,9 +123,19 @@ const handleApplicationClose = async (interaction, client, guild, member, lang, 
 
     const row = new ActionRowBuilder().addComponents(confirmDeleteButton);
 
+    const timeStamp = snowflakeToDate(interaction.channel.id);
+    const { d, h, m, s } = msToHumanReadableTime(Date.now() - timeStamp);
+
     await new Embed()
         .setColor(config.embeds.colors.danger)
-        .addInputs({ closeduserid: interaction.user.id })
+        .addInputs({
+            closeduserid: interaction.user.id,
+            ticketuserid: removedIds[0],
+            days: d,
+            hours: h,
+            minutes: m,
+            seconds: s
+        })
         .addContext(lang, member, 'confirm-remove-application')
         .setComponents([row])
         .responseToChannel(applicationChannel.id, client);
