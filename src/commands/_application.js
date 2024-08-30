@@ -129,7 +129,7 @@ const handleApplicationClose = async (interaction, client, guild, member, lang, 
         .setComponents([row])
         .responseToChannel(applicationChannel.id, client);
 
-    applicationChannel.setName(`${applicationChannel.name}-closed`);
+    applicationChannel.setName(`${Constants.DISCORD.EMOJIS.KEY_LOCKED}${applicationChannel.name}-closed`);
 };
 
 const executeComponent = async (interaction, client, guild, member, lang, buttonData) => {
