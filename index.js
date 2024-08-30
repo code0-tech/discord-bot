@@ -81,8 +81,6 @@ startCode0();
 
 -> Discord Audit log Embeds [Todo since: 28.04.2024]
 
--> maybe add same end message from ticket to _application [20.07.2024]
-
 -> Remove ticket when user left the server
 
 -> update from simpeltable to discord-simpletable npm
