@@ -83,8 +83,6 @@ startCode0();
 
 -> Remove ticket when user left the server
 
--> update from simpeltable to discord-simpletable npm
-
 -> command to display overall commits, with carry over for all days
 
 -> pie chart for repos (WIP) [since 11.08.2024]
