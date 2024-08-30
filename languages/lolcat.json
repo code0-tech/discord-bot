@@ -154,8 +154,8 @@
             "description": "Only Teem memburz can cloz an Applikashun."
         },
         "confirm-remove-application": {
-            "title": "Applikashun Clozd",
-            "description": "`Teh Applikashun wuz Clozd by `<@{closeduserid}>`.`"
+            "title": "Clozd",
+            "description": "`Thids Applikashun war fourr `<@{ticketuserid}>`.`\n\n`TThe Applikashun was Clozid by `<@{closeduserid}>`.`\n`Tim_e opens: {days} dayz, {hours} h0urs, {minutes} minutos, {seconds} secondus.`"
         },
         "close-info": {
             "title": "Clozin Applikashun"
