@@ -74,7 +74,7 @@ The entries look like this:
 }
 ```
 
-MongoDb entries last updated inside this ReadMe: 17.08.2024
+MongoDb entries last updated inside this ReadMe: 30.08.2024
 
 Ps: On Discord you can do <@user_id> to find out the name of a discord by his user id.
 
