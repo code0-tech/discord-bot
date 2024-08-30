@@ -21,7 +21,7 @@
     },
     "ticket": {
         "btn-close": "Cloz",
-        "btn-delete-ticket": "Deleet Tikkit",
+        "btn-remove-ticket": "Deleet Tikkit",
         "timeout": {
             "title": "Tiimeowt",
             "description": "Ur last tikkit wuz creatd `{m} minoots` an `{s} secundz` ago.\nPlz wate be4 creatin ur next Tikkit."
