@@ -21,7 +21,7 @@
     },
     "ticket": {
         "btn-close": "Schließen",
-        "btn-delete-ticket": "Ticket löschen",
+        "btn-remove-ticket": "Ticket entfernen",
         "timeout": {
             "title": "Bitte warte",
             "description": "Dein letztes Ticket wurde vor `{m} Minuten` und `{s} Sekunden` erstellt.\nBitte warten, bevor Du dein nächstes Ticket erstellst."
@@ -149,7 +149,7 @@
         },
         "confirm-remove-application": {
             "title": "Bewerbung geschlossen",
-            "description": "`Die Bewerbung wurde von `<@{closeduserid}>` geschlossen.`"
+            "description": "`Die Bewerbung war für `<@{ticketuserid}>`.`\n\n`Die Bewerbung wurde durch `<@{closeduserid}>` geschlossen.`\n`Gesamte Bewerbungs Zeit: {days} days, {hours} hours, {minutes} minutes, {seconds} seconds.`"
         },
         "close-info": {
             "title": "Bewerbung wird geschlossen"
