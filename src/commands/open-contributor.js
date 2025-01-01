@@ -99,7 +99,7 @@ const execute = async (interaction, client, guild, member, lang) => {
     await new Embed()
         .setColor(config.embeds.colors.info)
         .addInputs({
-            tablestring: await table.build(),
+            tablestring: table.build(),
             yourpr: github.totalPullRequests,
             neededpr: config.commands.opencontributor.pr,
 
