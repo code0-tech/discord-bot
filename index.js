@@ -13,7 +13,7 @@ const startCode0 = async () => {
 
     dotenv.config({ path: global.isDevelopment ? '.env' : 'server.env' });
 
-    // global.isDevelopment = false; // Manuel override
+    // global.isDevelopment = false;
 
     global.mainDir = __dirname;
     global.mongoClient = null;
