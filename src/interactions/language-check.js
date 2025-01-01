@@ -50,7 +50,7 @@ const language = async (commandNameLong, interaction, guild, client) => {
 Language Pack
 
 all "_" means that its not a command but maybe an button interaction.
-all "#"" means that its only for one language as its used global for everyone on the server and not private.
+all "#"" means that its only for one language as its used global for everyone on the server and not per person.
 */
 
 module.exports = { language };
