@@ -1,4 +1,4 @@
-const startCode0 = async () => {
+const start = async (args) => {
 
     require('./src/start-up/update-console-log');
     require('./src/start-up/process-exit');
@@ -75,13 +75,11 @@ const startCode0 = async () => {
 }
 
 
-startCode0();
+start();
 
 /* TODO
 
 -> Discord Audit log Embeds [Todo since: 28.04.2024]
-
--> Remove ticket when user left the server
 
 -> command to display overall commits, with carry over for all days
 
