@@ -8,7 +8,7 @@ const DC = require('./../singleton/DC');
 
 const data = new SlashCommandBuilder()
     .setName('mydata')
-    .setDescription('Retrieve your Data which is stored in our DB.')
+    .setDescription('Retrieve your Data which we store in our DB.')
     .setDescriptionLocalizations({
         de: 'Erhalte deine Daten die wir über Dich gespeichert haben.',
     })
