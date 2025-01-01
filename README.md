@@ -33,14 +33,12 @@ A MongoDb is required as this Bot stores some Data
 | 11  | `Git rank message every 24 hours`            | Finished     |         0 |
 | 12  | `/git` display charts of Git activity        | WIP          |         0 |
 
-Bugs Fixed: Since i save them / remember.
-
 ## Tracking
 
 We do track stats, as you could tell by our Bot's source code such as:
 
-- Message Stats -> message/word/char *count.
-- Voice Stats -> joins/leaves/switches *count.
+- Message Stats -> message|word|char
+- Voice Stats -> joins|leaves|switches|time
 
 We use these to determine your rank or display stats about you.
 
@@ -50,31 +48,31 @@ which also means that you have to re-auth yourself at any command execution.
 Command tracking is not implemented (yet).
 We are currently not saving any executed commands
 
-The entries look like this:
+Entrie Example:
 ```json
 {
     "_id": {
         "$oid": "6644f92497346d3e063052fe" // MongoDb unique id
     },
     "id": "380808844093292555", // user id, no name
-    "rawxp": 744, // Your rawXp
+    "rawxp": 812, // Your rawXp
     "stats": {
         "messages": {
-            "words": 3847, // Total words count
-            "chars": 19610, // Total chars count
-            "count": 641 // Total messages count
+            "words": 3896, // Total word count
+            "chars": 19915, // Total char count
+            "count": 650 // Total message count
         },
         "voice": {
-            "joins": 106, // Voice channel joins
-            "switchs": 14, // Voice channel changes like from Talk#1 to Talk#2 (while remaining connection)
-            "time": 60633 // Voice time in seconds
+            "joins": 113, // Voice channel joins
+            "switchs": 17, // Voice channel changes like from Talk#1 to Talk#2 (while remaining connection)
+            "time": 88848 // Voice time in seconds
         }
     },
     "commandstats": {} // empty unused
 }
 ```
 
-MongoDb entries last updated inside this ReadMe: 30.08.2024
+MongoDb entries last updated inside this ReadMe: 1.01.2025
 
 Ps: On Discord you can do <@user_id> to find out the name of a discord by his user id.
 
@@ -83,8 +81,8 @@ Ps: On Discord you can do <@user_id> to find out the name of a discord by his us
 The code you see here mirrors what's running on the Discord Bot server. However, some files are not open-source:
 
 - node_modules: Not included here because storing them wouldn't be practical.
-- server.env: Server-side configuration.
-- .env: Development configuration.
+- server.env: Server-side configuration. [Stored tokens etc]
+- .env: Development configuration. [Stored tokens etc]
 - config.json: Contains server-specific settings like roles, channels, embeds, etc.
 - http-config.json: Specifically used for our server.
 - unused-temp.js: Stores unused code snippets for potential future use.
@@ -115,15 +113,19 @@ In `./_app/*` are files that are just to setup the Discord server, like images
 
 The Code works 100% with these versions.
 
-## What is?
+## What does this commit mean?
 
 - wip: Work in Progess
-
-- uptodate15: This means the message will be updated when changes occur up to 15 more minutes after the interaction execution.
 
 - todo: When creating my todos i will create a new commit which will be named after "todo".
 
 - readme: Is also a commit whenever i update the readme.
+
+- naming: Simple changes of const, vars or text.
+
+## What does ... mean?
+
+- uptodate15: This means the message will be updated when changes occur up to 15 more minutes after the interaction execution.
 
 ## Why Does Code Sometimes Fall Short?
 
@@ -151,4 +153,4 @@ Very simple to keep track of, this NVS was not used correctly until now 10.07.20
 
 ## Know issues
 
-- 1: Tables and Bars are not displayed correctly on Mobile devices
+- 1: Tables and Bars are not displayed correctly on Mobile devices [1.01.2025]
