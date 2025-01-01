@@ -18,19 +18,19 @@ A MongoDb is required as this Bot stores some Data
 
 ## Main Interactions
 
-|     | Command                                      | Status       | Bugs Fixed
+|     | Command                                      | Status       | Known Bugs
 | --- | ---------------------------------------------| ------------ | --------- |
-| 1   | `/open-contributer`                          | Finished     |         3 |
-| 2   | `/ticket`                                    | Finished     |         2 |
-| 3   | `/links`                                     | Design       |         X |
-| 4   | `/contributor`                               | Finished     |         X |
-| 5   | `/rank` or `/rank @user` +uptodate15         | Finished     |         1 |
-| 6   | `/leaderboard` or `/leaderboard limit: 1-20` | Finished     |         1 |
-| 7   | `Code0 Application Ticket`                   | Finished     |         X |
-| 8   | `/stats` or `/stats @user` + uptodate15      | Finished     |         1 |
-| 9   | `/logs show` or `/logs list`                 | Finished     |         1 |
-| 10  | `/debug` for debugging                       | Debug (WIP)  |         - |
-| 11  | `Git rank message every 24 hours`            | Finished     |         2 |
+| 1   | `/open-contributer`                          | Finished     |         0 |
+| 2   | `/ticket`                                    | Finished     |         0 |
+| 3   | `/links`                                     | Design       |         0 |
+| 4   | `/contributor`                               | Finished     |         0 |
+| 5   | `/rank` or `/rank @user` +uptodate15         | Finished     |         0 |
+| 6   | `/leaderboard` or `/leaderboard limit: 1-20` | Finished     |         0 |
+| 7   | `Code0 Application Ticket`                   | Finished     |         0 |
+| 8   | `/stats` or `/stats @user` + uptodate15      | Finished     |         0 |
+| 9   | `/logs show` or `/logs list`                 | Finished     |         0 |
+| 10  | `/debug` for debugging                       | Debug (WIP)  |         0 |
+| 11  | `Git rank message every 24 hours`            | Finished     |         0 |
 | 12  | `/git` display charts of Git activity        | WIP          |         0 |
 
 Bugs Fixed: Since i save them / remember.
