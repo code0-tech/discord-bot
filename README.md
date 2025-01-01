@@ -123,6 +123,8 @@ The Code works 100% with these versions.
 
 - naming: Simple changes of const, vars or text.
 
+- v/version: version update in package.json
+
 ## What does ... mean?
 
 - uptodate15: This means the message will be updated when changes occur up to 15 more minutes after the interaction execution.
