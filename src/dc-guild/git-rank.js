@@ -119,7 +119,7 @@ const sendGitRankMessage = async (client) => {
     const embed = await createEmbedMessage(description);
 
     if (client == null) {
-        return embed; // for debug only
+        return embed; // for debug command
     }
 
     embed.responseToChannel(config.channels.gitranks, client);
