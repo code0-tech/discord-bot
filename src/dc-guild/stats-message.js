@@ -19,7 +19,6 @@ const newPacket = (msg) => {
     }
 }
 
-
 const checkIfValid = async (msg) => {
     let inValid = false;
     let info = [];
@@ -60,7 +59,6 @@ const checkIfValid = async (msg) => {
     return { inValid, info: info };
 }
 
-
 const channelRankUpdateMessage = async (client, user) => {
     const guild = await DC.guildById(config.serverid, client);
     const rankMember = await guild.members.fetch(await user.getId());
@@ -84,7 +82,6 @@ const channelRankUpdateMessage = async (client, user) => {
         .addContext({ text: client.languages.english['#_rankupdate'] }, null, '#update-msg')
         .responseToChannel(config.channels.rankupdates, client)
 }
-
 
 const start = (client) => {
     const maxLength = config.commands.rank.maxlength;

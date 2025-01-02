@@ -1,7 +1,7 @@
 const { Events, ChannelType } = require('discord.js');
-const Constants = require('../../data/constants');
 const { MongoUser } = require('../mongo/MongoUser');
 const { checkState } = require('../discord/voice');
+const Constants = require('../../data/constants');
 const DC = require('../singleton/DC');
 
 let voiceChatUser = {};
@@ -90,6 +90,7 @@ const start = async (client) => {
                 break;
 
             default:
+                console.log(`[Voice Stats] unkown state "${state}"`, Constants.CONSOLE.ERROR);
                 break;
         }
     });
