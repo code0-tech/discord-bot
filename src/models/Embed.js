@@ -264,14 +264,16 @@ class Embed {
             } catch (error) {
                 if (error.code === 50027) {
                     interactionReply = null;
+                    console.log(`[Embed] Error "50027", invalid Token [possible +15update message]`, Constants.CONSOLE.ERROR);
                 } else {
+                    console.log(`[Embed] Error while sending Embed`, Constants.CONSOLE.ERROR);
                     throw error;
                 }
             }
 
             return interactionReply;
         } catch (error) {
-            console.error(`Error sending interaction response: ${error.message}`);
+            console.log(`[Embed] Error while sending Embed`, Constants.CONSOLE.ERROR);
             throw error;
         }
     }
