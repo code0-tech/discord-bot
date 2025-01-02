@@ -65,6 +65,26 @@ class Constants {
             },
             get EPOCH_OFFSET() {
                 return 1420070400000; // (2015-01-01) for Discord
+            },
+            get EMBED_IMAGE_NAME() { // Used for simple Attachment image naming and retrieving
+                return {
+                    get BUILDER() {
+                        return {
+                            get DEFAULT_PNG_01() {
+                                return 'default_01.png'
+                            },
+                        }
+                    },
+                    get EMBED() {
+                        return {
+                            get DEFAULT_PNG_01() {
+                                return 'attachment://default_01.png'
+                            }
+                        }
+                    },
+
+
+                }
             }
         };
     }
