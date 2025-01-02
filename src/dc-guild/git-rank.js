@@ -87,7 +87,7 @@ const buildLeaderboardDescription = async (formattedUserStats) => {
     let description = `
 ### ${Constants.DISCORD.EMOJIS.TROPHY} Winner: ${formattedUserStats[0].name} ${Constants.DISCORD.EMOJIS.TROPHY}
 
-The winner made ${formattedUserStats[0].total} commits in the last 24 hours.
+The winner made ${formattedUserStats[0].total} commits in the past 24 hours.
 ### Commits Leaderboard\n`;
 
     formattedUserStats.forEach((user, index) => {
