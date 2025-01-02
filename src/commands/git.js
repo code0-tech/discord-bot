@@ -1,6 +1,7 @@
 const { SlashCommandBuilder } = require('@discordjs/builders');
 const DiscordSimpleTable = require('discord-simpletable');
 const { Mongo, ENUMS } = require('../models/Mongo');
+const Constants = require('../../data/constants');
 const { Embed } = require('./../models/Embed');
 const config = require('./../../config.json');
 const DC = require('./../singleton/DC');
@@ -34,6 +35,14 @@ const data = new SlashCommandBuilder()
         })
     )
 
+const sendChart = async (description, attachment) => {
+    return new Embed()
+        .setColor(config.embeds.colors.info)
+        .setDescription(description)
+        .setAttachment(attachment)
+        .setFooter(`Stats over the last ${await totalDays()} days.`)
+        .setImage(Constants.DISCORD.EMBED_IMAGE_NAME.EMBED.DEFAULT_PNG_01);
+}
 
 const commands = {
     async repoPie(interaction, client, guild, member, lang) {
