@@ -2,7 +2,7 @@ const config = require('../../config.json');
 
 const start = (client) => {
     const messages = config.status.messages;
-    const developmentMessages = config.status.ondevelopment;
+    const developmentMessages = config.status.indevelopment;
     let index = 0;
 
     setInterval(() => {
