@@ -110,6 +110,9 @@ class Constants {
 
     static get GIT() {
         return {
+            get GITHUBSCOPES() {
+                return 'user:read read:org'
+            },
             get START_DAYS_BACK_FROM_TODAY() { // Git rank graph total days
                 return 30;
             },
