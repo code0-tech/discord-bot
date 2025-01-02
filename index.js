@@ -85,6 +85,4 @@ start();
 
 -> update modules like DiscordSimpleTable, etc [11.08.2024]
 
--> debug remove double users [15.08.2024]
-
 */
