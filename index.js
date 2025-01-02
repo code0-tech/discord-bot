@@ -13,8 +13,6 @@ const start = async (args) => {
 
     dotenv.config({ path: global.isDevelopment ? '.env' : 'server.env' });
 
-    // global.isDevelopment = false;
-
     global.mainDir = __dirname;
     global.mongoClient = null;
 

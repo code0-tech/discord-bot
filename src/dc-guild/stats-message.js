@@ -7,7 +7,7 @@ const DC = require('../singleton/DC');
 
 let userList = {};
 
-const newpacket = (msg) => {
+const newPacket = (msg) => {
     return {
         last: {
             content: msg.content,
@@ -19,44 +19,45 @@ const newpacket = (msg) => {
     }
 }
 
+
 const checkIfValid = async (msg) => {
-    let cannotPass = false;
+    let inValid = false;
     let info = [];
     const userId = msg.author.id;
 
     if (!userList[userId]) {
-        userList[userId] = newpacket(msg);
-        return { notValid: cannotPass, info: info };
+        userList[userId] = newPacket(msg);
+        return { inValid, info: info };
     }
 
     const repeatedChars = /(.)\1{3,}/;
     if (repeatedChars.test(msg.content)) {
         info.push('Unusual character repetition');
-        cannotPass = true;
+        inValid = true;
     }
 
     if (msg.content == userList[userId].last.content) {
         info.push('Repeated message');
-        cannotPass = true;
+        inValid = true;
     }
 
     const contentToLastDistance = levenshteinDistance(msg.content, userList[userId].last.content);
     info.push(`Levenshtein Distance: ${contentToLastDistance}`);
     if (contentToLastDistance < 3) {
         info.push('Repeated message [similar]');
-        cannotPass = true;
+        inValid = true;
     }
 
     const timeSpan = (Date.now() - userList[userId].last.time);
     info.push(`Ms between this/last msg: ${timeSpan}`);
     if (timeSpan <= 900) {
         info.push('Quick messages v1');
-        cannotPass = true;
+        inValid = true;
     }
 
-    userList[userId] = newpacket(msg);
+    userList[userId] = newPacket(msg);
 
-    return { notValid: cannotPass, info: info };
+    return { inValid, info: info };
 }
 
 
@@ -97,7 +98,7 @@ const start = (client) => {
 
         const check = await checkIfValid(msg);
 
-        if (check.notValid) return;
+        if (check.inValid) return;
 
         const user = await new MongoUser(msg.author.id).init();
 
@@ -120,7 +121,6 @@ const start = (client) => {
         if (lastLevel !== previousLevel) {
             channelRankUpdateMessage(client, user);
         }
-
     })
 }
 
