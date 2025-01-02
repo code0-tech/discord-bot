@@ -26,7 +26,7 @@ const failedMessage = async (interaction, client, member, lang, type) => {
 
 const createButtonRow = (data, lang) => {
     const userIdEncrypted = encryptString(JSON.stringify(data));
-    const oAuthLink = Constants.GIT.OAUTH_LINK(userIdEncrypted, Constants.GIT.GITHUBSCOPES);
+    const oAuthLink = Constants.GIT.OAUTH_LINK(userIdEncrypted, Constants.GIT.GITHUB_SCOPES);
 
     const oAuthLinkButton = new ButtonBuilder()
         .setLabel(lang.getText('button-link'))
