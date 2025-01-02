@@ -104,7 +104,7 @@ const createEmbedMessage = async (description) => {
         .setDescription(description)
         .setAttachment(await GITCOMMITSTOTAL.getAttachment())
         .setFooter(`Stats over the last ${await totalDays()} days.`)
-        .setImage(`attachment://chart.png`);
+        .setImage(Constants.DISCORD.EMBED_IMAGE_NAME.EMBED.DEFAULT_PNG_01);
 }
 
 const sendGitRankMessage = async (client) => {

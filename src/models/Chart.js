@@ -95,9 +95,9 @@ class Chart {
         return await this.chartJSNodeCanvas.renderToBuffer(this.configuration);
     }
 
-    async getAttachment(fileName = 'chart.png') {
+    async getAttachment() {
         const imageBuffer = await this.renderToBuffer();
-        return new AttachmentBuilder(imageBuffer, { name: fileName });
+        return new AttachmentBuilder(imageBuffer, { name: Constants.DISCORD.EMBED_IMAGE_NAME.BUILDER.DEFAULT_PNG_01 });
     }
 
     /**
