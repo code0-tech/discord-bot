@@ -1,4 +1,3 @@
-const { triggerResolve } = require('./../utils/await-action');
 const AsyncManager = require('../singleton/AsyncManager');
 const Constants = require('../../data/constants');
 const config = require('./../../config.json');
