@@ -1,4 +1,5 @@
 const { triggerResolve } = require('./../utils/await-action');
+const Constants = require('../../data/constants');
 const config = require('./../../config.json');
 const fetch = require('node-fetch');
 
@@ -10,7 +11,7 @@ const getToken = (code) => {
       code: code,
     });
 
-    fetch(config.urls.githublogin, {
+    fetch(Constants.GIT.URL.ACCESS_TOKEN, {
       method: 'POST',
       headers: {
         'Content-Type': 'application/x-www-form-urlencoded',
@@ -62,7 +63,7 @@ const getGithubUserInfo = async (token) => {
     Authorization: `Bearer ${token}`,
   };
 
-  return fetch(config.urls.graphql, {
+  return fetch(Constants.GIT.URL.GRAPHQL, {
     method: 'POST',
     headers,
     body: JSON.stringify({ query }),

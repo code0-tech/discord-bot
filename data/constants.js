@@ -1,6 +1,11 @@
 class Constants {
     static get DISCORD() {
         return {
+            STATUS: {
+                get ONLINE() {
+                    return 'online'
+                }
+            },
             PERMS: {
                 get USER_OVERRIDE() {
                     return 1;
@@ -159,9 +164,20 @@ class Constants {
                     }
                 };
             },
-            OAUTH_LINK(state, scope) {
-                return `https://github.com/login/oauth/authorize?client_id=${process.env.GITHUB_CLIENT_ID}&state=${state}&scope=${encodeURIComponent(scope)}`;
+            get URL() {
+                return {
+                    OAUTH_LINK(state, scope) {
+                        return `https://github.com/login/oauth/authorize?client_id=${process.env.GITHUB_CLIENT_ID}&state=${state}&scope=${encodeURIComponent(scope)}`;
+                    },
+                    get GRAPHQL() {
+                        return 'https://api.github.com/graphql'
+                    },
+                    get ACCESS_TOKEN() {
+                        return 'https://github.com/login/oauth/access_token'
+                    }
+                }
             }
+
         };
     }
 

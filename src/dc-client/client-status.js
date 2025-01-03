@@ -1,3 +1,4 @@
+const Constants = require('../../data/constants');
 const config = require('../../config.json');
 
 const start = (client) => {
@@ -6,7 +7,7 @@ const start = (client) => {
     let index = 0;
 
     setInterval(() => {
-        const { name, status = 'online' } = global.isDevelopment ? developmentMessages[index++ % developmentMessages.length] : messages[index++ % messages.length];
+        const { name, status = Constants.DISCORD.STATUS.ONLINE } = global.isDevelopment ? developmentMessages[index++ % developmentMessages.length] : messages[index++ % messages.length];
 
         client.user.setPresence({ activities: [{ name }], status });
     }, config.status.interval);
