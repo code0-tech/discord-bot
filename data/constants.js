@@ -71,6 +71,9 @@ class Constants {
             get EPOCH_OFFSET() {
                 return 1420070400000; // (2015-01-01) for Discord
             },
+            get SNOWFLAKE_DIVIDER(){ // part of: const timestamp = (id / Constants.DISCORD.SNOWFLAKE_DIVIDER) + Constants.DISCORD.EPOCH_OFFSET;
+                return 4194304;
+            },
             get EMBED_IMAGE_NAME() { // Used for simple Attachment image naming and retrieving
                 return {
                     get BUILDER() {
@@ -86,13 +89,8 @@ class Constants {
                                 return 'attachment://default_01.png';
                             }
                         }
-                    },
-
-
+                    }
                 }
-            },
-            get SNOWFLAKE_DIVIDER(){
-                return 4194304;
             }
         };
     }
