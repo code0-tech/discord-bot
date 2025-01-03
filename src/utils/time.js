@@ -5,7 +5,7 @@ const waitMs = (ms) => {
 }
 
 const snowflakeToDate = (id) => {
-    const timestamp = (id / 4194304) + Constants.DISCORD.EPOCH_OFFSET;
+    const timestamp = (id / Constants.DISCORD.SNOWFLAKE_DIVIDER) + Constants.DISCORD.EPOCH_OFFSET;
     return timestamp;
 }
 

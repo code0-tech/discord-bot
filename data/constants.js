@@ -3,7 +3,7 @@ class Constants {
         return {
             STATUS: {
                 get ONLINE() {
-                    return 'online'
+                    return 'online';
                 }
             },
             PERMS: {
@@ -76,20 +76,23 @@ class Constants {
                     get BUILDER() {
                         return {
                             get DEFAULT_PNG_01() {
-                                return 'default_01.png'
+                                return 'default_01.png';
                             },
                         }
                     },
                     get EMBED() {
                         return {
                             get DEFAULT_PNG_01() {
-                                return 'attachment://default_01.png'
+                                return 'attachment://default_01.png';
                             }
                         }
                     },
 
 
                 }
+            },
+            get SNOWFLAKE_DIVIDER(){
+                return 4194304;
             }
         };
     }
@@ -170,10 +173,10 @@ class Constants {
                         return `https://github.com/login/oauth/authorize?client_id=${process.env.GITHUB_CLIENT_ID}&state=${state}&scope=${encodeURIComponent(scope)}`;
                     },
                     get GRAPHQL() {
-                        return 'https://api.github.com/graphql'
+                        return 'https://api.github.com/graphql';
                     },
                     get ACCESS_TOKEN() {
-                        return 'https://github.com/login/oauth/access_token'
+                        return 'https://github.com/login/oauth/access_token';
                     }
                 }
             }
