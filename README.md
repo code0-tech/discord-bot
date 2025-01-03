@@ -29,7 +29,7 @@ A MongoDb is required as this Bot stores some Data
 | 7   | `Code0 Application Ticket`                   | Finished     |         0 |
 | 8   | `/stats` or `/stats @user` + uptodate15      | Finished     |         0 |
 | 9   | `/logs show` or `/logs list`                 | Finished     |         0 |
-| 10  | `/debug` for debugging                       | Debug (WIP)  |         0 |
+| 10  | `/debug` for debugging                       | Finished     |         0 |
 | 11  | `Git rank message every 24 hours`            | Finished     |         0 |
 | 12  | `/git` display charts of Git activity        | WIP          |         0 |
 
