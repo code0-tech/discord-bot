@@ -1,4 +1,5 @@
 const { triggerResolve } = require('./../utils/await-action');
+const AsyncManager = require('../singleton/AsyncManager');
 const Constants = require('../../data/constants');
 const config = require('./../../config.json');
 const fetch = require('node-fetch');
@@ -126,7 +127,7 @@ const checkOpenContributor = async (data, code, client) => {
     github: filterCommits(graphQlInfo.data.viewer.contributionsCollection)
   }
 
-  triggerResolve(client, data.awaitCodeId, resolvePacket)
+  AsyncManager.resolveAction(data.awaitCodeId, resolvePacket);
 }
 
 

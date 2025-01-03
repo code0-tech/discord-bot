@@ -1,7 +1,7 @@
 const Constants = require('../../data/constants');
 
 const setup = (client) => {
-
+    
     if (!global.isDevelopment) return;
 
     client.on('debug', (message) => {

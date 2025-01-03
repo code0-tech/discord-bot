@@ -3,6 +3,7 @@ const { awaiterCodeId, awaitCodeResolve } = require('./../utils/await-action');
 const { SlashCommandBuilder } = require('@discordjs/builders');
 const { Embed, progressBar } = require('./../models/Embed');
 const DiscordSimpleTable = require('discord-simpletable');
+const AsyncManager = require("../singleton/AsyncManager");
 const { encryptString } = require('./../utils/crypto');
 const Constants = require("../../data/constants");
 const config = require('./../../config.json');
@@ -60,7 +61,7 @@ const execute = async (interaction, client, guild, member, lang) => {
         .setComponents([row])
         .interactionResponse(interaction);
 
-    const resolvedAwait = await awaitCodeResolve(client, awaitCodeId, config.commands.opencontributor.authtimeout, data.reference, true);
+    const resolvedAwait = await AsyncManager.addAction(awaitCodeId, config.commands.opencontributor.authtimeout, data.reference, true);
 
     if (!resolvedAwait) {
         failedMessage(interaction, client, member, lang, resolvedAwait === false ? 'error-timeout' : 'error-similar-inquiry');
