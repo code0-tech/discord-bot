@@ -97,19 +97,16 @@ In `./_app/*` are files that are just to setup the Discord server, like images
 
 ## Versions
 
-    "@discordjs/voice": "^0.17.0",
-    "canvas": "^2.11.2",
+    "@discordjs/voice": "^0.18.0",
     "chartjs-node-canvas": "^4.1.6",
-    "discord.js": "^14.15.3",
-    "dotenv": "^16.3.1",
-    "html-to-image": "^1.11.11",
-    "html2canvas": "^1.4.1",
-    "libsodium-wrappers": "^0.7.13",
+    "discord-simpletable": "^1.1.5",
+    "discord.js": "^14.17.2",
+    "dotenv": "^16.4.7",
+    "libsodium-wrappers": "^0.7.15",
     "mongo": "^0.1.0",
     "node-fetch": "^2.6.12",
-    "puppeteer": "^22.10.0",
-    "ytdl-core": "^4.11.5"
-
+    "node-schedule": "^2.1.1",
+    "puppeteer": "^23.11.1"
 
 The Code works 100% with these versions.
 
@@ -145,11 +142,11 @@ Since this bot is under development, significant changes may occur.
 
 ## Nicusch Version System
 
-0.0.1 => Bug fixes or small changes
+0.0.1 => Bug fixes or small changes | Updates of functions while keeping the same functionality
 
-0.1.0 => Command changes
+0.1.0 => Command changes | Updates that break small functions
 
-1.0.0 => Changes of entire Class or Interaction method structures
+1.0.0 => Changes of entire Class or Interaction method structures which will break other stuff
 
 Very simple to keep track of, this NVS was not used correctly until now 10.07.2024.
 
