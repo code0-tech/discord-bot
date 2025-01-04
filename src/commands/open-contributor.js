@@ -44,7 +44,7 @@ const execute = async (interaction, client, guild, member, lang) => {
         return;
     }
 
-    const awaitCodeId = awaiterCodeId();
+    const awaitCodeId = AsyncManager.generateId();
     const data = {
         userId: interaction.user.id,
         awaitCodeId,
