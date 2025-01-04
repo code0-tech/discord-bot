@@ -1,5 +1,5 @@
 class AsyncManager {
-    static #actions = {}; // Private static property to store actions.
+    static #actions = {};
 
     /**
      * Generates a unique ID for async actions.
