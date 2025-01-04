@@ -12,7 +12,6 @@ const encryptString = (string) => {
 };
 
 const decryptString = (encryptedString) => {
-    console.log('Received encryptedString:', encryptedString);
     if (!encryptedString || !encryptedString.includes(':')) {
         throw new Error('Invalid encrypted string format');
     }
