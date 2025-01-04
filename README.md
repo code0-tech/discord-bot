@@ -1,9 +1,6 @@
 <div align="center">
 <h1>Code0 Discord Bot</h1>
-<h3>Discord bot standalone by Nicusch | Nicolas Morawietz</h3>
 </div>
-
-## Code0
 
 ### Basic Overview:
 
@@ -72,7 +69,7 @@ Entrie Example:
 }
 ```
 
-MongoDb entries last updated inside this ReadMe: 1.01.2025
+MongoDb entries last updated inside this ReadMe: 01.01.2025
 
 Ps: On Discord you can do <@user_id> to find out the name of a discord by his user id.
 
