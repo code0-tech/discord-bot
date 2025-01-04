@@ -1,7 +1,7 @@
 const Constants = require('./../../data/constants');
 const { ChannelType } = require('discord.js');
 const config = require('./../../config.json');
-
+const { MessageFlags } = require('discord.js')
 
 class DC {
     // Interactions options
@@ -13,7 +13,10 @@ class DC {
             console.log(`[DC.defer] Interaction was not defined`, Constants.CONSOLE.ERROR);
             return;
         }
-        return await interaction.deferReply({ ephemeral });
+
+        const options = ephemeral ? { flags: MessageFlags.Ephemeral } : undefined;
+
+        return await interaction.deferReply(options);
     }
 
     // Member
