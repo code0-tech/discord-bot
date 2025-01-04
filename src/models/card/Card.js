@@ -40,12 +40,14 @@ class Card {
         await page.waitForSelector('.card');
 
         const elementHandle = await page.$('.card');
-        const imageBuffer = await elementHandle.screenshot({ omitBackground: true });
+        const array8 = await elementHandle.screenshot({ omitBackground: true });
 
-        // await global.renderPuppeteer.close();
         await page.close();
 
-        const attachment = new AttachmentBuilder(imageBuffer, 'image.png');
+        const uint8ArrayData = new Uint8Array(array8);
+        const bufferData = Buffer.from(uint8ArrayData);
+
+        const attachment = new AttachmentBuilder(bufferData, { name: Constants.DISCORD.EMBED_IMAGE_NAME.BUILDER.DEFAULT_PNG_01 });
 
         console.log(`[Puppeteer: Card] created a new card.`, Constants.CONSOLE.WORKING);
 
