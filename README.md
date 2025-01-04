@@ -97,16 +97,16 @@ In `./_app/*` are files that are just to setup the Discord server, like images
 
 ## Versions
 
-    "@discordjs/voice": "^0.18.0",
-    "chartjs-node-canvas": "^4.1.6",
-    "discord-simpletable": "^1.1.5",
-    "discord.js": "^14.17.2",
-    "dotenv": "^16.4.7",
-    "libsodium-wrappers": "^0.7.15",
-    "mongo": "^0.1.0",
-    "node-fetch": "^2.6.12",
-    "node-schedule": "^2.1.1",
-    "puppeteer": "^23.11.1"
+    "@discordjs/voice": "^0.18.0",     [04.01.2025]
+    "chartjs-node-canvas": "^4.1.6",   [04.01.2025]
+    "discord-simpletable": "^1.1.5",   [04.01.2025]
+    "discord.js": "^14.17.2",          [04.01.2025]
+    "dotenv": "^16.4.7",               [04.01.2025]
+    "libsodium-wrappers": "^0.7.15",   [04.01.2025]
+    "mongo": "^0.1.0",                 [04.01.2025]
+    "node-fetch": "^2.6.12",           [04.01.2025]
+    "node-schedule": "^2.1.1",         [04.01.2025]
+    "puppeteer": "^23.11.1"            [04.01.2025]
 
 The Code works 100% with these versions.
 
@@ -152,4 +152,4 @@ Very simple to keep track of, this NVS was not used correctly until now 10.07.20
 
 ## Know issues
 
-- 1: Tables and Bars are not displayed correctly on Mobile devices [1.01.2025]
+- 1: Tables and Bars are not displayed correctly on Mobile devices [01.01.2025]
