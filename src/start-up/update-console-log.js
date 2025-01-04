@@ -92,4 +92,5 @@ const customLog = (...args) => {
     originalConsoleLog(coloredLog);
 };
 
+
 console.log = customLog;

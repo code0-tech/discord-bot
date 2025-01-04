@@ -1,6 +1,5 @@
 const { Mongo, ENUMS } = require('../models/Mongo');
 const Constants = require('../../data/constants');
-const { Embed } = require('../models/Embed');
 const config = require('../../config.json');
 const { Events } = require('discord.js');
 

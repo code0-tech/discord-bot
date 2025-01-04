@@ -4,16 +4,6 @@ const config = require('./../../config.json');
 
 
 class DC {
-
-    /*
-    static get channel() {
-        return {
-            byId() {
-                return 'lol'
-            }
-        };
-    } */
-
     // Interactions options
     /**
     * Defer the reply
@@ -180,4 +170,4 @@ class DC {
 }
 
 
-module.exports = DC; 
+module.exports = DC;

@@ -2,7 +2,6 @@ const { ChartJSNodeCanvas } = require('chartjs-node-canvas');
 const { AttachmentBuilder } = require('discord.js');
 const Constants = require('../../data/constants');
 const path = require('path');
-const fs = require('fs');
 
 class Chart {
     constructor(width, height) {
@@ -62,7 +61,6 @@ class Chart {
             }
         };
     }
-
 
     setType(type) {
         this.configuration.type = type;
@@ -137,5 +135,6 @@ class Chart {
         }
     }
 }
+
 
 module.exports = Chart;

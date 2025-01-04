@@ -22,7 +22,6 @@ const checkLanguage = (exampleJson, langJson, langName) => {
     }
 }
 
-
 const check = async () => {
     const folderPath = path.resolve(global.mainDir, 'languages');
 

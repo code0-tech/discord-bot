@@ -1,9 +1,8 @@
+const AUDIT_LOG_ACTIONS = require('../../data/discord/action-ids');
 const { Card } = require('../models/card/Card');
 const { Embed } = require('../models/Embed');
 const config = require('../../config.json');
 const { Events } = require('discord.js');
-const AUDIT_LOG_ACTIONS = require('../../data/discord/action-ids');
-const OVERWRITE_PERMISSIONS = require('../../data/discord/permission-ids');
 const DC = require('../singleton/DC');
 
 const setup = (client) => {

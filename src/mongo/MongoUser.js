@@ -1,5 +1,4 @@
 const { Mongo, ENUMS } = require('../models/Mongo');
-
 const MongoDb = new Mongo();
 
 class MongoUser {
@@ -183,7 +182,6 @@ class MongoUser {
             }
         );
     }
-
 }
 
 
