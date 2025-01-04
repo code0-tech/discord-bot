@@ -7,7 +7,10 @@ module.exports = (req, res, client) => {
 
     const [_, code, state] = urlInfo.match(/code=([^&]+).*state=([^&]+)/);
 
-    const data = JSON.parse(decryptString(state));
+    const decodedState = decodeURIComponent(state);
+
+    const data = JSON.parse(decryptString(decodedState));
+
     checkOpenContributor(data, code, client);
 
     res.writeHead(302, {
