@@ -71,7 +71,7 @@ class Constants {
             get EPOCH_OFFSET() {
                 return 1420070400000; // (2015-01-01) for Discord
             },
-            get SNOWFLAKE_DIVIDER(){ // part of: const timestamp = (id / Constants.DISCORD.SNOWFLAKE_DIVIDER) + Constants.DISCORD.EPOCH_OFFSET;
+            get SNOWFLAKE_DIVIDER() { // part of: const timestamp = (id / Constants.DISCORD.SNOWFLAKE_DIVIDER) + Constants.DISCORD.EPOCH_OFFSET;
                 return 4194304;
             },
             get EMBED_IMAGE_NAME() { // Used for simple Attachment image naming and retrieving
@@ -92,7 +92,7 @@ class Constants {
                     }
                 }
             }
-        };
+        }
     }
 
     static get CONSOLE() {
@@ -115,7 +115,7 @@ class Constants {
             get FOUND() {
                 return '#6';
             }
-        };
+        }
     }
 
     static get IMAGES() {
@@ -123,7 +123,7 @@ class Constants {
             get CHART_BACKGROUND() {
                 return 'chart-bg.png';
             }
-        };
+        }
     }
 
     static get SEEDS() {
@@ -131,7 +131,7 @@ class Constants {
             get GITCHART() {
                 return 32188084552374576; // Seed for user colors
             }
-        };
+        }
     }
 
     static get GIT() {
@@ -178,8 +178,7 @@ class Constants {
                     }
                 }
             }
-
-        };
+        }
     }
 
     static get TIME_MULTIPLIER_MS() {
@@ -196,7 +195,13 @@ class Constants {
             get MONTH() {
                 return 1000 * 60 * 60 * 24 * 30;
             }
-        };
+        }
+    }
+
+    static get MONGO() {
+        return {
+
+        }
     }
 }
 
