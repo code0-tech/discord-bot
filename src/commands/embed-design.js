@@ -8,7 +8,6 @@ const config = require('./../../config.json');
 const Chart = require('./../models/Chart');
 const DC = require('./../singleton/DC');
 const { Readable } = require('stream');
-const ytdl = require('ytdl-core');
 const { join } = require('path');
 
 const { Mongo, ENUMS } = require('../models/Mongo');
