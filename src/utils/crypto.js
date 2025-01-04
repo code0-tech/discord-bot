@@ -18,8 +18,6 @@ const decryptString = (encryptedString) => {
     }
 
     const [ivHex, encrypted] = encryptedString.split(':');
-    console.log('IV:', ivHex);
-    console.log('Encrypted data:', encrypted);
 
     const iv = Buffer.from(ivHex, 'hex');
     const decipher = crypto.createDecipheriv(algorithm, key, iv);
