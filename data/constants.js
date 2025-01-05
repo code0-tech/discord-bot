@@ -203,6 +203,20 @@ class Constants {
 
         }
     }
+
+    static get CRYPTO() {
+        return {
+            get ALGORITHM() {
+                return 'aes-256-cbc';
+            },
+            get SALT(){
+return 'salt';
+            },
+            get KEYLEN(){
+                return 32;
+            }
+        }
+    }
 }
 
 
