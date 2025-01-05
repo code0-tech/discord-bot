@@ -209,10 +209,10 @@ class Constants {
             get ALGORITHM() {
                 return 'aes-256-cbc';
             },
-            get SALT(){
-return 'salt';
+            get SALT() {
+                return 'salt';
             },
-            get KEYLEN(){
+            get KEYLEN() {
                 return 32;
             }
         }
