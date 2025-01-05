@@ -8,7 +8,7 @@ This this the Discord Bot for Code0 running in javascript.
 #
 The Bot is running the Discord.js Client instance and a small Web-Server for Github o-auth in order to perform some commands which includes reading commits and pull's.
 
-For that reason a Http Port is required and currently set to `http-config.port` inside the http-config.json
+For that reason a Http Port is required and currently set via `http-config.port` inside the http-config.json
 
 A MongoDb is required as this Bot stores some Data
 #
