@@ -66,6 +66,8 @@ const start = async (args) => {
 
         require('./src/dc-guild/git-rank').setup(client);
 
+        require('./src/dc-guild/code0-talk-events').setupEventMessages(client);
+
     });
 
     require('./src/dc-client/debug-log').setup(client);
