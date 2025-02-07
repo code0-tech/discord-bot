@@ -25,7 +25,8 @@ const start = async (args) => {
             GatewayIntentBits.GuildModeration,
             GatewayIntentBits.GuildMessages,
             GatewayIntentBits.MessageContent,
-            GatewayIntentBits.GuildMessageTyping
+            GatewayIntentBits.GuildMessageTyping,
+            GatewayIntentBits.GuildScheduledEvents
         ], partials: [
             Partials.Message,
             Partials.Channel,
