@@ -88,4 +88,6 @@ start();
 
 -> update modules like DiscordSimpleTable, etc [11.08.2024]
 
+-> Look over code0-talk-events [07.02.2025]
+
 */
