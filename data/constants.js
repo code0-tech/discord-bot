@@ -91,6 +91,14 @@ class Constants {
                         }
                     }
                 }
+            },
+            get EVENT_PRE_REMINDER() {
+                return {
+                    get MINUTES_BEFORE_EVENT_REMINDER_ARRAY() {
+                        return [5, 60, 3] // 5 and 1 hour reminds before event
+                    }
+
+                }
             }
         }
     }
