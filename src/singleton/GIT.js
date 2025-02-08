@@ -1,51 +1,159 @@
-/* const { Mongo, ENUMS } = require('../models/Mongo');
+const { Mongo, ENUMS } = require('../models/Mongo');
 const Constants = require('../../data/constants');
 const Chart = require('../models/Chart');
 
 const MongoDb = new Mongo();
 
-const getData = async (pipeline = []) => {
-    return await MongoDb.aggregate(ENUMS.DCB.GITHUB_COMMITS, pipeline);
-};
+class GIT_SETTINGS {
+    static USERS(userArray) {
+        return { filterUsers: userArray };
+    }
+    static REPONAMES(reponameArray) {
+        return { reponameArray };
+    }
+    static DAILY_PACKETS(value = true) {
+        return { dailyPackets: value };
+    }
+    static SET_START(unix) {
+        return { startUnix: unix };
+    }
+    static SET_END(unix) {
+        return { endUnix: unix };
+    }
+    static BRANCHNAMES(branchnameArray) {
+        return { branchnameArray }
+    }
+}
 
-const test = async () => {
-    const currentDate = new Date();
-    const currentTimestamp = currentDate.getTime();
-    const adjustedTimestamp = currentTimestamp - (Constants.GIT.START_DAYS_BACK_FROM_TODAY * Constants.TIME_MULTIPLIER_MS.DAY);
-    const adjustedDate = new Date(adjustedTimestamp);
+class GIT {
+    static _transformArrayToObject(arr) {
+        if (!Array.isArray(arr)) {
+            return {};
+        }
 
-    const pipeline = [
-        {
-            $match: {
-                time: { $gte: adjustedDate.getTime() }
-            }
-        },
-        {
-            $sort: { time: 1 }
-        },
-        {
-            $group: {
-                _id: {
-                    name: "$name",
-                    date: {
-                        $dateToString: { format: "%Y-%m-%d", date: { $toDate: "$time" } }
-                    }
-                },
-                dailyCommits: { $sum: "$commitscount" }
-            }
-        },
-        {
-            $project: {
-                _id: 0,
-                name: "$_id.name",
-                date: "$_id.date",
-                dailyCommits: 1
+        const result = {};
+
+        arr.forEach(item => {
+            Object.keys(item).forEach(key => {
+                result[key] = item[key];
+            });
+        });
+
+        return result;
+    }
+
+    static get DEFAULT_TIMES() {
+        return {
+            get start() {
+                return 0;
+            },
+            get end() {
+                return 99999999999999999999;
             }
         }
-    ];
+    }
 
-    console.dir(await getData(pipeline), { depth: null });
-};
+    static async _requestMongoDb(pipeline) {
+        return await MongoDb.aggregate(ENUMS.DCB.GITHUB_COMMITS, pipeline);
+    }
+
+    static async getAllUniqueNames(settings = []) {
+        const options = this._transformArrayToObject(settings);
+
+        const matchConditions = {
+            time: {
+                $gte: options.startUnix ?? this.DEFAULT_TIMES.start,
+                $lt: options.endUnix ?? this.DEFAULT_TIMES.end
+            }
+        };
+
+        if (options.filterUsers && options.filterUsers.length > 0) {
+            matchConditions.name = { $in: options.filterUsers };
+        }
+
+        const pipeline = [
+            { $match: matchConditions },
+            { $group: { _id: "$name" } },
+            { $project: { _id: 0, name: "$_id" } }
+        ];
+
+        const result = await this._requestMongoDb(pipeline);
+
+        return result.map(item => item.name);
+    }
+
+    static async simpleSort(settings = []) {
+        const options = this._transformArrayToObject(settings);
+
+        const matchConditions = {
+            time: {
+                $gte: options.startUnix ?? this.DEFAULT_TIMES.start,
+                $lt: options.endUnix ?? this.DEFAULT_TIMES.end
+            }
+        };
+
+        if (options.filterUsers && options.filterUsers.length > 0) {
+            matchConditions.name = { $in: options.filterUsers };
+        }
+
+        if (options.reponameArray && options.reponameArray.length > 0) {
+            matchConditions.repo = { $in: options.reponameArray };
+        }
+
+        if (options.branchnameArray && options.branchnameArray.length > 0) {
+            matchConditions.branchname = { $in: options.branchnameArray };
+        }
+
+        const pipeline = [
+            { $match: matchConditions },
+            { $sort: { time: 1 } }
+        ];
+
+        if (options.dailyPackets) {
+            pipeline.push(
+                {
+                    $group: {
+                        _id: {
+                            name: "$name",
+                            date: {
+                                $dateToString: { format: "%Y-%m-%d", date: { $toDate: "$time" } }
+                            }
+                        },
+                        dailyCommits: { $sum: "$commitscount" },
+                        branchnames: { $addToSet: "$branchname" }
+                    }
+                },
+                {
+                    $project: {
+                        _id: 0,
+                        name: "$_id.name",
+                        date: "$_id.date",
+                        branchnames: 1,
+                        dailyCommits: 1
+                    }
+                }
+            );
+        }
+
+        return await this._requestMongoDb(pipeline);
+    }
+}
+
+/* const run = async () => {
+    const res = await GIT.simpleSort([
+        GIT_SETTINGS.USERS(['Taucher2003']),
+        GIT_SETTINGS.DAILY_PACKETS(true),
+        // GIT_SETTINGS.BRANCHNAMES(['259-remove-screenshot-testing'])
+    ]);
+
+    const res2 = await GIT.getAllUniqueNames([
+    ]);
+
+    console.dir(res);
+    console.dir(res2);
+}
+
+run(); */
 
 
-module.exports = { test }; */
+module.exports = { GIT, GIT_SETTINGS };
