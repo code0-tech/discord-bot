@@ -13,13 +13,13 @@ const data = new SlashCommandBuilder()
     .setDescriptionLocalizations({
         de: 'Git aktivität für Code0.',
     })
-    .addSubcommand(subcommand => subcommand
+    /* .addSubcommand(subcommand => subcommand
         .setName('repopie')
         .setDescription('Display Git repo activity as an pie chart.')
         .setDescriptionLocalizations({
             de: 'Zeigt Git aktivität für alle Repos als Kuchen-diagram.',
         })
-    )
+    ) */
     .addSubcommand(subcommand => subcommand
         .setName('repograph')
         .setDescription('Display Git repo activity as an graph chart.')
