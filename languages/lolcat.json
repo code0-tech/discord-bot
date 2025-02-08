@@ -166,6 +166,7 @@
         "btn-back": "Previs",
         "btn-next": "Nextus",
         "btn-skip": "Go 2 last",
+        "btn-print": "Printa",
         "text-old-logs": "Old Logz",
         "run-id": "krun_id",
         "development": {
@@ -191,6 +192,10 @@
         },
         "not-found": {
             "title": "Cannot find any logz for runId: {runid}."
+        },
+        "print-out": {
+            "title": "Yo printa",
+            "description": "Her is yo printa in se format .txt fatt gott atrything."
         }
     },
     "#_rankupdate": {
