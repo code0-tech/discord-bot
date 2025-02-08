@@ -69,7 +69,7 @@ class Constants {
                 }
             },
             get EPOCH_OFFSET() {
-                return 1420070400000; // (2015-01-01) for Discord
+                return 1420070400000; // (01-01-2015) for Discord
             },
             get SNOWFLAKE_DIVIDER() { // part of: const timestamp = (id / Constants.DISCORD.SNOWFLAKE_DIVIDER) + Constants.DISCORD.EPOCH_OFFSET;
                 return 4194304;
