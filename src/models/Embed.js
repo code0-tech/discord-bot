@@ -2,6 +2,16 @@ const Constants = require('./../../data/constants');
 const { EmbedBuilder } = require("discord.js");
 const config = require('./../../config.json');
 
+const replacePlaceHolders = (template, data) => {
+    return template.replace(/{([^{}]*)}/g, (match, key) => {
+        if (data[key.trim()] == undefined) {
+            console.log(`[PlaceHolder Replace] a Placeholder "${key}" was not found as an input.`, Constants.CONSOLE.ERROR)
+            return '';
+        }
+        return data[key.trim()];
+    });
+}
+
 class Embed {
     constructor() {
         /** @type {MessageEmbed} */
@@ -150,14 +160,7 @@ class Embed {
      * Used by .addContext().
      */
     _replacePlaceholders(template, data) {
-        return template.replace(/{([^{}]*)}/g, (match, key) => {
-            if (data[key.trim()] == undefined) {
-                console.log(`[Embed Error] a Placeholder "${key}" was not found as an input.`, Constants.CONSOLE.ERROR)
-                return '';
-            }
-            return data[key.trim()];
-
-        });
+        return replacePlaceHolders(template, data);
     }
 
     /**
@@ -365,4 +368,4 @@ const progressBar = (total, whole, info = true, segments = 10) => {
 }
 
 
-module.exports = { Embed, progressBar };
+module.exports = { Embed, progressBar, replacePlaceHolders };
