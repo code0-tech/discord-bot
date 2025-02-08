@@ -1,11 +1,11 @@
 {
     "debug": {
         "mongo-left-users": {
-            "title": "Mongo Left User",
+            "title": "MongoDB Left User",
             "description": "Found:\n{userstring}\n\nFake Users:\n{progressbar}"
         },
         "mongo-left-users-loading": {
-            "title": "Mongo Left User",
+            "title": "MongoDB Left User",
             "description": "Checked: [{checked}|{totaluser}], found: {found}."
         },
         "mongo-removed-user": {
