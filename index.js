@@ -88,6 +88,6 @@ start();
 
 -> update modules like DiscordSimpleTable, etc [11.08.2024]
 
--> Look over event-prereminder [07.02.2025]
+-> event-prereminder refresh event timer after event fired, cause currently after the event fired there wont be any new timers setup for next time [08.02.2025]
 
 */
