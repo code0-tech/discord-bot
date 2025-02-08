@@ -64,7 +64,7 @@
             "description": "Es scheint, dass eine ähnliche Anfrage bereits gestellt wurde, so dass der aktuelle Antrag storniert wurde."
         },
         "error-already-has-role": {
-            "title": "Also... Du bist schon ein Open Contributor",
+            "title": "Also... Du bist bereits ein Open Contributor",
             "description": "Dieser Befehl ist nicht notwendig."
         },
         "initial-message": {
@@ -184,12 +184,12 @@
             "title": "Es existieren keine logs"
         },
         "not-found": {
-            "title": "Konnte keine logs für runId: {runid}."
+            "title": "Keine logs für runId: {runid} gefunden."
         }
     },
     "mydata": {
         "your-data": {
-            "title": "Wir haben deine Daten",
+            "title": "Deine Daten sind bereit zum Download",
             "description": "Diese json Datei beinhaltet alles was wir über dich in unseren Datenbank über dich gespeichert haben."
         }
     },
