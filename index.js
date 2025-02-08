@@ -34,7 +34,6 @@ const start = async (args) => {
         ]
     });
 
-    client.awaitaction = {};
     client.startDate = Date.now();
 
     require('./src/dc-client/load-languages').load(client);
