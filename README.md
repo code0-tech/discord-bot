@@ -69,7 +69,7 @@ Entrie Example:
 }
 ```
 
-MongoDb entries last updated inside this ReadMe: 01.01.2025
+MongoDb entries last structure update for ReadMe: 08.02.2025
 
 Ps: On Discord you can do <@user_id> to find out the name of a discord by his user id.
 
@@ -96,8 +96,8 @@ In `./_app/*` are files that are just to setup the Discord server, like images
 
     "@discordjs/voice": "^0.18.0",     [04.01.2025]
     "chartjs-node-canvas": "^4.1.6",   [04.01.2025]
-    "discord-simpletable": "^1.1.5",   [04.01.2025]
-    "discord.js": "^14.17.2",          [04.01.2025]
+    "discord-simpletable": "^1.1.6",   [08.02.2025]
+    "discord.js": "^14.17.3",          [08.02.2025]
     "dotenv": "^16.4.7",               [04.01.2025]
     "libsodium-wrappers": "^0.7.15",   [04.01.2025]
     "mongo": "^0.1.0",                 [04.01.2025]

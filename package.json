@@ -11,8 +11,8 @@
   "dependencies": {
     "@discordjs/voice": "^0.18.0",
     "chartjs-node-canvas": "^4.1.6",
-    "discord-simpletable": "^1.1.5",
-    "discord.js": "^14.17.2",
+    "discord-simpletable": "^1.1.6",
+    "discord.js": "^14.17.3",
     "dotenv": "^16.4.7",
     "libsodium-wrappers": "^0.7.15",
     "mongo": "^0.1.0",
