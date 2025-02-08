@@ -1,6 +1,6 @@
 const Constants = require("../../data/constants");
 const { guildById } = require("../singleton/DC");
-const config = require('./../../config.json');
+const config = require('../../config.json');
 const { Embed } = require("../models/Embed");
 
 const fetchUpcomingEvents = async (guild) => {

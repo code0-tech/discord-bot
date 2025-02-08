@@ -66,7 +66,7 @@ const start = async (args) => {
 
         require('./src/dc-guild/git-rank').setup(client);
 
-        require('./src/dc-guild/code0-talk-events').setupEventMessages(client);
+        require('./src/dc-guild/event-prereminder').setupEventMessages(client);
 
     });
 
@@ -88,6 +88,6 @@ start();
 
 -> update modules like DiscordSimpleTable, etc [11.08.2024]
 
--> Look over code0-talk-events [07.02.2025]
+-> Look over event-prereminder [07.02.2025]
 
 */
