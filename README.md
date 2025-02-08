@@ -71,7 +71,7 @@ Entrie Example:
 
 MongoDb entries last structure update for ReadMe: 08.02.2025
 
-Ps: On Discord you can do <@user_id> to find out the name of a discord by his user id.
+Ps: On Discord you can do <@user_id> to find out the name of a discord user by his id.
 
 ## Were are the missing files?
 
