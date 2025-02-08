@@ -160,6 +160,7 @@
         "btn-back": "Vorherige",
         "btn-next": "Nächste",
         "btn-skip": "Gehe zu letzten",
+        "btn-print": "Drucken",
         "text-old-logs": "Alte Logs",
         "run-id": "run_id",
         "development": {
@@ -185,6 +186,10 @@
         },
         "not-found": {
             "title": "Keine logs für runId: {runid} gefunden."
+        },
+        "print-out": {
+            "title": "Druck",
+            "description": "Hier ist eine .txt die den ganzen Log enthält."
         }
     },
     "mydata": {
