@@ -166,6 +166,7 @@
         "btn-back": "Previous",
         "btn-next": "Next",
         "btn-skip": "Go to last",
+        "btn-print": "Print",
         "text-old-logs": "Old Logs",
         "run-id": "run_id",
         "development": {
@@ -191,6 +192,10 @@
         },
         "not-found": {
             "title": "Cannot find any logs for runId: {runid}."
+        },
+        "print-out": {
+            "title": "Print Out",
+            "description": "Here is an .txt which contains the full log."
         }
     },
     "#_rankupdate": {
