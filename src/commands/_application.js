@@ -43,7 +43,6 @@ const autoRun = async (client, lang) => {
         .responseToChannel(config.channels.application, client)
 }
 
-
 const checkLastCreatedTicket = async (guild, member) => {
     const channelsInCategory = await DC.channelsByParentId(config.parents.applications, guild);
 
@@ -159,7 +158,7 @@ const executeComponent = async (interaction, client, guild, member, lang, button
         }
 
         const applicationChannel = await DC.channelByInteraction(interaction, guild);
-        await applicationChannel.delete({ reason: "---" });
+        await applicationChannel.delete({ reason: "none" });
     }
 };
 
