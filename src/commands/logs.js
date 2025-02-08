@@ -3,6 +3,7 @@ const { SlashCommandBuilder } = require('@discordjs/builders');
 const { convertUnixToTimestamp } = require('../utils/time');
 const DiscordSimpleTable = require('discord-simpletable');
 const { Mongo, ENUMS } = require('../models/Mongo');
+const { AttachmentBuilder } = require('discord.js');
 const { Embed } = require('./../models/Embed');
 const config = require('./../../config.json');
 const DC = require('./../singleton/DC');
@@ -46,6 +47,26 @@ const formatLog = (log) => {
 
     return `${timestamp}\n\`\`\`${message}${error}\`\`\`\n`;
 };
+
+const printSessionToTxt = async (interaction, member, lang, runId) => {
+
+    const totalLog = await getLogs(runId);
+
+    const formattedLogs = totalLog.logs.map(log => {
+        const readableTime = new Date(log.time).toLocaleString();
+        const message = log.error ? log.error : log.msg;
+        return `[${readableTime}]: ${message}`;
+    }).join('\n');
+
+    const buffer = Buffer.from(formattedLogs, 'utf-8');
+    const attachment = new AttachmentBuilder(buffer, { name: `logfile-${runId}.txt` });
+
+    new Embed()
+        .setColor(config.embeds.colors.info)
+        .addContext(lang, member, 'print-out')
+        .setAttachment(attachment)
+        .interactionResponse(interaction);
+}
 
 const getLogsWithRange = async (runId, action, currentStart, currentEnd) => {
     const logFile = await getLogs(runId);
@@ -107,6 +128,10 @@ const sendLog = async (interaction, member, lang, componentData, runId = null, t
             .setCustomId(`logs*type=${type}*action=last*currentstart=${rangeStart}*currentendposition=${rangeEnd}*s=${sessionId}`)
             .setLabel(lang.getText('btn-skip'))
             .setStyle(ButtonStyle.Danger),
+        new ButtonBuilder()
+            .setCustomId(`logs*type=print*action=print*currentstart=${rangeStart}*currentendposition=${rangeEnd}*s=${sessionId}`)
+            .setLabel(lang.getText('btn-print'))
+            .setStyle(ButtonStyle.Success),
     ];
 
     const row = new ActionRowBuilder().addComponents(buttons);
@@ -199,6 +224,8 @@ const findAndExecuteSubCommand = (subCommand, interaction, member, lang, compone
         case 'list':
             listDbLogs(interaction, member, lang, componentData);
             break;
+        case 'print':
+            printSessionToTxt(interaction, member, lang, componentData.s);
         default:
             break;
     }
