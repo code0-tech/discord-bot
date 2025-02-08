@@ -79,13 +79,9 @@ start();
 
 /* TODO
 
--> Discord Audit log Embeds [Todo since: 28.04.2024]
-
 -> command to display overall commits, with carry over for all days
 
 -> pie chart for repos (WIP) [since 11.08.2024]
-
--> update modules like DiscordSimpleTable, etc [11.08.2024]
 
 -> event-prereminder refresh event timer after event fired, cause currently after the event fired there wont be any new timers setup for next time [08.02.2025]
 
