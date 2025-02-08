@@ -1,9 +1,8 @@
-const { ButtonBuilder, ButtonStyle, ActionRowBuilder, StringSelectMenuBuilder, PermissionFlagsBits } = require("discord.js");
+const { ButtonBuilder, ButtonStyle, ActionRowBuilder, StringSelectMenuBuilder, PermissionFlagsBits, AttachmentBuilder } = require("discord.js");
 const { SlashCommandBuilder } = require('@discordjs/builders');
 const { convertUnixToTimestamp } = require('../utils/time');
 const DiscordSimpleTable = require('discord-simpletable');
 const { Mongo, ENUMS } = require('../models/Mongo');
-const { AttachmentBuilder } = require('discord.js');
 const { Embed } = require('./../models/Embed');
 const config = require('./../../config.json');
 const DC = require('./../singleton/DC');
@@ -42,13 +41,11 @@ const getCurrentSessionRunId = () => process['dclogger'].runid;
 
 const formatLog = (log) => {
     const timestamp = convertUnixToTimestamp(log.time);
-    const message = log.msg;
-    const error = log.error !== null ? `\`\`\`\nError:\n\`\`\`${log.error}` : '';
+    return `${timestamp}\n\`\`\`${log.msg}\`\`\`${log.error ? `\n\`\`\`Error:\n${log.error}\`\`\`` : ''}\n`;
+}
 
-    return `${timestamp}\n\`\`\`${message}${error}\`\`\`\n`;
-};
-
-const printSessionToTxt = async (interaction, member, lang, runId) => {
+const printSessionToTxt = async (interaction, member, lang, componentData) => {
+    const runId = componentData.s;
 
     const totalLog = await getLogs(runId);
 
@@ -213,21 +210,16 @@ const listDbLogs = async (interaction, member, lang, componentData) => {
         .interactionResponse(interaction);
 }
 
-const findAndExecuteSubCommand = (subCommand, interaction, member, lang, componentData) => {
-    switch (subCommand) {
-        case 'show':
-            showCurrentSessionLogs(interaction, member, lang, componentData);
-            break;
-        case 'view':
-            viewDbLogs(interaction, member, lang, componentData);
-            break;
-        case 'list':
-            listDbLogs(interaction, member, lang, componentData);
-            break;
-        case 'print':
-            printSessionToTxt(interaction, member, lang, componentData.s);
-        default:
-            break;
+const subCommandHandlers = {
+    show: showCurrentSessionLogs,
+    view: viewDbLogs,
+    list: listDbLogs,
+    print: printSessionToTxt
+}
+
+const findAndExecuteSubCommand = (subCommand, ...args) => {
+    if (subCommandHandlers[subCommand]) {
+        subCommandHandlers[subCommand](...args);
     }
 }
 
@@ -260,7 +252,6 @@ const execute = async (interaction, client, guild, member, lang) => {
 
 const executeComponent = async (interaction, client, guild, member, lang, componentData) => {
     await DC.defer(interaction);
-
     findAndExecuteSubCommand(componentData.type, interaction, member, lang, componentData);
 }
 
