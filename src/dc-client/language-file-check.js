@@ -1,6 +1,5 @@
 const { loadJSONFilesFromFolder } = require('../utils/json');
 const Constants = require('./../../data/constants');
-const fs = require('fs').promises;
 const path = require('path');
 
 const checkLanguage = (exampleJson, langJson, langName) => {
