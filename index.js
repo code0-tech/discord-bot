@@ -52,7 +52,6 @@ const start = async (args) => {
 
         require('./src/start-up/mongodb-check');
 
-        require('./src/dc-guild/audit-log').setup(client);
         require('./src/dc-client/client-status').start(client);
 
         console.log(`\nCode0 Discord Client ready => ${readyClient.user.tag}`, Constants.CONSOLE.GOOD);
