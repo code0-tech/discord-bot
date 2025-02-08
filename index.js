@@ -9,7 +9,8 @@ const start = async (args) => {
     const dotenv = require('dotenv');
     const os = require('os');
 
-    global.isDevelopment = os.platform() === 'win32';
+    const isServer = os.platform() !== 'win32';
+    global.isDevelopment = !isServer;
 
     dotenv.config({ path: global.isDevelopment ? '.env' : 'server.env' });
 
