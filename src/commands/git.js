@@ -47,11 +47,15 @@ const sendChart = async (description, attachment) => {
 }
 
 const commands = {
-    async repoPie(interaction, client, guild, member, lang) {
+    async table(interaction, client, guild, member, lang) {
+        let usersArray = (interaction.options.getString('users')?.split(',').map(user => user.trim()).filter(Boolean) || await GIT.getAllUniqueNames());
 
-    },
-    async repoGraph(interaction, client, guild, member, lang) {
+        /* const gitData = await GIT.simpleSort([
+            GIT_SETTINGS.USERS(usersArray),
+            GIT_SETTINGS.DAILY_PACKETS()
+        ]) */
 
+        // console.dir(gitData)
     }
 }
 
