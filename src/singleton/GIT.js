@@ -57,6 +57,44 @@ class GIT {
         return await MongoDb.aggregate(ENUMS.DCB.GITHUB_COMMITS, pipeline);
     }
 
+    static async timeStartAndEnd(settings = []) {
+        const options = this._transformArrayToObject(settings);
+
+        const matchConditions = {
+            time: {
+                $gte: options.startUnix ?? this.DEFAULT_TIMES.start,
+                $lt: options.endUnix ?? this.DEFAULT_TIMES.end
+            }
+        };
+
+        const pipeline = [
+            { $match: matchConditions },
+            {
+                $group: {
+                    _id: null,
+                    minTime: { $min: "$time" },
+                    maxTime: { $max: "$time" }
+                }
+            },
+            {
+                $project: {
+                    _id: 0,
+                    startDate: {
+                        $dateToString: { format: "%d-%m-%Y", date: { $toDate: "$minTime" } }
+                    },
+                    endDate: {
+                        $dateToString: { format: "%d-%m-%Y", date: { $toDate: "$maxTime" } }
+                    }
+                }
+            }
+        ];
+
+        const result = await this._requestMongoDb(pipeline);
+
+        return result.length > 0 ? result[0] : { startDate: null, endDate: null };
+    }
+
+
     static async getAllUniqueNames(settings = []) {
         const options = this._transformArrayToObject(settings);
 
@@ -139,7 +177,7 @@ class GIT {
     }
 }
 
-/* const run = async () => {
+const run = async () => {
     const res = await GIT.simpleSort([
         GIT_SETTINGS.USERS(['Taucher2003']),
         GIT_SETTINGS.DAILY_PACKETS(true),
@@ -153,7 +191,7 @@ class GIT {
     console.dir(res2);
 }
 
-run(); */
+// run();
 
 
 module.exports = { GIT, GIT_SETTINGS };
