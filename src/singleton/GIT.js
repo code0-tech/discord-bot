@@ -6,19 +6,19 @@ const MongoDb = new Mongo();
 
 class GIT_SETTINGS {
     static USERS(userArray) {
-        return { filterUsers: userArray };
+        return { userArray };
     }
     static REPONAMES(reponameArray) {
         return { reponameArray };
     }
-    static DAILY_PACKETS(value = true) {
-        return { dailyPackets: value };
+    static DAILY_PACKETS(boolean = true) {
+        return { dailyPackets: boolean };
     }
-    static SET_START(unix) {
-        return { startUnix: unix };
+    static SET_START(startUnix) {
+        return { startUnix };
     }
-    static SET_END(unix) {
-        return { endUnix: unix };
+    static SET_END(endUnix) {
+        return { endUnix };
     }
     static BRANCHNAMES(branchnameArray) {
         return { branchnameArray }
@@ -104,8 +104,8 @@ class GIT {
             }
         };
 
-        if (options.filterUsers && options.filterUsers.length > 0) {
-            matchConditions.name = { $in: options.filterUsers };
+        if (options.userArray && options.userArray.length > 0) {
+            matchConditions.name = { $in: options.userArray };
         }
 
         const pipeline = [
@@ -129,8 +129,8 @@ class GIT {
             }
         };
 
-        if (options.filterUsers && options.filterUsers.length > 0) {
-            matchConditions.name = { $in: options.filterUsers };
+        if (options.userArray && options.userArray.length > 0) {
+            matchConditions.name = { $in: options.userArray };
         }
 
         const pipeline = [
@@ -154,8 +154,8 @@ class GIT {
             }
         };
 
-        if (options.filterUsers && options.filterUsers.length > 0) {
-            matchConditions.name = { $in: options.filterUsers };
+        if (options.userArray && options.userArray.length > 0) {
+            matchConditions.name = { $in: options.userArray };
         }
 
         if (options.reponameArray && options.reponameArray.length > 0) {
