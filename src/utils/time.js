@@ -41,5 +41,21 @@ const getNextDayByDateString = (dateString) => {
     return date.toISOString().slice(0, 10);
 }
 
+const convertDDMMYYToUnix = (dateString, isEndOfDay = false) => {
+    if (!dateString) return null;
+    const [day, month, year] = dateString.split('-').map(Number);
 
-module.exports = { waitMs, snowflakeToDate, msToHumanReadableTime, convertUnixToTimestamp, getNextDayByDateString };
+    const date = new Date(year, month - 1, day);
+
+    if (isEndOfDay) {
+        date.setHours(23, 59, 59, 999);
+    } else {
+        date.setHours(0, 0, 0, 0);
+    }
+
+    return Math.floor(date.getTime());
+};
+
+
+
+module.exports = { waitMs, snowflakeToDate, msToHumanReadableTime, convertUnixToTimestamp, getNextDayByDateString, convertDDMMYYToUnix };
