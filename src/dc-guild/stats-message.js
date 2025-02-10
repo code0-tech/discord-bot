@@ -1,5 +1,5 @@
+const { Embed, COLOR, progressBar } = require('../models/Embed');
 const { levenshteinDistance } = require('../utils/helper');
-const { Embed, progressBar } = require('../models/Embed');
 const { MongoUser } = require('../mongo/MongoUser');
 const config = require('../../config.json');
 const { Events } = require('discord.js');
@@ -69,7 +69,7 @@ const channelRankUpdateMessage = async (client, user) => {
     const xp = 0;
 
     new Embed()
-        .setColor(config.embeds.colors.info)
+        .setColor(COLOR.INFO)
         .setPbThumbnail(rankMember)
         .addInputs({
             rankuserid: await user.getId(),

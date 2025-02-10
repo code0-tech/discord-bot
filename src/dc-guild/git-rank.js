@@ -1,7 +1,7 @@
 const GITCOMMITSTOTAL = require('../singleton/GITCOMMITSTOTAL');
 const { Mongo, ENUMS } = require('../models/Mongo');
+const { Embed, COLOR } = require('../models/Embed');
 const Constants = require('../../data/constants');
-const { Embed } = require('../models/Embed');
 const config = require('../../config.json');
 const schedule = require('node-schedule');
 
@@ -100,7 +100,7 @@ The winner made ${formattedUserStats[0].total} commits in the past 24 hours.
 
 const createEmbedMessage = async (description) => {
     return new Embed()
-        .setColor(config.embeds.colors.info)
+        .setColor(COLOR.INFO)
         .setDescription(description)
         .setAttachment(await GITCOMMITSTOTAL.getAttachment())
         .setFooter(`Stats over the last ${await totalDays()} days.`)

@@ -1,7 +1,7 @@
+const { Embed, COLOR, replacePlaceHolders } = require("../models/Embed");
 const Constants = require("../../data/constants");
 const { guildById } = require("../singleton/DC");
 const config = require('../../config.json');
-const { Embed, replacePlaceHolders } = require("../models/Embed");
 
 const fetchUpcomingEvents = async (guild) => {
     return await guild.scheduledEvents.fetch();
@@ -21,7 +21,7 @@ const setupTimer = (channelId, title, time, client, eventConfig) => {
                     .setTitle(replacePlaceHolders(eventConfig.embed.title, placeholders))
                     .setContent(`<@&${config.roles[eventConfig.embed.mention]}>`)
                     .setDescription(replacePlaceHolders(eventConfig.embed.description, placeholders))
-                    .setColor(config.embeds.colors.info);
+                    .setColor(COLOR.INFO);
 
                 embedMessage.responseToChannel(channelId, client);
             }, timeNew);
