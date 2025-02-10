@@ -36,6 +36,7 @@ const getGuildAndMember = async (client, userId) => {
 };
 
 const handleInteraction = async (interaction, client, handler) => {
+    let finalCommandName = null;
     try {
         const { guild, member } = await getGuildAndMember(client, interaction.user.id);
 
@@ -53,6 +54,8 @@ const handleInteraction = async (interaction, client, handler) => {
             return;
         }
 
+        finalCommandName = commandName;
+
         console.log(`[Emit] Handling interaction for command: ${commandName}`, Constants.CONSOLE.WORKING);
 
         const lang = await language(commandName, interaction, guild, client);
@@ -64,7 +67,7 @@ const handleInteraction = async (interaction, client, handler) => {
 
         await handler(interaction, client, guild, member, lang);
     } catch (error) {
-        console.log(`[Emit] Command ${commandName} failed, because command internal failed`, Constants.CONSOLE.ERROR);
+        console.log(`[Emit] Command ${finalCommandName} failed, because command internal failed`, Constants.CONSOLE.ERROR);
         const id = interaction.commandName || interaction.customId.split('*')[0];
         executionError(interaction, `${id} failed`);
     }
