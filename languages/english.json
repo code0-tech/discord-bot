@@ -17,6 +17,7 @@
         "left-user-reload": "Reload",
         "left-user-remove": "Remove from MongoDB",
         "found-none": "None",
+        "remove": "Remove",
         "client-session-time": {
             "title": "Client Session Time",
             "description": "Up Since: {upsince}\n\n`{days}` days, `{hours}` hours, `{minutes}` minutes, `{seconds}` seconds."

@@ -17,6 +17,7 @@
         "left-user-reload": "Neuladen",
         "left-user-remove": "Entferne aus Mongo",
         "found-none": "Keine",
+        "remove": "Entferne",
         "client-session-time": {
             "title": "Client-Sitzungszeit",
             "description": "Online seit: {upsince}\n\n`{days}` Tagen, `{hours}` Stunden, `{minutes}` Minuten, `{seconds}` Sekunden."

@@ -17,6 +17,7 @@
         "left-user-reload": "Reloaddad",
         "left-user-remove": "Removo mongo userz",
         "found-none": "NUN",
+        "remove": "Remmovel",
         "client-session-time": {
             "title": "Clint Sessioun Time",
             "description": "Up Sinence: {upsince}\n\n`{days}` dayz, `{hours}` hourz, `{minutes}` minoots, `{seconds}` secundz."
