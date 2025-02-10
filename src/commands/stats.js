@@ -2,7 +2,7 @@ const { msToHumanReadableTime, waitMs } = require('./../utils/time');
 const { SlashCommandBuilder } = require('@discordjs/builders');
 const { MongoUser } = require('./../mongo/MongoUser');
 const { humanizeNumber } = require('../utils/helper');
-const { Embed } = require('./../models/Embed');
+const { Embed, COLOR } = require('./../models/Embed');
 const config = require('./../../config.json');
 const DC = require('./../singleton/DC');
 
@@ -49,7 +49,7 @@ const loop = async (client, interaction, member, lang, embedMessage, rankMember,
         const userChannel = await DC.memberVoiceChannel(rankMember, client);
 
         const embed = new Embed()
-            .setColor(config.embeds.colors.info)
+            .setColor(COLOR.INFO)
             .setPbThumbnail(rankMember)
             .addInputs({
                 channelmention: (userChannel == null ? '---' : `<#${userChannel.id}>`),

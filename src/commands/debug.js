@@ -2,7 +2,7 @@ const { ButtonBuilder, ButtonStyle, ActionRowBuilder, StringSelectMenuBuilder } 
 const { msToHumanReadableTime, convertUnixToTimestamp, waitMs } = require('./../utils/time');
 const { sendGitRankMessage } = require('../dc-guild/git-rank');
 const { SlashCommandBuilder } = require('@discordjs/builders');
-const { Embed, progressBar } = require('./../models/Embed');
+const { Embed, progressBar, COLOR } = require('./../models/Embed');
 const { PermissionFlagsBits } = require("discord.js");
 const { Mongo, ENUMS } = require('../models/Mongo');
 const config = require('./../../config.json');
@@ -35,7 +35,7 @@ const debugs = {
     async mongoLeftUsers(interaction, client, guild, member, lang) {
         const updateSearchingEmbed = (totaluser = 0, checked = 0, found = 0) => {
             new Embed()
-                .setColor(config.embeds.colors.info)
+                .setColor(COLOR.INFO)
                 .addInputs({ totaluser, checked, found })
                 .addContext(lang, member, 'mongo-left-users-loading')
                 .interactionResponse(interaction);
@@ -96,7 +96,7 @@ const debugs = {
         const rowWithReloadButton = new ActionRowBuilder().addComponents(button);
 
         new Embed()
-            .setColor(config.embeds.colors.info)
+            .setColor(COLOR.INFO)
             .addInputs({
                 userstring: (usersLeft.length == 0 ? `${lang.getText("found-none")}` : usersLeft.join("\n")),
                 progressbar: progressBar(usersLeft.length, userIds.length) + ` [${usersLeft.length}|${userIds.length}]`
@@ -110,7 +110,7 @@ const debugs = {
         const { d, h, m, s } = msToHumanReadableTime(Date.now() - client.startDate);
 
         const embed = new Embed()
-            .setColor(config.embeds.colors.info)
+            .setColor(COLOR.INFO)
             .addInputs({
                 upsince: convertUnixToTimestamp(client.startDate),
                 days: d,
@@ -147,7 +147,7 @@ const removeFromDB = async (interaction, client, guild, member, lang, componentD
     const row = new ActionRowBuilder().addComponents(button);
 
     new Embed()
-        .setColor(config.embeds.colors.danger)
+        .setColor(COLOR.INFOer)
         .addInputs({ userid: userId })
         .addContext(lang, member, 'mongo-removed-user')
         .setComponents([row])

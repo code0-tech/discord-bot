@@ -1,5 +1,5 @@
+const { Embed, COLOR, progressBar } = require('./../models/Embed');
 const { SlashCommandBuilder } = require('@discordjs/builders');
-const { Embed, progressBar } = require('./../models/Embed');
 const { MongoUser } = require('./../mongo/MongoUser');
 const { waitMs } = require('./../utils/time');
 const config = require('./../../config.json');
@@ -29,7 +29,7 @@ const loop = async (interaction, member, lang, embedMessage, rankMember, user, p
 
     if (previousXp === null || xp !== previousXp) {
         const embed = new Embed()
-            .setColor(config.embeds.colors.info)
+            .setColor(COLOR.INFO)
             .setPbThumbnail(rankMember)
             .addInputs({
                 rankuserid: rankMember.id,

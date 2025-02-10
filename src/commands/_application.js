@@ -3,7 +3,7 @@ const { snowflakeToDate, msToHumanReadableTime } = require('./../utils/time');
 const Constants = require('./../../data/constants');
 const { Channel } = require('./../models/Channel');
 const { keyArray } = require('./../utils/helper');
-const { Embed } = require('./../models/Embed');
+const { Embed, COLOR } = require('./../models/Embed');
 const config = require('./../../config.json');
 const DC = require('./../singleton/DC');
 
@@ -36,7 +36,7 @@ const autoRun = async (client, lang) => {
         .addComponents(applyButtonClosedTeam, applyButtonOpenContributor);
 
     new Embed()
-        .setColor(config.embeds.colors.info)
+        .setColor(COLOR.INFO)
         .addInputs({ teamid: config.roles.team })
         .addContext({ text: lang.english['_application'] }, null, '#init-message')
         .setComponents([row])
@@ -63,7 +63,7 @@ const sendEmbedResponse = async (interaction, lang, member, color, contextKey) =
 
 const handleApplicationApply = async (interaction, client, guild, member, lang, buttonData) => {
     if (await checkLastCreatedTicket(guild, member)) {
-        await sendEmbedResponse(interaction, lang, member, config.embeds.colors.danger, 'has-application');
+        await sendEmbedResponse(interaction, lang, member, COLOR.DANGER, 'has-application');
         return;
     }
 
@@ -89,14 +89,14 @@ const handleApplicationApply = async (interaction, client, guild, member, lang, 
     const row = new ActionRowBuilder().addComponents(closeApplicationButton);
 
     await new Embed()
-        .setColor(config.embeds.colors.info)
+        .setColor(COLOR.INFO)
         .addContext(lang, member, 'application-message')
         .setPin(true)
         .setComponents([row])
         .responseToChannel(applicationChannel.id, client);
 
     await new Embed()
-        .setColor(config.embeds.colors.info)
+        .setColor(COLOR.INFO)
         .addInputs({ channelid: applicationChannel.id })
         .addContext(lang, member, 'new-application')
         .interactionResponse(interaction);
@@ -104,12 +104,12 @@ const handleApplicationApply = async (interaction, client, guild, member, lang, 
 
 const handleApplicationClose = async (interaction, client, guild, member, lang, isTeam) => {
     if (!isTeam) {
-        await sendEmbedResponse(interaction, lang, member, config.embeds.colors.danger, 'no-team-member');
+        await sendEmbedResponse(interaction, lang, member, COLOR.DANGER, 'no-team-member');
         return;
     }
 
     await interaction.message.delete();
-    await sendEmbedResponse(interaction, lang, member, config.embeds.colors.danger, 'close-info');
+    await sendEmbedResponse(interaction, lang, member, COLOR.DANGER, 'close-info');
 
     const applicationChannel = await DC.channelByInteraction(interaction, guild);
 
@@ -126,7 +126,7 @@ const handleApplicationClose = async (interaction, client, guild, member, lang, 
     const { d, h, m, s } = msToHumanReadableTime(Date.now() - timeStamp);
 
     await new Embed()
-        .setColor(config.embeds.colors.danger)
+        .setColor(COLOR.DANGER)
         .addInputs({
             closeduserid: interaction.user.id,
             ticketuserid: removedIds[0],
@@ -153,7 +153,7 @@ const executeComponent = async (interaction, client, guild, member, lang, button
         await handleApplicationClose(interaction, client, guild, member, lang, isTeam);
     } else {
         if (!isTeam) {
-            await sendEmbedResponse(interaction, lang, member, config.embeds.colors.danger, 'no-team-member');
+            await sendEmbedResponse(interaction, lang, member, COLOR.DANGER, 'no-team-member');
             return;
         }
 

@@ -2,8 +2,8 @@ const { ButtonBuilder, ButtonStyle, ActionRowBuilder, StringSelectMenuBuilder, P
 const { SlashCommandBuilder } = require('@discordjs/builders');
 const { convertUnixToTimestamp } = require('../utils/time');
 const DiscordSimpleTable = require('discord-simpletable');
+const { Embed, COLOR } = require('./../models/Embed');
 const { Mongo, ENUMS } = require('../models/Mongo');
-const { Embed } = require('./../models/Embed');
 const config = require('./../../config.json');
 const DC = require('./../singleton/DC');
 
@@ -59,7 +59,7 @@ const printSessionToTxt = async (interaction, member, lang, componentData) => {
     const attachment = new AttachmentBuilder(buffer, { name: `logfile-${runId}.txt` });
 
     new Embed()
-        .setColor(config.embeds.colors.info)
+        .setColor(COLOR.INFO)
         .addContext(lang, member, 'print-out')
         .setAttachment(attachment)
         .interactionResponse(interaction);
@@ -106,7 +106,7 @@ const sendLog = async (interaction, member, lang, componentData, runId = null, t
     const { createdAt, logString, totalLength, rangeStart, rangeEnd } = await getLogsWithRange(parseInt(sessionId), action, currentStart, currentEnd);
     if (!createdAt) {
         return new Embed()
-            .setColor(config.embeds.colors.danger)
+            .setColor(COLOR.DANGER)
             .addInputs({ runid: sessionId })
             .addContext(lang, member, 'not-found')
             .interactionResponse(interaction);
@@ -134,7 +134,7 @@ const sendLog = async (interaction, member, lang, componentData, runId = null, t
     const row = new ActionRowBuilder().addComponents(buttons);
 
     new Embed()
-        .setColor(type === 'show' ? config.embeds.colors.info : config.embeds.colors.inprogress)
+        .setColor(type === 'show' ? COLOR.INFO : COLOR.IN_PROGRESS)
         .addInputs({
             runid: sessionId,
             createdat: createdAt,
@@ -151,7 +151,7 @@ const sendLog = async (interaction, member, lang, componentData, runId = null, t
 const showCurrentSessionLogs = async (interaction, member, lang, componentData) => {
     if (global.isDevelopment) {
         return new Embed()
-            .setColor(config.embeds.colors.danger)
+            .setColor(COLOR.DANGER)
             .addContext(lang, member, 'development')
             .interactionResponse(interaction);
     }
@@ -203,7 +203,7 @@ const listDbLogs = async (interaction, member, lang, componentData) => {
     const row = new ActionRowBuilder().addComponents(selectMenu);
 
     new Embed()
-        .setColor(config.embeds.colors.info)
+        .setColor(COLOR.INFO)
         .addInputs({ list: buildTable })
         .addContext(lang, member, 'list-logs')
         .setComponents([row])
@@ -239,7 +239,7 @@ const execute = async (interaction, client, guild, member, lang) => {
 
     if (totalCount == 0) {
         new Embed()
-            .setColor(config.embeds.colors.info)
+            .setColor(COLOR.INFO)
             .addContext(lang, member, 'list-logs-empty')
             .interactionResponse(interaction);
         return;

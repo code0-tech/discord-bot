@@ -3,7 +3,7 @@ const DiscordSimpleTable = require('discord-simpletable');
 const { MongoUser } = require('./../mongo/MongoUser');
 const { humanizeNumber } = require('../utils/helper');
 const { Mongo, ENUMS } = require('../models/Mongo');
-const { Embed } = require('../models/Embed');
+const { Embed, COLOR } = require('../models/Embed');
 const config = require('../../config.json');
 const DC = require('./../singleton/DC');
 
@@ -52,7 +52,7 @@ const sendMessage = async (interaction, member, lang, data) => {
         .build();
 
     new Embed()
-        .setColor(config.embeds.colors.info)
+        .setColor(COLOR.INFO)
         .addInputs({ stringlist: buildTable })
         .addContext(lang, member, 'board')
         .interactionResponse(interaction);

@@ -1,5 +1,5 @@
 const { SlashCommandBuilder } = require('@discordjs/builders');
-const { Embed } = require('./../models/Embed');
+const { Embed, COLOR } = require('./../models/Embed');
 const config = require('./../../config.json');
 const DC = require('./../singleton/DC');
 
@@ -16,7 +16,7 @@ const execute = async (interaction, client, guild, member, lang) => {
     await DC.defer(interaction);
 
     new Embed()
-        .setColor(config.embeds.colors.info)
+        .setColor(COLOR.INFO)
         .addInputs({
             neededpr: config.commands.opencontributor.pr,
             neededcommits: config.commands.opencontributor.commits

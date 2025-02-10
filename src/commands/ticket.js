@@ -1,9 +1,9 @@
 const { ChannelType, PermissionsBitField, ButtonBuilder, ButtonStyle, ActionRowBuilder } = require("discord.js");
 const { snowflakeToDate, msToHumanReadableTime } = require('./../utils/time');
 const { SlashCommandBuilder } = require('@discordjs/builders');
+const { Embed, COLOR } = require('./../models/Embed');
 const Constants = require('./../../data/constants');
 const { Channel } = require('./../models/Channel');
-const { Embed } = require('./../models/Embed');
 const config = require('./../../config.json');
 const DC = require('./../singleton/DC');
 
@@ -51,7 +51,7 @@ const execute = async (interaction, client, guild, member, lang) => {
         const { m, s } = msToHumanReadableTime(lastTicketinMs);
 
         await new Embed()
-            .setColor(config.embeds.colors.danger)
+            .setColor(COLOR.DANGER)
             .addInputs({ m, s })
             .addContext(lang, member, 'timeout')
             .interactionResponse(interaction);
@@ -60,7 +60,7 @@ const execute = async (interaction, client, guild, member, lang) => {
     }
 
     await new Embed()
-        .setColor(config.embeds.colors.info)
+        .setColor(COLOR.INFO)
         .addContext(lang, member, 'create')
         .interactionResponse(interaction);
 
@@ -81,7 +81,7 @@ const execute = async (interaction, client, guild, member, lang) => {
         .createChannel(guild);
 
     await new Embed()
-        .setColor(config.embeds.colors.info)
+        .setColor(COLOR.INFO)
         .addInputs({ channelid: ticketChannel.id })
         .addContext(lang, member, 'created')
         .interactionResponse(interaction);
@@ -95,7 +95,7 @@ const execute = async (interaction, client, guild, member, lang) => {
         .addComponents(closeTicket);
 
     await new Embed()
-        .setColor(config.embeds.colors.info)
+        .setColor(COLOR.INFO)
         .addContext(lang, member, 'info-message')
         .setPin(true)
         .setComponents([row])
@@ -107,7 +107,7 @@ const executeComponent = async (interaction, client, guild, member, lang, compon
 
     if (!await DC.isTeamMember(member)) {
         await new Embed()
-            .setColor(config.embeds.colors.danger)
+            .setColor(COLOR.DANGER)
             .addContext(lang, member, 'no-team-member')
             .interactionResponse(interaction);
         return;
@@ -120,7 +120,7 @@ const executeComponent = async (interaction, client, guild, member, lang, compon
         const ticketChannel = await DC.channelByInteraction(interaction, guild);
 
         await new Embed()
-            .setColor(config.embeds.colors.danger)
+            .setColor(COLOR.DANGER)
             .addContext(lang, member, 'close-info')
             .interactionResponse(interaction);
 
@@ -138,7 +138,7 @@ const executeComponent = async (interaction, client, guild, member, lang, compon
         const { d, h, m, s } = msToHumanReadableTime(Date.now() - timeStamp);
 
         await new Embed()
-            .setColor(config.embeds.colors.danger)
+            .setColor(COLOR.DANGER)
             .addInputs({
                 closeduserid: interaction.user.id,
                 ticketuserid: removedIds[0],

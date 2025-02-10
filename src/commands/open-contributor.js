@@ -1,6 +1,6 @@
 const { ButtonBuilder, ButtonStyle, ActionRowBuilder } = require("discord.js");
+const { Embed, COLOR, progressBar } = require('./../models/Embed');
 const { SlashCommandBuilder } = require('@discordjs/builders');
-const { Embed, progressBar } = require('./../models/Embed');
 const DiscordSimpleTable = require('discord-simpletable');
 const AsyncManager = require("../singleton/AsyncManager");
 const { encryptString } = require('./../utils/crypto');
@@ -19,7 +19,7 @@ const data = new SlashCommandBuilder()
 
 const failedMessage = async (interaction, client, member, lang, type) => {
     await new Embed()
-        .setColor(config.embeds.colors.danger)
+        .setColor(COLOR.DANGER)
         .addContext(lang, member, type)
         .interactionResponse(interaction);
 };
@@ -54,7 +54,7 @@ const execute = async (interaction, client, guild, member, lang) => {
     const row = createButtonRow(data, lang);
 
     await new Embed()
-        .setColor(config.embeds.colors.info)
+        .setColor(COLOR.INFO)
         .addInputs({ neededcommits: config.commands.opencontributor.commits, neededpr: config.commands.opencontributor.pr })
         .addContext(lang, member, 'initial-message')
         .setComponents([row])
@@ -96,7 +96,7 @@ const execute = async (interaction, client, guild, member, lang) => {
     }
 
     await new Embed()
-        .setColor(config.embeds.colors.info)
+        .setColor(COLOR.INFO)
         .addInputs({
             tablestring: table.build(),
             yourpr: github.totalPullRequests,

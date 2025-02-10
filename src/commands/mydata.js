@@ -1,7 +1,7 @@
 const { SlashCommandBuilder } = require('@discordjs/builders');
 const { MongoUser } = require('./../mongo/MongoUser');
+const { Embed, COLOR } = require('./../models/Embed');
 const { AttachmentBuilder } = require('discord.js');
-const { Embed } = require('./../models/Embed');
 const config = require('./../../config.json');
 const DC = require('./../singleton/DC');
 
@@ -25,7 +25,7 @@ const execute = async (interaction, client, guild, member, lang) => {
     const attachment = new AttachmentBuilder(buffer, { name: 'sample.json' });
 
     new Embed()
-        .setColor(config.embeds.colors.info)
+        .setColor(COLOR.INFO)
         .addContext(lang, member, 'your-data')
         .setAttachment(attachment)
         .interactionResponse(interaction);
