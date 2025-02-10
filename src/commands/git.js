@@ -24,6 +24,12 @@ const data = new SlashCommandBuilder()
                     .setRequired(false)
             )
             .addStringOption(option =>
+                option.setName('repos')
+                    .setDescription('Select multiple Git repos (comma-separated)')
+                    .setAutocomplete(true)
+                    .setRequired(false)
+            )
+            .addStringOption(option =>
                 option.setName('time-start')
                     .setDescription('Set start time')
                     .setAutocomplete(true)
@@ -46,9 +52,26 @@ const sendChart = async (description, attachment) => {
         .setImage(Constants.DISCORD.EMBED_IMAGE_NAME.EMBED.DEFAULT_PNG_01);
 }
 
+const getFilters = async (interaction) => {
+    let usersArray = (interaction.options.getString('users')?.split(',').map(user => user.trim()).filter(Boolean) || await GIT.getAllUniqueNames());
+    let reposArray = (interaction.options.getString('repos')?.split(',').map(repo => repo.trim()).filter(Boolean) || await GIT.getAllRepos());
+    let timeStart = interaction.options.getString('time-start') || (await GIT.timeStartAndEnd()).startDate;
+    let timeEnd = interaction.options.getString('time-end') || (await GIT.timeStartAndEnd()).endDate;
+
+    return { usersArray, reposArray, timeStart, timeEnd };
+}
+
 const commands = {
     async table(interaction, client, guild, member, lang) {
-        let usersArray = (interaction.options.getString('users')?.split(',').map(user => user.trim()).filter(Boolean) || await GIT.getAllUniqueNames());
+        const { usersArray, reposArray, timeStart, timeEnd } = await getFilters(interaction);
+
+        console.log("-----------------------")
+        console.log(usersArray);
+        console.log(reposArray);
+        console.log(timeStart);
+        console.log(timeEnd);
+        console.log("-----------------------")
+
 
         /* const gitData = await GIT.simpleSort([
             GIT_SETTINGS.USERS(usersArray),
@@ -78,14 +101,22 @@ const autoCompleteUsers = async (focusedValue) => {
 }
 
 const autoCompleteRepositories = async (focusedValue) => {
-    const repoList = await GIT.getAllRepositories();
+    const repoList = await GIT.getAllRepos();
+
+    const splitValues = focusedValue.split(',').map(val => val.trim());
+    const lastInput = splitValues.pop();
+    const existingRepos = splitValues.join(', ');
 
     const filteredRepos = repoList.filter(repo =>
-        repo.toLowerCase().includes(focusedValue.toLowerCase())
+        repo.toLowerCase().startsWith(lastInput.toLowerCase()) &&
+        !splitValues.includes(repo)
     );
 
-    return filteredRepos.slice(0, 25).map(repo => ({ name: repo, value: repo }));
-}
+    return filteredRepos.slice(0, 25).map(repo => {
+        const newValue = existingRepos ? `${existingRepos}, ${repo}` : repo;
+        return { name: newValue, value: newValue };
+    });
+};
 
 const autoCompleteDates = async (focusedValue) => {
     const { startDate, endDate } = await GIT.timeStartAndEnd();
@@ -96,6 +127,10 @@ const autoCompleteDates = async (focusedValue) => {
 
     if (!startDate || !endDate) {
         return [];
+    }
+
+    if (!focusedValue.endsWith('.') && focusedValue.length < 3) {
+        focusedValue += '.';
     }
 
     const start = new Date(startDate.split('-').reverse().join('-'));
@@ -124,7 +159,7 @@ const autoComplete = async (interaction, client, guild, member, lang) => {
     let choices = [];
     if (optionName === 'users') {
         choices = await autoCompleteUsers(focusedValue);
-    } else if (optionName === 'repositories') {
+    } else if (optionName === 'repos') {
         choices = await autoCompleteRepositories(focusedValue);
     } else if (optionName === 'time-start' || optionName === 'time-end') {
         choices = await autoCompleteDates(focusedValue);
