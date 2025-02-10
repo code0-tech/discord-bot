@@ -42,7 +42,6 @@ The bot collects and processes certain statistics, as visible in the source code
 For /open-contributer, OAuth URLs are not stored. This means authentication is required each time the command is executed.
 
 ## Command Tracking
-Command execution logging is not currently implemented.
 
 Entrie Example:
 ```json
@@ -64,7 +63,27 @@ Entrie Example:
       "time": 96673
     }
   },
-  "commandstats": {}
+  "commandstats": {
+    "debug": {
+      "command": 3
+    },
+    "leaderboard": {
+      "command": 1
+    },
+    "stats": {
+      "command": 2
+    },
+    "logs": {
+      "command": 1,
+      "button": 2
+    },
+    "logs list": {
+      "selectmenu": 1
+    },
+    "links": {
+      "command": 1
+    }
+  }
 }
 ```
 
