@@ -2,9 +2,8 @@ const { SlashCommandBuilder } = require('@discordjs/builders');
 const { GIT, GIT_SETTINGS } = require('./../singleton/GIT');
 const DiscordSimpleTable = require('discord-simpletable');
 const { convertDDMMYYToUnix } = require('../utils/time');
-const { Mongo, ENUMS } = require('../models/Mongo');
+const { Embed, COLOR } = require('./../models/Embed');
 const Constants = require('../../data/constants');
-const { Embed } = require('./../models/Embed');
 const config = require('./../../config.json');
 const DC = require('./../singleton/DC');
 
@@ -46,7 +45,7 @@ const data = new SlashCommandBuilder()
 
 const sendChart = async (description, attachment) => {
     return new Embed()
-        .setColor(config.embeds.colors.info)
+        .setColor(COLOR.INFO)
         .setDescription(description)
         .setAttachment(attachment)
         .setFooter(`Stats over the last ${await totalDays()} days.`)
@@ -77,22 +76,12 @@ const commands = {
         const gitData = await GIT.simpleSort(settings);
 
         console.dir(gitData);
-
         console.dir(settings);
-        // console.log("-----------------------")
-        // console.log(usersArray);
-        // console.log(reposArray);
-        // console.log(timeStart);
-        // console.log(timeEnd);
-        // console.log("-----------------------")
 
-
-        /* const gitData = await GIT.simpleSort([
-            GIT_SETTINGS.USERS(usersArray),
-            GIT_SETTINGS.DAILY_PACKETS()
-        ]) */
-
-        // console.dir(gitData)
+        new Embed()
+            .setTitle('Command in Progress, will be finished soon')
+            .setColor(COLOR.IN_PROGRESS)
+            .interactionResponse(interaction)
     }
 }
 
