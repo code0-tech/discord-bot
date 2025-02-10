@@ -182,7 +182,8 @@ class GIT {
                             }
                         },
                         dailyCommits: { $sum: "$commitscount" },
-                        branchnames: { $addToSet: "$branchname" }
+                        branchnames: { $addToSet: "$branchname" },
+                        reponames: { $addToSet: "$repo" }
                     }
                 },
                 {
@@ -191,6 +192,7 @@ class GIT {
                         name: "$_id.name",
                         date: "$_id.date",
                         branchnames: 1,
+                        reponames: 1,
                         dailyCommits: 1
                     }
                 }
