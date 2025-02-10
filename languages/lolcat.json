@@ -1,5 +1,8 @@
 {
     "debug": {
+        "channels": "Channelz",
+        "roles": "Rolas",
+        "langroles": "Languagagererols",
         "mongo-left-users": {
             "title": "Kongo Left Usr",
             "description": "Found:\n{userstring}\n\nFake Usrz:\n{progressbar}"
