@@ -321,6 +321,39 @@ class Embed {
     }
 }
 
+class COLOR {
+    static get BACKGROUND() {
+        return config.embeds.colors.background;
+    }
+    static get PRIMARY() {
+        return config.embeds.colors.primary;
+    }
+    static get SECONDARY() {
+        return config.embeds.colors.secondary;
+    }
+    static get INFO() {
+        return config.embeds.colors.info;
+    }
+    static get SUCCESS() {
+        return config.embeds.colors.success;
+    }
+    static get WARNING() {
+        return config.embeds.colors.warning;
+    }
+    static get IN_PROGRESS() {
+        return config.embeds.colors.inprogress;
+    }
+    static get DANGER() {
+        return config.embeds.colors.danger;
+    }
+    static get BLACK() {
+        return config.embeds.colors.black;
+    }
+    static get WHITE() {
+        return config.embeds.colors.white;
+    }
+}
+
 const progressBar = (total, whole, info = true, segments = 10) => {
     if (total > whole) {
         total = 100;
@@ -368,4 +401,4 @@ const progressBar = (total, whole, info = true, segments = 10) => {
 }
 
 
-module.exports = { Embed, progressBar, replacePlaceHolders };
+module.exports = { Embed, COLOR, progressBar, replacePlaceHolders };
