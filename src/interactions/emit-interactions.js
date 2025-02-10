@@ -64,7 +64,7 @@ const handleInteraction = async (interaction, client, handler) => {
 
         await handler(interaction, client, guild, member, lang);
     } catch (error) {
-        console.error('Error in handleInteraction:', error);
+        console.log(`[Emit] Command ${commandName} failed, because command internal failed`, Constants.CONSOLE.ERROR);
         const id = interaction.commandName || interaction.customId.split('*')[0];
         executionError(interaction, `${id} failed`);
     }
