@@ -1,5 +1,8 @@
 {
     "debug": {
+        "channels": "Channels",
+        "roles": "Roles",
+        "langroles": "Languageroles",
         "mongo-left-users": {
             "title": "MongoDB Left User",
             "description": "Found:\n{userstring}\n\nFake Users:\n{progressbar}"
