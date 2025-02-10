@@ -1,6 +1,7 @@
 const { SlashCommandBuilder } = require('@discordjs/builders');
 const { GIT, GIT_SETTINGS } = require('./../singleton/GIT');
 const DiscordSimpleTable = require('discord-simpletable');
+const { convertDDMMYYToUnix } = require('../utils/time');
 const { Mongo, ENUMS } = require('../models/Mongo');
 const Constants = require('../../data/constants');
 const { Embed } = require('./../models/Embed');
@@ -55,8 +56,8 @@ const sendChart = async (description, attachment) => {
 const getFilters = async (interaction) => {
     let usersArray = (interaction.options.getString('users')?.split(',').map(user => user.trim()).filter(Boolean) || await GIT.getAllUniqueNames());
     let reposArray = (interaction.options.getString('repos')?.split(',').map(repo => repo.trim()).filter(Boolean) || await GIT.getAllRepos());
-    let timeStart = interaction.options.getString('time-start') || (await GIT.timeStartAndEnd()).startDate;
-    let timeEnd = interaction.options.getString('time-end') || (await GIT.timeStartAndEnd()).endDate;
+    let timeStart = interaction.options.getString('time-start')?.split(".").join("-") || (await GIT.timeStartAndEnd()).startDate;
+    let timeEnd = interaction.options.getString('time-end')?.split(".").join("-") || (await GIT.timeStartAndEnd()).endDate;
 
     return { usersArray, reposArray, timeStart, timeEnd };
 }
@@ -65,12 +66,25 @@ const commands = {
     async table(interaction, client, guild, member, lang) {
         const { usersArray, reposArray, timeStart, timeEnd } = await getFilters(interaction);
 
-        console.log("-----------------------")
-        console.log(usersArray);
-        console.log(reposArray);
-        console.log(timeStart);
-        console.log(timeEnd);
-        console.log("-----------------------")
+        const settings = [
+            GIT_SETTINGS.USERS(usersArray),
+            GIT_SETTINGS.REPONAMES(reposArray),
+            GIT_SETTINGS.SET_START(convertDDMMYYToUnix(timeStart, false)),
+            GIT_SETTINGS.SET_END(convertDDMMYYToUnix(timeEnd, true)),
+            GIT_SETTINGS.DAILY_PACKETS()
+        ]
+
+        const gitData = await GIT.simpleSort(settings);
+
+        console.dir(gitData);
+
+        console.dir(settings);
+        // console.log("-----------------------")
+        // console.log(usersArray);
+        // console.log(reposArray);
+        // console.log(timeStart);
+        // console.log(timeEnd);
+        // console.log("-----------------------")
 
 
         /* const gitData = await GIT.simpleSort([

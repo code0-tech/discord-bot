@@ -191,9 +191,9 @@ class GIT {
                         _id: 0,
                         name: "$_id.name",
                         date: "$_id.date",
+                        dailyCommits: 1,
                         branchnames: 1,
-                        reponames: 1,
-                        dailyCommits: 1
+                        reponames: 1
                     }
                 }
             );
@@ -206,8 +206,7 @@ class GIT {
 const run = async () => {
     const res = await GIT.simpleSort([
         GIT_SETTINGS.USERS(['Taucher2003']),
-        GIT_SETTINGS.DAILY_PACKETS(true),
-        // GIT_SETTINGS.BRANCHNAMES(['259-remove-screenshot-testing'])
+        GIT_SETTINGS.DAILY_PACKETS(true)
     ]);
 
     const res2 = await GIT.getAllUniqueNames([]);
