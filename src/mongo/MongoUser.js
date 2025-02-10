@@ -109,7 +109,7 @@ class MongoUser {
 
         return {
             level: level - 1, neededXp: requiredXP - previousLevelXP, xp: rawXp - previousLevelXP
-        };
+        }
     }
 
     /**
@@ -163,7 +163,7 @@ class MongoUser {
                     'stats.messages.chars': chars
                 }
             }
-        );
+        )
     }
 
     /**
@@ -178,6 +178,21 @@ class MongoUser {
                     'stats.voice.time': time,
                     'stats.voice.joins': joins,
                     'stats.voice.switchs': switchs
+                }
+            }
+        )
+    }
+
+    /**
+     * update command stats
+     */
+    async updateCommandUsage(name, handlerType, inc = 1) {
+        return await MongoDb.update(
+            ENUMS.DCB.USERS,
+            { id: this._userid },
+            {
+                $inc: {
+                    [`commandstats.${name}.${handlerType}`]: inc
                 }
             }
         );
