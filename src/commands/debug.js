@@ -26,7 +26,8 @@ const data = new SlashCommandBuilder()
             .addChoices(
                 { name: '[Client] => This session time', value: 'clientSessionTime' },
                 { name: '[Mongo] => Check left users', value: 'mongoLeftUsers' },
-                { name: '[Mongo] => githubcommits -> new Chart', value: 'chartFromGithubTotalCommits' }
+                { name: '[Mongo] => githubcommits -> new Chart', value: 'chartFromGithubTotalCommits' },
+                { name: '[DC.Server] => ping all discord server configs', value: 'pingAllDiscordServerConfigs' }
             ))
     .setDefaultMemberPermissions(PermissionFlagsBits.Administrator)
 
@@ -131,6 +132,31 @@ const debugs = {
     async chartFromGithubTotalCommits(interaction, client, guild, member, lang) {
         const embed = await sendGitRankMessage(null);
         embed.interactionResponse(interaction);
+    },
+
+    async pingAllDiscordServerConfigs(interaction, client, guild, member, lang) {
+        let description = `${lang.getText('channels')}\n\n`;
+
+        for (const key in config.channels) {
+            description += `<#${config.channels[key]}>\n`;
+        }
+
+        description += `\n${lang.getText('roles')}\n\n`;
+
+        for (const key in config.roles) {
+            description += `<@&${config.roles[key]}>\n`;
+        }
+
+        description += `\n${lang.getText('langroles')}\n\n`;
+
+        for (const key in config.languageroles) {
+            description += `<@&${key}>\n`;
+        }
+
+        new Embed()
+            .setColor(COLOR.INFO)
+            .setDescription(description)
+            .interactionResponse(interaction)
     }
 }
 
