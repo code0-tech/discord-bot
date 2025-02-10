@@ -94,7 +94,6 @@ class GIT {
         return result.length > 0 ? result[0] : { startDate: null, endDate: null };
     }
 
-
     static async getAllUniqueNames(settings = []) {
         const options = this._transformArrayToObject(settings);
 
@@ -118,6 +117,31 @@ class GIT {
         const result = await this._requestMongoDb(pipeline);
 
         return result.map(item => item.name);
+    }
+
+    static async getAllRepos(settings = []) {
+        const options = this._transformArrayToObject(settings);
+
+        const matchConditions = {
+            time: {
+                $gte: options.startUnix ?? this.DEFAULT_TIMES.start,
+                $lt: options.endUnix ?? this.DEFAULT_TIMES.end
+            }
+        };
+
+        if (options.filterUsers && options.filterUsers.length > 0) {
+            matchConditions.name = { $in: options.filterUsers };
+        }
+
+        const pipeline = [
+            { $match: matchConditions },
+            { $group: { _id: "$repo" } },
+            { $project: { _id: 0, repo: "$_id" } }
+        ];
+
+        const result = await this._requestMongoDb(pipeline);
+
+        return result.map(item => item.repo);
     }
 
     static async simpleSort(settings = []) {
@@ -184,11 +208,14 @@ const run = async () => {
         // GIT_SETTINGS.BRANCHNAMES(['259-remove-screenshot-testing'])
     ]);
 
-    const res2 = await GIT.getAllUniqueNames([
-    ]);
+    const res2 = await GIT.getAllUniqueNames([]);
+
+    const res3 = await GIT.getAllRepos([]);
 
     console.dir(res);
     console.dir(res2);
+    console.dir(res3);
+
 }
 
 // run();
