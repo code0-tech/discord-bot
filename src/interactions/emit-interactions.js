@@ -1,6 +1,6 @@
+const { Embed, COLOR } = require('./../models/Embed');
 const Constants = require('./../../data/constants');
 const { language } = require('./language-check');
-const { Embed } = require('./../models/Embed');
 const config = require('./../../config.json');
 const { Events } = require('discord.js');
 const DC = require('./../singleton/DC');
@@ -23,7 +23,7 @@ const executionError = (interaction, info) => {
     if (interaction.deferred || interaction.replied) {
         new Embed()
             .setTitle('Error at Command Execution')
-            .setColor(config.embeds.colors.danger)
+            .setColor(COLOR.DANGER)
             .setDescription(`An error occurred while processing your request\n\nMsg:\n\`${info}\``)
             .interactionResponse(interaction);
     }
