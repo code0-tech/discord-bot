@@ -1,5 +1,6 @@
 const { Embed, COLOR } = require('./../models/Embed');
 const Constants = require('./../../data/constants');
+const { MongoUser } = require('../mongo/MongoUser');
 const { language } = require('./language-check');
 const config = require('./../../config.json');
 const { Events } = require('discord.js');
@@ -35,7 +36,7 @@ const getGuildAndMember = async (client, userId) => {
     return { guild, member };
 };
 
-const handleInteraction = async (interaction, client, handler) => {
+const handleInteraction = async (interaction, client, handler, handlerType) => {
     let finalCommandName = null;
     try {
         const { guild, member } = await getGuildAndMember(client, interaction.user.id);
@@ -64,6 +65,9 @@ const handleInteraction = async (interaction, client, handler) => {
             console.log(`[Emit] Specified language context was not given`, Constants.CONSOLE.ERROR);
             return;
         }
+
+        const user = await new MongoUser(interaction.user.id).init();
+        user.updateCommandUsage(finalCommandName, handlerType);
 
         await handler(interaction, client, guild, member, lang);
     } catch (error) {
@@ -104,13 +108,13 @@ const autoCompleteHandler = async (interaction, client, guild, member, lang) => 
 const setup = (client) => {
     client.on(Events.InteractionCreate, async (interaction) => {
         if (interaction.isChatInputCommand()) {
-            await handleInteraction(interaction, client, commandHandler);
+            await handleInteraction(interaction, client, commandHandler, 'command');
         } else if (interaction.isButton()) {
-            await handleInteraction(interaction, client, buttonHandler);
+            await handleInteraction(interaction, client, buttonHandler, 'button');
         } else if (interaction.isAutocomplete()) {
-            await handleInteraction(interaction, client, autoCompleteHandler);
+            await handleInteraction(interaction, client, autoCompleteHandler, 'autocomplete');
         } else if (interaction.isStringSelectMenu()) {
-            await handleInteraction(interaction, client, selectMenuHandler);
+            await handleInteraction(interaction, client, selectMenuHandler, 'selectmenu');
         }
     });
 };
