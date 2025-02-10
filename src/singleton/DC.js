@@ -139,7 +139,7 @@ class DC {
             channel.permissionOverwrites.delete(userId);
         });
 
-        console.log(`[Channel Perms] User Perms removed from "${channel.name}"`, Constants.CONSOLE.WORKING);
+        console.log(`[DC.channelPerms] User Perms removed from "${channel.name}"`, Constants.CONSOLE.WORKING);
         return { removedIds };
     }
 
