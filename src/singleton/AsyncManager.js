@@ -1,3 +1,5 @@
+const Constants = require("../../data/constants");
+
 class AsyncManager {
     static #actions = {};
 
@@ -21,6 +23,7 @@ class AsyncManager {
      */
     static addAction(id, timeout = null, reference = null, referenceKill = false) {
         if (this.#actions[id]) {
+            console.log(`[AsyncManager] Action with ID "${id}" already exists`, Constants.CONSOLE.ERROR);
             throw new Error(`Action with ID "${id}" already exists.`);
         }
 
@@ -56,7 +59,7 @@ class AsyncManager {
         const action = this.#actions[id];
 
         if (!action) {
-            console.warn(`No action found with ID "${id}".`);
+            console.log(`[AsyncManager] No action found with ID "${id}"`, Constants.CONSOLE.ERROR);
             return;
         }
 
@@ -94,7 +97,7 @@ class AsyncManager {
      * @returns {Object} The actions currently managed by the class.
      */
     static getActions() {
-        return { ...this.#actions }; // Return a shallow copy!!!
+        return { ...this.#actions };
     }
 }
 
