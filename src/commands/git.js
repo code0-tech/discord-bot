@@ -1,11 +1,11 @@
 const { SlashCommandBuilder } = require('@discordjs/builders');
+const { GIT, GIT_SETTINGS } = require('./../singleton/GIT');
 const DiscordSimpleTable = require('discord-simpletable');
 const { Mongo, ENUMS } = require('../models/Mongo');
 const Constants = require('../../data/constants');
 const { Embed } = require('./../models/Embed');
 const config = require('./../../config.json');
 const DC = require('./../singleton/DC');
-const { GIT, GIT_SETTINGS } = require('./../singleton/GIT');
 
 
 const data = new SlashCommandBuilder()
