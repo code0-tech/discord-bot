@@ -78,7 +78,7 @@ const debugs = {
 
         const selectMenuOptions = usersLeft.map((userId, index) => ({
             label: `${userId}`,
-            description: `Remove ${userId}`,
+            description: `${lang.getText('remove')} ${userId}`,
             value: `${userId}`
         }));
 
