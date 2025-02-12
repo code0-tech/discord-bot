@@ -1,3 +1,4 @@
+const Constants = require('./../../data/constants');
 const fs = require('fs').promises;
 const path = require('path');
 
@@ -11,7 +12,7 @@ const loadJSONFilesFromFolder = async (folderPath) => {
         for (const file of jsonFiles) {
             const fileName = file.replace('.json', '');
             const filePath = path.join(folderPath, file);
-            const fileContent = await fs.readFile(filePath, 'utf8');
+            const fileContent = await fs.readFile(filePath, Constants.SETTINGS.ENCODING.UTF8);
             jsonData[fileName] = JSON.parse(fileContent);
         }
 
