@@ -56,7 +56,7 @@ const printSessionToTxt = async (interaction, member, lang, componentData) => {
         return `[${readableTime}]: ${message}`;
     }).join('\n');
 
-    const buffer = Buffer.from(formattedLogs, 'utf-8');
+    const buffer = Buffer.from(formattedLogs, Constants.SETTINGS.ENCODING.UTF8);
     const attachment = new AttachmentBuilder(buffer, { name: `logfile-${runId}.txt` });
 
     new Embed()

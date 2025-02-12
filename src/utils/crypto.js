@@ -6,9 +6,9 @@ const key = crypto.scryptSync(process.env.CRYPTO_KEY, Constants.CRYPTO.SALT, Con
 const encryptString = (string) => {
     const iv = crypto.randomBytes(16);
     const cipher = crypto.createCipheriv(Constants.CRYPTO.ALGORITHM, key, iv);
-    let encrypted = cipher.update(string, 'utf-8', 'hex');
-    encrypted += cipher.final('hex');
-    return `${iv.toString('hex')}:${encrypted}`;
+    let encrypted = cipher.update(string, Constants.SETTINGS.ENCODING.UTF8, Constants.SETTINGS.ENCODING.HEX);
+    encrypted += cipher.final(Constants.SETTINGS.ENCODING.HEX);
+    return `${iv.toString(Constants.SETTINGS.ENCODING.HEX)}:${encrypted}`;
 };
 
 const decryptString = (encryptedString) => {
@@ -18,10 +18,10 @@ const decryptString = (encryptedString) => {
 
     const [ivHex, encrypted] = encryptedString.split(':');
 
-    const iv = Buffer.from(ivHex, 'hex');
+    const iv = Buffer.from(ivHex, Constants.SETTINGS.ENCODING.HEX);
     const decipher = crypto.createDecipheriv(Constants.CRYPTO.ALGORITHM, key, iv);
-    let decrypted = decipher.update(encrypted, 'hex', 'utf-8');
-    decrypted += decipher.final('utf-8');
+    let decrypted = decipher.update(encrypted, Constants.SETTINGS.ENCODING.HEX, Constants.SETTINGS.ENCODING.UTF8);
+    decrypted += decipher.final(Constants.SETTINGS.ENCODING.UTF8);
     return decrypted;
 };
 

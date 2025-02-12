@@ -2,6 +2,7 @@ const { SlashCommandBuilder } = require('@discordjs/builders');
 const { MongoUser } = require('./../mongo/MongoUser');
 const { Embed, COLOR } = require('./../models/Embed');
 const { AttachmentBuilder } = require('discord.js');
+const Constants = require('../../data/constants');
 const config = require('./../../config.json');
 const DC = require('./../singleton/DC');
 
@@ -21,7 +22,7 @@ const execute = async (interaction, client, guild, member, lang) => {
 
     const jsonString = JSON.stringify(await mongoUser.getJson(), null, 2);
 
-    const buffer = Buffer.from(jsonString, 'utf-8');
+    const buffer = Buffer.from(jsonString, Constants.SETTINGS.ENCODING.UTF8);
     const attachment = new AttachmentBuilder(buffer, { name: 'sample.json' });
 
     new Embed()

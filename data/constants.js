@@ -181,21 +181,38 @@ class Constants {
         }
     }
 
-    static get LOCALES() {
+    static get SETTINGS() {
         return {
             get DATE() {
                 return {
-                    get LOCAL_STRING() {
+                    get LOCALE() {
                         return {
                             get GERMAN() {
                                 return 'de-DE';
+                            },
+                            get US() {
+                                return 'en-US';
                             }
                         }
+                    }
+                }
+            },
+            get ENCODING() {
+                return {
+                    get UTF8() {
+                        return 'utf-8';
+                    },
+                    get ASCII() {
+                        return 'ASCII';
+                    },
+                    get HEX() {
+                        return 'hex';
                     }
                 }
             }
         }
     }
+
 
     static get TIME_MULTIPLIER_MS() {
         return {
