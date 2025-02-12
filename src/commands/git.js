@@ -147,7 +147,7 @@ const autoCompleteDates = async (focusedValue) => {
         const potentialDate = new Date(yearIter, month - 1, day);
 
         if (potentialDate >= start && potentialDate <= end) {
-            suggestions.push(potentialDate.toLocaleDateString('de-DE'));
+            suggestions.push(potentialDate.toLocaleDateString(Constants.LOCALES.DATE.LOCAL_STRING.GERMAN));
         }
     }
 

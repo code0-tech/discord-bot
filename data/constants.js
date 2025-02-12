@@ -181,6 +181,22 @@ class Constants {
         }
     }
 
+    static get LOCALES() {
+        return {
+            get DATE() {
+                return {
+                    get LOCAL_STRING() {
+                        return {
+                            get GERMAN() {
+                                return 'de-DE';
+                            }
+                        }
+                    }
+                }
+            }
+        }
+    }
+
     static get TIME_MULTIPLIER_MS() {
         return {
             get SECONDS() {
