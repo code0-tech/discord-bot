@@ -4,6 +4,7 @@ const { convertUnixToTimestamp } = require('../utils/time');
 const DiscordSimpleTable = require('discord-simpletable');
 const { Embed, COLOR } = require('./../models/Embed');
 const { Mongo, ENUMS } = require('../models/Mongo');
+const Constants = require("../../data/constants");
 const config = require('./../../config.json');
 const DC = require('./../singleton/DC');
 
@@ -166,7 +167,7 @@ const viewDbLogs = (interaction, member, lang, componentData) => {
 const listDbLogs = async (interaction, member, lang, componentData) => {
     const results = await MongoDb.aggregate(ENUMS.DCB.LOGS, [
         { $project: { _id: 0, run_id: 1, logs_length: { $size: "$logs" }, created_at: 1 } },
-        { $sort: { created_at: -1 } },
+        { $sort: { created_at: Constants.MONGO.SORT.DESC } },
         { $limit: 20 }
     ]);
 

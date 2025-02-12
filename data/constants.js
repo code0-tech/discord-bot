@@ -216,7 +216,16 @@ class Constants {
 
     static get MONGO() {
         return {
-
+            get SORT() {
+                return {
+                    get ASC() {
+                        return 1;
+                    },
+                    get DESC() {
+                        return -1;
+                    }
+                }
+            }
         }
     }
 

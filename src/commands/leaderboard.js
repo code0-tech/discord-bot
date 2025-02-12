@@ -4,6 +4,7 @@ const { MongoUser } = require('./../mongo/MongoUser');
 const { humanizeNumber } = require('../utils/helper');
 const { Mongo, ENUMS } = require('../models/Mongo');
 const { Embed, COLOR } = require('../models/Embed');
+const Constants = require('../../data/constants');
 const config = require('../../config.json');
 const DC = require('./../singleton/DC');
 
@@ -30,7 +31,7 @@ const data = new SlashCommandBuilder()
 
 const listUser = async (limit) => {
     const list = await MongoDb.aggregate(ENUMS.DCB.USERS, [
-        { $sort: { rawxp: -1 } },
+        { $sort: { rawxp: Constants.MONGO.SORT.DESC } },
         { $limit: limit }
     ])
 
