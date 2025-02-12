@@ -31,13 +31,13 @@ const data = new SlashCommandBuilder()
             )
             .addStringOption(option =>
                 option.setName('time-start')
-                    .setDescription('Set start time')
+                    .setDescription('Set start time, format: 13.11.2023 or pick "30 Days ago" etc')
                     .setAutocomplete(true)
                     .setRequired(false)
             )
             .addStringOption(option =>
                 option.setName('time-end')
-                    .setDescription('Set start time')
+                    .setDescription('Set end time, format: 13.11.2023 or pick "30 Days ago" etc')
                     .setAutocomplete(true)
                     .setRequired(false)
             )
@@ -75,8 +75,8 @@ const commands = {
 
         const gitData = await GIT.simpleSort(settings);
 
-        console.dir(gitData);
-        console.dir(settings);
+        // console.dir(gitData);
+        // console.dir(settings);
 
         new Embed()
             .setTitle('Command in Progress, will be finished soon')
@@ -103,6 +103,22 @@ const autoCompleteUsers = async (focusedValue) => {
     });
 }
 
+const daysBeforeTimeAutoCompleteArray = () => {
+    return config.commands.git.autocomplete.daysbefore.map(obj => {
+        const date = new Date();
+        date.setDate(date.getDate() - obj.days);
+        date.setHours(0, 0, 0, 0);
+
+        const day = String(date.getDate()).padStart(2, '0');
+        const month = String(date.getMonth() + 1).padStart(2, '0');
+        const year = date.getFullYear();
+
+        console.dir({ name: obj.name, value: `${day}-${month}-${year}` })
+
+        return { name: obj.name, value: `${day}-${month}-${year}` };
+    });
+};
+
 const autoCompleteRepositories = async (focusedValue) => {
     const repoList = await GIT.getAllRepos();
 
@@ -122,11 +138,8 @@ const autoCompleteRepositories = async (focusedValue) => {
 };
 
 const autoCompleteDates = async (focusedValue) => {
+    if (focusedValue == '') return daysBeforeTimeAutoCompleteArray();
     const { startDate, endDate } = await GIT.timeStartAndEnd();
-
-    if (focusedValue == '') {
-        return [];
-    }
 
     if (!startDate || !endDate) {
         return [];
