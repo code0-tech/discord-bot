@@ -5,6 +5,7 @@ const { humanizeNumber } = require('../utils/helper');
 const { Embed, COLOR } = require('./../models/Embed');
 const config = require('./../../config.json');
 const DC = require('./../singleton/DC');
+const DiscordSimpleTable = require('discord-simpletable');
 
 
 const data = new SlashCommandBuilder()
@@ -38,8 +39,44 @@ const normalizeData = (data) => {
     return data;
 }
 
+const buildCommandStatsString = (commandstats, lang) => {
+    if (Object.keys(commandstats).length == 0) return lang.getText('no-command-executed');
+
+    const columns = [
+        { label: lang.getText('command'), key: 'command' },
+        { label: lang.getText('executed'), key: 'executed' },
+        { label: lang.getText('button'), key: 'button' },
+        { label: lang.getText('autocomplete'), key: 'autocomplete' },
+        { label: lang.getText('selectmenu'), key: 'selectmenu' }
+    ];
+
+    const data = Object.entries(commandstats).map(([key, value]) => {
+        return {
+            command: key,
+            executed: value.command || 0,
+            button: value.button || 0,
+            autocomplete: value.autocomplete || 0,
+            selectmenu: value.selectmenu || 0
+        };
+    });
+
+    const sortedData = data.sort((a, b) => b.executed - a.executed);
+
+    const buildTable = new DiscordSimpleTable(columns)
+        .setJsonArrayInputs(sortedData)
+        .setStringOffset(2)
+        .addVerticalBar()
+        .addIndex(1)
+        .build();
+
+    return buildTable;
+}
+
 const loop = async (client, interaction, member, lang, embedMessage, rankMember, user, previousStats = null) => {
     const stats = await user.getStats();
+    const commandstats = await user.getCommandStats();
+
+    const commandStatsString = buildCommandStatsString(commandstats, lang);
     const normalizedStats = normalizeData(stats);
 
     const statsChanged = !previousStats || JSON.stringify(normalizedStats) !== JSON.stringify(previousStats);
@@ -61,7 +98,8 @@ const loop = async (client, interaction, member, lang, embedMessage, rankMember,
                 voicedays: d,
                 voicehours: h,
                 voiceminutes: m,
-                voiceseconds: s
+                voiceseconds: s,
+                commandstatsstring: commandStatsString
             })
             .addContext(lang, member, embedMessage);
 
