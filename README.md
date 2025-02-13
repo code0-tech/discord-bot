@@ -58,36 +58,59 @@ Entrie Example:
       "count": 676
     },
     "voice": {
-      "joins": 115,
+      "joins": 116,
       "switchs": 18,
-      "time": 96673
+      "time": 98093
     }
   },
   "commandstats": {
     "debug": {
-      "command": 3
+      "command": 15
     },
     "leaderboard": {
-      "command": 1
+      "command": 8
     },
     "stats": {
-      "command": 2
+      "command": 19
     },
     "logs": {
-      "command": 1,
-      "button": 2
+      "command": 10,
+      "button": 13
     },
     "logs list": {
-      "selectmenu": 1
+      "selectmenu": 5
     },
     "links": {
       "command": 1
+    },
+    "open-contributor": {
+      "command": 2
+    },
+    "mydata": {
+      "command": 3
+    },
+    "git": {
+      "autocomplete": 8,
+      "command": 5
+    },
+    "logs show": {
+      "button": 3
+    },
+    "ticket": {
+      "command": 1,
+      "button": 3
+    },
+    "_application": {
+      "button": 2
+    },
+    "rank": {
+      "command": 4
     }
   }
 }
 ```
 
-Last MongoDB structure update: 10.02.2025
+Last MongoDB structure update: 13.02.2025
 
  Tip: You can mention a Discord user by their ID using `<@user_id>`.
 
