@@ -75,7 +75,6 @@ const sendChart = async (description, attachment) => {
 }
 
 const getFilters = async (interaction) => {
-    // let usersArray = (interaction.options.getString('users')?.split(',').map(user => user.trim()).filter(Boolean) || await GIT.getAllUniqueNames());
     let usersArray = interaction.options.getString('users')?.split(',').map(user => user.trim()).filter(Boolean)
         || interaction.options.getString('user')?.split(',').map(user => user.trim()).filter(Boolean)
         || await GIT.getAllUniqueNames();
