@@ -152,7 +152,7 @@ class MongoUser {
     /**
      * return all command stats
      */
-    async getCommandstats() {
+    async getCommandStats() {
         const user = await this._getUser();
         return user.commandstats;
     }
