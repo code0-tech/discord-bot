@@ -25,6 +25,15 @@ class GIT_SETTINGS {
     }
 }
 
+class GIT_AFTER_SORT {
+    static longPacketsToCommitSumPerRepo = (data) => {
+        return data.reduce((acc, entry) => {
+            acc[entry.repo] = (acc[entry.repo] || 0) + entry.commitscount;
+            return acc;
+        }, {});
+    }
+}
+
 class GIT {
     static _transformArrayToObject(arr) {
         if (!Array.isArray(arr)) {
@@ -169,7 +178,7 @@ class GIT {
         const pipeline = [
             { $match: matchConditions },
             { $sort: { time: 1 } }
-        ];
+        ]
 
         if (options.dailyPackets) {
             pipeline.push(
@@ -196,7 +205,10 @@ class GIT {
                         reponames: 1
                     }
                 }
-            );
+            )
+        } else {
+            pipeline.push({ $match: matchConditions },
+                { $sort: { time: 1 } })
         }
 
         return await this._requestMongoDb(pipeline);
@@ -222,4 +234,4 @@ const run = async () => {
 // run();
 
 
-module.exports = { GIT, GIT_SETTINGS };
+module.exports = { GIT, GIT_SETTINGS, GIT_AFTER_SORT };
