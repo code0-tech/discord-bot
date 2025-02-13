@@ -1,5 +1,5 @@
+const { GIT, GIT_SETTINGS, GIT_AFTER_SORT } = require('./../singleton/GIT');
 const { SlashCommandBuilder } = require('@discordjs/builders');
-const { GIT, GIT_SETTINGS } = require('./../singleton/GIT');
 const DiscordSimpleTable = require('discord-simpletable');
 const { convertDDMMYYToUnix } = require('../utils/time');
 const { Embed, COLOR } = require('./../models/Embed');
@@ -14,6 +14,28 @@ const data = new SlashCommandBuilder()
     .setDescriptionLocalizations({
         de: 'Git aktivität für Code0.',
     })
+    .addSubcommand(subcommand =>
+        subcommand.setName('user_activity_table')
+            .setDescription('Display single User Git activity as a table.')
+            .addStringOption(option =>
+                option.setName('user')
+                    .setDescription('Select an user')
+                    .setAutocomplete(true)
+                    .setRequired(true)
+            )
+            .addStringOption(option =>
+                option.setName('time-start')
+                    .setDescription('Set start time, format: 13.11.2023 or pick "30 Days ago" etc')
+                    .setAutocomplete(true)
+                    .setRequired(false)
+            )
+            .addStringOption(option =>
+                option.setName('time-end')
+                    .setDescription('Set end time, format: 13.11.2023 or pick "30 Days ago" etc')
+                    .setAutocomplete(true)
+                    .setRequired(false)
+            )
+    )
     .addSubcommand(subcommand =>
         subcommand.setName('table')
             .setDescription('Display Git activity as a table.')
@@ -53,7 +75,10 @@ const sendChart = async (description, attachment) => {
 }
 
 const getFilters = async (interaction) => {
-    let usersArray = (interaction.options.getString('users')?.split(',').map(user => user.trim()).filter(Boolean) || await GIT.getAllUniqueNames());
+    // let usersArray = (interaction.options.getString('users')?.split(',').map(user => user.trim()).filter(Boolean) || await GIT.getAllUniqueNames());
+    let usersArray = interaction.options.getString('users')?.split(',').map(user => user.trim()).filter(Boolean)
+        || interaction.options.getString('user')?.split(',').map(user => user.trim()).filter(Boolean)
+        || await GIT.getAllUniqueNames();
     let reposArray = (interaction.options.getString('repos')?.split(',').map(repo => repo.trim()).filter(Boolean) || await GIT.getAllRepos());
     let timeStart = interaction.options.getString('time-start')?.split(".").join("-") || (await GIT.timeStartAndEnd()).startDate;
     let timeEnd = interaction.options.getString('time-end')?.split(".").join("-") || (await GIT.timeStartAndEnd()).endDate;
@@ -82,11 +107,60 @@ const commands = {
             .setTitle('Command in Progress, will be finished soon')
             .setColor(COLOR.IN_PROGRESS)
             .interactionResponse(interaction)
+    },
+    async user_activity_table(interaction, client, guild, member, lang) {
+        const { usersArray, reposArray, timeStart, timeEnd } = await getFilters(interaction);
+
+        const settings = [
+            GIT_SETTINGS.USERS(usersArray),
+            GIT_SETTINGS.REPONAMES(reposArray),
+            GIT_SETTINGS.SET_START(convertDDMMYYToUnix(timeStart, false)),
+            GIT_SETTINGS.SET_END(convertDDMMYYToUnix(timeEnd, true)),
+            GIT_SETTINGS.DAILY_PACKETS(false)
+        ]
+
+        const gitData = await GIT.simpleSort(settings);
+
+        const sortedData = GIT_AFTER_SORT.longPacketsToCommitSumPerRepo(gitData)
+
+        const columns = [
+            { label: lang.getText('repo'), key: 'repo' },
+            { label: lang.getText('commits'), key: 'commitscount' }
+        ]
+
+        const sortedDataArray = Object.entries(sortedData)
+            .map(([repo, commitscount]) => ({ repo, commitscount }))
+            .sort((a, b) => b.commitscount - a.commitscount);
+
+        const table = new DiscordSimpleTable(columns)
+            .setJsonArrayInputs(sortedDataArray)
+            .setStringOffset(2)
+            .addVerticalBar()
+            .addIndex(1)
+            .build();
+
+        new Embed()
+            .addInputs({
+                table,
+                gituser: usersArray[0],
+                timestart: timeStart,
+                timeend: timeEnd
+            })
+            .addContext(lang, member, 'usercommitssum')
+            .setColor(COLOR.INFO)
+            .interactionResponse(interaction)
     }
 }
 
-const autoCompleteUsers = async (focusedValue) => {
+const autoCompleteUsers = async (focusedValue, single = false) => {
     const usersList = await GIT.getAllUniqueNames();
+
+    if (single) {
+        return usersList
+            .filter(user => user.toLowerCase().startsWith(focusedValue.toLowerCase()))
+            .slice(0, 25)
+            .map(user => ({ name: user, value: user }));
+    }
 
     const splitValues = focusedValue.split(',').map(val => val.trim());
     const lastInput = splitValues.pop();
@@ -175,6 +249,8 @@ const autoComplete = async (interaction, client, guild, member, lang) => {
     let choices = [];
     if (optionName === 'users') {
         choices = await autoCompleteUsers(focusedValue);
+    } else if (optionName === 'user') {
+        choices = await autoCompleteUsers(focusedValue, true);
     } else if (optionName === 'repos') {
         choices = await autoCompleteRepositories(focusedValue);
     } else if (optionName === 'time-start' || optionName === 'time-end') {
