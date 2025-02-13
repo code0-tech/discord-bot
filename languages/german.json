@@ -208,5 +208,13 @@
             "description": "Diese json Datei beinhaltet alles was wir über dich in unseren Datenbank über dich gespeichert haben."
         }
     },
-    "git": {}
+    "git": {
+        "repo": "Repo",
+        "name": "Name",
+        "commits": "Commits",
+        "usercommitssum": {
+            "title": "Commits Count für {gituser}",
+            "description": "{table}\n\n`Zeitspanne: {timestart} bis {timeend}`"
+        }
+    }
 }
