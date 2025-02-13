@@ -219,5 +219,13 @@
             "description": "dis jason filer containZ dall tfe infortation wes havve saveddd aout yor in DB."
         }
     },
-    "git": {}
+    "git": {
+        "repo": "Rep2o",
+        "name": "Nam",
+        "commits": "Coits",
+        "usercommitssum": {
+            "title": "Cots C2nt tor {gituser}",
+            "description": "{table}\n\n`Timespanz: {timestart} untal {timeend}`"
+        }
+    }
 }
