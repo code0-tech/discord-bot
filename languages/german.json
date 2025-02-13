@@ -112,11 +112,17 @@
         }
     },
     "stats": {
+        "command": "Command",
+        "executed": "Executed",
+        "button": "btn",
+        "autocomplete": "ac",
+        "selectmenu": "sm",
+        "no-command-executed": "Keine Commands wurden ausgeführt.",
         "own-stats-response": {
-            "description": "### Nachrichten:\nAnzahl: `{count}`\nWörter: `{words}`\nZeichen: `{chars}`\n### Sprache:\nJoins: `{joins}`\nSwitchs: `{switchs}`\nInsgesamt: `{voicedays}` Tage, `{voicehours}` Stunden, `{voiceminutes}` Minuten, `{voiceseconds}` Sekunden.\nIn Kanal: {channelmention}\n\nInfo:\nXP entspricht niemals deiner Anzahl an Nachrichten.\nVoice Statistik \"Join\" wird erst aktualisiert, nachdem du einen Kanal verlassen hast."
+            "description": "### Nachrichten:\nAnzahl: `{count}`\nWörter: `{words}`\nZeichen: `{chars}`\n### Sprache:\nJoins: `{joins}`\nSwitchs: `{switchs}`\nInsgesamt: `{voicedays}` Tage, `{voicehours}` Stunden, `{voiceminutes}` Minuten, `{voiceseconds}` Sekunden.\nIn Kanal: {channelmention}\n\n### Command Statistiken\n\n{commandstatsstring}\n\nNote:\nXP entspricht niemals deiner Anzahl an Nachrichten.\nVoice Statistik \"Join\" wird erst aktualisiert, nachdem du einen Kanal verlassen hast."
         },
         "other-stats-response": {
-            "description": "### Nachrichten:\nAnzahl: `{count}`\nWörter: `{words}`\nZeichen: `{chars}`\n### Sprache:\nJoins: `{joins}`\nSwitchs: `{switchs}`\nInsgesamt: `{voicedays}` Tage, `{voicehours}` Stunden, `{voiceminutes}` Minuten, `{voiceseconds}` Sekunden.\nIn Kanal: {channelmention}\n\nInfo:\nXP entspricht niemals seiner/ihrer Anzahl an Nachrichten.\nVoice Statistik \"Join\" wird erst aktualisiert, nachdem er/sie einen Kanal verlassen hat."
+            "description": "### Nachrichten:\nAnzahl: `{count}`\nWörter: `{words}`\nZeichen: `{chars}`\n### Sprache:\nJoins: `{joins}`\nSwitchs: `{switchs}`\nInsgesamt: `{voicedays}` Tage, `{voicehours}` Stunden, `{voiceminutes}` Minuten, `{voiceseconds}` Sekunden.\nIn Kanal: {channelmention}\n\n### Command Statistiken\n\n{commandstatsstring}\n\nNote:\nXP entspricht niemals seiner/ihrer Anzahl an Nachrichten.\nVoice Statistik \"Join\" wird erst aktualisiert, nachdem er/sie einen Kanal verlassen hat."
         },
         "this-bot-stats": {
             "description": "### Nun, ich habe es nicht so mit dem sammeln von Stats.\nVersuchs mal mit einem `benutzer` statt wie mit mir, einem Bot c:"
