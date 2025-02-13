@@ -115,7 +115,7 @@ const commands = {
             GIT_SETTINGS.REPONAMES(reposArray),
             GIT_SETTINGS.SET_START(convertDDMMYYToUnix(timeStart, false)),
             GIT_SETTINGS.SET_END(convertDDMMYYToUnix(timeEnd, true)),
-            GIT_SETTINGS.DAILY_PACKETS(false)
+            GIT_SETTINGS.LONG_PACKETS()
         ]
 
         const gitData = await GIT.simpleSort(settings);

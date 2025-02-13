@@ -14,6 +14,9 @@ class GIT_SETTINGS {
     static DAILY_PACKETS(boolean = true) {
         return { dailyPackets: boolean };
     }
+    static LONG_PACKETS(boolean = true) { // this is done because the GIT getter return type might change
+        return { dailyPackets: !boolean }
+    }
     static SET_START(startUnix) {
         return { startUnix };
     }
