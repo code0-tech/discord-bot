@@ -150,6 +150,14 @@ class MongoUser {
     }
 
     /**
+     * return all command stats
+     */
+    async getStats() {
+        const user = await this._getUser();
+        return user.commandstats;
+    }
+
+    /**
      * update message stats
      */
     async updateMessageStats(count = 0, word = 0, chars = 0) {
