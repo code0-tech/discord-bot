@@ -215,6 +215,10 @@
         "usercommitssum": {
             "title": "Commits Count für {gituser}",
             "description": "{table}\n\n`Zeitspanne: {timestart} bis {timeend}`"
+        },
+        "repocommitssum": {
+            "title": "Commits Count für {repo}",
+            "description": "{table}\n\n`Zeitspanne: {timestart} bis {timeend}`"
         }
     }
 }

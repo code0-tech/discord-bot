@@ -226,6 +226,10 @@
         "usercommitssum": {
             "title": "Cots C2nt tor {gituser}",
             "description": "{table}\n\n`Timespanz: {timestart} untal {timeend}`"
+        },
+        "repocommitssum": {
+            "title": "Cots C2nt tor r {repo}",
+            "description": "{table}\n\n`Timespanz: {timestart} untal {timeend}`"
         }
     }
 }
