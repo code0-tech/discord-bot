@@ -24,7 +24,6 @@ const language = async (commandNameLong, interaction, guild, client) => {
         userlang: baseLanguage,
         text: commandText,
         _replacePlaceholders(template, data) {
-            console.log(template)
             return template.replace(/{([^{}]*)}/g, (match, key) => {
 
                 if (data == null) {
