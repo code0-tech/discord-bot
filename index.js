@@ -41,7 +41,7 @@ const start = async (args) => {
     require('./src/dc-client/language-file-check');
     await require('./src/start-up/mongo-setup').connect();
 
-    require('./src/start-up/start-puppeteer');
+    // require('./src/start-up/start-puppeteer');
     require('./src/web-server/http-server').setup(client);
 
     client.once(Events.ClientReady, readyClient => {
