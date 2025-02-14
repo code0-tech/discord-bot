@@ -135,20 +135,31 @@ const sendChart = async (description, attachment) => {
         .setImage(Constants.DISCORD.EMBED_IMAGE_NAME.EMBED.DEFAULT_PNG_01);
 }
 
+const parseInteractionOptionInput = (input) => {
+    return input ? input.split(',').map(user => user.trim()).filter(Boolean) : null;
+}
+
 const getFilters = async (interaction) => {
-    let usersArray = interaction.options.getString('users')?.split(',').map(user => user.trim()).filter(Boolean)
-        || interaction.options.getString('user')?.split(',').map(user => user.trim()).filter(Boolean)
+    const usersArray = parseInteractionOptionInput(interaction.options.getString('users'))
+        || parseInteractionOptionInput(interaction.options.getString('user'))
         || await GIT.getAllUniqueNames();
 
-    let reposArray = interaction.options.getString('repos')?.split(',').map(repo => repo.trim()).filter(Boolean)
-        || interaction.options.getString('repo')?.split(',').map(repo => repo.trim()).filter(Boolean)
+    const reposArray = parseInteractionOptionInput(interaction.options.getString('repos'))
+        || parseInteractionOptionInput(interaction.options.getString('repo'))
         || await GIT.getAllRepos();
 
-    let timeStart = interaction.options.getString('time-start')?.split(".").join("-") || (await GIT.timeStartAndEnd()).startDate;
+    const timeStart = interaction.options.getString('time-start')?.split(".").join("-") || (await GIT.timeStartAndEnd()).startDate;
 
-    let timeEnd = interaction.options.getString('time-end')?.split(".").join("-") || (await GIT.timeStartAndEnd()).endDate;
+    const timeEnd = interaction.options.getString('time-end')?.split(".").join("-") || (await GIT.timeStartAndEnd()).endDate;
 
     return { usersArray, reposArray, timeStart, timeEnd };
+}
+
+const calculateCommitPercentages = (dataArray, totalCommits) => {
+    return dataArray.map(entry => ({
+        ...entry,
+        percentage: ((entry.commitscount / totalCommits) * 100).toFixed(2) + Constants.SYMBOLS.PERCENTAGE
+    }));
 }
 
 const commands = {
@@ -182,20 +193,25 @@ const commands = {
             GIT_SETTINGS.SET_START(convertDDMMYYToUnix(timeStart, false)),
             GIT_SETTINGS.SET_END(convertDDMMYYToUnix(timeEnd, true)),
             GIT_SETTINGS.LONG_PACKETS()
-        ]
+        ];
 
         const gitData = await GIT.simpleSort(settings);
-
         const sortedData = GIT_AFTER_SORT.longPacketsToCommitSumPerRepo(gitData);
+
+        const totalCommits = Object.values(sortedData).reduce((sum, count) => sum + count, 0);
 
         const columns = [
             { label: lang.getText('repo'), key: 'repo' },
-            { label: lang.getText('commits'), key: 'commitscount' }
-        ]
+            { label: lang.getText('commits'), key: 'commitscount' },
+            { label: lang.getText('percentage'), key: 'percentage' }
+        ];
 
-        const sortedDataArray = Object.entries(sortedData)
-            .map(([repo, commitscount]) => ({ repo, commitscount }))
-            .sort((a, b) => b.commitscount - a.commitscount);
+        const sortedDataArray = calculateCommitPercentages(
+            Object.entries(sortedData)
+                .map(([repo, commitscount]) => ({ repo, commitscount }))
+                .sort((a, b) => b.commitscount - a.commitscount),
+            totalCommits
+        );
 
         const table = new DiscordSimpleTable(columns)
             .setJsonArrayInputs(sortedDataArray)
@@ -209,11 +225,12 @@ const commands = {
                 table,
                 gituser: usersArray[0],
                 timestart: timeStart,
-                timeend: timeEnd
+                timeend: timeEnd,
+                total: totalCommits
             })
             .addContext(lang, member, 'usercommitssum')
             .setColor(COLOR.INFO)
-            .interactionResponse(interaction)
+            .interactionResponse(interaction);
     },
 
     async repo_activity_table(interaction, client, guild, member, lang) {
@@ -225,18 +242,23 @@ const commands = {
             GIT_SETTINGS.SET_START(convertDDMMYYToUnix(timeStart, false)),
             GIT_SETTINGS.SET_END(convertDDMMYYToUnix(timeEnd, true)),
             GIT_SETTINGS.LONG_PACKETS()
-        ]
+        ];
 
         const gitData = await GIT.simpleSort(settings);
-
         const dataArray = GIT_AFTER_SORT.longPacketsToUserSumPerRepo(gitData);
 
-        const sortedDataArray = dataArray.sort((a, b) => b.commitscount - a.commitscount);
+        const totalCommits = dataArray.reduce((sum, entry) => sum + entry.commitscount, 0);
+
+        const sortedDataArray = calculateCommitPercentages(
+            dataArray.sort((a, b) => b.commitscount - a.commitscount),
+            totalCommits
+        );
 
         const columns = [
             { label: lang.getText('name'), key: 'name' },
-            { label: lang.getText('commits'), key: 'commitscount' }
-        ]
+            { label: lang.getText('commits'), key: 'commitscount' },
+            { label: lang.getText('percentage'), key: 'percentage' }
+        ];
 
         const table = new DiscordSimpleTable(columns)
             .setJsonArrayInputs(sortedDataArray)
@@ -250,11 +272,12 @@ const commands = {
                 table,
                 repo: reposArray[0],
                 timestart: timeStart,
-                timeend: timeEnd
+                timeend: timeEnd,
+                total: totalCommits
             })
             .addContext(lang, member, 'repocommitssum')
             .setColor(COLOR.INFO)
-            .interactionResponse(interaction)
+            .interactionResponse(interaction);
     }
 }
 
