@@ -118,6 +118,14 @@ class Constants {
         }
     }
 
+    static get SYMBOLS() {
+        return {
+            get PERCENTAGE() {
+                return '%';
+            }
+        }
+    }
+
     static get IMAGES() {
         return {
             get CHART_BACKGROUND() {
