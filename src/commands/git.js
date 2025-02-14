@@ -22,19 +22,31 @@ const data = new SlashCommandBuilder()
                     .setDescription('Select an user')
                     .setAutocomplete(true)
                     .setRequired(true)
+                    .setDescriptionLocalizations({
+                        de: 'Wähle einen User aus.',
+                    })
             )
             .addStringOption(option =>
                 option.setName('time-start')
                     .setDescription('Set start time, format: 13.11.2023 or pick "30 Days ago" etc')
                     .setAutocomplete(true)
                     .setRequired(false)
+                    .setDescriptionLocalizations({
+                        de: 'Setze die Start Zeit, format: 13.11.2023 oder "30 Days ago" etc',
+                    })
             )
             .addStringOption(option =>
                 option.setName('time-end')
                     .setDescription('Set end time, format: 13.11.2023 or pick "30 Days ago" etc')
                     .setAutocomplete(true)
                     .setRequired(false)
+                    .setDescriptionLocalizations({
+                        de: 'Setze die End Zeit, format: 13.11.2023 oder "30 Days ago" etc',
+                    })
             )
+            .setDescriptionLocalizations({
+                de: 'Zeigt die Git Aktivität für einen Nutzer als Tabelle an.',
+            })
     )
     .addSubcommand(subcommand =>
         subcommand.setName('repo_activity_table')
@@ -44,19 +56,31 @@ const data = new SlashCommandBuilder()
                     .setDescription('Select an Repo')
                     .setAutocomplete(true)
                     .setRequired(true)
+                    .setDescriptionLocalizations({
+                        de: 'Wähle einen Repo aus',
+                    })
             )
             .addStringOption(option =>
                 option.setName('time-start')
                     .setDescription('Set start time, format: 13.11.2023 or pick "30 Days ago" etc')
                     .setAutocomplete(true)
                     .setRequired(false)
+                    .setDescriptionLocalizations({
+                        de: 'Setze die Start Zeit, format: 13.11.2023 oder "30 Days ago" etc',
+                    })
             )
             .addStringOption(option =>
                 option.setName('time-end')
                     .setDescription('Set end time, format: 13.11.2023 or pick "30 Days ago" etc')
                     .setAutocomplete(true)
                     .setRequired(false)
+                    .setDescriptionLocalizations({
+                        de: 'Setze die End Zeit, format: 13.11.2023 oder "30 Days ago" etc',
+                    })
             )
+            .setDescriptionLocalizations({
+                de: 'Zeigt die Git Aktivität für ein Repo als Tabelle an',
+            })
     )
     .addSubcommand(subcommand =>
         subcommand.setName('table')
@@ -66,25 +90,40 @@ const data = new SlashCommandBuilder()
                     .setDescription('Select multiple Git users (comma-separated)')
                     .setAutocomplete(true)
                     .setRequired(false)
+                    .setDescriptionLocalizations({
+                        de: 'Wähle mehrere Git User aus',
+                    })
             )
             .addStringOption(option =>
                 option.setName('repos')
                     .setDescription('Select multiple Git repos (comma-separated)')
                     .setAutocomplete(true)
                     .setRequired(false)
+                    .setDescriptionLocalizations({
+                        de: 'Wähle mehrere Git Repos aus',
+                    })
             )
             .addStringOption(option =>
                 option.setName('time-start')
                     .setDescription('Set start time, format: 13.11.2023 or pick "30 Days ago" etc')
                     .setAutocomplete(true)
                     .setRequired(false)
+                    .setDescriptionLocalizations({
+                        de: 'Setze die Start Zeit, format: 13.11.2023 oder "30 Days ago" etc',
+                    })
             )
             .addStringOption(option =>
                 option.setName('time-end')
                     .setDescription('Set end time, format: 13.11.2023 or pick "30 Days ago" etc')
                     .setAutocomplete(true)
                     .setRequired(false)
+                    .setDescriptionLocalizations({
+                        de: 'Setze die End Zeit, format: 13.11.2023 oder "30 Days ago" etc',
+                    })
             )
+            .setDescriptionLocalizations({
+                de: 'Zeigt gesamte Git Aktivitäten für einen Nutzer als Tabelle an.',
+            })
     )
 
 const sendChart = async (description, attachment) => {
@@ -253,8 +292,6 @@ const daysBeforeTimeAutoCompleteArray = () => {
         const day = String(date.getDate()).padStart(2, '0');
         const month = String(date.getMonth() + 1).padStart(2, '0');
         const year = date.getFullYear();
-
-        console.dir({ name: obj.name, value: `${day}-${month}-${year}` })
 
         return { name: obj.name, value: `${day}-${month}-${year}` };
     });
