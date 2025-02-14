@@ -8,7 +8,7 @@ class GIT_SETTINGS {
     static USERS(userArray) {
         return { userArray };
     }
-    static REPONAMES(reponameArray) {
+    static REPOS(reponameArray) {
         return { reponameArray };
     }
     static DAILY_PACKETS(boolean = true) {
@@ -23,7 +23,7 @@ class GIT_SETTINGS {
     static SET_END(endUnix) {
         return { endUnix };
     }
-    static BRANCHNAMES(branchnameArray) {
+    static BRANCHES(branchnameArray) {
         return { branchnameArray }
     }
 }

@@ -157,7 +157,7 @@ const commands = {
 
         const settings = [
             GIT_SETTINGS.USERS(usersArray),
-            GIT_SETTINGS.REPONAMES(reposArray),
+            GIT_SETTINGS.REPOS(reposArray),
             GIT_SETTINGS.SET_START(convertDDMMYYToUnix(timeStart, false)),
             GIT_SETTINGS.SET_END(convertDDMMYYToUnix(timeEnd, true)),
             GIT_SETTINGS.DAILY_PACKETS()
@@ -178,7 +178,7 @@ const commands = {
 
         const settings = [
             GIT_SETTINGS.USERS(usersArray),
-            GIT_SETTINGS.REPONAMES(reposArray),
+            GIT_SETTINGS.REPOS(reposArray),
             GIT_SETTINGS.SET_START(convertDDMMYYToUnix(timeStart, false)),
             GIT_SETTINGS.SET_END(convertDDMMYYToUnix(timeEnd, true)),
             GIT_SETTINGS.LONG_PACKETS()
@@ -221,7 +221,7 @@ const commands = {
 
         const settings = [
             GIT_SETTINGS.USERS(usersArray),
-            GIT_SETTINGS.REPONAMES(reposArray),
+            GIT_SETTINGS.REPOS(reposArray),
             GIT_SETTINGS.SET_START(convertDDMMYYToUnix(timeStart, false)),
             GIT_SETTINGS.SET_END(convertDDMMYYToUnix(timeEnd, true)),
             GIT_SETTINGS.LONG_PACKETS()

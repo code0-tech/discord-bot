@@ -84,7 +84,4 @@ start();
 -> pie chart for repos (WIP) [since 11.08.2024]
 
 -> event-prereminder refresh event timer after event fired, cause currently after the event fired there wont be any new timers setup for next time [08.02.2025]
-
--> naming of GIT class like _ or without or in camelcase
-
 */
