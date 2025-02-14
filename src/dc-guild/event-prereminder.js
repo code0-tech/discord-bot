@@ -28,7 +28,7 @@ const setupTimer = (channelId, title, time, client, eventConfig) => {
         } else {
             console.log(`[PREREMINDER-EVENTS] "${title}" invalid timeout: ${timeNew}, on call ${timeInMinutes} min before event`, Constants.CONSOLE.ERROR);
         }
-    });
+    })
 }
 
 const setupEventMessages = async (client) => {
@@ -53,7 +53,7 @@ const setupEventMessages = async (client) => {
         } else {
             console.log(`[PREREMINDER-EVENTS] No config found for "${event.name}", skipping...`, Constants.CONSOLE.INFO);
         }
-    });
+    })
 }
 
 
