@@ -24,6 +24,7 @@ const language = async (commandNameLong, interaction, guild, client) => {
         userlang: baseLanguage,
         text: commandText,
         _replacePlaceholders(template, data) {
+            console.log(template)
             return template.replace(/{([^{}]*)}/g, (match, key) => {
 
                 if (data == null) {
@@ -40,6 +41,12 @@ const language = async (commandNameLong, interaction, guild, client) => {
         },
         getText(key, replaceOptions = null) {
             const text = commandText;
+
+            if (text[key] == undefined) {
+                console.log(`[Lang Error] language key "${key}" for the "${commandName}" command was not found in the user language.`, Constants.CONSOLE.ERROR);
+                return '';
+            }
+
             const finalText = this._replacePlaceholders(text[key], replaceOptions);
             return finalText;
         }
