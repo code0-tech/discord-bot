@@ -193,25 +193,25 @@ const commands = {
             GIT_SETTINGS.SET_START(convertDDMMYYToUnix(timeStart, false)),
             GIT_SETTINGS.SET_END(convertDDMMYYToUnix(timeEnd, true)),
             GIT_SETTINGS.LONG_PACKETS()
-        ];
+        ]
 
         const gitData = await GIT.simpleSort(settings);
         const sortedData = GIT_AFTER_SORT.longPacketsToCommitSumPerRepo(gitData);
 
         const totalCommits = Object.values(sortedData).reduce((sum, count) => sum + count, 0);
 
-        const columns = [
-            { label: lang.getText('repo'), key: 'repo' },
-            { label: lang.getText('commits'), key: 'commitscount' },
-            { label: lang.getText('percentage'), key: 'percentage' }
-        ];
-
         const sortedDataArray = calculateCommitPercentages(
             Object.entries(sortedData)
                 .map(([repo, commitscount]) => ({ repo, commitscount }))
                 .sort((a, b) => b.commitscount - a.commitscount),
             totalCommits
-        );
+        )
+
+        const columns = [
+            { label: lang.getText('repo'), key: 'repo' },
+            { label: lang.getText('commits'), key: 'commitscount' },
+            { label: lang.getText('percentage'), key: 'percentage' }
+        ]
 
         const table = new DiscordSimpleTable(columns)
             .setJsonArrayInputs(sortedDataArray)
@@ -232,7 +232,6 @@ const commands = {
             .setColor(COLOR.INFO)
             .interactionResponse(interaction);
     },
-
     async repo_activity_table(interaction, client, guild, member, lang) {
         const { usersArray, reposArray, timeStart, timeEnd } = await getFilters(interaction);
 
@@ -242,7 +241,7 @@ const commands = {
             GIT_SETTINGS.SET_START(convertDDMMYYToUnix(timeStart, false)),
             GIT_SETTINGS.SET_END(convertDDMMYYToUnix(timeEnd, true)),
             GIT_SETTINGS.LONG_PACKETS()
-        ];
+        ]
 
         const gitData = await GIT.simpleSort(settings);
         const dataArray = GIT_AFTER_SORT.longPacketsToUserSumPerRepo(gitData);
@@ -252,13 +251,13 @@ const commands = {
         const sortedDataArray = calculateCommitPercentages(
             dataArray.sort((a, b) => b.commitscount - a.commitscount),
             totalCommits
-        );
+        )
 
         const columns = [
             { label: lang.getText('name'), key: 'name' },
             { label: lang.getText('commits'), key: 'commitscount' },
             { label: lang.getText('percentage'), key: 'percentage' }
-        ];
+        ]
 
         const table = new DiscordSimpleTable(columns)
             .setJsonArrayInputs(sortedDataArray)
