@@ -37,6 +37,28 @@ const data = new SlashCommandBuilder()
             )
     )
     .addSubcommand(subcommand =>
+        subcommand.setName('repo_activity_table')
+            .setDescription('Display single Repo Git activity as a table.')
+            .addStringOption(option =>
+                option.setName('repo')
+                    .setDescription('Select an Repo')
+                    .setAutocomplete(true)
+                    .setRequired(true)
+            )
+            .addStringOption(option =>
+                option.setName('time-start')
+                    .setDescription('Set start time, format: 13.11.2023 or pick "30 Days ago" etc')
+                    .setAutocomplete(true)
+                    .setRequired(false)
+            )
+            .addStringOption(option =>
+                option.setName('time-end')
+                    .setDescription('Set end time, format: 13.11.2023 or pick "30 Days ago" etc')
+                    .setAutocomplete(true)
+                    .setRequired(false)
+            )
+    )
+    .addSubcommand(subcommand =>
         subcommand.setName('table')
             .setDescription('Display Git activity as a table.')
             .addStringOption(option =>
@@ -78,8 +100,13 @@ const getFilters = async (interaction) => {
     let usersArray = interaction.options.getString('users')?.split(',').map(user => user.trim()).filter(Boolean)
         || interaction.options.getString('user')?.split(',').map(user => user.trim()).filter(Boolean)
         || await GIT.getAllUniqueNames();
-    let reposArray = (interaction.options.getString('repos')?.split(',').map(repo => repo.trim()).filter(Boolean) || await GIT.getAllRepos());
+
+    let reposArray = interaction.options.getString('repos')?.split(',').map(repo => repo.trim()).filter(Boolean)
+        || interaction.options.getString('repo')?.split(',').map(repo => repo.trim()).filter(Boolean)
+        || await GIT.getAllRepos();
+
     let timeStart = interaction.options.getString('time-start')?.split(".").join("-") || (await GIT.timeStartAndEnd()).startDate;
+
     let timeEnd = interaction.options.getString('time-end')?.split(".").join("-") || (await GIT.timeStartAndEnd()).endDate;
 
     return { usersArray, reposArray, timeStart, timeEnd };
@@ -120,7 +147,7 @@ const commands = {
 
         const gitData = await GIT.simpleSort(settings);
 
-        const sortedData = GIT_AFTER_SORT.longPacketsToCommitSumPerRepo(gitData)
+        const sortedData = GIT_AFTER_SORT.longPacketsToCommitSumPerRepo(gitData);
 
         const columns = [
             { label: lang.getText('repo'), key: 'repo' },
@@ -146,6 +173,47 @@ const commands = {
                 timeend: timeEnd
             })
             .addContext(lang, member, 'usercommitssum')
+            .setColor(COLOR.INFO)
+            .interactionResponse(interaction)
+    },
+
+    async repo_activity_table(interaction, client, guild, member, lang) {
+        const { usersArray, reposArray, timeStart, timeEnd } = await getFilters(interaction);
+
+        const settings = [
+            GIT_SETTINGS.USERS(usersArray),
+            GIT_SETTINGS.REPONAMES(reposArray),
+            GIT_SETTINGS.SET_START(convertDDMMYYToUnix(timeStart, false)),
+            GIT_SETTINGS.SET_END(convertDDMMYYToUnix(timeEnd, true)),
+            GIT_SETTINGS.LONG_PACKETS()
+        ]
+
+        const gitData = await GIT.simpleSort(settings);
+
+        const dataArray = GIT_AFTER_SORT.longPacketsToUserSumPerRepo(gitData);
+
+        const sortedDataArray = dataArray.sort((a, b) => b.commitscount - a.commitscount);
+
+        const columns = [
+            { label: lang.getText('name'), key: 'name' },
+            { label: lang.getText('commits'), key: 'commitscount' }
+        ]
+
+        const table = new DiscordSimpleTable(columns)
+            .setJsonArrayInputs(sortedDataArray)
+            .setStringOffset(2)
+            .addVerticalBar()
+            .addIndex(1)
+            .build();
+
+        new Embed()
+            .addInputs({
+                table,
+                repo: reposArray[0],
+                timestart: timeStart,
+                timeend: timeEnd
+            })
+            .addContext(lang, member, 'repocommitssum')
             .setColor(COLOR.INFO)
             .interactionResponse(interaction)
     }
@@ -192,8 +260,15 @@ const daysBeforeTimeAutoCompleteArray = () => {
     });
 };
 
-const autoCompleteRepositories = async (focusedValue) => {
+const autoCompleteRepositories = async (focusedValue, single = false) => {
     const repoList = await GIT.getAllRepos();
+
+    if (single) {
+        return repoList
+            .filter(repo => repo.toLowerCase().startsWith(focusedValue.toLowerCase()))
+            .slice(0, 25)
+            .map(repo => ({ name: repo, value: repo }));
+    }
 
     const splitValues = focusedValue.split(',').map(val => val.trim());
     const lastInput = splitValues.pop();
@@ -252,6 +327,8 @@ const autoComplete = async (interaction, client, guild, member, lang) => {
         choices = await autoCompleteUsers(focusedValue, true);
     } else if (optionName === 'repos') {
         choices = await autoCompleteRepositories(focusedValue);
+    } else if (optionName === 'repo') {
+        choices = await autoCompleteRepositories(focusedValue, true);
     } else if (optionName === 'time-start' || optionName === 'time-end') {
         choices = await autoCompleteDates(focusedValue);
     }
