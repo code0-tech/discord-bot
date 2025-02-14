@@ -220,16 +220,17 @@
         }
     },
     "git": {
-        "repo": "Rep2o",
-        "name": "Nam",
-        "commits": "Coits",
+        "repo": "Reptor",
+        "name": "Naemx",
+        "commits": "Coitss",
+        "percentage": "Parcant",
         "usercommitssum": {
-            "title": "Cots C2nt tor {gituser}",
-            "description": "{table}\n\n`Timespanz: {timestart} untal {timeend}`"
+            "title": "Coitss Cnt tor {gituser}",
+            "description": "{table}\n\n`Totalz commits: {total}`\n`Timespanda: {timestart} untal {timeend}`"
         },
         "repocommitssum": {
-            "title": "Cots C2nt tor r {repo}",
-            "description": "{table}\n\n`Timespanz: {timestart} untal {timeend}`"
+            "title": "Coitss Cnt tor {repo}",
+            "description": "{table}\n\n`Totalz commits: {total}`\n`Timespanda: {timestart} untal {timeend}`"
         }
     }
 }

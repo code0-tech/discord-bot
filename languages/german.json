@@ -212,13 +212,14 @@
         "repo": "Repo",
         "name": "Name",
         "commits": "Commits",
+        "percentage": "Prozent",
         "usercommitssum": {
             "title": "Commits Count für {gituser}",
-            "description": "{table}\n\n`Zeitspanne: {timestart} bis {timeend}`"
+            "description": "{table}\n\n`Insgesamte commits: {total}`\n`Timespan: {timestart} bis {timeend}`"
         },
         "repocommitssum": {
             "title": "Commits Count für {repo}",
-            "description": "{table}\n\n`Zeitspanne: {timestart} bis {timeend}`"
+            "description": "{table}\n\n`Insgesamte commits: {total}`\n`Timespan: {timestart} bis {timeend}`"
         }
     }
 }
