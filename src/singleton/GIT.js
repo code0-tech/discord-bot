@@ -35,6 +35,16 @@ class GIT_AFTER_SORT {
             return acc;
         }, {});
     }
+
+    static longPacketsToUserSumPerRepo = (data) => {
+        return Object.values(
+            data.reduce((acc, { name, commitscount }) => {
+                acc[name] = acc[name] || { name, commitscount: 0 };
+                acc[name].commitscount += commitscount;
+                return acc;
+            }, {})
+        );
+    }
 }
 
 class GIT {
