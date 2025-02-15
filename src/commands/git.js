@@ -83,8 +83,8 @@ const data = new SlashCommandBuilder()
             })
     )
     .addSubcommand(subcommand =>
-        subcommand.setName('table')
-            .setDescription('Display Git activity as a table.')
+        subcommand.setName('graph')
+            .setDescription('Display Git activity as a graph.')
             .addStringOption(option =>
                 option.setName('users')
                     .setDescription('Select multiple Git users (comma-separated)')
@@ -122,7 +122,7 @@ const data = new SlashCommandBuilder()
                     })
             )
             .setDescriptionLocalizations({
-                de: 'Zeigt gesamte Git Aktivitäten für einen Nutzer als Tabelle an.',
+                de: 'Zeigt gesamte Git Aktivitäten für einen Nutzer als Graph an.',
             })
     )
 
@@ -163,7 +163,7 @@ const calculateCommitPercentages = (dataArray, totalCommits) => {
 }
 
 const commands = {
-    async table(interaction, client, guild, member, lang) {
+    async graph(interaction, client, guild, member, lang) {
         const { usersArray, reposArray, timeStart, timeEnd } = await getFilters(interaction);
 
         const settings = [
@@ -174,10 +174,7 @@ const commands = {
             GIT_SETTINGS.DAILY_PACKETS()
         ]
 
-        const gitData = await GIT.simpleSort(settings);
-
-        // console.dir(gitData);
-        // console.dir(settings);
+        // const gitData = await GIT.simpleSort(settings);
 
         new Embed()
             .setTitle('Command in Progress, will be finished soon')
