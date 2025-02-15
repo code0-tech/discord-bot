@@ -173,7 +173,7 @@ const removeFromDB = async (interaction, client, guild, member, lang, componentD
     const row = new ActionRowBuilder().addComponents(button);
 
     new Embed()
-        .setColor(COLOR.INFOer)
+        .setColor(COLOR.INFO)
         .addInputs({ userid: userId })
         .addContext(lang, member, 'mongo-removed-user')
         .setComponents([row])
