@@ -85,8 +85,7 @@ start();
 
 -> event-prereminder refresh event timer after event fired, cause currently after the event fired there wont be any new timers setup for next time [08.02.2025]
 
-
-FIX:
+Fix that needs to be done asap:
 
 <--- Last few GCs --->
 
@@ -95,4 +94,6 @@ FIX:
 <--- JS stacktrace --->
 
 FATAL ERROR: Reached heap limit Allocation failed - JavaScript heap out of memory
+
+Current cause is unkown.
 */
