@@ -84,4 +84,15 @@ start();
 -> pie chart for repos (WIP) [since 11.08.2024]
 
 -> event-prereminder refresh event timer after event fired, cause currently after the event fired there wont be any new timers setup for next time [08.02.2025]
+
+
+FIX:
+
+<--- Last few GCs --->
+
+[2129182:0x6117fc0] 69385655 ms: Mark-sweep (reduce) 2047.1 (2079.8) -> 2046.1 (2080.0) MB, 2319.8 / 0.0 ms  (average mu = 0.074, current mu = 0.004) allocation failure; scavenge might not succeed
+
+<--- JS stacktrace --->
+
+FATAL ERROR: Reached heap limit Allocation failed - JavaScript heap out of memory
 */

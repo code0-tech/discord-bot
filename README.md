@@ -181,3 +181,5 @@ Since Code0 is actively in development, expect ongoing improvements and changes.
 ## Know issues
 
 - 📱 Mobile UI Bug: Tables and charts do not display correctly on mobile devices (Reported: 01.01.2025).
+
+- FATAL ERROR: Reached heap limit Allocation failed (Reported: 8.04.2025).
