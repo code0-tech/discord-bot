@@ -65,7 +65,8 @@ const start = async (args) => {
 
         require('./src/dc-guild/git-rank').setup(client);
 
-        require('./src/dc-guild/event-prereminder').setupEventMessages(client);
+        // require('./src/dc-guild/event-prereminder').setupEventMessages(client);
+        // Trying to run the bot without the event-prereminder that could be the cause of "JavaScript heap out of memory"
 
     });
 
