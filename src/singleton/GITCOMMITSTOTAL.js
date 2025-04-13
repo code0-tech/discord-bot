@@ -69,7 +69,7 @@ class GITCOMMITSTOTAL {
             let currentIndex = 0;
             let currentCumulative = 0;
 
-            while (currentDate <= lastDate) {
+            /* while (currentDate <= lastDate) {
                 if (currentIndex < userData.length && allDates[currentIndex] === currentDate) {
                     currentCumulative += userData[currentIndex].commits;
                     filledData.push({ date: currentDate, commits: currentCumulative });
@@ -79,7 +79,22 @@ class GITCOMMITSTOTAL {
                 }
 
                 currentDate = getNextDayByDateString(currentDate);
-            }
+            } */
+
+            for (
+                let date = currentDate;
+                date <= lastDate;
+                date = getNextDayByDateString(date)
+              ) {
+                if (currentIndex < userData.length && allDates[currentIndex] === date) {
+                  currentCumulative += userData[currentIndex].commits;
+                  filledData.push({ date, commits: currentCumulative });
+                  currentIndex++;
+                } else {
+                  filledData.push({ date, commits: currentCumulative });
+                }
+              }
+              
 
             cumulativeCommits[name] = filledData;
         }
