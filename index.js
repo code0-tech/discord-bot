@@ -1,5 +1,9 @@
 const start = async (args) => {
 
+    // debug
+    // require('./src/debug/heapdump');
+    // end
+
     require('./src/start-up/update-console-log');
     require('./src/start-up/process-exit');
 
