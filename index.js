@@ -1,9 +1,5 @@
 const start = async (args) => {
 
-    // debug
-    // require('./src/debug/heapdump');
-    // end
-
     require('./src/start-up/update-console-log');
     require('./src/start-up/process-exit');
 
@@ -100,5 +96,5 @@ Fix that needs to be done asap:
 
 FATAL ERROR: Reached heap limit Allocation failed - JavaScript heap out of memory
 
-Current cause is unkown.
+Current cause is unkown, but in this state without some functions the issue is currently resolved
 */
