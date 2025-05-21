@@ -70,9 +70,10 @@ const buildTimer = async (client, guild) => {
         const timeRemaining = nextDateUnix - Date.now();
 
         const eventConfig = config.commands.eventprereminder.find(cfg => cfg.title === event.name);
-        const channelId = config.channels[eventConfig.remindchannelname];
 
         if (eventConfig) {
+            const channelId = config.channels[eventConfig.remindchannelname];
+
             console.log(`[PREREMINDER-EVENTS] Config found for "${event.name}"`, Constants.CONSOLE.GOOD);
             setupTimer(channelId, event.name, timeRemaining, client, eventConfig);
         } else {
