@@ -217,6 +217,13 @@ class Constants {
                         return 'hex';
                     }
                 }
+            },
+            get PREREMINDER_EVENTS() {
+                return {
+                    get MAX_TIMER_WINDOW_DAYS() {
+                        return 7;
+                    }
+                }
             }
         }
     }
