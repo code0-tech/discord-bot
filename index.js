@@ -65,8 +65,7 @@ const start = async (args) => {
 
         require('./src/dc-guild/git-rank').setup(client);
 
-        // require('./src/dc-guild/event-prereminder').setupEventMessages(client);
-        // Trying to run the bot without the event-prereminder that could be the cause of "JavaScript heap out of memory"
+        require('./src/dc-guild/event-prereminder').setupEventMessages(client);
 
     });
 
@@ -86,15 +85,7 @@ start();
 
 -> event-prereminder refresh event timer after event fired, cause currently after the event fired there wont be any new timers setup for next time [08.02.2025]
 
-Fix that needs to be done asap:
+Error Fix
 
-<--- Last few GCs --->
-
-[2129182:0x6117fc0] 69385655 ms: Mark-sweep (reduce) 2047.1 (2079.8) -> 2046.1 (2080.0) MB, 2319.8 / 0.0 ms  (average mu = 0.074, current mu = 0.004) allocation failure; scavenge might not succeed
-
-<--- JS stacktrace --->
-
-FATAL ERROR: Reached heap limit Allocation failed - JavaScript heap out of memory
-
-Current cause is unkown, but in this state without some functions the issue is currently resolved
+Testing if Event Prereminder works again...
 */
